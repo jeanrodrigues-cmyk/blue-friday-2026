@@ -5,6 +5,20 @@ import { supabase } from "./lib/supabase";
 type Profile = { role: "admin" | "management" | "collaborator"; active: boolean };
 const areas = ["BO e Dados","Reembolso","Mídias e Procon","Recorrência","Chargeback","Resoluções","Quero Pago","Marcas","Reclame Aqui"];
 
+function BrandIcon({ small = false }: { small?: boolean }) {
+  return <div className={small ? "brand-icon brand-icon-small" : "brand-icon"} aria-label="Blue Friday">
+    <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <defs><linearGradient id="bfGradient" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#25e2ff"/><stop offset="1" stopColor="#2855ff"/></linearGradient></defs>
+      <path d="M11 69C30 88 76 78 89 49" stroke="url(#bfGradient)" strokeWidth="6" strokeLinecap="round"/>
+      <path d="M17 42C37 18 69 17 83 32" stroke="#16caff" strokeWidth="4" strokeLinecap="round"/>
+      <rect x="24" y="51" width="12" height="23" rx="3" fill="#d9edff"/>
+      <rect x="41" y="40" width="12" height="34" rx="3" fill="#8dbaff"/>
+      <rect x="58" y="29" width="12" height="45" rx="3" fill="#467dff"/>
+      <g transform="rotate(17 74 40)"><path d="M64 19H84L92 29V51L72 56L57 44V29Z" fill="url(#bfGradient)" stroke="#58e5ff" strokeWidth="2"/><circle cx="78" cy="28" r="3" fill="#09132e"/><path d="M67 44L82 32M68 34H69M81 43H82" stroke="white" strokeWidth="3.5" strokeLinecap="round"/></g>
+    </svg>
+  </div>;
+}
+
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -12,6 +26,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -57,7 +72,18 @@ export default function App() {
 
   if (!supabase) return <main className="shell"><section className="auth-card"><h1>Blue Friday 2026</h1><p>Configuração pendente: adicione VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY ao ambiente local.</p></section></main>;
   if (loading) return <main className="shell"><section className="auth-card"><h1>Blue Friday 2026</h1><p>Verificando acesso...</p></section></main>;
-  if (!session || !profile) return <main className="shell"><section className="auth-card"><div className="logo">BF</div><h1>{session ? "Acesso não autorizado" : "Entre na Blue Friday"}</h1><p>{session ? "Sua conta ainda não tem um perfil ativo. Solicite acesso ao administrador." : "Dashboard de Performance e Gamificação 2026"}</p>{!session && <form onSubmit={signIn}><label htmlFor="email">E-mail</label><input id="email" type="email" autoComplete="username" required value={email} onChange={e=>setEmail(e.target.value)} /><label htmlFor="password">Senha</label><input id="password" type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} /><button type="submit" disabled={busy}>{busy ? "Entrando..." : "Entrar"}</button></form>}{error && <p role="alert" className="error">{error}</p>}{session && <button onClick={signOut}>Sair</button>}</section></main>;
+  if (!session || !profile) return <main className="login-page">
+    <section className="login-panel">
+      <BrandIcon />
+      {session ? <><h1>Acesso restrito</h1><p className="login-note">Sua conta ainda não tem um perfil ativo.</p><button className="login-submit" onClick={signOut}>Sair</button></> :
+      <form className="login-form" onSubmit={signIn}>
+        <label className="login-field"><span className="sr-only">E-mail</span><span className="field-symbol" aria-hidden="true">✉</span><input id="email" aria-label="E-mail" placeholder="E-mail" type="email" autoComplete="username" required value={email} onChange={e=>setEmail(e.target.value)} /></label>
+        <label className="login-field"><span className="sr-only">Senha</span><span className="field-symbol" aria-hidden="true">♙</span><input id="password" aria-label="Senha" placeholder="Senha" type={showPassword ? "text" : "password"} autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} /><button className="password-toggle" type="button" onClick={()=>setShowPassword(v=>!v)} aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}>{showPassword ? "◉" : "◎"}</button></label>
+        <button className="login-submit" type="submit" disabled={busy} aria-label="Entrar">{busy ? "Entrando..." : "Entrar →"}</button>
+      </form>}
+      {error && <p role="alert" className="login-error">{error}</p>}
+    </section>
+  </main>;
 
-  return <main className="shell"><header><div className="logo">BF</div><div><strong>BLUE FRIDAY 2026</strong><p>Dashboard de Performance</p></div><span className="dev">{profile.role === "admin" ? "Administrador" : profile.role === "management" ? "Gestão" : "Colaborador"}</span><button className="signout" onClick={signOut}>Sair</button></header><section className="hero"><small>CENTRAL DE PERFORMANCE</small><h1>Uma campanha. Nove áreas.<br/><em>Resultados com transparência.</em></h1><p>Olá, {session.user.email}. Seu acesso foi autenticado. Os indicadores serão conectados após validação das fontes e regras.</p><aside>Nenhum prêmio está sendo calculado automaticamente.</aside></section><section><h2>Áreas da campanha</h2><div className="grid">{(profile.role === "collaborator" ? ["Minha performance"] : areas).map((area,i)=><article key={area}><span>{String(i+1).padStart(2,"0")}</span><h3>{area}</h3><p>Indicadores em preparação</p><label>A configurar</label></article>)}</div></section><footer>Blue Friday 2026 · Acesso autenticado</footer></main>;
+  return <main className="shell"><header><BrandIcon small /><div><strong>BLUE FRIDAY 2026</strong><p>Dashboard de Performance</p></div><span className="dev">{profile.role === "admin" ? "Administrador" : profile.role === "management" ? "Gestão" : "Colaborador"}</span><button className="signout" onClick={signOut}>Sair</button></header><section className="hero"><small>CENTRAL DE PERFORMANCE</small><h1>Uma campanha. Nove áreas.<br/><em>Resultados com transparência.</em></h1><p>Olá, {session.user.email}. Seu acesso foi autenticado. Os indicadores serão conectados após validação das fontes e regras.</p><aside>Nenhum prêmio está sendo calculado automaticamente.</aside></section><section><h2>Áreas da campanha</h2><div className="grid">{(profile.role === "collaborator" ? ["Minha performance"] : areas).map((area,i)=><article key={area}><span>{String(i+1).padStart(2,"0")}</span><h3>{area}</h3><p>Indicadores em preparação</p><label>A configurar</label></article>)}</div></section><footer>Blue Friday 2026 · Acesso autenticado</footer></main>;
 }
