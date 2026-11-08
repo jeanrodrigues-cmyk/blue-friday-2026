@@ -48,3 +48,43 @@
 .login-panel{border-color:#23518e;box-shadow:0 16px 46px #0007,0 0 10px #007fff26,inset 0 1px 0 #25b7ff44}
 .login-accent{box-shadow:0 0 7px #00d9e955}
 @media(max-width:650px){.login-heading .brand-icon{width:86px;height:86px;border-radius:20px}}
+
+/* Blue Friday | identidade clara aprovada, isolada do dashboard autenticado */
+.login-light{color:#0a1737;background:radial-gradient(ellipse at 50% 44%,#e4efff 0%,#f7faff 48%,#ffffff 100%);padding:30px 20px 38px;overflow:hidden}
+.login-light:before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(#a7c5f019 1px,transparent 1px),linear-gradient(90deg,#a7c5f019 1px,transparent 1px);background-size:43px 43px}
+.login-light .login-wave{opacity:1;box-shadow:none;filter:none;background:linear-gradient(145deg,#e6f0ff,#cfe2ff 64%,#f8fbff);border-radius:48%;width:50vw;height:26vw;min-width:390px;min-height:230px}
+.login-light .login-wave-top{top:-15vw;left:-18vw;transform:rotate(-24deg)}
+.login-light .login-wave-bottom{bottom:-18vw;right:-13vw;transform:rotate(-24deg)}
+.login-dots{position:absolute;width:135px;height:125px;opacity:.52;pointer-events:none;background-image:radial-gradient(#8db8f9 3px,transparent 4px);background-size:25px 25px}
+.login-dots-top{top:10px;left:5%}.login-dots-right{right:5%;top:66%}
+.login-chart-line{position:absolute;color:#94bdfb;opacity:.72;pointer-events:none;width:26vw;min-width:270px}
+.login-chart-line-left{left:-10px;bottom:2%}.login-chart-line-top{right:-10px;top:-12px}
+.login-light .login-watermark{top:29%;right:4%;opacity:.43;color:#2485ee;align-items:center}
+.login-light .watermark-bars{height:190px;gap:12px}.login-light .watermark-bars i{width:36px;background:linear-gradient(#369df8,#bcdcff);border-radius:9px 9px 0 0}
+.login-light .login-watermark svg{width:150px;height:160px;margin-left:-48px;transform:none}
+.login-light .login-content{width:min(100%,580px)}
+.login-light .login-heading{margin-bottom:19px}
+.login-light .login-heading .brand-icon{width:80px;height:80px;border-radius:19px;margin-bottom:13px;box-shadow:0 5px 15px #1a66c62e,inset 0 0 8px #08b8ff33}
+.login-light .login-heading h1{font-size:clamp(32px,4vw,43px);color:#071634;letter-spacing:-1.5px;margin-bottom:7px}
+.login-light .login-heading h1 span{background:linear-gradient(90deg,#0b87fa,#1553e9);background-clip:text;-webkit-background-clip:text}
+.login-light .login-heading p{font-size:14px;color:#536784;letter-spacing:.7px}
+.heading-accent{width:92px;height:4px;border-radius:9px;background:#2563eb;margin:12px auto 0}
+.login-light .login-panel{background:#ffffff;border:1px solid #e4edfc;box-shadow:0 18px 65px #3873c626,0 2px 12px #3d78d412;border-radius:26px;padding:28px 37px 30px}
+.login-eyebrow{font-size:11px;letter-spacing:2px;color:#145af0;font-weight:800;text-align:center;margin:0 0 12px}
+.login-light .login-panel h2{font-size:26px;color:#071634;margin:0}
+.login-helper{text-align:center;color:#62718b;font-size:13px;line-height:1.5;margin:10px 0 25px}
+.login-light .login-form{gap:18px}
+.login-input-group{display:grid;gap:8px;font-size:12px;font-weight:700;color:#172a48}
+.login-light .login-field{height:49px;border:1px solid #d4dfef;background:#fff;border-radius:10px}
+.login-light .login-field:focus-within{border-color:#2563eb;box-shadow:0 0 0 3px #2563eb19}
+.login-light .field-symbol{color:#7990b2;width:44px}
+.login-light .login-field input{color:#102340;font-size:14px}
+.login-light .login-field input::placeholder{color:#9badc6}
+.login-light .password-toggle{color:#748bac}
+.login-light .login-submit{height:54px;margin-top:3px;border:0;border-radius:10px;background:linear-gradient(100deg,#1498f5,#1551f2);font-size:15px;box-shadow:0 8px 19px #2466e52d}
+.login-security{margin-top:26px;display:flex;align-items:center;gap:12px;padding:13px 15px;background:#f3f7fd;border-radius:12px;color:#193354}
+.security-icon{display:grid;place-items:center;width:32px;height:32px;flex-shrink:0;border-radius:50%;background:#dceafe;color:#2364db;font-size:21px;font-weight:700}
+.login-security strong{display:block;font-size:12px}.login-security small{display:block;font-size:11px;color:#7d90ac;margin-top:4px}
+.login-light .login-note{color:#51637e}.login-light .login-error{color:#b42335}
+@media(max-width:950px){.login-light .login-watermark{right:-100px;opacity:.16}.login-chart-line-top{right:-160px}}
+@media(max-width:650px){.login-light{padding:22px 16px}.login-light .login-panel{padding:25px 22px}.login-light .login-heading .brand-icon{width:72px;height:72px}.login-light .login-heading h1{font-size:32px}.login-light .login-heading p{font-size:12px;letter-spacing:0}.login-light .login-watermark{display:none}.login-light .login-wave-top{top:-240px;left:-280px}.login-light .login-wave-bottom{bottom:-260px;right:-250px}.login-chart-line{opacity:.2}}
