@@ -73,16 +73,26 @@ export default function App() {
   if (!supabase) return <main className="shell"><section className="auth-card"><h1>Blue Friday 2026</h1><p>Configuração pendente: adicione VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY ao ambiente local.</p></section></main>;
   if (loading) return <main className="shell"><section className="auth-card"><h1>Blue Friday 2026</h1><p>Verificando acesso...</p></section></main>;
   if (!session || !profile) return <main className="login-page">
-    <section className="login-panel">
-      <BrandIcon />
-      {session ? <><h1>Acesso restrito</h1><p className="login-note">Sua conta ainda não tem um perfil ativo.</p><button className="login-submit" onClick={signOut}>Sair</button></> :
-      <form className="login-form" onSubmit={signIn}>
-        <label className="login-field"><span className="sr-only">E-mail</span><span className="field-symbol" aria-hidden="true">✉</span><input id="email" aria-label="E-mail" placeholder="E-mail" type="email" autoComplete="username" required value={email} onChange={e=>setEmail(e.target.value)} /></label>
-        <label className="login-field"><span className="sr-only">Senha</span><span className="field-symbol" aria-hidden="true">♙</span><input id="password" aria-label="Senha" placeholder="Senha" type={showPassword ? "text" : "password"} autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} /><button className="password-toggle" type="button" onClick={()=>setShowPassword(v=>!v)} aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}>{showPassword ? "◉" : "◎"}</button></label>
-        <button className="login-submit" type="submit" disabled={busy} aria-label="Entrar">{busy ? "Entrando..." : "Entrar →"}</button>
-      </form>}
-      {error && <p role="alert" className="login-error">{error}</p>}
-    </section>
+    <div className="login-wave login-wave-top" aria-hidden="true" />
+    <div className="login-wave login-wave-bottom" aria-hidden="true" />
+    <div className="login-watermark" aria-hidden="true">
+      <div className="watermark-bars"><i/><i/><i/><i/></div>
+      <svg viewBox="0 0 120 135" fill="none"><path d="M35 28V13a25 25 0 0 1 50 0v15" stroke="currentColor" strokeWidth="12" strokeLinecap="round"/><path d="M15 31h88a9 9 0 0 1 9 9v74a9 9 0 0 1-9 9H15a9 9 0 0 1-9-9V40a9 9 0 0 1 9-9Z" fill="currentColor"/><text x="59" y="94" fontSize="65" fontWeight="800" textAnchor="middle" fill="#061944">%</text></svg>
+    </div>
+    <div className="login-content">
+      <div className="login-heading"><BrandIcon /><h1>Blue Friday <span>2026</span></h1><p>Dashboard de Performance da Campanha</p></div>
+      <section className="login-panel">
+        <h2>{session ? "Acesso restrito" : "Acesse a campanha"}</h2>
+        <div className="login-accent" aria-hidden="true" />
+        {session ? <><p className="login-note">Sua conta ainda não tem um perfil ativo.</p><button className="login-submit" onClick={signOut}>Sair</button></> :
+        <form className="login-form" onSubmit={signIn}>
+          <label className="login-field"><span className="sr-only">E-mail</span><span className="field-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><input id="email" aria-label="E-mail" placeholder="E-mail" type="email" autoComplete="username" required value={email} onChange={e=>setEmail(e.target.value)} /></label>
+          <label className="login-field"><span className="sr-only">Senha</span><span className="field-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></svg></span><input id="password" aria-label="Senha" placeholder="Senha" type={showPassword ? "text" : "password"} autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} /><button className="password-toggle" type="button" onClick={()=>setShowPassword(v=>!v)} aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>{showPassword && <path d="M3 21 21 3"/>}</svg></button></label>
+          <button className="login-submit" type="submit" disabled={busy}>{busy ? "Entrando..." : "Entrar  →"}</button>
+        </form>}
+        {error && <p role="alert" className="login-error">{error}</p>}
+      </section>
+    </div>
   </main>;
 
   return <main className="shell"><header><BrandIcon small /><div><strong>BLUE FRIDAY 2026</strong><p>Dashboard de Performance</p></div><span className="dev">{profile.role === "admin" ? "Administrador" : profile.role === "management" ? "Gestão" : "Colaborador"}</span><button className="signout" onClick={signOut}>Sair</button></header><section className="hero"><small>CENTRAL DE PERFORMANCE</small><h1>Uma campanha. Nove áreas.<br/><em>Resultados com transparência.</em></h1><p>Olá, {session.user.email}. Seu acesso foi autenticado. Os indicadores serão conectados após validação das fontes e regras.</p><aside>Nenhum prêmio está sendo calculado automaticamente.</aside></section><section><h2>Áreas da campanha</h2><div className="grid">{(profile.role === "collaborator" ? ["Minha performance"] : areas).map((area,i)=><article key={area}><span>{String(i+1).padStart(2,"0")}</span><h3>{area}</h3><p>Indicadores em preparação</p><label>A configurar</label></article>)}</div></section><footer>Blue Friday 2026 · Acesso autenticado</footer></main>;
