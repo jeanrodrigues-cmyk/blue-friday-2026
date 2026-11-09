@@ -537,3 +537,19 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 @media(max-width:1250px){.mp-dashboard-layout{grid-template-columns:1fr}.mp-dashboard-main{order:0}.mp-dashboard-form{order:1}}
 @media(max-width:760px){.mp-dashboard-layout .mp-award-primary{flex-direction:column;align-items:stretch}.mp-dashboard-layout .mp-award-inline>div:first-child{border-left:0}.mp-dashboard-layout .mp-progress-grid{grid-template-columns:1fr}}
 @media(max-width:450px){.mp-dashboard-layout .bf-panel{padding:16px}.mp-dashboard-layout .mp-award-inline{grid-template-columns:1fr}.mp-dashboard-layout .mp-award-inline>div{border-left:0;border-top:1px solid #d4e2f3;padding:10px 0}}
+
+
+/* Blue Friday | superfícies neutras, sem halos e contornos azuis decorativos */
+.bf-layout{background:#f6f7f9}
+.bf-overview-stat,.bf-overview-stat:nth-child(2),.bf-overview-stat:nth-child(3),.bf-overview-stat:nth-child(4){background:#fff;border:1px solid #e2e6ed;box-shadow:0 2px 8px rgba(15,23,42,.035)}
+.bf-overview-area,.bf-overview-area:hover{border-color:#e2e6ed;box-shadow:0 2px 8px rgba(15,23,42,.035)}
+.bf-overview-area:hover{background:#fafbfc}
+.bf-overview-area-icon{background:#f1f3f6;color:#50637e}
+.bf-overview-stat-icon,.bf-overview-stat:nth-child(2) .bf-overview-stat-icon,.bf-overview-stat:nth-child(3) .bf-overview-stat-icon,.bf-overview-stat:nth-child(4) .bf-overview-stat-icon{background:#f1f3f6;color:#52647b}
+.bo-v2-kpi{border:1px solid #e2e6ed;border-left:4px solid #cbd5e1;box-shadow:0 2px 8px rgba(15,23,42,.035)}
+.bo-v2-kpi.red{border-left-color:#ee4c56}
+.bo-v2-kpi.green{border-left-color:#1daf72}
+.bo-v2-kpi .bo-kpi-icon{background:#f1f3f6;color:#52647b}
+.mp-dashboard-layout .bf-panel{border-color:#e2e6ed;box-shadow:0 2px 8px rgba(15,23,42,.035)}
+.bf-top{box-shadow:none}
+.bf-layout :is(.bf-overview-area,.bf-overview-stat,.bo-v2-kpi,.mp-progress-card){outline-offset:2px}
