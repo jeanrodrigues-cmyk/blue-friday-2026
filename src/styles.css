@@ -134,3 +134,59 @@
 @media(max-width:1250px){.bo-v2-main,.bo-v2-bottom{grid-template-columns:1fr}.bo-v2-kpi{flex-wrap:wrap}.bo-kpi-change{margin-left:0}.bo-hero-side{gap:10px}}
 @media(max-width:850px){.bo-hero{align-items:flex-start;flex-direction:column}.bo-nav{align-items:stretch;flex-direction:column}.bo-v2-kpis{grid-template-columns:1fr}.bo-v2-kpi{min-height:110px}.bo-kpi-change{margin-left:auto}.bo-summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:550px){.bo-hero{padding:22px}.bo-hero h1{font-size:29px}.bo-hero-side{flex-direction:column;align-items:flex-start}.bo-hero-side>div+div{border-left:0;padding-left:0}.bo-nav-actions{flex-wrap:wrap}.bo-v2 .bo-tabs{flex-wrap:wrap}.bo-v2 .bo-tabs button{padding:9px 11px}.bo-v2 .bf-panel{padding:17px}.bo-summary-grid{grid-template-columns:1fr}.bo-mission-goal strong{font-size:30px}.bo-v2-kpi{padding:17px 12px}.bo-kpi-body>strong{font-size:32px}}
+
+/* BO e Dados | executive visual alignment with approved mockup */
+.bo-v2{max-width:1680px;padding-top:20px}
+.bo-v2 .bo-hero{min-height:155px;display:flex;gap:25px;padding:22px 30px;border-radius:15px;background:radial-gradient(ellipse at 57% 140%,#1261d6 0%,transparent 39%),linear-gradient(105deg,#041334 0%,#05245d 56%,#04183e 100%);border:1px solid #174b99;box-shadow:0 6px 18px #12366515}
+.bo-hero-icon{position:relative;z-index:2;flex:0 0 83px;height:83px;border:1px solid #2a8fff;border-radius:18px;display:grid;place-items:center;color:white;background:linear-gradient(140deg,#1354bd,#06235b);box-shadow:inset 0 0 25px #338cff30}
+.bo-v2 .bo-hero-main{flex:1;min-width:230px}
+.bo-v2 .bo-hero h1{font-size:39px;margin:6px 0 4px}
+.bo-v2 .bo-hero-kicker{color:#16d4ff}
+.bo-v2 .bo-hero-side{gap:22px;min-width:370px;justify-content:space-between;border:1px solid #6386b8;background:#ffffff14;backdrop-filter:blur(5px)}
+.bo-v2 .bo-hero-side>div{display:flex;align-items:center;gap:12px}
+.bo-v2 .bo-hero-side svg{color:#e0f0ff;flex-shrink:0}
+.bo-v2 .bo-hero-side strong{white-space:nowrap}
+.bo-v2 .bo-hero-decoration{position:absolute;right:27%;top:0;transform:none;color:#26a6ff;opacity:.6}
+.bo-bag-art{display:flex;align-items:center;position:relative;transform:rotate(10deg);filter:drop-shadow(0 0 12px #1588ff)}
+.bo-bag-art svg{width:125px;height:125px;stroke-width:1.1;color:#17b5ff}
+.bo-bag-art b{position:absolute;left:35px;top:43px;color:#b8f4ff;font-size:12px;line-height:1.05;text-align:center;text-shadow:0 0 8px #11d9ff}
+.bo-v2 .bo-nav{padding:0 0 14px;border-bottom:1px solid #dce6f5}
+.bo-v2 .bo-tabs{display:flex;gap:14px;align-items:center}
+.bo-v2 .bo-tabs button{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;padding:11px 16px}
+.bo-v2 .bo-tabs button.active{background:linear-gradient(100deg,#318cff,#1253ed);box-shadow:0 5px 12px #2674ed29}
+.bo-v2 .bo-refresh{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(105deg,#2385fa,#123dec);font-weight:700;padding:11px 16px}
+.bo-v2 .bo-date-filter{padding:9px 12px;gap:10px}
+.bo-v2 .bo-date-filter svg{color:#163c76}
+.bo-v2 .bo-date-filter span{color:#173c74;font-weight:600}
+.bo-v2 .bo-v2-kpis{gap:18px}
+.bo-v2 .bo-v2-kpi{padding:19px 20px;min-height:130px;border-radius:16px;box-shadow:0 5px 16px #1b4c8614}
+.bo-v2 .bo-kpi-icon{flex:0 0 67px;height:67px;border-radius:15px}
+.bo-v2 .bo-kpi-body>span{font-size:14px;color:#10274c}
+.bo-v2 .bo-kpi-body>strong{font-size:41px}
+.bo-v2 .bo-kpi-change{font-size:12px}
+.bo-v2 .bo-v2-main{grid-template-columns:1fr 1.27fr;gap:18px}
+.bo-v2 .bo-v2-main .bf-panel{min-height:286px}
+.bo-v2 .bo-section-head h2{display:flex;align-items:center;gap:10px;font-size:18px}
+.bo-v2 .bo-section-head h2 svg{color:#175df0;flex-shrink:0}
+.bo-v2 .bo-section-head p{font-size:14px;color:#152e57}
+.bo-v2 .bo-v2-mission .bf-status{display:inline-flex;align-items:center;gap:7px;background:#fff2cb;color:#8e5500}
+.bo-v2 .bo-mission-goal{justify-content:space-around}
+.bo-v2 .bo-mission-goal>div:last-child strong{color:#067a42}
+.bo-v2 .bo-v2-progress{height:14px}
+.bo-v2 .bo-v2-mission-foot{font-size:13px}
+.bo-v2 .bo-v2-bottom{grid-template-columns:1.15fr 1fr}
+.bo-v2 .bo-table thead{background:#e8efff}
+.bo-v2 .bo-table th{color:#132d58;font-weight:750}
+.bo-v2 .bo-table td{font-size:13px}
+.bo-table-delta{display:inline-block;border-radius:20px;padding:4px 9px;font-weight:700;white-space:nowrap}
+.bo-table-delta.good{background:#e2f9ea;color:#137c42}
+.bo-table-delta.bad{background:#fff0ed;color:#c64444}
+.bo-v2 .bo-summary-icon.purple{background:#f4eaff;color:#a117e4}
+.bo-v2 .bo-summary-grid>div{padding:14px;gap:7px}
+.bo-v2 .bo-summary-grid strong{font-size:31px}
+.bo-v2 .bo-chart-container{min-height:170px}
+.bo-v2 .bo-chart-container svg{max-height:220px}
+.bo-v2 .bo-empty{min-height:160px}
+@media(max-width:1320px){.bo-v2 .bo-v2-main,.bo-v2 .bo-v2-bottom{grid-template-columns:1fr}.bo-v2 .bo-hero-side{min-width:0}.bo-v2 .bo-hero-decoration{display:none}}
+@media(max-width:900px){.bo-v2 .bo-v2-kpis{grid-template-columns:1fr}.bo-v2 .bo-hero{flex-wrap:wrap}.bo-v2 .bo-hero-side{width:100%}.bo-v2 .bo-nav{flex-wrap:wrap}}
+@media(max-width:600px){.bo-v2 .bo-hero{padding:18px;gap:13px}.bo-hero-icon{flex-basis:55px;height:55px}.bo-hero-icon svg{width:31px;height:31px}.bo-v2 .bo-hero h1{font-size:28px}.bo-v2 .bo-hero-main{min-width:0}.bo-v2 .bo-hero-side{flex-wrap:wrap}.bo-v2 .bo-hero-side>div+div{border:0;padding:0}.bo-v2 .bo-tabs{gap:4px}.bo-v2 .bo-tabs button{font-size:11px;padding:9px}.bo-v2 .bo-v2-kpi{padding:14px}.bo-v2 .bo-kpi-body>strong{font-size:32px}.bo-v2 .bo-kpi-icon{flex-basis:52px;height:52px}.bo-v2 .bo-kpi-icon svg{width:27px;height:27px}.bo-v2 .bo-kpi-change{margin-left:0}}
