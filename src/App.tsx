@@ -6,6 +6,28 @@ type Metric = { metric_key: string; metric_value: number; reference_date: string
 type Profile = { role: "admin" | "management" | "collaborator"; active: boolean };
 const areas = ["BO e Dados","Reembolso","Mídias e Procon","Recorrência","Chargeback","Resoluções","Quero Pago","Marcas","Reclame Aqui"];
 
+type CsvPreview = { fileName: string; open: number; backlog: number; resolved: number; ingestedAt: string; referenceDate: string };
+function parseCsvLine(line: string, delimiter: string): string[] {
+  const values: string[] = []; let value = ""; let quoted = false;
+  for (let i=0;i<line.length;i++) { const ch=line[i]; if(ch==='"' && line[i+1]==='"' && quoted){value+='"';i++;}else if(ch==='"'){quoted=!quoted;}else if(ch===delimiter && !quoted){values.push(value.trim());value="";}else{value+=ch;} }
+  if(quoted) throw new Error("CSV com aspas não fechadas.");
+  values.push(value.trim()); return values;
+}
+function readBoCsv(text: string, fileName: string): CsvPreview {
+  const lines=text.replace(/^\\uFEFF/,"").split(/\\r?\\n/).filter(l=>l.trim());
+  if(lines.length!==2) throw new Error("O CSV deve conter cabeçalho e exatamente uma linha de resultados.");
+  const delimiter=lines[0].includes(";")?";":",";
+  const headers=parseCsvLine(lines[0],delimiter).map(h=>h.toLowerCase());
+  const row=parseCsvLine(lines[1],delimiter);
+  const get=(key:string)=>{const index=headers.indexOf(key);if(index<0 || row[index]===undefined)throw new Error("Coluna ausente: "+key);return row[index];};
+  const number=(key:string)=>{const raw=get(key);if(!/^\\d+$/.test(raw))throw new Error("Valor inválido em "+key);const n=Number(raw);if(!Number.isSafeInteger(n))throw new Error("Número fora do limite em "+key);return n;};
+  const ingest=get("ultima_ingestao").trim();
+  const timestamp=Date.parse(ingest.replace(" ","T"));
+  if(!ingest || !Number.isFinite(timestamp) || !/(Z|[+-]\\d{2}:?\\d{2})$/i.test(ingest))throw new Error("ultima_ingestao precisa conter data, hora e fuso (ex.: 2026-11-07T04:12:01Z).");
+  const date=new Date().toLocaleDateString("en-CA",{timeZone:"America/Sao_Paulo"});
+  return {fileName,open:number("bo_em_aberto"),backlog:number("backlog_acima_7_dias"),resolved:number("bos_resolvidos"),ingestedAt:new Date(timestamp).toISOString(),referenceDate:date};
+}
+
 function BrandIcon({ small = false }: { small?: boolean }) {
   return <div className={small ? "brand-icon brand-icon-small" : "brand-icon"} aria-label="Blue Friday">
     <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
@@ -32,6 +54,10 @@ export default function App() {
   const [view, setView] = useState("Visão geral");
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [metricError, setMetricError] = useState("");
+  const [csvPreview,setCsvPreview] = useState<CsvPreview|null>(null);
+  const [csvMessage,setCsvMessage] = useState("");
+  const [csvBusy,setCsvBusy] = useState(false);
+  const [refreshCount,setRefreshCount] = useState(0);
 
   useEffect(() => {
     if (!supabase) { setLoading(false); return; }
@@ -71,7 +97,33 @@ export default function App() {
         setMetricError(error ? "Falha ao consultar métricas validadas." : "");
       });
     return () => { mounted = false; };
-  }, [session,profile,view]);
+  }, [session,profile,view,refreshCount]);
+
+  async function chooseCsv(file?:File) {
+    setCsvPreview(null);setCsvMessage("");
+    if(!file)return;
+    if(file.size>100000) {setCsvMessage("Arquivo muito grande. Exporte apenas a linha agregada da consulta.");return;}
+    try {setCsvPreview(readBoCsv(await file.text(),file.name));}
+    catch(e){setCsvMessage(e instanceof Error?e.message:"Não foi possível ler o CSV.");}
+  }
+  async function importCsv() {
+    if(!supabase || !csvPreview || profile?.role!=="admin")return;
+    setCsvBusy(true);setCsvMessage("");
+    try {
+      const {data,error:importError}=await supabase.rpc("bf_import_bo_csv",{
+        p_reference_date:csvPreview.referenceDate,
+        p_file_name:csvPreview.fileName,
+        p_bo_open:csvPreview.open,
+        p_bo_backlog:csvPreview.backlog,
+        p_bo_resolved:csvPreview.resolved,
+        p_ingested_at:csvPreview.ingestedAt
+      });
+      if(importError)throw importError;
+      setCsvMessage("Importação concluída. Lote: "+String(data));
+      setCsvPreview(null);setRefreshCount(v=>v+1);
+    }catch(e){setCsvMessage("Importação não realizada: "+(e instanceof Error?e.message:"erro desconhecido"));}
+    finally{setCsvBusy(false);}
+  }
 
   async function signIn(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -138,6 +190,21 @@ export default function App() {
         <div className="bf-metrics">{cards.map(c=>{const validated=official.get(c.key);return <article className={"bf-metric "+c.tone} key={c.key}><span>{c.name}</span><strong>{validated ? new Intl.NumberFormat("pt-BR").format(Number(validated.metric_value)) : "—"}</strong><small>{validated?"Registrado em "+validated.reference_date+" · "+c.note:"Sem registro validado"}</small>{!validated&&<em>Indisponível</em>}</article>})}</div>
         <div className="bf-panels"><section className="bf-panel"><div className="bf-panel-title"><div><h2>Missão semanal</h2><p>09 a 13 de novembro</p></div><span className="bf-status">Pendente</span></div><div className="bf-mission"><strong>Zerar BOs com mais de 7 dias</strong><p>Meta: eliminar o backlog elegível até o encerramento da semana, conforme regras da campanha.</p></div><div className="bf-detail"><span>Premiação prevista</span><strong>R$ 60,00</strong></div><div className="bf-detail"><span>Elegibilidade</span><strong>Não apurada</strong></div><p className="bf-note">Nenhum prêmio está sendo calculado automaticamente.</p></section>
         <section className="bf-panel"><div className="bf-panel-title"><div><h2>Qualidade dos dados</h2><p>Rastreabilidade da informação</p></div></div><div className="bf-detail"><span>Fonte</span><strong>Databricks</strong></div><div className="bf-detail"><span>Última ingestão</span><strong>07/11/2026</strong></div><div className="bf-detail"><span>Status operacionais</span><strong>Regra confirmada</strong></div><div className="bf-detail"><span>Métricas validadas no Supabase</span><strong>{metrics.length}</strong></div>{metricError&&<p role="alert" className="bf-error">{metricError}</p>}<p className="bf-note">Atualização automática depende de integração aprovada.</p></section></div>
+        {profile.role==="admin"&&<section className="bf-panel" style={{marginTop:18}}>
+          <div className="bf-panel-title"><div><h2>Importar indicadores do Databricks</h2><p>CSV agregado da consulta BO e Dados · somente administradores</p></div></div>
+          <p className="bf-note">No Databricks, execute a consulta e exporte o resultado em CSV. O arquivo deve conter uma linha com bo_em_aberto, backlog_acima_7_dias, bos_resolvidos e ultima_ingestao. Não envie dados individuais de alunos.</p>
+          <label style={{display:"block",margin:"14px 0",fontWeight:600}}>Selecionar CSV
+            <input type="file" accept=".csv,text/csv" style={{display:"block",marginTop:8}} onChange={e=>{void chooseCsv(e.target.files?.[0]);e.target.value="";}}/>
+          </label>
+          {csvPreview&&<div className="bf-mission">
+            <strong>Prévia: {csvPreview.fileName}</strong>
+            <p>BOs abertos: {csvPreview.open} · Backlog &gt;7 dias: {csvPreview.backlog} · Resolvidos: {csvPreview.resolved}</p>
+            <p>Última ingestão da fonte: {new Date(csvPreview.ingestedAt).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})} · Registro: {csvPreview.referenceDate}</p>
+            <p>Confirme apenas se a origem e a data estiverem corretas. A importação substitui os indicadores desta data de referência de forma atômica.</p>
+            <button type="button" className="login-submit" disabled={csvBusy} style={{maxWidth:250,marginTop:12}} onClick={()=>void importCsv()}>{csvBusy?"Importando...":"Confirmar importação"}</button>
+          </div>}
+          {csvMessage&&<p role="status" className="bf-note" style={{marginTop:12}}>{csvMessage}</p>}
+        </section>}
         <section className="bf-panel"><h2>Próximas validações</h2><div className="bf-next"><span>01 · Status pendentes confirmados com a operação</span><span>02 · Critério de backlog acima de 7 dias validado</span><span>03 · Preparar importação diária autorizada</span><span>04 · Apurar missão somente após fechamento semanal</span></div></section>
       </div>:<div className="bf-body"><div className="bf-page-head"><div><small>CENTRAL DE PERFORMANCE</small><h1>{view==="Visão geral"?"Dashboard de Performance":view}</h1><p>{view==="Visão geral"?"Acompanhe a preparação das áreas da campanha.":"Indicadores em preparação e aguardando validação."}</p></div></div><div className="bf-notice"><strong>Premiações protegidas</strong><p>Sem cálculo automático antes de validar fontes e regras.</p></div>{view==="Visão geral"&&<div className="bf-area-grid">{areas.map(area=><button key={area} onClick={()=>setView(area)}><strong>{area}</strong><small>{area==="BO e Dados"?"Painel inicial disponível":"Indicadores em preparação"}</small><span>Ver área →</span></button>)}</div>}</div>}
     </div>
