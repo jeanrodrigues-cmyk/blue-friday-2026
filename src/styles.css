@@ -678,3 +678,68 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .mp-page .mp-week-disclaimer{font-size:11px;color:#7888a0;margin:9px 0 0}
 @media(max-width:950px){.mp-page .mp-week-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.mp-page .mp-week-status{align-items:flex-start;flex-wrap:wrap;padding:16px}.mp-page .mp-week-status-pill{margin-left:60px}.mp-page .mp-week-summary{grid-template-columns:1fr}}
+
+/* Blue Friday | Midias e Procon - referencia visual branca e azul */
+.mp-page{--mp-navy:#102c65;--mp-blue:#1255e6}
+.mp-page .mp-compact-heading{padding:15px 0 20px}
+.mp-page .mp-compact-heading h1{font-size:clamp(28px,2.4vw,36px);font-weight:800;letter-spacing:-.8px}
+.mp-page .mp-compact-heading p{font-size:14px}
+.mp-page .mp-compact-owner{background:#e9f1ff;border:0;border-radius:999px;padding:10px 16px}
+.mp-page .mp-compact-owner small{display:none}
+.mp-page .mp-nav{margin:0 0 23px}
+.mp-page .mp-overview-heading{margin:0 0 13px}
+.mp-page .mp-overview-heading h2{font-size:19px}
+.mp-page .mp-overview-eyebrow{font-size:10px}
+.mp-page .mp-reference-cards{gap:18px;margin:0 0 19px}
+.mp-page .mp-reference-cards .mp-kpi-result{border:1px solid #d8e4f5!important;border-radius:14px;box-shadow:0 3px 10px rgba(13,54,123,.06);padding:20px!important;min-height:173px!important}
+.mp-page .mp-reference-cards .mp-result-top{display:flex;align-items:center;justify-content:space-between}
+.mp-page .mp-reference-cards .mp-result-icon{width:52px;height:52px;background:#e4efff;border-radius:13px;color:#1558d5}
+.mp-page .mp-reference-cards .mp-result-badge{border-radius:999px;padding:8px 11px;font-size:11px;font-weight:800}
+.mp-page .mp-reference-cards .mp-result-badge.success{background:#d8f6e5;color:#07834b}
+.mp-page .mp-reference-cards .mp-result-badge.fail{background:#ffe1e4;color:#b72b42}
+.mp-page .mp-reference-cards .mp-result-badge.pending{background:#edf3fd;color:#315e9e}
+.mp-page .mp-reference-cards h3{font-size:18px!important;margin:14px 0 2px!important;color:#102c65}
+.mp-page .mp-reference-cards .mp-card-goal{font-size:12px!important;margin:0 0 11px!important;color:#536b90}
+.mp-page .mp-card-metric{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.mp-page .mp-card-metric .mp-result-number{font-size:26px!important;line-height:1.2;color:#102c65}
+.mp-page .mp-card-metric .mp-result-number small{font-size:14px;color:#546c90}
+.mp-page .mp-card-metric b{font-size:15px;color:#2055b8}
+.mp-page .mp-result-success .mp-card-metric b{color:#078e56}
+.mp-page .mp-reference-cards .mp-result-progress{margin:11px 0 0!important;height:9px;background:#e7edf7;border-radius:999px}
+.mp-page .mp-reference-cards .mp-result-progress span{background:#1759e5;border-radius:999px}
+.mp-page .mp-reference-cards .mp-result-success .mp-result-progress span{background:#10a15c}
+.mp-page .mp-reference-cards .mp-result-fail .mp-result-progress span{background:#e44e5f}
+.mp-page .mp-week-panel{border:1px solid #dbe5f5;border-radius:14px}
+.mp-page .mp-week-status{margin:14px 0 13px}
+.mp-page .mp-week-summary{gap:10px}
+.mp-page .mp-week-summary>div{padding:13px 15px}
+.mp-page .mp-week-summary strong{font-size:22px}
+.mp-page .mp-reference-lower{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(285px,1fr);gap:15px;margin:22px 0 0}
+.mp-page .mp-reference-chart,.mp-page .mp-reference-mini,.mp-page .mp-reference-prize{background:#fff;border:1px solid #dce5f5;border-radius:13px;padding:18px;box-shadow:0 2px 9px rgba(15,52,108,.04)}
+.mp-page .mp-reference-panel-heading h3,.mp-page .mp-reference-mini h3,.mp-page .mp-reference-prize h3{display:flex;align-items:center;gap:9px;font-size:17px;color:#112d63;margin:0}
+.mp-page .mp-reference-panel-heading p{font-size:12px;color:#667b9a;margin:6px 0 12px}
+.mp-page .mp-chart-legend{display:flex;align-items:center;gap:6px;font-size:11px;color:#637899}
+.mp-page .mp-chart-legend i{width:9px;height:9px;border-radius:50%;background:#1958d8;margin-left:10px}
+.mp-page .mp-chart-legend i:nth-of-type(2){background:#40b5ed}
+.mp-page .mp-chart-legend i:nth-of-type(3){background:#20b86d}
+.mp-page .mp-reference-chart-grid{display:flex;justify-content:space-around;align-items:end;gap:14px;min-height:220px;padding:18px 10px 0;border-bottom:1px solid #dfe8f4;background:repeating-linear-gradient(to top,transparent 0,transparent 48px,#edf2f9 49px,#edf2f9 50px)}
+.mp-page .mp-chart-day{flex:1;max-width:100px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.mp-page .mp-chart-bars{height:170px;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:3px}
+.mp-page .mp-chart-bar{width:25%;max-width:30px;min-width:9px;background:#205bd4;border-radius:5px 5px 0 0;display:flex;align-items:flex-start;justify-content:center}
+.mp-page .mp-chart-bar-1{background:#40b5ed}
+.mp-page .mp-chart-bar-2{background:#20b86d}
+.mp-page .mp-chart-bar.is-missing{background:#d8e1ed}
+.mp-page .mp-chart-bar span{font-size:10px;color:white;font-weight:800;padding-top:5px}
+.mp-page .mp-chart-day>strong{font-size:12px;margin-top:8px;color:#17396e}
+.mp-page .mp-chart-day>small{font-size:11px;color:#7184a0;margin:2px 0 8px}
+.mp-page .mp-reference-side{display:grid;gap:14px;align-content:start}
+.mp-page .mp-reference-mini-row{display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px;text-align:center}
+.mp-page .mp-reference-mini-row>div+div{border-left:1px solid #dbe6f4}
+.mp-page .mp-reference-mini-row small{display:block;color:#6b7f9c;font-size:11px;margin-bottom:8px}
+.mp-page .mp-reference-mini-row strong{display:block;color:#102c65;font-size:23px}
+.mp-page .mp-reference-prize>div{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:17px}
+.mp-page .mp-reference-prize strong{color:#123c83;font-size:26px;white-space:nowrap}
+.mp-page .mp-reference-prize strong small{font-size:12px;color:#69809f}
+.mp-page .mp-reference-prize span{font-size:12px;color:#52729f;text-align:right}
+@media(max-width:950px){.mp-page .mp-reference-lower{grid-template-columns:1fr}}
+@media(max-width:650px){.mp-page .mp-reference-cards{grid-template-columns:1fr}.mp-page .mp-reference-chart-grid{gap:5px}.mp-page .mp-chart-bar span{font-size:8px}.mp-page .mp-reference-prize>div{align-items:flex-start;flex-direction:column}.mp-page .mp-reference-prize span{text-align:left}}
