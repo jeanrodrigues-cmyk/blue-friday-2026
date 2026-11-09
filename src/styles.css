@@ -611,3 +611,15 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .mp-page .mp-week-panel{border-radius:16px}
 .mp-page .mp-award-primary h3{letter-spacing:-.7px}
 @media(max-width:650px){.mp-overview-heading{align-items:flex-start;flex-direction:column}.mp-overview-admin-link{width:100%}}
+
+/* Cabecalho compacto da area Midias e Procon, sem banner */
+.mp-page .mp-compact-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:8px 2px 20px;background:transparent;border:0;box-shadow:none}
+.mp-page .mp-compact-heading-main{min-width:0}
+.mp-page .mp-compact-eyebrow{display:block;margin-bottom:7px;font-size:10px;font-weight:800;letter-spacing:1.15px;color:#2c69bd}
+.mp-page .mp-compact-heading h1{margin:0 0 6px;color:#102b51;font-size:29px;line-height:1.18;letter-spacing:-.7px;font-weight:800}
+.mp-page .mp-compact-heading p{margin:0;color:#647792;font-size:13px;line-height:1.5}
+.mp-page .mp-compact-owner{display:flex;align-items:center;gap:10px;flex-shrink:0;padding:9px 13px;border:1px solid #dce5f1;border-radius:11px;background:#fff;color:#1d5cb5}
+.mp-page .mp-compact-owner span{display:flex;flex-direction:column;gap:2px}
+.mp-page .mp-compact-owner strong{font-size:12px;color:#17365f}
+.mp-page .mp-compact-owner small{font-size:10px;color:#75869d}
+@media(max-width:650px){.mp-page .mp-compact-heading{align-items:flex-start;flex-direction:column;gap:12px}.mp-page .mp-compact-heading h1{font-size:25px}.mp-page .mp-compact-owner{padding:8px 11px}}
