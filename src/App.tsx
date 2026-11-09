@@ -58,6 +58,7 @@ export default function App() {
   const [csvMessage,setCsvMessage] = useState("");
   const [csvBusy,setCsvBusy] = useState(false);
   const [csvDuplicate,setCsvDuplicate] = useState(false);
+  const [csvReplaceConfirmed,setCsvReplaceConfirmed] = useState(false);
   const [refreshCount,setRefreshCount] = useState(0);
 
   useEffect(() => {
@@ -101,32 +102,34 @@ export default function App() {
   }, [session,profile,view,refreshCount]);
 
   async function chooseCsv(file?:File) {
-    setCsvPreview(null);setCsvMessage("");setCsvDuplicate(false);
+    setCsvPreview(null);setCsvMessage("");setCsvDuplicate(false);setCsvReplaceConfirmed(false);
     if(!file)return;
     if(file.size>100000) {setCsvMessage("Arquivo muito grande. Exporte apenas a linha agregada da consulta.");return;}
     try {setCsvPreview(readBoCsv(await file.text(),file.name));}
     catch(e){setCsvMessage(e instanceof Error?e.message:"Não foi possível ler o CSV.");}
   }
-  async function importCsv() {
+  async function importCsv(replaceExisting = false) {
     if(!supabase || !csvPreview || profile?.role!=="admin")return;
-    setCsvBusy(true);setCsvMessage("");setCsvDuplicate(false);
+    if(replaceExisting && (!csvDuplicate || !csvReplaceConfirmed)) {setCsvMessage("Confirme a substituição antes de continuar.");return;}
+    setCsvBusy(true);setCsvMessage("");
     try {
-      const {data,error:importError}=await supabase.rpc("bf_import_bo_csv",{
+      const {data,error:importError}=await supabase.rpc(replaceExisting ? "bf_update_bo_csv" : "bf_import_bo_csv",{
         p_reference_date:csvPreview.referenceDate,
         p_file_name:csvPreview.fileName,
         p_bo_open:csvPreview.open,
         p_bo_backlog:csvPreview.backlog,
         p_bo_resolved:csvPreview.resolved,
-        p_ingested_at:csvPreview.ingestedAt
+        p_ingested_at:csvPreview.ingestedAt,
+        ...(replaceExisting ? {p_confirm_replace:true} : {})
       });
       if(importError)throw importError;
-      setCsvMessage("Importação concluída. Lote: "+String(data));
-      setCsvPreview(null);setRefreshCount(v=>v+1);
+      setCsvMessage((replaceExisting ? "Atualização auditada concluída. Lote: " : "Importação concluída. Lote: ")+String(data));
+      setCsvPreview(null);setCsvDuplicate(false);setCsvReplaceConfirmed(false);setRefreshCount(v=>v+1);
     }catch(e){
       const details = e && typeof e === "object" && "message" in e ? String(e.message) : "Falha inesperada ao importar.";
       if (/Ja existem indicadores nesta data|Já existem indicadores nesta data/i.test(details)) {
         setCsvDuplicate(true);
-        setCsvMessage("Os indicadores desta data já estão registrados. Nenhum dado foi alterado. Para substituir valores, será necessário habilitar uma atualização auditada no banco.");
+        setCsvMessage("Já existem indicadores nesta data. Nenhum dado foi alterado. Confira os valores e confirme a atualização auditada abaixo.");
       } else {
         setCsvMessage("Importação não realizada: " + details);
       }
@@ -209,8 +212,9 @@ export default function App() {
             <strong>Prévia: {csvPreview.fileName}</strong>
             <p>BOs abertos: {csvPreview.open} · Backlog &gt;7 dias: {csvPreview.backlog} · Resolvidos: {csvPreview.resolved}</p>
             <p>Última ingestão da fonte: {new Date(csvPreview.ingestedAt).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})} · Registro: {csvPreview.referenceDate}</p>
-            <p>Confira a origem e a data antes de importar. Se já houver indicadores nesta data, a importação será bloqueada para evitar duplicação.</p>
-            <button type="button" className="login-submit" disabled={csvBusy} style={{maxWidth:250,marginTop:12}} onClick={()=>void importCsv()}>{csvBusy?"Importando...":csvDuplicate?"Tentar novamente":"Confirmar importação"}</button>
+            <p>Confira a origem e a data antes de importar. Datas existentes exigem confirmação e auditoria.</p>
+            {csvDuplicate&&<div style={{marginTop:14,padding:12,background:"#fff",borderRadius:10}}><strong>Atualização de data existente</strong><p>Os três indicadores serão substituídos pelos valores acima. A operação será registrada em auditoria. Não utilize uma extração antiga para corrigir dados recentes.</p><label style={{display:"flex",alignItems:"flex-start",gap:8,marginTop:10,fontWeight:500}}><input type="checkbox" checked={csvReplaceConfirmed} onChange={e=>setCsvReplaceConfirmed(e.target.checked)} />Confirmo que conferi a fonte, a data e os valores e autorizo a substituição.</label></div>}
+            <button type="button" className="login-submit" disabled={csvBusy||(csvDuplicate&&!csvReplaceConfirmed)} style={{maxWidth:300,marginTop:12}} onClick={()=>void importCsv(csvDuplicate)}>{csvBusy?"Processando...":csvDuplicate?"Atualizar indicadores existentes":"Confirmar importação"}</button>
           </div>}
           {csvMessage&&<p role="status" className="bf-note" style={{marginTop:12}}>{csvMessage}</p>}
         </section>}
