@@ -743,3 +743,9 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .mp-page .mp-reference-prize span{font-size:12px;color:#52729f;text-align:right}
 @media(max-width:950px){.mp-page .mp-reference-lower{grid-template-columns:1fr}}
 @media(max-width:650px){.mp-page .mp-reference-cards{grid-template-columns:1fr}.mp-page .mp-reference-chart-grid{gap:5px}.mp-page .mp-chart-bar span{font-size:8px}.mp-page .mp-reference-prize>div{align-items:flex-start;flex-direction:column}.mp-page .mp-reference-prize span{text-align:left}}
+
+.mp-page .mp-week1-import{padding:16px 18px;margin:0 0 18px;background:#eef5ff;border:1px solid #cfdef7;border-radius:12px}
+.mp-page .mp-week1-import strong{display:block;font-size:15px;color:#15396e}
+.mp-page .mp-week1-import p{margin:6px 0 12px;font-size:13px;color:#526e95}
+.mp-page .mp-week1-import button{background:#1659db;border:0;border-radius:9px;padding:11px 16px;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.mp-page .mp-week1-import button:disabled{opacity:.55;cursor:not-allowed}
