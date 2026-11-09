@@ -2,7 +2,8 @@ import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./lib/supabase";
 
-type Metric = { metric_key: string; metric_value: number; reference_date: string; verified: boolean };\ntype Profile = { role: "admin" | "management" | "collaborator"; active: boolean };
+type Metric = { metric_key: string; metric_value: number; reference_date: string; verified: boolean };
+type Profile = { role: "admin" | "management" | "collaborator"; active: boolean };
 const areas = ["BO e Dados","Reembolso","Mídias e Procon","Recorrência","Chargeback","Resoluções","Quero Pago","Marcas","Reclame Aqui"];
 
 function BrandIcon({ small = false }: { small?: boolean }) {
