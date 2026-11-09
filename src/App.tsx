@@ -57,6 +57,7 @@ export default function App() {
   const [csvPreview,setCsvPreview] = useState<CsvPreview|null>(null);
   const [csvMessage,setCsvMessage] = useState("");
   const [csvBusy,setCsvBusy] = useState(false);
+  const [csvDuplicate,setCsvDuplicate] = useState(false);
   const [refreshCount,setRefreshCount] = useState(0);
 
   useEffect(() => {
@@ -100,7 +101,7 @@ export default function App() {
   }, [session,profile,view,refreshCount]);
 
   async function chooseCsv(file?:File) {
-    setCsvPreview(null);setCsvMessage("");
+    setCsvPreview(null);setCsvMessage("");setCsvDuplicate(false);
     if(!file)return;
     if(file.size>100000) {setCsvMessage("Arquivo muito grande. Exporte apenas a linha agregada da consulta.");return;}
     try {setCsvPreview(readBoCsv(await file.text(),file.name));}
@@ -108,7 +109,7 @@ export default function App() {
   }
   async function importCsv() {
     if(!supabase || !csvPreview || profile?.role!=="admin")return;
-    setCsvBusy(true);setCsvMessage("");
+    setCsvBusy(true);setCsvMessage("");setCsvDuplicate(false);
     try {
       const {data,error:importError}=await supabase.rpc("bf_import_bo_csv",{
         p_reference_date:csvPreview.referenceDate,
@@ -121,7 +122,15 @@ export default function App() {
       if(importError)throw importError;
       setCsvMessage("Importação concluída. Lote: "+String(data));
       setCsvPreview(null);setRefreshCount(v=>v+1);
-    }catch(e){setCsvMessage("Importação não realizada: "+(e instanceof Error?e.message:"erro desconhecido"));}
+    }catch(e){
+      const details = e && typeof e === "object" && "message" in e ? String(e.message) : "Falha inesperada ao importar.";
+      if (/Ja existem indicadores nesta data|Já existem indicadores nesta data/i.test(details)) {
+        setCsvDuplicate(true);
+        setCsvMessage("Os indicadores desta data já estão registrados. Nenhum dado foi alterado. Para substituir valores, será necessário habilitar uma atualização auditada no banco.");
+      } else {
+        setCsvMessage("Importação não realizada: " + details);
+      }
+    }
     finally{setCsvBusy(false);}
   }
 
@@ -200,8 +209,8 @@ export default function App() {
             <strong>Prévia: {csvPreview.fileName}</strong>
             <p>BOs abertos: {csvPreview.open} · Backlog &gt;7 dias: {csvPreview.backlog} · Resolvidos: {csvPreview.resolved}</p>
             <p>Última ingestão da fonte: {new Date(csvPreview.ingestedAt).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})} · Registro: {csvPreview.referenceDate}</p>
-            <p>Confirme apenas se a origem e a data estiverem corretas. A importação substitui os indicadores desta data de referência de forma atômica.</p>
-            <button type="button" className="login-submit" disabled={csvBusy} style={{maxWidth:250,marginTop:12}} onClick={()=>void importCsv()}>{csvBusy?"Importando...":"Confirmar importação"}</button>
+            <p>Confira a origem e a data antes de importar. Se já houver indicadores nesta data, a importação será bloqueada para evitar duplicação.</p>
+            <button type="button" className="login-submit" disabled={csvBusy} style={{maxWidth:250,marginTop:12}} onClick={()=>void importCsv()}>{csvBusy?"Importando...":csvDuplicate?"Tentar novamente":"Confirmar importação"}</button>
           </div>}
           {csvMessage&&<p role="status" className="bf-note" style={{marginTop:12}}>{csvMessage}</p>}
         </section>}
