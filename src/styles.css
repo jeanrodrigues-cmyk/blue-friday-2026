@@ -553,3 +553,18 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .mp-dashboard-layout .bf-panel{border-color:#e2e6ed;box-shadow:0 2px 8px rgba(15,23,42,.035)}
 .bf-top{box-shadow:none}
 .bf-layout :is(.bf-overview-area,.bf-overview-stat,.bo-v2-kpi,.mp-progress-card){outline-offset:2px}
+
+
+/* Midias e Procon | cabecalho editorial padronizado */
+.mp-page .mp-hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:30px;min-height:142px;padding:25px 32px;border-radius:16px;background:#fff;border:1px solid #e0e6ee;box-shadow:0 3px 14px rgba(15,23,42,.045);overflow:hidden}
+.mp-page .mp-hero:before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:#2164ce}
+.mp-page .mp-hero-kicker{font-size:11px;letter-spacing:.8px;color:#3868a8}
+.mp-page .mp-hero h1{color:#112b51;font-size:30px!important;line-height:1.2;letter-spacing:-.7px;margin:10px 0 7px}
+.mp-page .mp-hero p{color:#637791;font-size:13px;line-height:1.5}
+.mp-page .mp-hero-side{display:grid;grid-template-columns:auto auto;align-items:center;justify-items:end;column-gap:13px;row-gap:8px;border-left:1px solid #e6ebf2;padding-left:25px}
+.mp-page .mp-hero-person{grid-column:1;grid-row:1;border:1px solid #dce5f0;background:#f5f7fa;color:#1d426f;border-radius:8px;padding:8px 12px;font-size:12px}
+.mp-page .mp-hero-admin{grid-column:1;grid-row:2;color:#71839b;font-size:11px}
+.mp-page .mp-hero-refresh{grid-column:2;grid-row:1 / span 2;align-self:center;min-height:40px;background:#185ac3;color:#fff;border:1px solid #185ac3;border-radius:9px;padding:10px 15px;font-size:12px;box-shadow:none}
+.mp-page .mp-hero-refresh:hover{background:#114aa5;color:#fff}
+@media(max-width:850px){.mp-page .mp-hero{grid-template-columns:1fr;gap:18px;padding:22px}.mp-page .mp-hero-side{border-left:0;border-top:1px solid #e6ebf2;padding:16px 0 0;justify-items:start}.mp-page .mp-hero h1{font-size:26px!important}}
+@media(max-width:480px){.mp-page .mp-hero-side{grid-template-columns:1fr}.mp-page .mp-hero-person,.mp-page .mp-hero-admin,.mp-page .mp-hero-refresh{grid-column:1;grid-row:auto}.mp-page .mp-hero-refresh{width:100%}}
