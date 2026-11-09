@@ -27,7 +27,7 @@ create or replace function public.bf_mp_audit_changes() returns trigger
 language plpgsql security definer set search_path = '' as $$
 begin
   if tg_op = 'UPDATE' then
-    if row(to_jsonb(old)) is not distinct from row(to_jsonb(new)) then return new; end if;
+    if to_jsonb(old) = to_jsonb(new) then return new; end if;
     new.updated_at := now();
   end if;
   insert into public.bf_media_procon_audit(reference_date,changed_by,previous_record,new_record)
