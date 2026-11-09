@@ -483,3 +483,16 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .bf-top .bf-top-signout{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:37px;border:0;border-radius:9px;background:#145bd1;color:#fff;font-size:12px;font-weight:750;box-shadow:0 3px 9px #1a5ed328;cursor:pointer}
 .bf-top .bf-top-signout:hover{background:#0f49af}
 @media(max-width:680px){.bf-top{padding:12px 16px;gap:10px}.bf-breadcrumb{gap:7px}.bf-breadcrumb-root{display:none}.bf-breadcrumb-separator{display:none}.bf-breadcrumb-current{max-width:150px;overflow:hidden;text-overflow:ellipsis}.bf-top-actions{gap:8px}.bf-top-divider{display:none}.bf-top-actions .bf-user-role{font-size:0;padding:9px}.bf-top-actions .bf-user-role svg{width:17px;height:17px}.bf-top .bf-top-signout{padding:9px 11px}}
+
+
+/* Midias e Procon | cabecalho compacto e sem blocos duplicados */
+.mp-page .mp-hero{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:116px;padding:21px 27px;background:linear-gradient(105deg,#14499e,#0f3578);border-radius:13px;box-shadow:none}
+.mp-page .mp-hero h1{font-size:26px!important;letter-spacing:-.5px;margin:6px 0 5px}
+.mp-page .mp-hero-kicker{font-size:10px;letter-spacing:.9px}
+.mp-page .mp-hero p{font-size:12px;color:#d8e7fb}
+.mp-page .mp-hero-side{display:flex;align-items:flex-end;gap:8px}
+.mp-page .mp-hero-person{border-radius:7px;background:#ffffff20;border-color:#ffffff30;padding:6px 10px;font-size:11px}
+.mp-page .mp-hero-admin{font-size:10px;color:#d0e0f7}
+.mp-page .mp-hero-refresh{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #ffffff45;background:#ffffff;color:#174487;font-size:11px;font-weight:750;box-shadow:none}
+.mp-page .mp-hero-refresh:hover{background:#eaf3ff}
+@media(max-width:720px){.mp-page .mp-hero{align-items:flex-start;flex-direction:column}.mp-page .mp-hero-side{align-items:flex-start}}
