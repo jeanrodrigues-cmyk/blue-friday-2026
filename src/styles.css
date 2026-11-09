@@ -450,3 +450,33 @@
 @media(max-width:1200px){.mp-grid,.mp-grid-refined{grid-template-columns:1fr}}
 @media(max-width:720px){.mp-page{padding:16px}.mp-page .mp-hero{padding:20px}.mp-heading,.mp-week-head{align-items:stretch;flex-direction:column}.mp-week-head select{max-width:none}.mp-award-primary{align-items:stretch;flex-direction:column}.mp-award-inline>div:first-child{border-left:0;padding-left:0}.mp-progress-grid{grid-template-columns:1fr}.mp-form-numbers{grid-template-columns:1fr}.mp-table-title{align-items:flex-start;flex-direction:column}}
 @media(max-width:410px){.mp-award-inline{grid-template-columns:1fr}.mp-award-inline>div{border-left:0;border-top:1px solid #ffffff30;padding:9px 0}.mp-grid .bf-panel{padding:17px}}
+
+
+/* Blue Friday 2026 | tipografia e barra superior unificadas */
+:root{--bf-font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;--bf-text:#102b50;--bf-secondary:#6c809d}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--bf-font)}
+.bf-layout{font-size:14px;line-height:1.5}
+.bf-layout button,.bf-layout input,.bf-layout select,.bf-layout textarea{font-family:inherit}
+.bf-layout button{font-size:inherit}
+.bf-layout h1,.bf-layout h2,.bf-layout h3,.bf-layout h4{font-family:inherit;line-height:1.25;letter-spacing:-.025em}
+.bf-layout .bf-body h1{font-size:clamp(25px,2.1vw,32px)}
+.bf-layout .bf-body h2{font-size:clamp(17px,1.4vw,21px)}
+.bf-layout .bf-body h3{font-size:15px}
+.bf-layout .bf-body p{line-height:1.55}
+.bf-layout .bf-body table,.bf-layout .bf-body input,.bf-layout .bf-body select,.bf-layout .bf-body textarea{font-size:12px}
+.bf-layout .bf-body label{font-size:12px}
+.bf-layout .bf-body small{line-height:1.4}
+.bf-top{min-height:70px;padding:13px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fff;border-bottom:1px solid #e0e9f5;box-shadow:0 3px 12px #173b7310}
+.bf-breadcrumb{display:flex;align-items:center;gap:11px;min-width:0;color:#607da5}
+.bf-breadcrumb-home{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:0;border-radius:9px;background:#edf4ff;color:#1c5cc1;cursor:pointer}
+.bf-breadcrumb-root{border:0;background:transparent;color:#5a7396;cursor:pointer;padding:4px 0;font-size:12px!important;font-weight:600}
+.bf-breadcrumb-root:hover{color:#1458bf}
+.bf-breadcrumb-separator{font-size:21px;color:#9aacc4;line-height:1}
+.bf-breadcrumb-current{display:inline-flex;align-items:center;border-radius:20px;padding:7px 13px;background:#eaf2ff;color:#1755b8;font-size:12px;font-weight:800;white-space:nowrap}
+.bf-top-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.bf-top-actions .bf-user-role{display:inline-flex;align-items:center;gap:8px;border:1px solid #dce7f6;background:#fff;border-radius:25px;padding:9px 13px;color:#234677;font-size:12px;font-weight:700;box-shadow:0 2px 8px #193f7409}
+.bf-top-divider{width:1px;height:26px;background:#e0e8f3}
+.bf-top .bf-top-signout{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;min-height:37px;border:0;border-radius:9px;background:#145bd1;color:#fff;font-size:12px;font-weight:750;box-shadow:0 3px 9px #1a5ed328;cursor:pointer}
+.bf-top .bf-top-signout:hover{background:#0f49af}
+@media(max-width:680px){.bf-top{padding:12px 16px;gap:10px}.bf-breadcrumb{gap:7px}.bf-breadcrumb-root{display:none}.bf-breadcrumb-separator{display:none}.bf-breadcrumb-current{max-width:150px;overflow:hidden;text-overflow:ellipsis}.bf-top-actions{gap:8px}.bf-top-divider{display:none}.bf-top-actions .bf-user-role{font-size:0;padding:9px}.bf-top-actions .bf-user-role svg{width:17px;height:17px}.bf-top .bf-top-signout{padding:9px 11px}}
