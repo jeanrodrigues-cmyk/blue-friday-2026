@@ -229,7 +229,7 @@ export default function App() {
   const weekAllVerified=weekRows.length>0&&weekRows.every(h=>h.verified);
   const weekReduction=weekFirst?.backlog===undefined||weekRemaining===null?null:Number(weekFirst.backlog)-weekRemaining;
   const weekProgress=weekReduction===null?0:Number(weekFirst?.backlog)===0?100:Math.max(0,Math.min(100,weekReduction/Number(weekFirst?.backlog)*100));
-  const weekReductionPercent=weekReduction===null||Number(weekFirst?.backlog)===0?null:weekReduction/Number(weekFirst?.backlog)*100;
+  const weekReductionPercent=weekReduction===null||Number(weekFirst?.backlog)===0?null:(weekReduction ?? 0)/Number(weekFirst?.backlog)*100;
   const unverifiedDays=shownHistory.filter(h=>!h.verified).length;
   const productivity=[...shownHistory].reverse().map((h,i,arr)=>{
     const prior=arr[i-1];
