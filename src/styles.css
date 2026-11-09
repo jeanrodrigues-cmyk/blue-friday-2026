@@ -247,3 +247,29 @@
 .bo-v2 .bo-history-table td:nth-child(4){color:#334d70}
 .bo-v2 .bo-history-table td:nth-child(3) strong{font-size:14px;color:#163d79}
 @media(max-width:780px){.bo-v2 .bo-quality-strip{align-items:flex-start}.bo-v2 .bo-quality-latest{white-space:normal}.bo-v2 .bo-history-panel{padding:18px 13px}.bo-v2 .bo-history-table{min-width:750px}}
+
+
+/* Blue Friday 2026 | sidebar branca aprovada */
+.bf-side.bf-side-light{position:relative;isolation:isolate;width:260px;min-height:100vh;padding:23px 13px 19px;gap:5px;background:linear-gradient(160deg,#fff 0%,#fff 75%,#eef6ff 100%);color:#12294e;border-right:1px solid #dce7f6;box-shadow:3px 0 22px #174c8a0a;overflow:hidden}
+.bf-side-light:before{content:"";position:absolute;right:-90px;top:-125px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#a6d9ff9c,transparent 70%);pointer-events:none;z-index:-1}
+.bf-side-light .bf-brand{padding:5px 8px 22px;margin-bottom:13px;border-bottom:1px solid #e2eaf6;gap:12px}
+.bf-side-light .brand-icon-small{width:46px;height:46px;border-radius:13px;box-shadow:0 3px 12px #1761e72b}
+.bf-side-light .bf-brand strong{font-size:13px;letter-spacing:.45px;color:#102a52;white-space:nowrap}
+.bf-side-light .bf-brand strong span{color:#1769e8}
+.bf-side-light .bf-brand small{color:#6e84a4;font-size:11px;margin-top:4px}
+.bf-side-light .bf-menu-label{color:#8294b0;font-size:10px;letter-spacing:1.65px;margin:15px 12px 7px}
+.bf-side-light .bf-menu{min-height:45px;padding:7px 9px;gap:10px;border:1px solid transparent;border-radius:11px;background:transparent;color:#203c63;font-size:12px;font-weight:650;transition:background .16s,border-color .16s,box-shadow .16s,color .16s}
+.bf-side-light .bf-menu-icon{flex:0 0 33px;width:33px;height:33px;display:grid;place-items:center;border-radius:9px;background:#eef5ff;color:#1769d8}
+.bf-side-light .bf-menu-text{flex:1;min-width:0;white-space:nowrap}
+.bf-side-light .bf-menu-chevron{font-size:22px;line-height:1;color:#a2b4cc;margin-left:auto}
+.bf-side-light .bf-menu:hover{background:#f0f6ff;border-color:#d8e7fc;color:#1255b7}
+.bf-side-light .bf-menu.selected{background:linear-gradient(110deg,#1678f4,#104cc9);color:#fff;border-color:#2587f8;box-shadow:0 5px 13px #236ce02a}
+.bf-side-light .bf-menu.selected .bf-menu-icon{background:#ffffff20;color:#fff}
+.bf-side-light .bf-menu.selected .bf-menu-chevron{color:#fff}
+.bf-side-light .bf-new{margin-left:0;background:#e8f3ff;color:#145ec7;border-radius:99px;padding:4px 6px;font-size:9px;font-weight:800;letter-spacing:.2px}
+.bf-side-light .bf-menu:not(.selected) .bf-new{background:#eaf2ff;color:#1761c9}
+.bf-side-light .bf-side-bottom{border-top:1px solid #e2eaf6;color:#55759d;padding:16px 10px 0;display:flex;align-items:center;gap:8px;font-size:11px}
+.bf-online-dot{width:8px;height:8px;flex-shrink:0;border-radius:50%;background:#21b780;box-shadow:0 0 0 3px #21b78020}
+@media(max-width:1080px){.bf-side.bf-side-light{width:230px}.bf-side-light .bf-menu{gap:7px;padding:7px}.bf-side-light .bf-menu-icon{flex-basis:30px;width:30px;height:30px}}
+@media(max-width:800px){.bf-side.bf-side-light{width:100%;min-height:0;padding:10px 12px;flex-direction:row;align-items:center;overflow-x:auto;overflow-y:hidden;gap:7px;border-right:0;border-bottom:1px solid #dce7f6}.bf-side-light .bf-brand{padding:0 12px 0 0;margin:0;border:0;flex-shrink:0}.bf-side-light .bf-menu{width:auto;flex-shrink:0;white-space:nowrap;padding:6px 10px;min-height:40px}.bf-side-light .bf-menu-icon{flex-basis:28px;width:28px;height:28px}.bf-side-light .bf-menu-label,.bf-side-light .bf-side-bottom,.bf-side-light .bf-menu-chevron{display:none}}
+@media(prefers-reduced-motion:reduce){.bf-side-light .bf-menu{transition:none}}
