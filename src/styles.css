@@ -642,3 +642,39 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .mp-page .mp-result-fail .mp-result-progress span{background:#e45865}
 .mp-page .mp-kpi-result p{margin:0;color:#667a97;font-size:12px}
 @media(max-width:1000px){.mp-page .mp-kpi-results{grid-template-columns:1fr}}
+
+/* Midias e Procon: leitura executiva, compacta e consistente com BO */
+.mp-page .mp-kpi-results{gap:14px}
+.mp-page .mp-kpi-result{min-height:0!important;padding:17px 19px!important;border-left:4px solid #2469e8!important;gap:0}
+.mp-page .mp-result-top{flex-direction:row!important;align-items:center!important;justify-content:space-between!important}
+.mp-page .mp-result-icon{width:38px;height:38px}
+.mp-page .mp-result-badge{font-size:11px}
+.mp-page .mp-kpi-result h3{margin:12px 0 4px!important;font-size:15px!important}
+.mp-page .mp-result-number{font-size:26px!important}
+.mp-page .mp-result-progress{margin:9px 0 8px!important;height:7px}
+.mp-page .mp-kpi-result p{font-size:12px!important}
+.mp-page .mp-result-success{border-left-color:#11a36d!important}
+.mp-page .mp-result-fail{border-left-color:#e44e5f!important}
+.mp-page .mp-week-panel{padding:21px 23px}
+.mp-page .mp-week-status{display:flex;align-items:center;gap:16px;padding:20px 22px;border:1px solid #d8e5f6;border-radius:14px;background:#f1f6fe;margin:17px 0}
+.mp-page .mp-week-status.is-success{background:#edf9f2;border-color:#bfead2}
+.mp-page .mp-week-status.is-failed{background:#fff3f3;border-color:#f5d1d5}
+.mp-page .mp-week-status-icon{display:grid;place-items:center;width:46px;height:46px;flex-shrink:0;border-radius:12px;background:#e2eeff;color:#1a61d1}
+.mp-page .mp-week-status.is-success .mp-week-status-icon{background:#d5f4e4;color:#078a55}
+.mp-page .mp-week-status.is-failed .mp-week-status-icon{background:#ffe0e3;color:#c42b45}
+.mp-page .mp-week-status-copy{flex:1;min-width:0}
+.mp-page .mp-week-status-copy small{display:block;color:#4873a8;font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:4px}
+.mp-page .mp-week-status-copy strong{display:block;font-size:20px;line-height:1.25;color:#102e57}
+.mp-page .mp-week-status-copy p{margin:5px 0 0;font-size:12px;color:#5e7491}
+.mp-page .mp-week-status-pill{flex-shrink:0;border-radius:999px;padding:8px 13px;background:#dce9ff;color:#1b58ae;font-size:12px;font-weight:800}
+.mp-page .mp-week-status.is-success .mp-week-status-pill{background:#d6f2e3;color:#087d4a}
+.mp-page .mp-week-status.is-failed .mp-week-status-pill{background:#ffe1e5;color:#b72b42}
+.mp-page .mp-week-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 8px}
+.mp-page .mp-week-summary>div{display:flex;flex-direction:column;gap:6px;padding:16px 18px;background:#fff;border:1px solid #e0e9f5;border-radius:12px}
+.mp-page .mp-week-summary small{font-size:11px;font-weight:700;color:#617795}
+.mp-page .mp-week-summary strong{font-size:24px;letter-spacing:-.5px;color:#123d83}
+.mp-page .mp-week-summary strong em{font-size:14px;color:#7a8aa3;font-style:normal}
+.mp-page .mp-week-summary span{font-size:11px;color:#7588a1}
+.mp-page .mp-week-disclaimer{font-size:11px;color:#7888a0;margin:9px 0 0}
+@media(max-width:950px){.mp-page .mp-week-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.mp-page .mp-week-status{align-items:flex-start;flex-wrap:wrap;padding:16px}.mp-page .mp-week-status-pill{margin-left:60px}.mp-page .mp-week-summary{grid-template-columns:1fr}}
