@@ -60,6 +60,7 @@ export default function App() {
   const [csvDuplicate,setCsvDuplicate] = useState(false);
   const [csvReplaceConfirmed,setCsvReplaceConfirmed] = useState(false);
   const [refreshCount,setRefreshCount] = useState(0);
+  const [boTab,setBoTab] = useState<"overview"|"history"|"admin">("overview");
 
   useEffect(() => {
     if (!supabase) { setLoading(false); return; }
@@ -188,6 +189,20 @@ export default function App() {
     {key:"bo_resolved",name:"BOs resolvidos",note:"Desde janeiro de 2026",tone:"green"}
   ];
   const allMetricsLoaded = cards.every(c => official.has(c.key));
+  const history = Array.from(new Set(metrics.map(m=>m.reference_date))).sort().reverse().map(date=>{
+    const entries=metrics.filter(m=>m.reference_date===date);
+    const get=(key:string)=>entries.find(m=>m.metric_key===key)?.metric_value;
+    return {date,open:get("bo_open"),backlog:get("bo_over_7_days"),resolved:get("bo_resolved")};
+  });
+  const latestDate=history[0]?.date;
+  const previous=history[1];
+  const delta=(key:"open"|"backlog"|"resolved")=>{
+    const now=history[0]?.[key],before=previous?.[key];
+    return now===undefined||before===undefined?null:Number(now)-Number(before);
+  };
+  const fmt=(value:number|undefined)=>value===undefined?"—":new Intl.NumberFormat("pt-BR").format(Number(value));
+  const datePt=(value:string)=>value.split("-").reverse().join("/");
+  const backlogMax=Math.max(1,...history.map(h=>Number(h.backlog??0)));
   return <main className="bf-layout">
     <aside className="bf-side"><div className="bf-brand"><BrandIcon small/><div><strong>BLUE FRIDAY</strong><small>Performance 2026</small></div></div><p className="bf-menu-label">NAVEGAÇÃO</p>
       <button className={view==="Visão geral"?"bf-menu selected":"bf-menu"} onClick={()=>setView("Visão geral")}>▦ Visão geral</button><p className="bf-menu-label">ÁREAS</p>
@@ -195,30 +210,46 @@ export default function App() {
       <div className="bf-side-bottom">● Sessão autenticada</div>
     </aside>
     <div className="bf-workspace"><header className="bf-top"><span>Blue Friday 2026 / <strong>{view}</strong></span><div><span className="bf-user-role">{profile.role==="admin"?"Administrador":profile.role==="management"?"Gestão":"Colaborador"}</span><button onClick={signOut}>Sair</button></div></header>
-      {view==="BO e Dados"?<div className="bf-body">
-        <div className="bf-page-head"><div><small>ACOMPANHAMENTO OPERACIONAL</small><h1>BO e Dados</h1><p>Indicadores, backlog e missão semanal da campanha.</p></div><span className="bf-status">{allMetricsLoaded ? "Regra validada" : "Dados pendentes"}</span></div>
-        <div className="bf-notice"><strong>Fotografia validada, fonte desatualizada</strong><p>Regra operacional confirmada. Última ingestão observada: 07/11/2026 às 01h12 (Brasília). Os valores registrados em 09/11 são uma fotografia da base, não dados em tempo real.</p></div>
-        <div className="bf-heading"><h2>Indicadores operacionais</h2><span>Databricks · fotografia registrada no Supabase</span></div>
-        <div className="bf-metrics">{cards.map(c=>{const validated=official.get(c.key);return <article className={"bf-metric "+c.tone} key={c.key}><span>{c.name}</span><strong>{validated ? new Intl.NumberFormat("pt-BR").format(Number(validated.metric_value)) : "—"}</strong><small>{validated?"Registrado em "+validated.reference_date+" · "+c.note:"Sem registro validado"}</small>{!validated&&<em>Indisponível</em>}</article>})}</div>
-        <div className="bf-panels"><section className="bf-panel"><div className="bf-panel-title"><div><h2>Missão semanal</h2><p>09 a 13 de novembro</p></div><span className="bf-status">Pendente</span></div><div className="bf-mission"><strong>Zerar BOs com mais de 7 dias</strong><p>Meta: eliminar o backlog elegível até o encerramento da semana, conforme regras da campanha.</p></div><div className="bf-detail"><span>Premiação prevista</span><strong>R$ 60,00</strong></div><div className="bf-detail"><span>Elegibilidade</span><strong>Não apurada</strong></div><p className="bf-note">Nenhum prêmio está sendo calculado automaticamente.</p></section>
-        <section className="bf-panel"><div className="bf-panel-title"><div><h2>Qualidade dos dados</h2><p>Rastreabilidade da informação</p></div></div><div className="bf-detail"><span>Fonte</span><strong>Databricks</strong></div><div className="bf-detail"><span>Última ingestão</span><strong>07/11/2026</strong></div><div className="bf-detail"><span>Status operacionais</span><strong>Regra confirmada</strong></div><div className="bf-detail"><span>Métricas validadas no Supabase</span><strong>{metrics.length}</strong></div>{metricError&&<p role="alert" className="bf-error">{metricError}</p>}<p className="bf-note">Atualização automática depende de integração aprovada.</p></section></div>
-        {profile.role==="admin"&&<section className="bf-panel" style={{marginTop:18}}>
-          <div className="bf-panel-title"><div><h2>Importar indicadores do Databricks</h2><p>CSV agregado da consulta BO e Dados · somente administradores</p></div></div>
-          <p className="bf-note">No Databricks, execute a consulta e exporte o resultado em CSV. O arquivo deve conter uma linha com bo_em_aberto, backlog_acima_7_dias, bos_resolvidos e ultima_ingestao. Não envie dados individuais de alunos.</p>
-          <label style={{display:"block",margin:"14px 0",fontWeight:600}}>Selecionar CSV
-            <input type="file" accept=".csv,text/csv" style={{display:"block",marginTop:8}} onChange={e=>{void chooseCsv(e.target.files?.[0]);e.target.value="";}}/>
-          </label>
-          {csvPreview&&<div className="bf-mission">
-            <strong>Prévia: {csvPreview.fileName}</strong>
-            <p>BOs abertos: {csvPreview.open} · Backlog &gt;7 dias: {csvPreview.backlog} · Resolvidos: {csvPreview.resolved}</p>
-            <p>Última ingestão da fonte: {new Date(csvPreview.ingestedAt).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})} · Registro: {csvPreview.referenceDate}</p>
-            <p>Confira a origem e a data antes de importar. Datas existentes exigem confirmação e auditoria.</p>
-            {csvDuplicate&&<div style={{marginTop:14,padding:12,background:"#fff",borderRadius:10}}><strong>Atualização de data existente</strong><p>Os três indicadores serão substituídos pelos valores acima. A operação será registrada em auditoria. Não utilize uma extração antiga para corrigir dados recentes.</p><label style={{display:"flex",alignItems:"flex-start",gap:8,marginTop:10,fontWeight:500}}><input type="checkbox" checked={csvReplaceConfirmed} onChange={e=>setCsvReplaceConfirmed(e.target.checked)} />Confirmo que conferi a fonte, a data e os valores e autorizo a substituição.</label></div>}
-            <button type="button" className="login-submit" disabled={csvBusy||(csvDuplicate&&!csvReplaceConfirmed)} style={{maxWidth:300,marginTop:12}} onClick={()=>void importCsv(csvDuplicate)}>{csvBusy?"Processando...":csvDuplicate?"Atualizar indicadores existentes":"Confirmar importação"}</button>
-          </div>}
-          {csvMessage&&<p role="status" className="bf-note" style={{marginTop:12}}>{csvMessage}</p>}
+      {view==="BO e Dados"?<div className="bf-body bo-executive">
+        <div className="bf-page-head"><div><small>BLUE FRIDAY 2026 · PERFORMANCE</small><h1>BO e Dados</h1><p>Visão executiva da operação e acompanhamento da missão semanal.</p></div><button className="bo-refresh" onClick={()=>setRefreshCount(v=>v+1)}>↻ Atualizar painel</button></div>
+        <div className="bo-toolbar"><div className="bo-tabs">
+          <button className={boTab==="overview"?"active":""} onClick={()=>setBoTab("overview")}>Visão geral</button>
+          <button className={boTab==="history"?"active":""} onClick={()=>setBoTab("history")}>Evolução diária</button>
+          {profile.role==="admin"&&<button className={boTab==="admin"?"active":""} onClick={()=>setBoTab("admin")}>Administração</button>}
+        </div><span className="bo-date">Referência: {latestDate?datePt(latestDate):"sem dados"}</span></div>
+        {boTab==="overview"&&<>
+          <div className="bo-source-strip"><span className="bo-source-dot"/><span><strong>Dados registrados</strong> · atualização manual diária</span><span className="bo-source-date">Última extração conhecida: 07/11/2026, 01h12</span></div>
+          <div className="bf-metrics bo-metrics">{cards.map(c=>{const validated=official.get(c.key);const key=c.key==="bo_open"?"open":c.key==="bo_resolved"?"resolved":"backlog";const change=delta(key);return <article className={"bf-metric "+c.tone} key={c.key}><span>{c.name}</span><strong>{validated?fmt(Number(validated.metric_value)):"—"}</strong><div className="bo-metric-foot"><small>{c.key==="bo_resolved"?"Acumulado desde janeiro de 2026":c.key==="bo_open"?"Casos pendentes":"Casos abertos há mais de 7 dias"}</small><span className={change===null?"bo-delta neutral":change>0?"bo-delta up":"bo-delta down"}>{change===null?"Sem comparação":(change>0?"+":"")+fmt(change)+" vs. registro anterior"}</span></div></article>})}</div>
+          <div className="bo-main-grid">
+            <section className="bf-panel bo-mission-panel"><div className="bf-panel-title"><div><span className="bo-eyebrow">DESAFIO DA SEMANA</span><h2>Zerar BOs acima de 7 dias</h2><p>Semana de 09 a 13 de novembro</p></div><span className="bf-status">Em acompanhamento</span></div>
+              <div className="bo-mission-number"><strong>{fmt(history[0]?.backlog)}</strong><span>BOs acima de 7 dias na última fotografia registrada</span></div>
+              <div className="bo-progress"><span style={{width:history[0]?.backlog===0?"100%":"0%"}}/></div>
+              <div className="bo-mission-bottom"><span>Meta de encerramento: <strong>0 casos</strong></span><span>Premiação prevista: <strong>R$ 60,00</strong></span></div>
+              <p className="bf-note">Resultado e elegibilidade serão apurados após o fechamento da semana. Os dados não são em tempo real.</p>
+            </section>
+            <section className="bf-panel bo-trend-panel"><div className="bf-panel-title"><div><h2>Evolução do backlog</h2><p>Comparação dos registros disponíveis</p></div><button className="bo-link" onClick={()=>setBoTab("history")}>Ver histórico →</button></div>
+              {history.length>1?<div className="bo-spark">{history.slice(0,7).reverse().map(h=><div className="bo-spark-item" key={h.date}><strong>{fmt(h.backlog)}</strong><div className="bo-spark-track"><span style={{height:(Math.max(3,Number(h.backlog??0)/backlogMax*100))+"%"}}/></div><small>{h.date.slice(8,10)}/{h.date.slice(5,7)}</small></div>)}</div>:<div className="bo-empty"><strong>Histórico em construção</strong><p>Assim que você importar os próximos dias, o gráfico mostrará a evolução do backlog.</p></div>}
+              <div className="bo-trend-footer">Comparações baseadas nas datas de registro, não necessariamente nas datas de extração.</div>
+            </section>
+          </div>
+          <div className="bo-bottom-note"><span>ⓘ</span><p><strong>Sobre os números:</strong> os indicadores refletem a última base importada. A fonte disponível foi ingerida em 07/11; confirme a atualização no Databricks antes de usar os números em decisões operacionais.</p></div>
+          {metricError&&<p role="alert" className="bf-error">{metricError}</p>}
+        </>}
+        {boTab==="history"&&<section className="bf-panel bo-history-panel"><div className="bf-panel-title"><div><h2>Histórico de desempenho</h2><p>Registros diários preservados para comparação e acompanhamento.</p></div></div>
+          {history.length?<div className="bo-table-scroll"><table className="bo-table"><thead><tr><th>Data do registro</th><th>BOs em aberto</th><th>Backlog acima de 7 dias</th><th>Resolvidos (acumulado)</th></tr></thead><tbody>{history.map(h=><tr key={h.date}><td>{datePt(h.date)}</td><td>{fmt(h.open)}</td><td><strong>{fmt(h.backlog)}</strong></td><td>{fmt(h.resolved)}</td></tr>)}</tbody></table></div>:<div className="bo-empty">Nenhum histórico disponível.</div>}
         </section>}
-        <section className="bf-panel"><h2>Próximas validações</h2><div className="bf-next"><span>01 · Status pendentes confirmados com a operação</span><span>02 · Critério de backlog acima de 7 dias validado</span><span>03 · Preparar importação diária autorizada</span><span>04 · Apurar missão somente após fechamento semanal</span></div></section>
+        {boTab==="admin"&&profile.role==="admin"&&<>
+          <section className="bf-panel bo-import-panel"><div className="bf-panel-title"><div><h2>Importar indicadores</h2><p>Atualização manual do Databricks · acesso restrito</p></div><span className="bo-admin-label">Administrador</span></div>
+            <div className="bo-instructions"><strong>Como atualizar</strong><p>Execute a consulta no Databricks, exporte um CSV agregado e selecione o arquivo abaixo. Não inclua informações individuais de alunos.</p></div>
+            <label className="bo-upload">Selecionar arquivo CSV<input type="file" accept=".csv,text/csv" onChange={e=>{void chooseCsv(e.target.files?.[0]);e.target.value="";}}/></label>
+            {csvPreview&&<div className="bo-preview"><strong>Prévia da importação</strong><p>{csvPreview.fileName}</p><div className="bo-preview-values"><span>Abertos <b>{fmt(csvPreview.open)}</b></span><span>Backlog <b>{fmt(csvPreview.backlog)}</b></span><span>Resolvidos <b>{fmt(csvPreview.resolved)}</b></span></div><p>Ingestão da fonte: {new Date(csvPreview.ingestedAt).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})} · Registro: {datePt(csvPreview.referenceDate)}</p>
+              {csvDuplicate&&<label className="bo-confirm"><input type="checkbox" checked={csvReplaceConfirmed} onChange={e=>setCsvReplaceConfirmed(e.target.checked)}/> Confirmo que revisei a fonte e autorizo a substituição auditada desta data.</label>}
+              <button type="button" className="bo-primary" disabled={csvBusy||(csvDuplicate&&!csvReplaceConfirmed)} onClick={()=>void importCsv(csvDuplicate)}>{csvBusy?"Processando...":csvDuplicate?"Atualizar registro existente":"Confirmar importação"}</button>
+            </div>}
+            {csvMessage&&<p role="status" className="bo-feedback">{csvMessage}</p>}
+          </section>
+          <section className="bf-panel bo-technical"><h2>Informações de controle</h2><div className="bf-detail"><span>Fonte</span><strong>Databricks · bo_operations</strong></div><div className="bf-detail"><span>Indicadores armazenados</span><strong>{metrics.length}</strong></div><div className="bf-detail"><span>Atualização</span><strong>CSV manual com auditoria</strong></div><div className="bf-detail"><span>Apuração da missão</span><strong>Após fechamento semanal</strong></div></section>
+        </>}
       </div>:<div className="bf-body"><div className="bf-page-head"><div><small>CENTRAL DE PERFORMANCE</small><h1>{view==="Visão geral"?"Dashboard de Performance":view}</h1><p>{view==="Visão geral"?"Acompanhe a preparação das áreas da campanha.":"Indicadores em preparação e aguardando validação."}</p></div></div><div className="bf-notice"><strong>Premiações protegidas</strong><p>Sem cálculo automático antes de validar fontes e regras.</p></div>{view==="Visão geral"&&<div className="bf-area-grid">{areas.map(area=><button key={area} onClick={()=>setView(area)}><strong>{area}</strong><small>{area==="BO e Dados"?"Painel inicial disponível":"Indicadores em preparação"}</small><span>Ver área →</span></button>)}</div>}</div>}
     </div>
   </main>;
