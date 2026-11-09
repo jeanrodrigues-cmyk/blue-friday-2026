@@ -598,3 +598,16 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .mp-admin-layout .mp-form-panel{padding:28px;background:#fff;border:1px solid #e0e6ee;border-radius:16px}
 @media(max-width:1000px){.mp-kpi-row{grid-template-columns:1fr}.mp-page .mp-bo-hero{grid-template-columns:1fr}.mp-page .mp-bo-hero .mp-hero-side{border-left:0;padding-left:0}}
 @media(max-width:700px){.mp-nav-refresh{margin-left:0}.mp-nav-tab{flex:1;justify-content:center}.mp-kpi{padding:16px}}
+
+/* Midias e Procon | hierarquia de indicadores e leitura consistente */
+.mp-overview-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:3px 2px 0}
+.mp-overview-eyebrow{display:block;color:#4272af;font-size:10px;font-weight:800;letter-spacing:1.3px;margin-bottom:7px}
+.mp-overview-heading h2{margin:0 0 5px;color:#112b51;font-size:21px;letter-spacing:-.4px;line-height:1.25}
+.mp-overview-heading p{margin:0;color:#667b96;font-size:13px;line-height:1.5}
+.mp-overview-admin-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;border:1px solid #d5e2f3;border-radius:10px;background:#fff;color:#1c56a5;font-size:12px;font-weight:700;padding:11px 14px;cursor:pointer}
+.mp-overview-admin-link:hover{background:#f2f6fc}
+.mp-page .mp-kpi{box-shadow:0 2px 9px rgba(16,43,80,.045);border-color:#e0e7f0}
+.mp-page .mp-kpi strong{font-size:18px;letter-spacing:-.25px}
+.mp-page .mp-week-panel{border-radius:16px}
+.mp-page .mp-award-primary h3{letter-spacing:-.7px}
+@media(max-width:650px){.mp-overview-heading{align-items:flex-start;flex-direction:column}.mp-overview-admin-link{width:100%}}
