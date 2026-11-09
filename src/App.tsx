@@ -14,16 +14,16 @@ function parseCsvLine(line: string, delimiter: string): string[] {
   values.push(value.trim()); return values;
 }
 function readBoCsv(text: string, fileName: string): CsvPreview {
-  const lines=text.replace(/^\\uFEFF/,"").split(/\\r?\\n/).filter(l=>l.trim());
+  const lines=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(l=>l.trim());
   if(lines.length!==2) throw new Error("O CSV deve conter cabeçalho e exatamente uma linha de resultados.");
   const delimiter=lines[0].includes(";")?";":",";
   const headers=parseCsvLine(lines[0],delimiter).map(h=>h.toLowerCase());
   const row=parseCsvLine(lines[1],delimiter);
   const get=(key:string)=>{const index=headers.indexOf(key);if(index<0 || row[index]===undefined)throw new Error("Coluna ausente: "+key);return row[index];};
-  const number=(key:string)=>{const raw=get(key);if(!/^\\d+$/.test(raw))throw new Error("Valor inválido em "+key);const n=Number(raw);if(!Number.isSafeInteger(n))throw new Error("Número fora do limite em "+key);return n;};
+  const number=(key:string)=>{const raw=get(key);if(!/^\d+$/.test(raw))throw new Error("Valor inválido em "+key);const n=Number(raw);if(!Number.isSafeInteger(n))throw new Error("Número fora do limite em "+key);return n;};
   const ingest=get("ultima_ingestao").trim();
   const timestamp=Date.parse(ingest.replace(" ","T"));
-  if(!ingest || !Number.isFinite(timestamp) || !/(Z|[+-]\\d{2}:?\\d{2})$/i.test(ingest))throw new Error("ultima_ingestao precisa conter data, hora e fuso (ex.: 2026-11-07T04:12:01Z).");
+  if(!ingest || !Number.isFinite(timestamp) || !/(Z|[+-]\d{2}:?\d{2})$/i.test(ingest))throw new Error("ultima_ingestao precisa conter data, hora e fuso (ex.: 2026-11-07T04:12:01Z).");
   const date=new Date().toLocaleDateString("en-CA",{timeZone:"America/Sao_Paulo"});
   return {fileName,open:number("bo_em_aberto"),backlog:number("backlog_acima_7_dias"),resolved:number("bos_resolvidos"),ingestedAt:new Date(timestamp).toISOString(),referenceDate:date};
 }
