@@ -354,3 +354,32 @@
 .bo-special-lock strong{font-size:13px;color:#91511d}
 .bo-special-lock p{margin:5px 0 0;font-size:12px;line-height:1.6;color:#8c684c}
 @media(max-width:850px){.bo-special-grid{grid-template-columns:1fr}.bo-special-heading{align-items:flex-start;flex-direction:column}}
+
+
+/* BO e Dados | fechamento semanal para gestao */
+.bo-weekly-panel{margin:20px 0;padding:25px}
+.bo-weekly-selector{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;color:#526b8b}
+.bo-weekly-selector select{min-height:40px;max-width:100%;padding:8px 12px;border:1px solid #cfdef3;border-radius:10px;background:#f7faff;color:#153660;font:inherit;cursor:pointer}
+.bo-weekly-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:20px 0}
+.bo-weekly-summary article{display:flex;flex-direction:column;gap:9px;min-width:0;padding:21px;border:1px solid #dce7f7;border-radius:14px;background:#f8fbff}
+.bo-weekly-summary small{font-size:12px;color:#657c9b;font-weight:700}
+.bo-weekly-summary strong{font-size:27px;color:#14325f;line-height:1.25;overflow-wrap:anywhere}
+.bo-weekly-summary span{font-size:11px;color:#7187a5}
+.bo-weekly-summary .bo-weekly-good{color:#12865c;font-size:20px}
+.bo-weekly-summary .bo-weekly-bad{color:#c23f3f;font-size:20px}
+.bo-weekly-summary .bo-weekly-wait{color:#a36d1c;font-size:20px}
+.bo-weekly-missions{border:1px solid #e0e9f6;border-radius:14px;overflow:hidden;margin-bottom:17px}
+.bo-weekly-missions h3{margin:0;padding:17px 19px;background:#f6f9fe;color:#15345f;font-size:15px}
+.bo-weekly-mission{display:grid;grid-template-columns:minmax(0,1fr) auto 110px;align-items:center;gap:14px;padding:17px 19px;border-top:1px solid #e8eef7}
+.bo-weekly-mission>div{display:flex;flex-direction:column;gap:5px}
+.bo-weekly-mission strong{font-size:13px;color:#203c65}
+.bo-weekly-mission small{font-size:11px;color:#7588a3}
+.bo-weekly-mission b{font-size:12px;text-align:right;color:#174f9e}
+.bo-weekly-tag{display:inline-flex;align-items:center;justify-content:center;padding:8px 10px;border-radius:20px;background:#fff3dc;color:#91630e;font-size:11px;font-weight:750;white-space:nowrap}
+.bo-weekly-tag.good{background:#e5f7ed;color:#147b53}
+.bo-weekly-tag.bad{background:#ffebeb;color:#b43535}
+.bo-weekly-foot{display:flex;align-items:flex-start;gap:11px;margin:0 0 22px;padding:14px 16px;border:1px solid #f1dda9;border-radius:12px;background:#fffbf0;color:#9a7024}
+.bo-weekly-foot svg{flex-shrink:0;margin-top:2px}
+.bo-weekly-foot p{margin:0;font-size:12px;line-height:1.6}
+@media(max-width:1050px){.bo-weekly-summary{grid-template-columns:1fr 1fr}.bo-weekly-summary article:last-child{grid-column:1/-1}}
+@media(max-width:750px){.bo-weekly-panel{padding:15px}.bo-weekly-summary{grid-template-columns:1fr}.bo-weekly-summary article:last-child{grid-column:auto}.bo-weekly-mission{grid-template-columns:1fr;gap:9px}.bo-weekly-mission b{text-align:left}.bo-weekly-selector{flex-wrap:wrap}}
