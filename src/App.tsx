@@ -146,22 +146,6 @@ export default function App() {
     const rec=mpRecords.find(r=>r.reference_date===mpDate);
     setMpForm({media:rec?.media_queue_cleared===null||rec?.media_queue_cleared===undefined?"":rec.media_queue_cleared?"yes":"no",comments:rec?.comments_handled===null||rec?.comments_handled===undefined?"":rec.comments_handled?"yes":"no",total:rec?.procon_total===null||rec?.procon_total===undefined?"":String(rec.procon_total),within:rec?.procon_within_24h===null||rec?.procon_within_24h===undefined?"":String(rec.procon_within_24h),over:rec?.procon_over_24h===null||rec?.procon_over_24h===undefined?"":String(rec.procon_over_24h),source:rec?.procon_source??"Cloude",notes:rec?.notes??""});
   },[mpDate,mpRecords]);
-  useEffect(()=>{
-    if(!supabase||!session||profile?.role!=="admin"||view!=="Mídias e Procon")return;
-    let cancelled=false;
-    const sync=async()=>{
-      const dates=["2026-11-04","2026-11-05","2026-11-06"];
-      const {data,error:readError}=await supabase!.from("bf_media_procon_daily").select("reference_date,media_queue_cleared,comments_handled,procon_total,procon_within_24h,procon_over_24h,procon_source,notes").in("reference_date",dates);
-      if(cancelled||readError)return;
-      const existing=(data??[]) as MpRecord[];
-      const missing=dates.filter(date=>{const row=existing.find(r=>r.reference_date===date);return !row||row.media_queue_cleared!==true||row.comments_handled!==true;});
-      if(!missing.length)return;
-      const rows=missing.map(date=>{const row=existing.find(r=>r.reference_date===date);return {reference_date:date,media_queue_cleared:true,comments_handled:true,procon_total:row?.procon_total??null,procon_within_24h:row?.procon_within_24h??null,procon_over_24h:row?.procon_over_24h??null,procon_source:row?.procon_source??null,notes:row?.notes??"Mídias e comentários confirmados; Procon dispensado pela gestão na semana 1.",recorded_by:session!.user.id};});
-      const {error:writeError}=await supabase!.from("bf_media_procon_daily").upsert(rows,{onConflict:"reference_date"});
-      if(!cancelled){if(writeError)setMpError("Registro automático da semana 1 não concluído: "+writeError.message);else setRefreshCount(n=>n+1);}
-    };
-    void sync();return()=>{cancelled=true;};
-  },[session,profile,view]);
   async function registerLastWeekMp(){
     if(!supabase||!session||profile?.role!=="admin")return;
     setMpSaving(true);setMpError("");
@@ -169,7 +153,7 @@ export default function App() {
     const {data, error:readError}=await supabase.from("bf_media_procon_daily").select("reference_date,media_queue_cleared,comments_handled,procon_total,procon_within_24h,procon_over_24h,procon_source,notes").in("reference_date",dates);
     if(readError){setMpSaving(false);setMpError(readError.message);return;}
     const existing=(data??[]) as MpRecord[];
-    const rows=dates.map(date=>{const row=existing.find(r=>r.reference_date===date);return {reference_date:date,media_queue_cleared:true,comments_handled:true,procon_total:row?.procon_total??null,procon_within_24h:row?.procon_within_24h??null,procon_over_24h:row?.procon_over_24h??null,procon_source:row?.procon_source??null,notes:row?.notes??"Mídias e comentários confirmados; Procon dispensado pela gestão na semana 1.",recorded_by:session.user.id};});
+    const rows=dates.map(date=>{const row=existing.find(r=>r.reference_date===date);return {reference_date:date,media_queue_cleared:row?.media_queue_cleared??true,comments_handled:row?.comments_handled??true,procon_total:row?.procon_total??null,procon_within_24h:row?.procon_within_24h??null,procon_over_24h:row?.procon_over_24h??null,procon_source:row?.procon_source??null,notes:row?.notes??"Mídias e comentários confirmados; Procon dispensado pela gestão na semana 1.",recorded_by:session.user.id};});
     const {error}=await supabase.from("bf_media_procon_daily").upsert(rows,{onConflict:"reference_date"});
     setMpSaving(false);if(error){setMpError("Não foi possível registrar a semana 1: "+error.message);return;}setMpWeek(0);setMpTab("overview");setRefreshCount(n=>n+1);
   }
