@@ -256,10 +256,16 @@ export default function App() {
   const currentMetric=(key:string)=>selected?.[key==="bo_open"?"open":key==="bo_resolved"?"resolved":"backlog"];
   const newestIngest="07/11/2026, 01h12"; // Última ingestão conhecida, não é atualização em tempo real.
   return <main className="bf-layout">
-    <aside className="bf-side"><div className="bf-brand"><BrandIcon small/><div><strong>BLUE FRIDAY</strong><small>Performance 2026</small></div></div><p className="bf-menu-label">NAVEGAÇÃO</p>
-      <button className={view==="Visão geral"?"bf-menu selected":"bf-menu"} onClick={()=>setView("Visão geral")}>▦ Visão geral</button><p className="bf-menu-label">ÁREAS</p>
-      {(profile.role==="collaborator"?["Minha performance"]:areas).map(area=><button key={area} className={view===area?"bf-menu selected":"bf-menu"} onClick={()=>setView(area)}>◦ {area}{area==="BO e Dados"&&<span className="bf-new">NOVO</span>}</button>)}
-      <div className="bf-side-bottom">● Sessão autenticada</div>
+    <aside className="bf-side bf-side-light" aria-label="Navegação principal">
+      <div className="bf-brand"><BrandIcon small/><div><strong>BLUE <span>FRIDAY</span></strong><small>Performance 2026</small></div></div>
+      <p className="bf-menu-label">NAVEGAÇÃO</p>
+      <button type="button" aria-current={view==="Visão geral"?"page":undefined} className={view==="Visão geral"?"bf-menu selected":"bf-menu"} onClick={()=>setView("Visão geral")}><span className="bf-menu-icon"><BoIcon name="home" size={19}/></span><span className="bf-menu-text">Visão geral</span></button>
+      <p className="bf-menu-label">ÁREAS</p>
+      {(profile.role==="collaborator"?["Minha performance"]:areas).map(area=>{
+        const iconName:Record<string,string>={"BO e Dados":"layers","Reembolso":"refresh","Mídias e Procon":"shield","Recorrência":"calendar","Chargeback":"bag","Resoluções":"check","Quero Pago":"chart","Marcas":"target","Reclame Aqui":"document","Minha performance":"trend"};
+        return <button type="button" key={area} aria-current={view===area?"page":undefined} className={view===area?"bf-menu selected":"bf-menu"} onClick={()=>setView(area)}><span className="bf-menu-icon"><BoIcon name={iconName[area]??"chart"} size={19}/></span><span className="bf-menu-text">{area}</span>{area==="BO e Dados"&&<span className="bf-new">NOVO</span>}<span className="bf-menu-chevron" aria-hidden="true">›</span></button>;
+      })}
+      <div className="bf-side-bottom"><span className="bf-online-dot"/> Sessão autenticada</div>
     </aside>
     <div className="bf-workspace"><header className="bf-top"><span>Blue Friday 2026 / <strong>{view}</strong></span><div><span className="bf-user-role">{profile.role==="admin"?"Administrador":profile.role==="management"?"Gestão":"Colaborador"}</span><button onClick={signOut}>Sair</button></div></header>
       {view==="BO e Dados"?<div className="bf-body bo-executive bo-v2">
