@@ -190,3 +190,31 @@
 @media(max-width:1320px){.bo-v2 .bo-v2-main,.bo-v2 .bo-v2-bottom{grid-template-columns:1fr}.bo-v2 .bo-hero-side{min-width:0}.bo-v2 .bo-hero-decoration{display:none}}
 @media(max-width:900px){.bo-v2 .bo-v2-kpis{grid-template-columns:1fr}.bo-v2 .bo-hero{flex-wrap:wrap}.bo-v2 .bo-hero-side{width:100%}.bo-v2 .bo-nav{flex-wrap:wrap}}
 @media(max-width:600px){.bo-v2 .bo-hero{padding:18px;gap:13px}.bo-hero-icon{flex-basis:55px;height:55px}.bo-hero-icon svg{width:31px;height:31px}.bo-v2 .bo-hero h1{font-size:28px}.bo-v2 .bo-hero-main{min-width:0}.bo-v2 .bo-hero-side{flex-wrap:wrap}.bo-v2 .bo-hero-side>div+div{border:0;padding:0}.bo-v2 .bo-tabs{gap:4px}.bo-v2 .bo-tabs button{font-size:11px;padding:9px}.bo-v2 .bo-v2-kpi{padding:14px}.bo-v2 .bo-kpi-body>strong{font-size:32px}.bo-v2 .bo-kpi-icon{flex-basis:52px;height:52px}.bo-v2 .bo-kpi-icon svg{width:27px;height:27px}.bo-v2 .bo-kpi-change{margin-left:0}}
+
+/* Refinamento pontual: cabecalho BO e Dados e barra de acoes */
+.bo-v2 .bo-hero.bo-hero-refined{position:relative;min-height:174px;padding:32px 36px;gap:36px;align-items:center;overflow:hidden;background:linear-gradient(108deg,#071d46 0%,#0b2c67 61%,#102f69 100%);border:1px solid #1b4d9b;box-shadow:0 8px 22px #0c2d6314}
+.bo-v2 .bo-hero.bo-hero-refined::after{content:"";position:absolute;right:13%;top:-145px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,#1875d92b,transparent 69%);pointer-events:none}
+.bo-v2 .bo-hero-refined .bo-hero-main{position:relative;z-index:1;min-width:0;flex:1}
+.bo-v2 .bo-hero-refined .bo-hero-kicker{display:flex;align-items:center;gap:9px;color:#66d7ff;font-size:11px;font-weight:800;letter-spacing:1.65px}
+.bo-kicker-dot{display:inline-block;flex:0 0 7px;width:7px;height:7px;background:#27d8ff;border-radius:50%;box-shadow:0 0 0 4px #28d8ff19}
+.bo-kicker-separator{color:#8aa4d5;font-weight:400}
+.bo-v2 .bo-hero-refined h1{font-size:clamp(32px,3.2vw,43px);letter-spacing:-1.4px;line-height:1.13;margin:14px 0 8px}
+.bo-v2 .bo-hero-refined p{max-width:600px;color:#c1d4f0;font-size:14px;line-height:1.5;margin:0}
+.bo-v2 .bo-hero-refined .bo-hero-side{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:0;min-width:420px;max-width:515px;width:40%;padding:17px 18px;border:1px solid #5175ac;border-radius:13px;background:#ffffff0b;backdrop-filter:blur(8px);box-shadow:none}
+.bo-v2 .bo-hero-refined .bo-hero-side .bo-hero-info{display:flex;align-items:center;gap:10px;min-width:0;padding:0 13px}
+.bo-v2 .bo-hero-refined .bo-hero-side .bo-hero-info:first-child{padding-left:0}
+.bo-v2 .bo-hero-refined .bo-hero-side .bo-hero-info+.bo-hero-info{border-left:1px solid #607ba7}
+.bo-hero-info-icon{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:9px;background:#1b4d9d;color:#d5edff}
+.bo-v2 .bo-hero-refined .bo-hero-side .bo-hero-info small{display:flex;flex-direction:column;gap:5px;color:#b3c8e9;font-size:11px;line-height:1.25;white-space:normal}
+.bo-v2 .bo-hero-refined .bo-hero-side .bo-hero-info strong{font-size:13px;color:#fff;white-space:nowrap}
+.bo-v2 .bo-nav{margin-top:13px;gap:16px}
+.bo-v2 .bo-tabs button{border-radius:9px;transition:background .15s,color .15s}
+.bo-v2 .bo-tabs button:not(.active){color:#486080}
+.bo-v2 .bo-tabs button:not(.active):hover{background:#e7effd;color:#164dd0}
+.bo-v2 .bo-nav-actions{gap:10px}
+.bo-v2 .bo-date-filter{border:1px solid #d5e1f3;border-radius:10px;background:#fff}
+.bo-v2 .bo-date-filter span{color:#627895;font-size:12px}
+.bo-v2 .bo-refresh{border-radius:10px;box-shadow:0 4px 12px #2359df1c}
+.bo-v2 .bo-refresh:hover{filter:brightness(1.08)}
+@media(max-width:1120px){.bo-v2 .bo-hero.bo-hero-refined{flex-wrap:wrap;gap:20px}.bo-v2 .bo-hero-refined .bo-hero-side{width:100%;max-width:600px;min-width:0}}
+@media(max-width:620px){.bo-v2 .bo-hero.bo-hero-refined{padding:24px 20px}.bo-v2 .bo-hero-refined .bo-hero-kicker{font-size:9px;letter-spacing:.8px}.bo-v2 .bo-hero-refined .bo-hero-side{grid-template-columns:1fr;gap:12px}.bo-v2 .bo-hero-refined .bo-hero-side .bo-hero-info{padding:0}.bo-v2 .bo-hero-refined .bo-hero-side .bo-hero-info+.bo-hero-info{border-left:0;border-top:1px solid #607ba7;padding-top:12px}.bo-v2 .bo-nav-actions{width:100%}.bo-v2 .bo-date-filter{flex:1;min-width:0}.bo-v2 .bo-refresh{justify-content:center}}
