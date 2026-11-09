@@ -385,72 +385,75 @@
 @media(max-width:750px){.bo-weekly-panel{padding:15px}.bo-weekly-summary{grid-template-columns:1fr}.bo-weekly-summary article:last-child{grid-column:auto}.bo-weekly-mission{grid-template-columns:1fr;gap:9px}.bo-weekly-mission b{text-align:left}.bo-weekly-selector{flex-wrap:wrap}}
 
 
-/* Midias e Procon | design system unificado */
-.mp-page{--mp-border:#dce6f3;--mp-ink:#17345f;--mp-muted:#7086a5;--mp-blue:#1758c6;display:flex;flex-direction:column;gap:18px;max-width:1500px;padding-top:26px}
-.mp-page .mp-hero{background:#123b82;border:1px solid #1b4b9b;border-radius:14px;padding:25px 29px;box-shadow:none;color:#fff}
-.mp-hero>span{display:block;font-size:10px;font-weight:750;letter-spacing:1.2px;color:#b9d3fa}
-.mp-page .mp-hero h1{font-size:27px;font-weight:800;letter-spacing:-.6px;line-height:1.2;margin:9px 0 6px}
-.mp-page .mp-hero p{font-size:12px;color:#d5e5fc;margin:0}
-.mp-heading,.mp-week-head{display:flex;align-items:center;justify-content:space-between;gap:15px}
-.mp-heading h2{font-size:18px;font-weight:750;color:var(--mp-ink);margin:0 0 5px}
-.mp-heading p,.mp-week-head p{font-size:12px;color:var(--mp-muted);margin:0;line-height:1.5}
-.mp-heading .bo-refresh{border:1px solid var(--mp-border);background:#fff;border-radius:9px}
-.mp-grid,.mp-grid-refined{display:grid;grid-template-columns:minmax(335px,0.9fr) minmax(0,1.55fr);gap:18px;align-items:start}
-.mp-grid .bf-panel{border:1px solid var(--mp-border);border-radius:14px;padding:23px;box-shadow:0 5px 18px #1b45820a;background:#fff;min-width:0}
-.mp-form-panel h2,.mp-week-panel h2{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:750;color:var(--mp-ink);margin:0 0 7px}
-.mp-form-panel>p{font-size:11px;line-height:1.55;color:var(--mp-muted);margin:0 0 20px}
-.mp-form{display:flex;flex-direction:column;gap:15px}
-.mp-form label{display:flex;flex-direction:column;gap:7px;font-size:11px;font-weight:700;color:#355176}
-.mp-form input,.mp-form select,.mp-form textarea,.mp-week-head select{width:100%;min-width:0;min-height:41px;border:1px solid #d5e1f0;border-radius:8px;padding:10px 11px;background:#fff;color:#203f6c;font:inherit;font-size:12px;outline-offset:2px}
-.mp-form input:focus,.mp-form select:focus,.mp-form textarea:focus,.mp-week-head select:focus{outline:2px solid #8bb6f8}
+/* Midias e Procon: layout padronizado com Visao Geral */
+.mp-page{--mp-ink:#102b50;--mp-muted:#7085a3;--mp-border:#dfe8f5;display:flex;flex-direction:column;gap:20px;width:100%;max-width:1450px;margin:0 auto;font-family:var(--bf-font,Inter,Arial,sans-serif)}
+.mp-page .mp-hero{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:24px 30px;border-radius:15px;background:linear-gradient(105deg,#154db5,#0b2a65);color:white;box-shadow:0 8px 20px #16448616}
+.mp-hero-main{min-width:0}
+.mp-hero-kicker{display:inline-flex;align-items:center;gap:8px;color:#bedaff;font-size:10px;font-weight:800;letter-spacing:1.3px}
+.mp-page .mp-hero h1{font-size:clamp(24px,2vw,29px);font-weight:800;letter-spacing:-.7px;color:#fff;margin:9px 0 5px;line-height:1.2}
+.mp-page .mp-hero p{font-size:12px;color:#dce9ff;margin:0}
+.mp-hero-side{display:flex;align-items:flex-end;flex-direction:column;gap:8px}
+.mp-hero-person{display:inline-flex;align-items:center;gap:7px;background:#ffffff1c;border:1px solid #ffffff45;border-radius:9px;padding:9px 13px;font-size:12px;font-weight:750;white-space:nowrap}
+.mp-hero-admin{font-size:10px;color:#c9dcf8;white-space:nowrap}
+.mp-heading,.mp-week-head{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.mp-heading h2{font-size:19px!important;color:var(--mp-ink);margin:0 0 5px;font-weight:800}
+.mp-heading p,.mp-week-head p{font-size:12px;color:var(--mp-muted);margin:0}
+.mp-heading .bo-refresh{border:1px solid var(--mp-border);background:#fff;border-radius:9px;box-shadow:none}
+.mp-grid,.mp-grid-refined{display:grid;grid-template-columns:minmax(330px,.95fr) minmax(0,1.55fr);gap:18px;align-items:start}
+.mp-grid .bf-panel{background:#fff;border:1px solid var(--mp-border);border-radius:14px;padding:22px;box-shadow:0 6px 20px #173e7510;min-width:0}
+.mp-form-panel h2,.mp-week-panel h2{display:flex;align-items:center;gap:9px;font-size:17px!important;font-weight:750;color:var(--mp-ink);margin:0 0 7px}
+.mp-form-panel>p{color:var(--mp-muted);font-size:11px;line-height:1.5;margin:0 0 19px}
+.mp-form{display:flex;flex-direction:column;gap:13px}
+.mp-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:650;color:#355275}
+.mp-form input,.mp-form select,.mp-form textarea,.mp-week-head select{width:100%;min-width:0;min-height:42px;border:1px solid #d7e3f2;border-radius:9px;background:#fff;padding:9px 11px;color:#203e67;font-family:inherit;font-size:12px;outline-offset:2px}
+.mp-form input:focus,.mp-form select:focus,.mp-form textarea:focus,.mp-week-head select:focus{outline:2px solid #8cb8f9}
 .mp-form textarea{resize:vertical}
-.mp-form h3{border-top:1px solid #e7edf5;padding-top:18px;margin:3px 0 0;font-size:13px;color:var(--mp-ink)}
+.mp-form h3{border-top:1px solid #e6edf7;padding-top:17px;margin:4px 0 0;color:#1a3c70;font-size:13px!important}
 .mp-form-numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-.mp-form .login-submit{margin-top:2px;border-radius:9px;min-height:44px;background:#1558c5;box-shadow:none;font-size:13px}
-.mp-form .login-submit:hover{background:#0e47a9}
-.mp-week-head{margin-bottom:17px;align-items:flex-start}
-.mp-week-head select{width:auto;max-width:220px;font-size:11px}
-.mp-award-summary{margin:0 0 17px;border:1px solid #d7e4f5;border-radius:12px;overflow:hidden;background:#f9fbff}
-.mp-award-primary{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:21px;background:#113c86;color:#fff}
-.mp-award-eyebrow{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:.8px;color:#c6dafa}
-.mp-award-primary h3{font-size:31px;line-height:1.1;margin:9px 0 7px;color:#fff;letter-spacing:-.8px}
-.mp-award-primary h3 small{font-size:12px;font-weight:500;letter-spacing:0;color:#d1e2fc}
-.mp-award-primary p{font-size:10px;line-height:1.5;color:#d2e3fc;max-width:220px;margin:0}
+.mp-form .login-submit{margin-top:4px;border-radius:9px;min-height:44px;background:#175dd1;box-shadow:none;font-size:13px}
+.mp-form .login-submit:hover{background:#104bab}
+.mp-week-head{align-items:flex-start;margin-bottom:18px}
+.mp-week-head select{width:auto;max-width:230px;font-size:11px}
+.mp-award-summary{margin:0 0 15px;border:1px solid #d9e6f5;border-radius:12px;overflow:hidden;background:#f6f9ff}
+.mp-award-primary{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:21px 20px;background:#f1f6ff;color:#153b77}
+.mp-award-eyebrow{display:inline-flex;align-items:center;gap:7px;color:#3b68a5;font-size:10px;font-weight:800;letter-spacing:.7px}
+.mp-award-primary h3{font-size:29px!important;color:#103a7c;letter-spacing:-.6px;line-height:1.15;margin:9px 0 6px}
+.mp-award-primary h3 small{font-size:12px;color:#6d86a8;font-weight:500}
+.mp-award-primary p{font-size:10px;color:#6a83a5;line-height:1.45;margin:0;max-width:220px}
 .mp-award-inline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:1;min-width:0}
-.mp-award-inline>div{display:flex;flex-direction:column;gap:9px;padding:5px 12px;border-left:1px solid #ffffff30}
-.mp-award-inline small{font-size:10px;color:#c5dafa;line-height:1.4}
-.mp-award-inline strong{font-size:20px;color:#fff;white-space:nowrap}
-.mp-status-strip{display:flex;align-items:center;gap:12px;padding:13px 15px;margin-bottom:17px;border:1px solid #dce8f7;border-radius:10px;background:#f4f8ff}
-.mp-status-icon{width:36px;height:36px;flex-shrink:0;display:grid;place-items:center;border-radius:9px;background:#e0ecfd;color:#215ab2}
-.mp-status-done{background:#def6e9;color:#188150}
-.mp-status-strip strong{display:block;font-size:13px;color:var(--mp-ink);margin-bottom:4px}
-.mp-status-strip p{font-size:11px;color:var(--mp-muted);line-height:1.4;margin:0}
-.mp-progress-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-bottom:20px}
-.mp-progress-card{display:flex;flex-direction:column;gap:10px;min-width:0;padding:15px;border:1px solid var(--mp-border);border-radius:10px;background:#fff}
-.mp-progress-icon{display:grid;place-items:center;width:33px;height:33px;border-radius:9px;background:#eaf2ff;color:var(--mp-blue)}
-.mp-progress-card>strong{font-size:12px;color:var(--mp-ink);min-height:16px}
-.mp-progress-numbers{display:flex;align-items:center;justify-content:space-between;gap:6px}
-.mp-progress-numbers b{font-size:18px;color:#1b54aa}
-.mp-progress-numbers span{font-size:10px;color:var(--mp-muted)}
-.mp-progress-track{height:6px;background:#eaf0f8;border-radius:20px;overflow:hidden}
-.mp-progress-track>div{height:100%;border-radius:20px;background:#2672df;transition:width .2s}
-.mp-progress-card>small{font-size:10px;line-height:1.35;color:var(--mp-muted)}
-.mp-table-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-.mp-table-title h3{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mp-ink);margin:0}
+.mp-award-inline>div{display:flex;flex-direction:column;gap:8px;padding:4px 12px;border-left:1px solid #d4e2f3}
+.mp-award-inline small{font-size:10px;color:#7087a7;line-height:1.35}
+.mp-award-inline strong{font-size:20px;color:#184a9d;white-space:nowrap}
+.mp-status-strip{display:flex;align-items:center;gap:12px;padding:13px 15px;margin-bottom:15px;background:#f7faff;border:1px solid #e0eaf6;border-radius:10px}
+.mp-status-icon{width:36px;height:36px;display:grid;place-items:center;flex-shrink:0;background:#e8f1ff;color:#2262bc;border-radius:9px}
+.mp-status-done{background:#e0f7e9;color:#12844b}
+.mp-status-strip strong{font-size:13px;color:var(--mp-ink)}
+.mp-status-strip p{font-size:11px;color:var(--mp-muted);margin:4px 0 0}
+.mp-progress-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:19px}
+.mp-progress-card{display:flex;flex-direction:column;gap:9px;border:1px solid var(--mp-border);border-radius:10px;padding:14px;background:#fff;min-width:0}
+.mp-progress-icon{display:grid;place-items:center;width:33px;height:33px;border-radius:9px;background:#edf4ff;color:#2060bd}
+.mp-progress-card>strong{font-size:12px;color:var(--mp-ink)}
+.mp-progress-numbers{display:flex;align-items:center;justify-content:space-between;gap:5px}
+.mp-progress-numbers b{font-size:17px;color:#2057ac}
+.mp-progress-numbers span{font-size:10px;color:#7086a3}
+.mp-progress-track{height:6px;border-radius:20px;background:#e8eef7;overflow:hidden}
+.mp-progress-track>div{height:100%;border-radius:20px;background:#2470df}
+.mp-progress-card>small{font-size:10px;color:var(--mp-muted);line-height:1.4}
+.mp-table-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.mp-table-title h3{display:flex;align-items:center;gap:8px;font-size:14px!important;color:var(--mp-ink);margin:0}
 .mp-table-title>span{font-size:10px;color:var(--mp-muted)}
-.mp-week-panel .bo-table-scroll{overflow-x:auto;border:1px solid #e3ebf5;border-radius:10px}
+.mp-week-panel .bo-table-scroll{overflow-x:auto;border:1px solid #e2eaf5;border-radius:10px}
 .mp-week-panel .bo-table{width:100%;border-collapse:collapse}
-.mp-week-panel .bo-table th{background:#f4f7fc;color:#5a7496;font-weight:700;font-size:10px;padding:12px 10px;text-align:left;white-space:nowrap}
-.mp-week-panel .bo-table td{font-size:11px;color:#344f73;padding:13px 10px;border-top:1px solid #e9eef6;white-space:nowrap}
-.mp-day-badge{display:inline-block;padding:6px 9px;border-radius:30px;font-size:10px;font-weight:750}
-.mp-day-pending{background:#edf1f7;color:#657a97}
-.mp-day-good{background:#e4f7ed;color:#147b4a}
-.mp-day-fail{background:#fff0f0;color:#b23a3a}
-.mp-note{font-size:10px;line-height:1.6;color:#8192aa;margin:13px 0 0}
+.mp-week-panel .bo-table th{background:#f5f8fc;color:#5b7495;font-size:11px;font-weight:750;padding:12px 10px;text-align:left;white-space:nowrap}
+.mp-week-panel .bo-table td{color:#355173;font-size:11px;padding:12px 10px;border-top:1px solid #e8eef6;white-space:nowrap}
+.mp-day-badge{display:inline-block;border-radius:30px;padding:6px 9px;font-size:10px;font-weight:750}
+.mp-day-pending{background:#edf1f7;color:#6a7c96}
+.mp-day-good{background:#e4f8ed;color:#147e4d}
+.mp-day-fail{background:#fff0f0;color:#b93b3b}
+.mp-note{font-size:10px;color:#8394aa;line-height:1.55;margin:13px 0 0}
 @media(max-width:1200px){.mp-grid,.mp-grid-refined{grid-template-columns:1fr}}
-@media(max-width:720px){.mp-page{padding:16px}.mp-page .mp-hero{padding:20px}.mp-heading,.mp-week-head{align-items:stretch;flex-direction:column}.mp-week-head select{max-width:none}.mp-award-primary{align-items:stretch;flex-direction:column}.mp-award-inline>div:first-child{border-left:0;padding-left:0}.mp-progress-grid{grid-template-columns:1fr}.mp-form-numbers{grid-template-columns:1fr}.mp-table-title{align-items:flex-start;flex-direction:column}}
-@media(max-width:410px){.mp-award-inline{grid-template-columns:1fr}.mp-award-inline>div{border-left:0;border-top:1px solid #ffffff30;padding:9px 0}.mp-grid .bf-panel{padding:17px}}
-
+@media(max-width:740px){.mp-page .mp-hero{flex-direction:column;align-items:flex-start;padding:22px}.mp-hero-side{align-items:flex-start}.mp-heading,.mp-week-head{align-items:stretch;flex-direction:column}.mp-week-head select{max-width:none}.mp-award-primary{align-items:stretch;flex-direction:column}.mp-award-inline>div:first-child{border-left:0;padding-left:0}.mp-progress-grid{grid-template-columns:1fr}.mp-form-numbers{grid-template-columns:1fr}.mp-table-title{align-items:flex-start;flex-direction:column}}
+@media(max-width:420px){.mp-award-inline{grid-template-columns:1fr}.mp-award-inline>div{border-left:0;border-top:1px solid #d4e2f3;padding:10px 0}.mp-grid .bf-panel{padding:17px}}
 
 /* Blue Friday 2026 | tipografia e barra superior unificadas */
 :root{--bf-font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;--bf-text:#102b50;--bf-secondary:#6c809d}
