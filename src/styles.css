@@ -496,3 +496,44 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .mp-page .mp-hero-refresh{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #ffffff45;background:#ffffff;color:#174487;font-size:11px;font-weight:750;box-shadow:none}
 .mp-page .mp-hero-refresh:hover{background:#eaf3ff}
 @media(max-width:720px){.mp-page .mp-hero{align-items:flex-start;flex-direction:column}.mp-page .mp-hero-side{align-items:flex-start}}
+
+
+/* Mídias e Procon | dashboard-first redesign */
+.mp-page{font-size:14px;gap:18px}
+.mp-page .mp-hero{min-height:112px;padding:22px 28px}
+.mp-page .mp-hero h1{font-size:28px!important;font-weight:800}
+.mp-page .mp-hero p,.mp-page .mp-hero-admin{font-size:13px}
+.mp-dashboard-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:18px;align-items:start}
+.mp-dashboard-main,.mp-dashboard-form{min-width:0}
+.mp-dashboard-layout .bf-panel{background:#fff;border:1px solid #dfe7f3;border-radius:14px;padding:24px;box-shadow:0 5px 18px #163b7110;min-width:0}
+.mp-dashboard-layout .mp-week-head h2,.mp-dashboard-layout .mp-form-panel h2{font-size:19px!important;letter-spacing:-.025em}
+.mp-dashboard-layout .mp-week-head p,.mp-dashboard-layout .mp-form-panel>p{font-size:13px;line-height:1.5}
+.mp-dashboard-layout .mp-week-head select{font-size:13px;min-height:42px}
+.mp-dashboard-layout .mp-award-primary{padding:23px 22px}
+.mp-dashboard-layout .mp-award-primary h3{font-size:33px!important}
+.mp-dashboard-layout .mp-award-primary h3 small{font-size:13px}
+.mp-dashboard-layout .mp-award-primary p{font-size:12px;max-width:260px}
+.mp-dashboard-layout .mp-award-eyebrow{font-size:11px}
+.mp-dashboard-layout .mp-award-inline small{font-size:12px}
+.mp-dashboard-layout .mp-award-inline strong{font-size:22px}
+.mp-dashboard-layout .mp-status-strip{padding:16px}
+.mp-dashboard-layout .mp-status-strip strong{font-size:15px}
+.mp-dashboard-layout .mp-status-strip p{font-size:12px}
+.mp-dashboard-layout .mp-progress-card{padding:17px;gap:12px}
+.mp-dashboard-layout .mp-progress-card>strong{font-size:14px}
+.mp-dashboard-layout .mp-progress-numbers b{font-size:19px}
+.mp-dashboard-layout .mp-progress-card>small{font-size:12px}
+.mp-goal-status{font-size:11px!important;font-weight:700;padding:5px 8px;border-radius:7px;background:#edf2f8;color:#60748f;white-space:nowrap}
+.mp-goal-status.is-done{background:#e1f6e9;color:#16794a}
+.mp-goal-status.is-progress{background:#e9f2ff;color:#1956ad}
+.mp-dashboard-layout .mp-table-title h3{font-size:15px!important}
+.mp-dashboard-layout .mp-table-title>span{font-size:12px}
+.mp-dashboard-layout .mp-week-panel .bo-table th,.mp-dashboard-layout .mp-week-panel .bo-table td{font-size:12px;padding:13px 10px}
+.mp-dashboard-layout .mp-form label{font-size:13px}
+.mp-dashboard-layout .mp-form input,.mp-dashboard-layout .mp-form select,.mp-dashboard-layout .mp-form textarea{font-size:13px;min-height:44px}
+.mp-dashboard-layout .mp-form h3{font-size:14px!important}
+.mp-dashboard-layout .mp-form .login-submit{font-size:14px;min-height:46px}
+.mp-dashboard-layout .mp-note{font-size:12px}
+@media(max-width:1250px){.mp-dashboard-layout{grid-template-columns:1fr}.mp-dashboard-main{order:0}.mp-dashboard-form{order:1}}
+@media(max-width:760px){.mp-dashboard-layout .mp-award-primary{flex-direction:column;align-items:stretch}.mp-dashboard-layout .mp-award-inline>div:first-child{border-left:0}.mp-dashboard-layout .mp-progress-grid{grid-template-columns:1fr}}
+@media(max-width:450px){.mp-dashboard-layout .bf-panel{padding:16px}.mp-dashboard-layout .mp-award-inline{grid-template-columns:1fr}.mp-dashboard-layout .mp-award-inline>div{border-left:0;border-top:1px solid #d4e2f3;padding:10px 0}}
