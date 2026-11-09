@@ -61,6 +61,7 @@ export default function App() {
   const [csvReplaceConfirmed,setCsvReplaceConfirmed] = useState(false);
   const [refreshCount,setRefreshCount] = useState(0);
   const [boTab,setBoTab] = useState<"overview"|"history"|"admin">("overview");
+  const [boDate,setBoDate] = useState("all");
 
   useEffect(() => {
     if (!supabase) { setLoading(false); return; }
@@ -181,28 +182,41 @@ export default function App() {
     </div>
   </main>;
 
-  const official = new Map<string,Metric>();
-  for (const m of metrics) if (!official.has(m.metric_key)) official.set(m.metric_key,m);
   const cards = [
-    {key:"bo_open",name:"BOs em aberto",note:"new + inProgress + screening",tone:"blue"},
-    {key:"bo_over_7_days",name:"Backlog acima de 7 dias",note:"Abertura há mais de 7 dias",tone:"red"},
-    {key:"bo_resolved",name:"BOs resolvidos",note:"Desde janeiro de 2026",tone:"green"}
+    {key:"bo_open",name:"BOs em aberto",tone:"blue",symbol:"▣",description:"Casos pendentes na operação"},
+    {key:"bo_over_7_days",name:"Backlog acima de 7 dias",tone:"red",symbol:"◷",description:"Casos abertos há mais de 7 dias"},
+    {key:"bo_resolved",name:"BOs resolvidos",tone:"green",symbol:"✓",description:"Acumulado desde janeiro de 2026"}
   ];
-  const allMetricsLoaded = cards.every(c => official.has(c.key));
   const history = Array.from(new Set(metrics.map(m=>m.reference_date))).sort().reverse().map(date=>{
     const entries=metrics.filter(m=>m.reference_date===date);
     const get=(key:string)=>entries.find(m=>m.metric_key===key)?.metric_value;
     return {date,open:get("bo_open"),backlog:get("bo_over_7_days"),resolved:get("bo_resolved")};
   });
-  const latestDate=history[0]?.date;
-  const previous=history[1];
-  const delta=(key:"open"|"backlog"|"resolved")=>{
-    const now=history[0]?.[key],before=previous?.[key];
-    return now===undefined||before===undefined?null:Number(now)-Number(before);
-  };
+  const availableDates=history.map(h=>h.date);
+  const chosenDate=boDate==="all"||!availableDates.includes(boDate)?availableDates[0]:boDate;
+  const selectedIndex=history.findIndex(h=>h.date===chosenDate);
+  const selected=history[selectedIndex];
+  const previous=history[selectedIndex+1];
+  const shownHistory=boDate==="all"?history:history.filter(h=>h.date<=chosenDate);
+  const chartHistory=shownHistory.slice(0,7).reverse();
   const fmt=(value:number|undefined)=>value===undefined?"—":new Intl.NumberFormat("pt-BR").format(Number(value));
   const datePt=(value:string)=>value.split("-").reverse().join("/");
-  const backlogMax=Math.max(1,...history.map(h=>Number(h.backlog??0)));
+  const delta=(key:"open"|"backlog"|"resolved")=>{
+    const now=selected?.[key],before=previous?.[key];
+    return now===undefined||before===undefined?null:Number(now)-Number(before);
+  };
+  const percentage=(key:"open"|"backlog"|"resolved")=>{
+    const change=delta(key),before=previous?.[key];
+    return change===null||before===undefined||Number(before)===0?null:change/Number(before)*100;
+  };
+  const chartValues=chartHistory.map(h=>Number(h.backlog??0));
+  const chartMin=chartValues.length?Math.max(0,Math.floor((Math.min(...chartValues)-5)/10)*10):0;
+  const chartMax=chartValues.length?Math.max(chartMin+10,Math.ceil((Math.max(...chartValues)+5)/10)*10):10;
+  const chartPoints=chartValues.map((value,i)=>({x:42+i*(620/Math.max(1,chartValues.length-1)),y:200-(value-chartMin)/(chartMax-chartMin)*160,value,date:chartHistory[i].date}));
+  const chartPath=chartPoints.map((p,i)=>(i===0?"M":"L")+p.x+" "+p.y).join(" ");
+  const chartArea=chartPoints.length>1?chartPath+" L "+chartPoints[chartPoints.length-1].x+" 210 L "+chartPoints[0].x+" 210 Z":"";
+  const currentMetric=(key:string)=>selected?.[key==="bo_open"?"open":key==="bo_resolved"?"resolved":"backlog"];
+  const newestIngest="07/11/2026, 01h12"; // Substituir por metadado persistido quando disponível.
   return <main className="bf-layout">
     <aside className="bf-side"><div className="bf-brand"><BrandIcon small/><div><strong>BLUE FRIDAY</strong><small>Performance 2026</small></div></div><p className="bf-menu-label">NAVEGAÇÃO</p>
       <button className={view==="Visão geral"?"bf-menu selected":"bf-menu"} onClick={()=>setView("Visão geral")}>▦ Visão geral</button><p className="bf-menu-label">ÁREAS</p>
@@ -210,46 +224,18 @@ export default function App() {
       <div className="bf-side-bottom">● Sessão autenticada</div>
     </aside>
     <div className="bf-workspace"><header className="bf-top"><span>Blue Friday 2026 / <strong>{view}</strong></span><div><span className="bf-user-role">{profile.role==="admin"?"Administrador":profile.role==="management"?"Gestão":"Colaborador"}</span><button onClick={signOut}>Sair</button></div></header>
-      {view==="BO e Dados"?<div className="bf-body bo-executive">
-        <div className="bf-page-head"><div><small>BLUE FRIDAY 2026 · PERFORMANCE</small><h1>BO e Dados</h1><p>Visão executiva da operação e acompanhamento da missão semanal.</p></div><button className="bo-refresh" onClick={()=>setRefreshCount(v=>v+1)}>↻ Atualizar painel</button></div>
-        <div className="bo-toolbar"><div className="bo-tabs">
-          <button className={boTab==="overview"?"active":""} onClick={()=>setBoTab("overview")}>Visão geral</button>
-          <button className={boTab==="history"?"active":""} onClick={()=>setBoTab("history")}>Evolução diária</button>
-          {profile.role==="admin"&&<button className={boTab==="admin"?"active":""} onClick={()=>setBoTab("admin")}>Administração</button>}
-        </div><span className="bo-date">Referência: {latestDate?datePt(latestDate):"sem dados"}</span></div>
+      {view==="BO e Dados"?<div className="bf-body bo-executive bo-v2">
+        <section className="bo-hero"><div className="bo-hero-main"><span className="bo-hero-kicker">BLUE FRIDAY 2026 · PERFORMANCE</span><h1>BO e Dados</h1><p>Visão executiva da operação e acompanhamento da missão semanal.</p></div><div className="bo-hero-side"><div><span>◫</span><small>Semana da campanha<strong>09 a 13 de novembro</strong></small></div><div><span className="bo-hero-status-dot"/><small>Última ingestão conhecida<strong>{newestIngest}</strong></small></div></div><div className="bo-hero-decoration" aria-hidden="true">BF<br/>26</div></section>
+        <div className="bo-nav"><div className="bo-tabs"><button className={boTab==="overview"?"active":""} onClick={()=>setBoTab("overview")}>⌂ Visão geral</button><button className={boTab==="history"?"active":""} onClick={()=>setBoTab("history")}>▥ Evolução diária</button>{profile.role==="admin"&&<button className={boTab==="admin"?"active":""} onClick={()=>setBoTab("admin")}>⚙ Administração</button>}</div><div className="bo-nav-actions"><label className="bo-date-filter"><span>Data</span><select aria-label="Filtrar data de referência" value={boDate} onChange={e=>setBoDate(e.target.value)}><option value="all">Mais recente</option>{availableDates.map(date=><option key={date} value={date}>{datePt(date)}</option>)}</select></label><button className="bo-refresh" onClick={()=>setRefreshCount(v=>v+1)}>↻ Atualizar</button></div></div>
         {boTab==="overview"&&<>
-          <div className="bo-source-strip"><span className="bo-source-dot"/><span><strong>Dados registrados</strong> · atualização manual diária</span><span className="bo-source-date">Última extração conhecida: 07/11/2026, 01h12</span></div>
-          <div className="bf-metrics bo-metrics">{cards.map(c=>{const validated=official.get(c.key);const key=c.key==="bo_open"?"open":c.key==="bo_resolved"?"resolved":"backlog";const change=delta(key);return <article className={"bf-metric "+c.tone} key={c.key}><span>{c.name}</span><strong>{validated?fmt(Number(validated.metric_value)):"—"}</strong><div className="bo-metric-foot"><small>{c.key==="bo_resolved"?"Acumulado desde janeiro de 2026":c.key==="bo_open"?"Casos pendentes":"Casos abertos há mais de 7 dias"}</small><span className={change===null?"bo-delta neutral":change>0?"bo-delta up":"bo-delta down"}>{change===null?"Sem comparação":(change>0?"+":"")+fmt(change)+" vs. registro anterior"}</span></div></article>})}</div>
-          <div className="bo-main-grid">
-            <section className="bf-panel bo-mission-panel"><div className="bf-panel-title"><div><span className="bo-eyebrow">DESAFIO DA SEMANA</span><h2>Zerar BOs acima de 7 dias</h2><p>Semana de 09 a 13 de novembro</p></div><span className="bf-status">Em acompanhamento</span></div>
-              <div className="bo-mission-number"><strong>{fmt(history[0]?.backlog)}</strong><span>BOs acima de 7 dias na última fotografia registrada</span></div>
-              <div className="bo-progress"><span style={{width:history[0]?.backlog===0?"100%":"0%"}}/></div>
-              <div className="bo-mission-bottom"><span>Meta de encerramento: <strong>0 casos</strong></span><span>Premiação prevista: <strong>R$ 60,00</strong></span></div>
-              <p className="bf-note">Resultado e elegibilidade serão apurados após o fechamento da semana. Os dados não são em tempo real.</p>
-            </section>
-            <section className="bf-panel bo-trend-panel"><div className="bf-panel-title"><div><h2>Evolução do backlog</h2><p>Comparação dos registros disponíveis</p></div><button className="bo-link" onClick={()=>setBoTab("history")}>Ver histórico →</button></div>
-              {history.length>1?<div className="bo-spark">{history.slice(0,7).reverse().map(h=><div className="bo-spark-item" key={h.date}><strong>{fmt(h.backlog)}</strong><div className="bo-spark-track"><span style={{height:(Math.max(3,Number(h.backlog??0)/backlogMax*100))+"%"}}/></div><small>{h.date.slice(8,10)}/{h.date.slice(5,7)}</small></div>)}</div>:<div className="bo-empty"><strong>Histórico em construção</strong><p>Assim que você importar os próximos dias, o gráfico mostrará a evolução do backlog.</p></div>}
-              <div className="bo-trend-footer">Comparações baseadas nas datas de registro, não necessariamente nas datas de extração.</div>
-            </section>
-          </div>
-          <div className="bo-bottom-note"><span>ⓘ</span><p><strong>Sobre os números:</strong> os indicadores refletem a última base importada. A fonte disponível foi ingerida em 07/11; confirme a atualização no Databricks antes de usar os números em decisões operacionais.</p></div>
-          {metricError&&<p role="alert" className="bf-error">{metricError}</p>}
+          <div className="bo-v2-kpis">{cards.map(c=>{const key=c.key==="bo_open"?"open":c.key==="bo_resolved"?"resolved":"backlog";const change=percentage(key);const improving=change!==null&&(key==="resolved"?change>=0:change<=0);return <article className={"bo-v2-kpi "+c.tone} key={c.key}><div className="bo-kpi-icon">{c.symbol}</div><div className="bo-kpi-body"><span>{c.name}</span><strong>{fmt(currentMetric(c.key))}</strong><small>{c.description}</small></div><div className={"bo-kpi-change "+(change===null?"neutral":improving?"good":"bad")}>{change===null?"Sem comparação":(change>0?"↑ ":change<0?"↓ ":"")+" "+Math.abs(change).toFixed(1).replace(".",",")+"%"}<small>{change===null?"": "vs. registro anterior"}</small></div></article>})}</div>
+          <div className="bo-v2-main"><section className="bf-panel bo-v2-mission"><div className="bo-section-head"><div><h2>◎ Desafio da semana</h2><p>Zerar BOs acima de 7 dias</p><small>09 a 13 de novembro</small></div><span className="bf-status">Em acompanhamento</span></div><div className="bo-mission-goal"><div><strong>{fmt(selected?.backlog)}</strong><small>Backlog no registro selecionado</small></div><span>→</span><div><strong>0</strong><small>Meta no fechamento</small></div></div><div className="bo-v2-progress"><div style={{width:selected?.backlog===0?"100%":"0%"}}/></div><div className="bo-v2-mission-foot"><span>Meta: <strong>0 BOs acima de 7 dias</strong></span><span>Prêmio previsto: <strong>R$ 60,00</strong></span></div><p className="bo-v2-fineprint">Apuração somente após o fechamento semanal. Sem cálculo automático de premiação.</p></section>
+          <section className="bf-panel bo-v2-chart"><div className="bo-section-head"><div><h2>▥ Evolução do backlog</h2><p>BOs acima de 7 dias · registros disponíveis</p></div><button className="bo-link" onClick={()=>setBoTab("history")}>Ver histórico →</button></div>{chartPoints.length>1?<><div className="bo-chart-container"><svg viewBox="0 0 710 245" role="img" aria-label="Gráfico de evolução do backlog por data"><defs><linearGradient id="boChartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#3678f6" stopOpacity=".24"/><stop offset="1" stopColor="#3678f6" stopOpacity=".02"/></linearGradient></defs>{[0,1,2,3,4].map(i=><g key={i}><line x1="42" x2="675" y1={40+i*40} y2={40+i*40} stroke="#e6edf8"/><text x="5" y={44+i*40} fill="#7a8ca6" fontSize="12">{Math.round(chartMax-(chartMax-chartMin)*i/4)}</text></g>)}<path d={chartArea} fill="url(#boChartFill)"/><path d={chartPath} fill="none" stroke="#2863ed" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>{chartPoints.map(p=><g key={p.date}><circle cx={p.x} cy={p.y} r="5" fill="#fff" stroke="#2863ed" strokeWidth="3"/><text x={p.x} y={p.y-13} textAnchor="middle" fill="#18365c" fontSize="13" fontWeight="700">{p.value}</text><text x={p.x} y="237" textAnchor="middle" fill="#6e82a0" fontSize="12">{p.date.slice(8,10)+"/"+p.date.slice(5,7)}</text></g>)}</svg></div><div className="bo-chart-insight">{percentage("backlog")===null?"Comparação indisponível":(percentage("backlog")!<=0?"Redução":"Variação")+" de "+Math.abs(percentage("backlog")!).toFixed(1).replace(".",",")+"% em relação ao registro anterior"}</div></>:<div className="bo-empty"><strong>Histórico em construção</strong><p>Importe os próximos dias para acompanhar a evolução real. Nenhum valor é estimado.</p></div>}</section></div>
+          <div className="bo-v2-bottom"><section className="bf-panel"><div className="bo-section-head"><div><h2>▤ Últimos registros</h2><p>Indicadores importados e preservados</p></div><button className="bo-link" onClick={()=>setBoTab("history")}>Ver todos →</button></div>{shownHistory.length?<div className="bo-table-scroll"><table className="bo-table"><thead><tr><th>Referência</th><th>Em aberto</th><th>Backlog &gt; 7 dias</th><th>Resolvidos</th></tr></thead><tbody>{shownHistory.slice(0,4).map(h=><tr key={h.date}><td>{datePt(h.date)}</td><td>{fmt(h.open)}</td><td><strong>{fmt(h.backlog)}</strong></td><td>{fmt(h.resolved)}</td></tr>)}</tbody></table></div>:<div className="bo-empty">Nenhum registro disponível.</div>}</section><section className="bf-panel"><div className="bo-section-head"><div><h2>▥ Resumo da campanha</h2><p>Fotografia da data selecionada</p></div></div><div className="bo-summary-grid"><div><span className="bo-summary-icon green">✓</span><strong>{fmt(selected?.resolved)}</strong><small>BOs resolvidos<br/>desde jan/2026</small></div><div><span className="bo-summary-icon red">◷</span><strong>{fmt(selected?.backlog)}</strong><small>Backlog acima<br/>de 7 dias</small></div><div><span className="bo-summary-icon blue">◎</span><strong>0</strong><small>Meta semanal<br/>de backlog</small></div></div></section></div>
+          <div className="bo-bottom-note"><span>ⓘ</span><p><strong>Dados importados manualmente.</strong> Referência selecionada: {chosenDate?datePt(chosenDate):"indisponível"}. A última ingestão conhecida é de 07/11/2026. Os dados podem estar defasados e não representam uma operação em tempo real.</p></div>{metricError&&<p role="alert" className="bf-error">{metricError}</p>}
         </>}
-        {boTab==="history"&&<section className="bf-panel bo-history-panel"><div className="bf-panel-title"><div><h2>Histórico de desempenho</h2><p>Registros diários preservados para comparação e acompanhamento.</p></div></div>
-          {history.length?<div className="bo-table-scroll"><table className="bo-table"><thead><tr><th>Data do registro</th><th>BOs em aberto</th><th>Backlog acima de 7 dias</th><th>Resolvidos (acumulado)</th></tr></thead><tbody>{history.map(h=><tr key={h.date}><td>{datePt(h.date)}</td><td>{fmt(h.open)}</td><td><strong>{fmt(h.backlog)}</strong></td><td>{fmt(h.resolved)}</td></tr>)}</tbody></table></div>:<div className="bo-empty">Nenhum histórico disponível.</div>}
-        </section>}
-        {boTab==="admin"&&profile.role==="admin"&&<>
-          <section className="bf-panel bo-import-panel"><div className="bf-panel-title"><div><h2>Importar indicadores</h2><p>Atualização manual do Databricks · acesso restrito</p></div><span className="bo-admin-label">Administrador</span></div>
-            <div className="bo-instructions"><strong>Como atualizar</strong><p>Execute a consulta no Databricks, exporte um CSV agregado e selecione o arquivo abaixo. Não inclua informações individuais de alunos.</p></div>
-            <label className="bo-upload">Selecionar arquivo CSV<input type="file" accept=".csv,text/csv" onChange={e=>{void chooseCsv(e.target.files?.[0]);e.target.value="";}}/></label>
-            {csvPreview&&<div className="bo-preview"><strong>Prévia da importação</strong><p>{csvPreview.fileName}</p><div className="bo-preview-values"><span>Abertos <b>{fmt(csvPreview.open)}</b></span><span>Backlog <b>{fmt(csvPreview.backlog)}</b></span><span>Resolvidos <b>{fmt(csvPreview.resolved)}</b></span></div><p>Ingestão da fonte: {new Date(csvPreview.ingestedAt).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})} · Registro: {datePt(csvPreview.referenceDate)}</p>
-              {csvDuplicate&&<label className="bo-confirm"><input type="checkbox" checked={csvReplaceConfirmed} onChange={e=>setCsvReplaceConfirmed(e.target.checked)}/> Confirmo que revisei a fonte e autorizo a substituição auditada desta data.</label>}
-              <button type="button" className="bo-primary" disabled={csvBusy||(csvDuplicate&&!csvReplaceConfirmed)} onClick={()=>void importCsv(csvDuplicate)}>{csvBusy?"Processando...":csvDuplicate?"Atualizar registro existente":"Confirmar importação"}</button>
-            </div>}
-            {csvMessage&&<p role="status" className="bo-feedback">{csvMessage}</p>}
-          </section>
-          <section className="bf-panel bo-technical"><h2>Informações de controle</h2><div className="bf-detail"><span>Fonte</span><strong>Databricks · bo_operations</strong></div><div className="bf-detail"><span>Indicadores armazenados</span><strong>{metrics.length}</strong></div><div className="bf-detail"><span>Atualização</span><strong>CSV manual com auditoria</strong></div><div className="bf-detail"><span>Apuração da missão</span><strong>Após fechamento semanal</strong></div></section>
-        </>}
+        {boTab==="history"&&<section className="bf-panel bo-history-panel"><div className="bo-section-head"><div><h2>Histórico de desempenho</h2><p>Selecione uma data acima para consultar os registros até aquele dia.</p></div></div>{shownHistory.length?<div className="bo-table-scroll"><table className="bo-table"><thead><tr><th>Data de referência</th><th>BOs em aberto</th><th>Backlog acima de 7 dias</th><th>Resolvidos (acumulado)</th></tr></thead><tbody>{shownHistory.map(h=><tr key={h.date}><td>{datePt(h.date)}</td><td>{fmt(h.open)}</td><td><strong>{fmt(h.backlog)}</strong></td><td>{fmt(h.resolved)}</td></tr>)}</tbody></table></div>:<div className="bo-empty">Nenhum histórico disponível.</div>}</section>}
+        {boTab==="admin"&&profile.role==="admin"&&<><section className="bf-panel bo-import-panel"><div className="bo-section-head"><div><h2>Importar indicadores</h2><p>Atualização manual do Databricks · acesso restrito</p></div><span className="bo-admin-label">Administrador</span></div><div className="bo-instructions"><strong>Como atualizar</strong><p>Execute a consulta no Databricks, exporte um CSV agregado e selecione o arquivo abaixo. Não inclua informações individuais de alunos.</p></div><label className="bo-upload">Selecionar arquivo CSV<input type="file" accept=".csv,text/csv" onChange={e=>{void chooseCsv(e.target.files?.[0]);e.target.value="";}}/></label>{csvPreview&&<div className="bo-preview"><strong>Prévia da importação</strong><p>{csvPreview.fileName}</p><div className="bo-preview-values"><span>Abertos <b>{fmt(csvPreview.open)}</b></span><span>Backlog <b>{fmt(csvPreview.backlog)}</b></span><span>Resolvidos <b>{fmt(csvPreview.resolved)}</b></span></div><p>Ingestão da fonte: {new Date(csvPreview.ingestedAt).toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo"})} · Registro: {datePt(csvPreview.referenceDate)}</p>{csvDuplicate&&<label className="bo-confirm"><input type="checkbox" checked={csvReplaceConfirmed} onChange={e=>setCsvReplaceConfirmed(e.target.checked)}/> Confirmo que revisei a fonte e autorizo a substituição auditada desta data.</label>}<button type="button" className="bo-primary" disabled={csvBusy||(csvDuplicate&&!csvReplaceConfirmed)} onClick={()=>void importCsv(csvDuplicate)}>{csvBusy?"Processando...":csvDuplicate?"Atualizar registro existente":"Confirmar importação"}</button></div>}{csvMessage&&<p role="status" className="bo-feedback">{csvMessage}</p>}</section><section className="bf-panel bo-technical"><h2>Informações de controle</h2><div className="bf-detail"><span>Fonte</span><strong>Databricks · bo_operations</strong></div><div className="bf-detail"><span>Indicadores armazenados</span><strong>{metrics.length}</strong></div><div className="bf-detail"><span>Atualização</span><strong>CSV manual com auditoria</strong></div><div className="bf-detail"><span>Apuração da missão</span><strong>Após fechamento semanal</strong></div></section></>}
       </div>:<div className="bf-body"><div className="bf-page-head"><div><small>CENTRAL DE PERFORMANCE</small><h1>{view==="Visão geral"?"Dashboard de Performance":view}</h1><p>{view==="Visão geral"?"Acompanhe a preparação das áreas da campanha.":"Indicadores em preparação e aguardando validação."}</p></div></div><div className="bf-notice"><strong>Premiações protegidas</strong><p>Sem cálculo automático antes de validar fontes e regras.</p></div>{view==="Visão geral"&&<div className="bf-area-grid">{areas.map(area=><button key={area} onClick={()=>setView(area)}><strong>{area}</strong><small>{area==="BO e Dados"?"Painel inicial disponível":"Indicadores em preparação"}</small><span>Ver área →</span></button>)}</div>}</div>}
     </div>
   </main>;
