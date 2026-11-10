@@ -114,3 +114,32 @@
 .refund-daily-table thead{background:#f3f6fc}
 @media(max-width:800px){.refund-hero{padding:20px;min-height:unset}.refund-hero-emblem{display:none}.refund-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.refund-kpis{grid-template-columns:1fr}}
+
+
+/* Central de decisão da gestão */
+.refund-management{border-color:#cfdcf2;background:#fff}
+.refund-management-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:17px}
+.refund-management-head h2{font-size:23px;letter-spacing:-.035em;color:#142b53;margin:5px 0}
+.refund-management-head p{font-size:12px;color:#71819d;margin:0}
+.refund-management-status{padding:8px 11px;background:#fff4dc;border:1px solid #f5dfaa;border-radius:30px;color:#916414;font-size:11px;font-weight:800;white-space:nowrap}
+.refund-management-controls{display:flex;align-items:end;gap:10px;flex-wrap:wrap;padding:12px;background:#f6f8fc;border:1px solid #e1e8f3;border-radius:12px;margin-bottom:15px}
+.refund-management-controls label{display:grid;grid-template-columns:auto auto;align-items:center;gap:5px 7px;color:#34496e;font-size:11px;font-weight:800}
+.refund-management-controls label select{grid-column:1/-1;min-width:180px;max-width:260px;min-height:38px;padding:8px 12px;border:1px solid #cfdcf0;border-radius:9px;background:#fff;color:#20395e;font:inherit}
+.refund-management-controls .refund-btn{min-height:38px}
+.refund-management-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-bottom:14px}
+.refund-management-kpis>div{display:grid;gap:8px;padding:16px;border:1px solid #e0e8f5;border-radius:12px;background:#fbfcff}
+.refund-management-kpis small{font-size:11px;font-weight:750;color:#6b7b95}
+.refund-management-kpis strong{font-size:clamp(19px,2vw,26px);color:#18345e;letter-spacing:-.035em}
+.refund-management-kpis span{font-size:11px;color:#8390a6}
+.refund-management-criteria{border:1px solid #e2e9f4;border-radius:12px;overflow:hidden}
+.refund-management-criterion{display:flex;align-items:center;gap:13px;padding:14px 16px;border-bottom:1px solid #e9eef7}
+.refund-management-criterion:last-child{border-bottom:0}
+.refund-criterion-icon{display:grid;place-items:center;flex:none;width:39px;height:39px;background:#edf3ff;color:#2864c8;border-radius:10px}
+.refund-management-criterion>div{display:grid;gap:5px;flex:1;min-width:0}
+.refund-management-criterion strong{font-size:12px;color:#22395f}
+.refund-management-criterion small{font-size:11px;color:#7987a0;line-height:1.4}
+.refund-criterion-pending{font-size:10px;font-weight:800;color:#9a6b22;background:#fff4df;border-radius:20px;padding:7px 10px;white-space:nowrap}
+.refund-management-note{display:flex;align-items:flex-start;gap:10px;padding:13px 14px;margin-top:14px;background:#f1f5fc;border-radius:10px;color:#526985;font-size:11px;line-height:1.65}
+.refund-management-note svg{flex:none;margin-top:1px}
+@media(max-width:800px){.refund-management-kpis{grid-template-columns:1fr}.refund-management-head{flex-wrap:wrap}.refund-management-criterion{flex-wrap:wrap}.refund-criterion-pending{margin-left:52px}}
+@media(max-width:520px){.refund-management-controls label,.refund-management-controls label select{width:100%;max-width:none}.refund-management-controls .refund-btn{flex:1}}
