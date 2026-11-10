@@ -817,3 +817,23 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .bf-layout .bf-command-stats article:nth-child(3){border-top-color:#f2c27b}
 .bf-layout .bf-command-stats article:nth-child(4){border-top-color:#91b5f6}
 @media(prefers-reduced-motion:reduce){.bf-layout .bf-command-area{transition:none}.bf-layout .bf-command-area:hover{transform:none}}
+
+
+/* Blue Friday 2026: cabecalho global premium, leve e responsivo */
+.bf-workspace .bf-top{position:relative;isolation:isolate;min-height:78px;height:auto;padding:13px clamp(16px,2.4vw,38px);background:linear-gradient(105deg,#fff 0%,#fff 73%,#f8f5ff 100%);border-bottom:1px solid #e5e9f7;box-shadow:0 4px 20px rgba(33,52,117,.035);gap:20px}
+.bf-workspace .bf-top::after{content:"";position:absolute;z-index:-1;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#5bcaff 0%,#3f71ef 37%,#8650f4 78%,#b87eff 100%);opacity:.9}
+.bf-workspace .bf-breadcrumb{display:flex;gap:12px;align-items:center;min-width:0}
+.bf-workspace .bf-top .bf-breadcrumb-home{flex:none;display:inline-flex;align-items:center;justify-content:center;width:39px;height:39px;padding:0;border:1px solid #e5eaff;border-radius:12px;background:linear-gradient(135deg,#f3f7ff,#e9efff);color:#244ac5;box-shadow:0 2px 6px rgba(52,88,166,.035)}
+.bf-workspace .bf-top .bf-breadcrumb-root{display:inline-flex;align-items:center;min-height:38px;padding:0 17px;border:1px solid #e6eaff;border-radius:999px;background:#f0f3ff;color:#2449aa;font-size:12px!important;font-weight:800;white-space:nowrap}
+.bf-workspace .bf-breadcrumb-separator{color:#9aabd4;font-size:22px}
+.bf-workspace .bf-breadcrumb-current{display:inline-flex;align-items:center;min-height:39px;max-width:260px;overflow:hidden;text-overflow:ellipsis;padding:0 18px;border:1px solid #6652e8;border-radius:999px;background:linear-gradient(115deg,#245ce9,#6e3bdb);color:#fff;font-size:12px;font-weight:850;box-shadow:0 6px 14px rgba(83,77,210,.17)}
+.bf-workspace .bf-top-actions{display:flex;align-items:center;gap:13px}
+.bf-workspace .bf-top-actions .bf-user-role{display:inline-flex;align-items:center;gap:9px;min-height:39px;padding:0 16px;border:1px solid #dce5fa;border-radius:999px;background:rgba(255,255,255,.92);color:#1b347b;font-size:12px;font-weight:800;box-shadow:0 3px 10px rgba(37,59,124,.045)}
+.bf-workspace .bf-top-actions .bf-user-role svg{color:#3656ce}
+.bf-workspace .bf-top-divider{height:27px;background:#e0e5f5}
+.bf-workspace .bf-top .bf-top-signout{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:40px;padding:0 18px;border-radius:11px;background:linear-gradient(120deg,#174ed6,#2646c7);color:#fff;font-size:12px;font-weight:800;box-shadow:0 5px 13px rgba(33,75,198,.16)}
+.bf-workspace .bf-top .bf-top-signout:hover{background:linear-gradient(120deg,#1040bd,#4831bd);box-shadow:0 7px 16px rgba(47,68,192,.22)}
+.bf-workspace .bf-top button:focus-visible{outline:3px solid #a2b8ff;outline-offset:3px}
+@media(max-width:900px){.bf-workspace .bf-top{gap:12px;padding:12px 18px}.bf-workspace .bf-breadcrumb{gap:8px}.bf-workspace .bf-top-actions{gap:9px}.bf-workspace .bf-top .bf-breadcrumb-root{padding:0 11px}.bf-workspace .bf-breadcrumb-current{padding:0 12px;max-width:160px}}
+@media(max-width:680px){.bf-workspace .bf-top{min-height:66px;flex-wrap:nowrap;padding:10px 12px}.bf-workspace .bf-breadcrumb-root,.bf-workspace .bf-breadcrumb-separator{display:none!important}.bf-workspace .bf-breadcrumb-current{max-width:130px;min-height:36px;padding:0 10px}.bf-workspace .bf-top .bf-breadcrumb-home{width:36px;height:36px}.bf-workspace .bf-top-actions .bf-user-role{font-size:0;padding:0 10px;min-height:36px}.bf-workspace .bf-top-actions .bf-user-role svg{width:17px;height:17px}.bf-workspace .bf-top-divider{display:none}.bf-workspace .bf-top .bf-top-signout{min-height:36px;padding:0 11px}}
+@media(max-width:380px){.bf-workspace .bf-breadcrumb-current{max-width:95px}.bf-workspace .bf-top{gap:5px}.bf-workspace .bf-top-actions{gap:5px}}
