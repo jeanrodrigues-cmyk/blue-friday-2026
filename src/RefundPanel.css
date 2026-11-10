@@ -216,3 +216,34 @@
 @media(max-width:760px){.refund-page{gap:15px}.refund-page .refund-panel{padding:18px}.refund-page .refund-management-controls{display:flex;flex-wrap:wrap;gap:10px}.refund-page .refund-management-controls label{min-width:0}.refund-page .refund-management-kpis{grid-template-columns:1fr}.refund-page .refund-week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.refund-page .refund-section-heading{flex-wrap:wrap}}
 @media(max-width:480px){.refund-page .refund-kpis,.refund-page .refund-week-grid{grid-template-columns:1fr}.refund-page .refund-toolbar-actions,.refund-page .refund-toolbar-actions .refund-btn{width:100%}.refund-page .refund-kpi{min-height:120px}.refund-page .refund-section-heading h2{font-size:19px}}
 @media(prefers-reduced-motion:reduce){.refund-page .refund-btn{transition:none}.refund-page .refund-btn:hover:not(:disabled){transform:none}}
+
+
+/* Executive financial overview and goal hierarchy */
+.refund-page .refund-management{order:0}
+.refund-page .refund-management-head{margin-bottom:16px}
+.refund-page .refund-management-head h2{font-size:clamp(23px,2.4vw,31px);letter-spacing:-.045em}
+.refund-page .refund-management-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.refund-page .refund-management-kpis>div{min-width:0;display:flex;flex-direction:column;gap:8px;background:#fff;border:1px solid #dce5f4;border-radius:15px;padding:20px;box-shadow:0 3px 10px rgba(29,63,121,.035);position:relative;overflow:hidden}
+.refund-page .refund-management-kpis>div:before{content:"";position:absolute;left:20px;top:0;width:42px;height:3px;border-radius:0 0 5px 5px;background:#3d6bef}
+.refund-page .refund-management-kpis>div:nth-child(2):before{background:#795be1}
+.refund-page .refund-management-kpis>div:nth-child(3):before{background:#10a77c}
+.refund-page .refund-management-kpis>div small{font-size:12px;color:#6e7f9a;font-weight:650}
+.refund-page .refund-management-kpis>div strong{font-size:clamp(22px,2.2vw,32px);color:#142d53;letter-spacing:-.045em;overflow-wrap:anywhere}
+.refund-page .refund-management-kpis>div span{font-size:11px;color:#8794a9;line-height:1.5}
+.refund-page .refund-budget-visual{margin:16px 0 20px;padding:19px 22px;background:#f7faff;border:1px solid #e0e8f7;border-radius:15px}
+.refund-page .refund-budget-header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.refund-page .refund-budget-header>div{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.refund-page .refund-budget-header span{font-size:10px;letter-spacing:.11em;font-weight:850;color:#61738e}
+.refund-page .refund-budget-header strong{font-size:22px;color:#1c4ec0;letter-spacing:-.04em}
+.refund-page .refund-budget-header p{font-size:12px;color:#72839c;margin:0}
+.refund-page .refund-budget-track{height:11px;background:#e1e9f8;border-radius:20px;overflow:hidden;margin:15px 0 11px}
+.refund-page .refund-budget-track>span{display:block;height:100%;background:linear-gradient(90deg,#2f69ea,#7954dd);border-radius:20px;transition:width .2s ease}
+.refund-page .refund-budget-footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:11px;color:#7485a0}
+.refund-page .refund-budget-footer strong{color:#233e66}
+.refund-page .refund-management-criteria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.refund-page .refund-management-criterion{display:flex;flex-wrap:wrap;align-content:flex-start;gap:11px;background:#fff;border:1px solid #e0e8f5;border-radius:13px;padding:17px;min-width:0}
+.refund-page .refund-management-criterion>div{flex:1 1 140px;min-width:0}
+.refund-page .refund-management-criterion .refund-criterion-pending{margin-left:0;flex:0 0 auto}
+.refund-page .refund-management-note{margin-top:16px}
+@media(max-width:1050px){.refund-page .refund-management-criteria{grid-template-columns:1fr}.refund-page .refund-management-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.refund-page .refund-management-kpis{grid-template-columns:1fr}.refund-page .refund-budget-header{align-items:flex-start;flex-direction:column}.refund-page .refund-budget-visual{padding:16px}.refund-page .refund-management-criterion{padding:14px}}
