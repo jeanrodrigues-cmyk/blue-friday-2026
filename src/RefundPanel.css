@@ -43,3 +43,26 @@
 @media(max-width:1200px){.refund-executive{grid-template-columns:1fr}.refund-exec-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:720px){.refund-hero{padding:21px;min-height:unset}.refund-hero-emblem{display:none}.refund-exec-grid{grid-template-columns:1fr}.refund-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.refund-executive{padding:16px}.refund-panel{padding:17px}}
 @media(max-width:420px){.refund-kpis{grid-template-columns:1fr}}
+
+
+/* Blue Friday: auditoria financeira diária */
+.refund-daily-audit{background:linear-gradient(140deg,#fff 65%,#f8f8ff)}
+.refund-daily-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.refund-daily-summary>div{display:grid;gap:7px;padding:16px;border-radius:13px;background:#f3f6ff;border:1px solid #e5eafa}
+.refund-daily-summary small{font-size:11px;color:#66738e;font-weight:650}
+.refund-daily-summary strong{font-size:20px;letter-spacing:-.035em;color:#14235b}
+.refund-daily-table-wrap{overflow-x:auto;border:1px solid #e5eafa;border-radius:13px}
+.refund-daily-table{width:100%;border-collapse:collapse;min-width:780px;font-size:12px;text-align:left}
+.refund-daily-table thead{background:#f2f5ff;color:#596888}
+.refund-daily-table th{font-size:10px;text-transform:uppercase;letter-spacing:.055em;padding:14px 12px;white-space:nowrap}
+.refund-daily-table td{padding:13px 12px;border-top:1px solid #edf0f8;color:#263455;white-space:nowrap}
+.refund-daily-table tbody tr:hover{background:#fafbff}
+.refund-daily-tag{display:inline-flex;padding:6px 9px;border-radius:100px;font-size:10px;font-weight:800}
+.refund-daily-tag.unknown{background:#edf1f8;color:#64748b}
+.refund-daily-tag.within{background:#e4f8f0;color:#087c60}
+.refund-daily-tag.over{background:#fff0ef;color:#bd4050}
+.refund-daily-actions{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:14px}
+.refund-daily-actions p{font-size:11px;line-height:1.6;color:#78839d;max-width:600px}
+.refund-daily-actions label{display:grid;gap:6px;font-size:11px;font-weight:750;color:#4c5c80;flex-shrink:0}
+.refund-daily-actions select{border:1px solid #dce4f6;border-radius:9px;background:#fff;padding:9px;color:#23345e;font:inherit}
+@media(max-width:800px){.refund-daily-summary{grid-template-columns:1fr}.refund-daily-actions{align-items:stretch;flex-direction:column}.refund-daily-actions label{width:100%}}
