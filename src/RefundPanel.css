@@ -66,3 +66,51 @@
 .refund-daily-actions label{display:grid;gap:6px;font-size:11px;font-weight:750;color:#4c5c80;flex-shrink:0}
 .refund-daily-actions select{border:1px solid #dce4f6;border-radius:9px;background:#fff;padding:9px;color:#23345e;font:inherit}
 @media(max-width:800px){.refund-daily-summary{grid-template-columns:1fr}.refund-daily-actions{align-items:stretch;flex-direction:column}.refund-daily-actions label{width:100%}}
+
+
+/* Harmonização Reembolso com B.O. e Dados, campanha Blue Friday 2026 */
+.refund-page{font-family:Inter,"Segoe UI",Arial,sans-serif;gap:16px;color:#172b50}
+.refund-hero{min-height:142px;padding:22px 26px;border-radius:17px;background:linear-gradient(108deg,#143d91 0%,#2659bf 57%,#6549bd 100%);box-shadow:0 5px 18px #234da81c}
+.refund-hero:before{width:260px;height:260px;right:-60px;top:-110px}
+.refund-hero h1{font-size:clamp(26px,2.8vw,35px);font-weight:800;letter-spacing:-.035em;margin:9px 0 5px}
+.refund-hero p{font-size:12px;line-height:1.5}
+.refund-hero-tags{margin-top:12px;gap:6px}
+.refund-hero-tags span{font-size:10px;padding:5px 9px}
+.refund-hero-emblem{min-width:120px;transform:none;text-align:center;justify-items:center;gap:4px;opacity:.95}
+.refund-hero-emblem strong{font-size:26px;letter-spacing:0;font-weight:850}
+.refund-hero-emblem small{font-size:10px;letter-spacing:.07em}
+.refund-hero-emblem svg{color:#dce8ff}
+.refund-panel,.refund-kpi,.refund-executive{border:1px solid #dce6f5;border-radius:16px;box-shadow:0 4px 13px #244f8a0b}
+.refund-panel{padding:20px}
+.refund-toolbar{padding:12px 15px;border-color:#dce6f5;border-radius:13px}
+.refund-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:inherit;font-weight:750;border-radius:9px}
+.refund-btn-light{background:#2365db;box-shadow:none}
+.refund-btn-light:hover:not(:disabled){background:#194db0}
+.refund-btn:disabled{opacity:.55;cursor:not-allowed}
+.refund-kpis{gap:12px}
+.refund-kpi{min-height:138px;padding:19px 18px;gap:7px;border-left:4px solid #246cf1}
+.refund-kpi:before{display:none}
+.refund-kpi:nth-child(3){border-left-color:#1daf72}
+.refund-kpi:nth-child(4){border-left-color:#e9a142}
+.refund-kpi-primary{background:#fff;border-color:#dce6f5;border-left-color:#246cf1}
+.refund-kpi>span,.refund-kpi-primary>span{color:#1e3659;font-size:12px;font-weight:750}
+.refund-kpi strong,.refund-kpi-primary strong{color:#172b50;font-size:clamp(19px,2vw,27px);font-weight:850}
+.refund-kpi small,.refund-kpi-primary small{color:#687995}
+.refund-kpi-icon{position:absolute;right:14px;top:14px;display:grid;place-items:center;width:39px;height:39px;border-radius:11px;background:#eaf2ff;color:#1b6bf4;opacity:1}
+.refund-kpi:nth-child(3) .refund-kpi-icon{background:#eafbf2;color:#16a666}
+.refund-kpi:nth-child(4) .refund-kpi-icon{background:#fff5e6;color:#bd801b}
+.refund-section-heading h2{font-size:19px;letter-spacing:-.025em}
+.refund-executive{padding:17px 19px}
+.refund-exec-symbol{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:10px;background:#eaf2ff;color:#246cf1;font-size:unset}
+.refund-week{border-radius:12px;padding:14px}
+.refund-week.selected{background:#2355b8;border-color:#2355b8;box-shadow:0 4px 12px #244f8a1c}
+.refund-week strong{font-size:19px}
+.refund-chart-filter{background:#f6f8fd;border:1px solid #dce6f5;border-radius:11px;padding:10px 12px}
+.refund-chart-filter label{display:flex;align-items:center;gap:8px;color:#233e69;font-size:12px;font-weight:750}
+.refund-chart-filter select,.refund-daily-actions select{font-family:inherit;border:1px solid #cfdcf0;border-radius:9px;background:#fff;color:#213a63;min-height:37px;padding:7px 12px;font-size:12px;font-weight:700}
+.refund-chart-filter select:focus,.refund-daily-actions select:focus{outline:2px solid #8ab1fa;outline-offset:1px}
+.refund-prize{background:linear-gradient(115deg,#173c87,#425bb4);border-radius:13px}
+.refund-daily-summary>div{background:#f6f8fd;border-color:#e0e8f5}
+.refund-daily-table thead{background:#f3f6fc}
+@media(max-width:800px){.refund-hero{padding:20px;min-height:unset}.refund-hero-emblem{display:none}.refund-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.refund-kpis{grid-template-columns:1fr}}
