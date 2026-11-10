@@ -13,7 +13,7 @@ create table if not exists public.bf_refund_pef_daily (
 alter table public.bf_refund_pef_daily enable row level security;
 revoke all on public.bf_refund_pef_daily from anon;
 grant select on public.bf_refund_pef_daily to authenticated;
-grant insert,update,delete on public.bf_refund_pef_daily to authenticated;
+grant insert,update on public.bf_refund_pef_daily to authenticated;
 drop policy if exists bf_refund_pef_read on public.bf_refund_pef_daily;
 create policy bf_refund_pef_read on public.bf_refund_pef_daily for select to authenticated
 using (exists(select 1 from public.bf_profiles p where p.user_id=auth.uid() and p.active=true));
@@ -25,4 +25,5 @@ create policy bf_refund_pef_admin_update on public.bf_refund_pef_daily for updat
 using (exists(select 1 from public.bf_profiles p where p.user_id=auth.uid() and p.active=true and p.role='admin'))
 with check (updated_by=auth.uid() and exists(select 1 from public.bf_profiles p where p.user_id=auth.uid() and p.active=true and p.role='admin'));
 -- Nao ha DELETE policy: substituicao de base deve ocorrer somente apos validacao.
--- Revisar nome das colunas de bf_profiles antes de executar.
+-- bf_profiles confirmado em 2026-11-10: user_id uuid, role text, active boolean.
+-- IMPORTANTE: nao executar em projeto Supabase de producao sem confirmar o projeto-alvo.
