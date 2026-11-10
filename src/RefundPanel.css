@@ -143,3 +143,27 @@
 .refund-management-note svg{flex:none;margin-top:1px}
 @media(max-width:800px){.refund-management-kpis{grid-template-columns:1fr}.refund-management-head{flex-wrap:wrap}.refund-management-criterion{flex-wrap:wrap}.refund-criterion-pending{margin-left:52px}}
 @media(max-width:520px){.refund-management-controls label,.refund-management-controls label select{width:100%;max-width:none}.refund-management-controls .refund-btn{flex:1}}
+
+
+/* Refinamento de contraste dos blocos após remoção do banner */
+.refund-page{--rf-border:#cbd8ec;gap:18px}
+.refund-kpis{gap:14px}
+.refund-kpi{background:linear-gradient(145deg,#f3f7ff,#eaf1ff);border:1px solid #bfd2f1;border-left:4px solid #2868d9;box-shadow:0 5px 16px rgba(28,65,130,.09)}
+.refund-kpi-primary{background:linear-gradient(140deg,#e8f1ff,#f6f9ff);border-left-color:#246cf1}
+.refund-kpi:nth-child(2){background:linear-gradient(140deg,#f1f4ff,#e9edff);border-left-color:#6b65d9}
+.refund-kpi:nth-child(3){background:linear-gradient(140deg,#ecfaf4,#f5fcf9);border-color:#c8e9d9;border-left-color:#18a36c}
+.refund-kpi:nth-child(4){background:linear-gradient(140deg,#fff6e9,#fffbf5);border-color:#f0dfc1;border-left-color:#dca042}
+.refund-kpi>span,.refund-kpi-primary>span{color:#263d64}
+.refund-kpi strong,.refund-kpi-primary strong{color:#132b54}
+.refund-month{background:linear-gradient(115deg,#f2f6ff,#eaf0ff);border:1px solid #c7d7f2;box-shadow:0 5px 18px rgba(38,75,147,.07)}
+.refund-month .refund-track{background:#d8e3f8}
+.refund-panel:not(.refund-month):not(.refund-management):not(.refund-daily-audit){background:linear-gradient(135deg,#fff,#f8faff);border-color:#d3def0}
+.refund-management{background:linear-gradient(145deg,#fafdff,#f3f7ff);border:1px solid #c5d7f1}
+.refund-daily-audit{background:linear-gradient(145deg,#fff,#f4f8ff);border-color:#cbdcf2}
+.refund-week{background:#f0f5ff;border-color:#cddbf2}
+.refund-week.selected{background:linear-gradient(135deg,#1e54b6,#425cc3);border-color:#2c54a7}
+.refund-executive{background:linear-gradient(120deg,#f7faff,#eef4ff);border-color:#cbdaf1}
+.refund-exec-item{background:#fff;border:1px solid #d9e4f5}
+.refund-toolbar{background:#f8fbff;border:1px solid #d1dff1}
+.refund-quality{background:#edf4ff;border-color:#cbdcf4}
+.refund-kpi:hover,.refund-week:hover{box-shadow:0 7px 20px rgba(32,69,134,.13)}
