@@ -247,3 +247,18 @@
 .refund-page .refund-management-note{margin-top:16px}
 @media(max-width:1050px){.refund-page .refund-management-criteria{grid-template-columns:1fr}.refund-page .refund-management-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.refund-page .refund-management-kpis{grid-template-columns:1fr}.refund-page .refund-budget-header{align-items:flex-start;flex-direction:column}.refund-page .refund-budget-visual{padding:16px}.refund-page .refund-management-criterion{padding:14px}}
+
+
+/* Backlog goal: live data or explicit unavailable state */
+.refund-page .refund-backlog-overview{margin:20px 0 0;padding:22px;background:#f7faff;border:1px solid #dce7f8;border-radius:16px}
+.refund-page .refund-backlog-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}
+.refund-page .refund-backlog-head h3{font-size:20px;letter-spacing:-.035em;color:#17345c;margin:6px 0}
+.refund-page .refund-backlog-head p{font-size:12px;color:#6e819e;margin:0;line-height:1.5}
+.refund-page .refund-backlog-state{font-size:11px;color:#6a7891;border:1px solid #d7e1f1;background:white;border-radius:30px;padding:7px 12px;white-space:nowrap}
+.refund-page .refund-backlog-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.refund-page .refund-backlog-stats>div{display:flex;flex-direction:column;gap:7px;padding:18px;border-radius:13px;background:white;border:1px solid #e2e9f5;min-width:0}
+.refund-page .refund-backlog-stats small{color:#7485a0;font-size:12px}
+.refund-page .refund-backlog-stats strong{font-size:29px;line-height:1.1;letter-spacing:-.04em;color:#193962}
+.refund-page .refund-backlog-stats span{color:#8390a6;font-size:11px}
+.refund-page .refund-backlog-disclaimer{display:block;color:#7a8aa2;font-size:11px;margin-top:13px;line-height:1.5}
+@media(max-width:700px){.refund-page .refund-backlog-stats{grid-template-columns:1fr}.refund-page .refund-backlog-head{flex-direction:column}.refund-page .refund-backlog-overview{padding:16px}}
