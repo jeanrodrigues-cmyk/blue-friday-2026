@@ -262,3 +262,33 @@
 .refund-page .refund-backlog-stats span{color:#8390a6;font-size:11px}
 .refund-page .refund-backlog-disclaimer{display:block;color:#7a8aa2;font-size:11px;margin-top:13px;line-height:1.5}
 @media(max-width:700px){.refund-page .refund-backlog-stats{grid-template-columns:1fr}.refund-page .refund-backlog-head{flex-direction:column}.refund-page .refund-backlog-overview{padding:16px}}
+
+
+/* Blue Friday v3 visual system: dedicated layout, matching approved reference */
+.refund-page.refund-v3{--v3-ink:#0b2250;--v3-blue:#1757ec;--v3-line:#dce6f5;color:var(--v3-ink)}
+.refund-v3 .refund-v3-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 19px;padding:8px 8px 0}
+.refund-v3 .refund-v3-heading h1{font-size:clamp(29px,3vw,41px);line-height:1.08;letter-spacing:-.055em;color:#091d46;margin:5px 0}
+.refund-v3 .refund-v3-heading p{color:#617493;font-size:13px;margin:0}
+.refund-v3 .refund-v3-heading-mark{display:flex;align-items:center;gap:10px;color:#1351d9;font-size:13px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.refund-v3 .refund-v3-heading-mark svg{background:#e8efff;box-sizing:content-box;padding:10px;border-radius:12px}
+.refund-v3 .refund-v3-hero{position:relative;overflow:hidden;display:flex;align-items:center;gap:25px;background:linear-gradient(110deg,#071d60 0%,#1238a0 60%,#1356e7 100%);border-radius:17px;padding:25px 34px;min-height:124px;color:white;box-shadow:0 10px 25px rgba(19,59,146,.13);margin-bottom:15px}
+.refund-v3 .refund-v3-hero:after{content:"";position:absolute;right:13%;top:-65%;width:220px;height:260%;transform:rotate(29deg);background:rgba(35,114,255,.36);pointer-events:none}
+.refund-v3 .refund-v3-hero-icon{display:flex;align-items:center;justify-content:center;flex:0 0 68px;height:68px;background:linear-gradient(145deg,#296cf8,#1643b8);border-radius:17px}
+.refund-v3 .refund-v3-hero>div{position:relative;z-index:1}
+.refund-v3 .refund-v3-hero small{font-size:12px;letter-spacing:.05em;color:#dbe8ff;font-weight:750}
+.refund-v3 .refund-v3-hero h2{font-size:clamp(23px,2.6vw,35px);letter-spacing:-.04em;color:white;margin:5px 0}
+.refund-v3 .refund-v3-hero p{color:#d7e4ff;font-size:13px;margin:0}
+.refund-v3 .refund-v3-hero-brand{position:relative;z-index:1;margin-left:auto;white-space:nowrap;text-align:right;font-size:21px;font-weight:850;font-style:italic;line-height:1.08;color:white}
+.refund-v3 .refund-v3-live{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.refund-v3 .refund-v3-live-card{display:flex;align-items:flex-start;gap:15px;padding:22px 20px;background:white;border:1px solid #d9e4f5;border-radius:15px;min-width:0;box-shadow:0 3px 12px rgba(30,72,133,.035)}
+.refund-v3 .refund-v3-live-goal{background:linear-gradient(120deg,#f0fff9,#f8fffc);border-color:#ccefe0}
+.refund-v3 .refund-v3-live-icon{display:flex;flex:0 0 45px;align-items:center;justify-content:center;height:45px;background:#eaf1ff;color:#1b62ef;border-radius:13px}
+.refund-v3 .refund-v3-live-goal .refund-v3-live-icon{background:#def8e9;color:#099b69}
+.refund-v3 .refund-v3-live-card>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.refund-v3 .refund-v3-live-card small{font-size:12px;color:#344f75;font-weight:750}
+.refund-v3 .refund-v3-live-card strong{font-size:32px;letter-spacing:-.05em;color:#0b2552;line-height:1.1}
+.refund-v3 .refund-v3-live-card span:not(.refund-v3-live-icon){font-size:11px;color:#6f83a2}
+.refund-v3 .refund-toolbar{margin-top:0}
+.refund-v3 .refund-management{margin-top:16px}
+@media(max-width:900px){.refund-v3 .refund-v3-live{grid-template-columns:1fr 1fr}.refund-v3 .refund-v3-hero-brand{display:none}}
+@media(max-width:620px){.refund-v3 .refund-v3-heading-mark{display:none}.refund-v3 .refund-v3-live{grid-template-columns:1fr}.refund-v3 .refund-v3-hero{padding:20px;gap:13px}.refund-v3 .refund-v3-hero-icon{flex-basis:48px;height:48px}.refund-v3 .refund-v3-hero h2{font-size:22px}}
