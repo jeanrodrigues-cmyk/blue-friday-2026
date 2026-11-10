@@ -801,3 +801,19 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 @media(max-width:1100px){.bf-command-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.bf-command-area-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.bf-command-hero{flex-direction:column;align-items:stretch;padding:23px}.bf-command-toolbar,.bf-command-head{align-items:flex-start;flex-direction:column}.bf-command-area-grid,.bf-command-bottom{grid-template-columns:1fr}}
 @media(max-width:460px){.bf-command-stats{grid-template-columns:1fr}}
+
+
+/* Blue Friday 2026: ambientação e bordas globais, preservando navegação e regras */
+.bf-layout{--bf-outline:#cddaf0;--bf-glow:rgba(35,97,219,.10)}
+.bf-layout .bf-body{position:relative;isolation:isolate;background-color:#f3f6fc;background-image:radial-gradient(ellipse 600px 440px at 92% 5%,rgba(62,119,241,.13),transparent 72%),radial-gradient(ellipse 520px 430px at 5% 58%,rgba(80,180,229,.10),transparent 74%),linear-gradient(160deg,#f6f8fd 0%,#eef3fc 65%,#f7f9fd 100%);background-attachment:local}
+.bf-layout .bf-body::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.36;background-image:radial-gradient(#b3c8ee .7px,transparent .7px);background-size:23px 23px;mask-image:linear-gradient(125deg,transparent 10%,#000 65%,transparent 98%)}
+.bf-layout .bf-command-stats article,.bf-layout .bf-command-area,.bf-layout .bf-command-bottom>section,.bf-layout .bo-v2 article,.bf-layout .bo-v2 section,.bf-layout .mp-page article,.bf-layout .mp-page section,.bf-layout .refund-kpi,.bf-layout .refund-panel{border:1px solid var(--bf-outline);box-shadow:0 3px 0 rgba(31,74,157,.025),0 8px 24px rgba(20,58,123,.055)}
+.bf-layout .bf-command-stats article,.bf-layout .bf-command-area,.bf-layout .refund-kpi,.bf-layout .refund-panel{border-radius:16px}
+.bf-layout .bf-command-area{transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.bf-layout .bf-command-area:hover{border-color:#7ca5f4;box-shadow:0 10px 30px rgba(26,76,163,.13);transform:translateY(-2px)}
+.bf-layout .bf-command-area:focus-visible{outline:3px solid rgba(44,104,231,.32);outline-offset:3px}
+.bf-layout .bf-command-stats article{border-top:3px solid #b8cdf8}
+.bf-layout .bf-command-stats article:nth-child(2){border-top-color:#8dcfba}
+.bf-layout .bf-command-stats article:nth-child(3){border-top-color:#f2c27b}
+.bf-layout .bf-command-stats article:nth-child(4){border-top-color:#91b5f6}
+@media(prefers-reduced-motion:reduce){.bf-layout .bf-command-area{transition:none}.bf-layout .bf-command-area:hover{transform:none}}
