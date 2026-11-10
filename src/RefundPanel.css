@@ -1,1 +1,45 @@
 .refund-page{display:grid;gap:22px;color:#101e4a}.refund-hero{display:flex;justify-content:space-between;align-items:center;gap:20px}.refund-eyebrow,.refund-section-heading span:first-child{font-size:11px;font-weight:800;letter-spacing:.12em;color:#2856ed}.refund-hero h1{font-size:34px;margin:7px 0}.refund-hero p,.refund-muted,.refund-footnote{color:#647092;font-size:13px;line-height:1.6}.refund-hero-badge{border:1px solid #dbe3fb;background:#eef2ff;border-radius:999px;padding:10px 15px;color:#3156bb;font-size:12px;font-weight:700}.refund-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.refund-kpi,.refund-panel{background:#fff;border:1px solid #e3e8f4;border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(21,40,89,.035)}.refund-kpi{display:grid;gap:9px}.refund-kpi>span{font-size:12px;color:#667393;font-weight:650}.refund-kpi strong{font-size:26px;letter-spacing:-.04em;color:#0a1649}.refund-kpi small,.refund-week small{font-size:11px;color:#74809c}.refund-section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.refund-section-heading h2{margin:5px 0 0;font-size:20px;color:#101c4b}.refund-section-heading label{font-size:12px;font-weight:700;color:#526080}.refund-section-heading select,.refund-form input{border:1px solid #dce4f2;background:#fff;color:#172550;border-radius:9px;padding:10px;max-width:100%}.refund-week-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.refund-week{display:grid;gap:8px;text-align:left;background:#f4f6ff;border:1px solid #e1e8fc;padding:16px;border-radius:12px;cursor:pointer;color:#14234c}.refund-week.selected{background:#09205a;color:#fff;border-color:#09205a}.refund-week span{font-size:12px;font-weight:750;color:#3c64ec}.refund-week.selected span,.refund-week.selected small{color:#b9ceff}.refund-week strong{font-size:21px}.refund-footnote{margin:15px 0 0}.refund-two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}.refund-form{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:17px}.refund-form label{display:grid;gap:7px;font-size:12px;font-weight:650;color:#435172}.refund-form input{width:100%;min-width:0}.refund-inline-info{margin-top:18px;background:#f2f5fc;padding:14px;border-radius:10px;font-size:13px}.refund-rule{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #e8ecf5;padding:16px 0;font-size:12px}.refund-rule>div{display:grid;gap:6px}.refund-rule strong{font-size:13px}.refund-rule small{color:#7883a1}.refund-rule>span{color:#566587;text-align:right}.refund-pill{border-radius:100px;padding:8px 11px;font-size:11px!important;letter-spacing:0!important;white-space:nowrap}.refund-pill.pending{background:#eef2fa;color:#52607e!important}.refund-pill.ok{background:#e4f8ed;color:#167345!important}.refund-pill.fail{background:#fff0f0;color:#c23838!important}.refund-progress{height:7px;border-radius:9px;background:#e6ebf6;overflow:hidden}.refund-progress>div{height:100%;background:#2b56ed}.refund-prize{margin-top:20px;border-radius:12px;padding:19px;background:#09174b;color:#fff}.refund-prize span{color:#79c7ff;font-size:11px;font-weight:800;letter-spacing:.1em}.refund-prize strong{display:block;font-size:21px;margin-top:8px}.refund-prize p{font-size:12px;line-height:1.6;color:#d4def5}.refund-days{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:9px}.refund-days>div{background:#eef2ff;border-radius:10px;text-align:center;padding:14px 7px;display:grid;gap:8px}.refund-days span{color:#2d58e8;font-size:12px;font-weight:800}.refund-days strong{font-size:13px;white-space:nowrap}@media(max-width:1100px){.refund-kpis,.refund-week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.refund-days{grid-template-columns:repeat(4,minmax(0,1fr))}.refund-two-col{grid-template-columns:1fr}}@media(max-width:650px){.refund-hero{align-items:flex-start;flex-direction:column}.refund-hero h1{font-size:27px}.refund-kpis,.refund-week-grid,.refund-form{grid-template-columns:1fr 1fr}.refund-kpi{padding:13px}.refund-kpi strong{font-size:21px}.refund-days{grid-template-columns:repeat(2,minmax(0,1fr))}.refund-section-heading{align-items:flex-start;flex-wrap:wrap}.refund-week strong{font-size:17px}}
+
+/* Refinamento visual Blue Friday: ambientação restrita à página de Reembolso. */
+.refund-page{position:relative;isolation:isolate;gap:24px;padding:2px 0 30px}
+.refund-page::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:-28px -28px -35px;background:radial-gradient(ellipse 460px 330px at 97% 2%,rgba(53,107,245,.13),transparent 76%),radial-gradient(ellipse 410px 300px at 2% 31%,rgba(65,167,236,.085),transparent 75%),linear-gradient(145deg,rgba(238,244,255,.38),rgba(255,255,255,0) 55%);border-radius:26px}
+.refund-hero{position:relative;overflow:hidden;min-height:176px;border-radius:20px;padding:28px 32px;background:linear-gradient(112deg,#071a52 0%,#12347e 63%,#2158c7 100%);box-shadow:0 16px 32px rgba(14,47,116,.16);color:#fff}
+.refund-hero::before{content:"";position:absolute;right:-90px;top:-190px;width:430px;height:430px;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 48px rgba(255,255,255,.035),0 0 0 105px rgba(255,255,255,.025);pointer-events:none}
+.refund-hero::after{content:"";position:absolute;right:20%;bottom:-110px;width:280px;height:210px;border-radius:50%;background:radial-gradient(ellipse,rgba(72,171,255,.24),transparent 70%);pointer-events:none}
+.refund-hero>div{position:relative;z-index:1}
+.refund-hero .refund-eyebrow{color:#a9d4ff;letter-spacing:.15em}
+.refund-hero h1{color:#fff;font-size:37px;letter-spacing:-.035em}
+.refund-hero p{color:#d5e5ff;max-width:560px;font-size:13px}
+.refund-hero .refund-hero-badge{color:#e4efff;border-color:rgba(204,225,255,.3);background:rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+.refund-kpis{gap:15px}
+.refund-kpi,.refund-panel{border:1px solid #dfe7f5;border-radius:18px;box-shadow:0 8px 24px rgba(22,53,107,.045),0 1px 2px rgba(22,53,107,.025);transition:box-shadow .2s ease,transform .2s ease}
+.refund-kpi{position:relative;overflow:hidden;padding:23px 22px 21px;min-height:143px}
+.refund-kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#2c63ff,#80b8ff)}
+.refund-kpi:nth-child(3)::before{background:linear-gradient(180deg,#17a788,#79dec4)}
+.refund-kpi:nth-child(4)::before{background:linear-gradient(180deg,#eea13c,#f7d09b)}
+.refund-kpi>span{font-size:12px;font-weight:700;color:#64738f}
+.refund-kpi strong{font-size:29px;letter-spacing:-.045em}
+.refund-kpi small{font-size:12px}
+.refund-panel{padding:24px}
+.refund-section-heading{margin-bottom:20px}
+.refund-section-heading h2{font-size:21px;letter-spacing:-.025em}
+.refund-section-heading span:first-child{font-size:10px}
+.refund-week-grid{gap:13px}
+.refund-week{min-height:119px;padding:19px 18px;border-radius:13px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;background:linear-gradient(140deg,#f7f9ff,#eef3ff)}
+.refund-week:hover{transform:translateY(-2px);border-color:#a8c0ff;box-shadow:0 8px 20px rgba(39,83,167,.08)}
+.refund-week.selected{background:linear-gradient(135deg,#07194d,#1746a2);border-color:#123c91;box-shadow:0 10px 22px rgba(20,54,132,.17)}
+.refund-week.selected strong{color:#fff}
+.refund-week:focus-visible,.refund-form input:focus-visible,.refund-section-heading select:focus-visible{outline:3px solid rgba(44,102,255,.3);outline-offset:2px}
+.refund-form input,.refund-section-heading select{border-radius:11px;border-color:#d7e1f2;min-height:43px;transition:border-color .15s ease,box-shadow .15s ease}
+.refund-form input:focus,.refund-section-heading select:focus{border-color:#5a86e8;box-shadow:0 0 0 3px rgba(66,116,225,.1)}
+.refund-form label{font-size:12px;gap:8px}
+.refund-rule{padding:18px 0}
+.refund-rule strong{font-size:13px;color:#15234d}
+.refund-prize{background:linear-gradient(120deg,#071949,#153f92);position:relative;overflow:hidden}
+.refund-prize::after{content:"";position:absolute;right:-60px;top:-60px;width:170px;height:170px;border:1px solid rgba(255,255,255,.14);border-radius:50%;pointer-events:none}
+.refund-days{gap:11px}
+.refund-days>div{border:1px solid #e1e9fa;background:linear-gradient(145deg,#f3f7ff,#eaf0ff);padding:17px 6px;border-radius:12px}
+.refund-days strong{color:#13265a}
+@media(min-width:1050px){.refund-kpi:hover,.refund-panel:hover{box-shadow:0 12px 28px rgba(22,53,107,.075)}}
+@media(max-width:650px){.refund-page::before{inset:-15px -12px -20px}.refund-hero{padding:23px 20px;min-height:0}.refund-hero h1{font-size:30px}.refund-kpi{min-height:125px;padding:17px}.refund-kpi strong{font-size:22px}.refund-panel{padding:18px}.refund-week{padding:15px 12px;min-height:103px}.refund-week strong{font-size:18px}.refund-hero .refund-hero-badge{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.refund-week,.refund-kpi,.refund-panel{transition:none}.refund-week:hover{transform:none}}
