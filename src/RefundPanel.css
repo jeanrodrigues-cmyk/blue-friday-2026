@@ -13,3 +13,33 @@
 .refund-chart-summary{flex-wrap:wrap;gap:12px 24px}
 .refund-chart-summary strong{font-size:18px}
 @media(max-width:680px){.refund-quality{gap:7px 12px}.refund-chart-filter{align-items:flex-start;flex-direction:column}.refund-chart-filter select{max-width:100%;width:100%}}
+
+
+/* Blue Friday campaign: executive-first refinement */
+.refund-page{gap:17px}
+.refund-hero{min-height:165px;padding:23px 32px;border-radius:19px;box-shadow:0 10px 24px rgba(29,46,128,.13)}
+.refund-hero h1{font-size:clamp(26px,2.4vw,34px);margin:9px 0 5px}
+.refund-hero p{max-width:650px;font-size:12px;line-height:1.55}
+.refund-hero-tags{margin-top:12px}
+.refund-hero-emblem{transform:scale(.83);transform-origin:right center}
+.refund-toolbar{min-height:55px}
+.refund-kpi{min-height:125px;padding:17px 18px;gap:7px;border-radius:15px}
+.refund-kpi>strong{font-size:clamp(19px,2vw,26px);letter-spacing:-.035em}
+.refund-kpi>span{font-size:11px}
+.refund-kpi>small{font-size:10px}
+.refund-panel{padding:20px 22px;border-radius:16px}
+.refund-month .refund-track{height:11px;margin:10px 0 7px}
+.refund-month-line strong{font-size:21px}
+.refund-executive{display:grid;grid-template-columns:minmax(220px,.9fr) minmax(0,2fr);align-items:center;gap:18px;padding:19px 21px;background:#fff;border:1px solid #dce5f8;border-radius:16px;box-shadow:0 5px 18px rgba(33,51,113,.04)}
+.refund-exec-title h2{font-size:16px;letter-spacing:-.025em;color:#17295d;margin:5px 0}
+.refund-exec-title p{font-size:11px;line-height:1.5;color:#7b88a5;margin:0}
+.refund-exec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.refund-exec-item{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid #e7ecf8;border-radius:12px;background:linear-gradient(135deg,#fbfcff,#f5f7ff);min-width:0}
+.refund-exec-symbol{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#e7edff;color:#3856c8;font-weight:900}
+.refund-exec-item>div{display:flex;flex-direction:column;gap:5px;min-width:0}
+.refund-exec-item small{font-size:10px;font-weight:750;color:#71809e}
+.refund-exec-item strong{font-size:12px;line-height:1.3;color:#1c3376}
+.refund-exec-item div>span{font-size:10px;line-height:1.4;color:#7785a2}
+@media(max-width:1200px){.refund-executive{grid-template-columns:1fr}.refund-exec-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.refund-hero{padding:21px;min-height:unset}.refund-hero-emblem{display:none}.refund-exec-grid{grid-template-columns:1fr}.refund-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.refund-executive{padding:16px}.refund-panel{padding:17px}}
+@media(max-width:420px){.refund-kpis{grid-template-columns:1fr}}
