@@ -1,7 +1,9 @@
 -- Blue Friday 2026: substituicao controlada da base PEF de novembro
 -- Executar manualmente no SQL Editor do projeto Supabase correto.
 -- Fonte: apuracao operacional validada (150 operacoes / R$ 32.633,31).
--- ATENCAO: substitui TODAS as linhas de novembro/2026 desta tabela.
+-- ATENCAO: substitui SOMENTE os dias 03, 04, 05, 06 e 09/11.
+-- Preserva todos os demais dias e cria backup dos registros alterados.
+-- Conferir antes de executar se os dados de origem sao o consolidado oficial.
 BEGIN;
 
 CREATE TABLE IF NOT EXISTS public.bf_refund_pef_daily_backup (
@@ -40,10 +42,10 @@ LOCK TABLE public.bf_refund_pef_daily IN SHARE ROW EXCLUSIVE MODE;
 INSERT INTO public.bf_refund_pef_daily_backup (backup_id, original_row)
 SELECT 'a2c70f1a-19e9-4c65-90b3-9d66e9c0a401'::uuid, to_jsonb(t)
 FROM public.bf_refund_pef_daily t
-WHERE reference_date >= '2026-11-01' AND reference_date < '2026-12-01';
+WHERE reference_date IN (SELECT reference_date FROM bf_pef_new);
 
 DELETE FROM public.bf_refund_pef_daily
-WHERE reference_date >= '2026-11-01' AND reference_date < '2026-12-01';
+WHERE reference_date IN (SELECT reference_date FROM bf_pef_new);
 
 INSERT INTO public.bf_refund_pef_daily
   (reference_date, team, refund_count, refunded_amount)
@@ -52,11 +54,11 @@ SELECT reference_date, team, refund_count, refunded_amount FROM bf_pef_new;
 DO $$
 BEGIN
   IF (SELECT count(*) FROM public.bf_refund_pef_daily
-      WHERE reference_date >= '2026-11-01' AND reference_date < '2026-12-01') <> 5
+      WHERE reference_date IN (SELECT reference_date FROM bf_pef_new)) <> 5
     OR (SELECT sum(refund_count) FROM public.bf_refund_pef_daily
-      WHERE reference_date >= '2026-11-01' AND reference_date < '2026-12-01') <> 150
+      WHERE reference_date IN (SELECT reference_date FROM bf_pef_new)) <> 150
     OR (SELECT sum(refunded_amount) FROM public.bf_refund_pef_daily
-      WHERE reference_date >= '2026-11-01' AND reference_date < '2026-12-01') <> 32633.31
+      WHERE reference_date IN (SELECT reference_date FROM bf_pef_new)) <> 32633.31
   THEN
     RAISE EXCEPTION 'Conferencia pos-gravacao falhou. Transacao sera revertida.';
   END IF;
@@ -66,5 +68,5 @@ COMMIT;
 -- Conferencia:
 SELECT reference_date, team, refund_count, refunded_amount
 FROM public.bf_refund_pef_daily
-WHERE reference_date >= '2026-11-01' AND reference_date < '2026-12-01'
+WHERE reference_date IN ('2026-11-03','2026-11-04','2026-11-05','2026-11-06','2026-11-09')
 ORDER BY reference_date, team;
