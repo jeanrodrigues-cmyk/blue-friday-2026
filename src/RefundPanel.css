@@ -292,3 +292,59 @@
 .refund-v3 .refund-management{margin-top:16px}
 @media(max-width:900px){.refund-v3 .refund-v3-live{grid-template-columns:1fr 1fr}.refund-v3 .refund-v3-hero-brand{display:none}}
 @media(max-width:620px){.refund-v3 .refund-v3-heading-mark{display:none}.refund-v3 .refund-v3-live{grid-template-columns:1fr}.refund-v3 .refund-v3-hero{padding:20px;gap:13px}.refund-v3 .refund-v3-hero-icon{flex-basis:48px;height:48px}.refund-v3 .refund-v3-hero h2{font-size:22px}}
+
+
+/* V3 completed dashboard composition */
+.refund-v3 .refund-v3-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 17px;margin-bottom:15px;border:1px solid #dce6f5;border-radius:15px;background:#fff}
+.refund-v3 .refund-v3-controls{display:flex;align-items:center;gap:10px;flex:1 1 440px;flex-wrap:wrap;background:transparent;border:0;padding:0;margin:0}
+.refund-v3 .refund-v3-controls label{min-width:155px;flex:0 1 200px}
+.refund-v3 .refund-v3-controls .refund-btn{white-space:nowrap}
+.refund-v3 .refund-v3-toolbar-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;color:#657894;font-size:11px}
+.refund-v3 .refund-v3-source-dot{display:inline-block;height:8px;width:8px;border-radius:50%;background:#11b87b}
+.refund-v3 .refund-v3-insights{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(290px,1fr);gap:15px;margin-bottom:16px}
+.refund-v3 .refund-v3-insights-chart,.refund-v3 .refund-v3-insights-side,.refund-v3 .refund-v3-financial,.refund-v3 .refund-v3-targets,.refund-v3 .refund-v3-conversions{background:#fff;border:1px solid #dce6f5;border-radius:16px;padding:22px;min-width:0}
+.refund-v3 .refund-v3-section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
+.refund-v3 .refund-v3-section-title h2{font-size:19px;letter-spacing:-.035em;color:#112b57;margin:5px 0}
+.refund-v3 .refund-v3-section-title p{font-size:12px;color:#7a8aa3;margin:0}
+.refund-v3 .refund-v3-chart-status{background:#eff4fc;color:#6b7e9d;border-radius:25px;padding:7px 11px;font-size:11px;white-space:nowrap}
+.refund-v3 .refund-v3-chart-empty{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;min-height:245px;border:1px dashed #d7e2f4;border-radius:13px;background:#f8faff;color:#8194b5;text-align:center;padding:25px}
+.refund-v3 .refund-v3-chart-empty strong{font-size:16px;color:#1b3c72}
+.refund-v3 .refund-v3-chart-empty span{font-size:12px;max-width:350px;line-height:1.5}
+.refund-v3 .refund-v3-backlog-chart{position:relative;padding:12px 4px 0}
+.refund-v3 .refund-v3-backlog-bars{display:flex;align-items:stretch;gap:10px;height:220px}
+.refund-v3 .refund-v3-backlog-day{display:flex;flex:1;min-width:0;flex-direction:column;align-items:center;gap:8px;font-size:11px;color:#47658d}
+.refund-v3 .refund-v3-backlog-bar-area{display:flex;align-items:flex-end;justify-content:center;flex:1;width:100%;background:repeating-linear-gradient(to top,#edf2fb 0,#edf2fb 1px,transparent 1px,transparent 25%);border-bottom:2px dashed #10a876}
+.refund-v3 .refund-v3-backlog-bar-area>div{width:65%;max-width:42px;background:linear-gradient(#3d80fa,#1a55d9);border-radius:6px 6px 0 0}
+.refund-v3 .refund-v3-backlog-bar-area>i{height:5px;width:60%;background:#e3eaf6;border-radius:5px}
+.refund-v3 .refund-v3-zero-line{font-size:11px;color:#15956f;margin-top:8px;text-align:right}
+.refund-v3 .refund-v3-goal-ring{display:flex;align-items:center;justify-content:center;width:150px;height:150px;border-radius:50%;border:14px solid #e2eaf7;margin:0 auto 16px}
+.refund-v3 .refund-v3-goal-ring>div{display:flex;align-items:center;flex-direction:column;gap:4px;text-align:center}
+.refund-v3 .refund-v3-goal-ring strong{font-size:29px;color:#123364}
+.refund-v3 .refund-v3-goal-ring span{font-size:11px;color:#7a8ba4}
+.refund-v3 .refund-v3-goal-legend{display:flex;flex-direction:column;gap:8px}
+.refund-v3 .refund-v3-goal-legend p{display:flex;justify-content:space-between;gap:10px;margin:0;border-bottom:1px solid #edf1f8;padding:7px 0;font-size:12px;color:#71829b}
+.refund-v3 .refund-v3-goal-legend strong{color:#1a3560}
+.refund-v3 .refund-v3-goal-note{margin-top:16px;background:#edf4ff;border-radius:10px;padding:12px;font-size:11px;color:#526f9b;line-height:1.6}
+.refund-v3 .refund-v3-bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:15px;margin-bottom:16px}
+.refund-v3 .refund-v3-financial-kpis{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.refund-v3 .refund-v3-financial-kpis>div{padding:12px 10px;border:0;border-right:1px solid #e4ebf5;border-radius:0;box-shadow:none}
+.refund-v3 .refund-v3-financial-kpis>div:last-child{border-right:0}
+.refund-v3 .refund-v3-financial-kpis>div:before{display:none}
+.refund-v3 .refund-v3-financial-kpis>div strong{font-size:clamp(17px,1.6vw,24px)}
+.refund-v3 .refund-v3-finance-progress{margin-top:16px;border-top:1px solid #e5ecf6;padding-top:12px;font-size:12px;color:#6b7f9b}
+.refund-v3 .refund-v3-finance-progress>strong{float:right;color:#1749c5}
+.refund-v3 .refund-v3-finance-progress .refund-budget-track{clear:both;margin:12px 0 0}
+.refund-v3 .refund-v3-targets .refund-management-criteria{grid-template-columns:1fr;gap:8px}
+.refund-v3 .refund-v3-targets .refund-management-criterion{padding:12px;border-radius:11px}
+.refund-v3 .refund-v3-details{margin-top:0}
+.refund-v3 .refund-v3-conversions{margin-bottom:16px}
+.refund-v3 .refund-v3-ranking{display:flex;flex-direction:column;gap:7px}
+.refund-v3 .refund-v3-rank{display:grid;grid-template-columns:42px minmax(0,1fr) auto minmax(100px,auto);align-items:center;gap:15px;padding:13px;border:1px solid #e3eaf6;border-radius:11px;font-size:12px}
+.refund-v3 .refund-v3-rank-position{display:flex;align-items:center;justify-content:center;background:#eaf1ff;border-radius:10px;color:#1856d8;height:38px;font-weight:850}
+.refund-v3 .refund-v3-rank>div{display:flex;flex-direction:column;gap:3px}
+.refund-v3 .refund-v3-rank>div strong{color:#17345d}
+.refund-v3 .refund-v3-rank>div small{color:#7b8ca5}
+.refund-v3 .refund-v3-rank>strong{color:#154ac2}
+.refund-v3 .refund-v3-rank>span:last-child{text-align:right;color:#35557d}
+@media(max-width:1150px){.refund-v3 .refund-v3-insights,.refund-v3 .refund-v3-bottom{grid-template-columns:1fr}}
+@media(max-width:760px){.refund-v3 .refund-v3-financial-kpis{grid-template-columns:1fr}.refund-v3 .refund-v3-financial-kpis>div{border-right:0;border-bottom:1px solid #e4ebf5}.refund-v3 .refund-v3-rank{grid-template-columns:34px minmax(0,1fr);gap:8px}.refund-v3 .refund-v3-rank>strong,.refund-v3 .refund-v3-rank>span:last-child{grid-column:2;text-align:left}.refund-v3 .refund-v3-insights-chart,.refund-v3 .refund-v3-insights-side,.refund-v3 .refund-v3-financial,.refund-v3 .refund-v3-targets,.refund-v3 .refund-v3-conversions{padding:16px}}
