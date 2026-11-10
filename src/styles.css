@@ -866,3 +866,27 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 .bf-layout .bf-side-light .bf-campaign-copy small{display:flex;align-items:center;gap:7px;font-size:10px;color:#64718c}
 }
 @media(min-width:801px) and (max-width:1080px){.bf-layout .bf-side.bf-side-light{width:230px;min-width:230px}.bf-layout .bf-side-light .bf-brand strong{font-size:13px}.bf-layout .bf-side-light .bf-menu{font-size:11px}}
+
+
+/* Correção final: menu preso à janela, sem acompanhar a altura dos relatórios */
+@media(min-width:801px){
+.bf-layout{align-items:flex-start}
+.bf-layout .bf-side.bf-side-light{
+position:sticky;top:0;align-self:flex-start;box-sizing:border-box;
+height:100vh;height:100dvh;min-height:0;max-height:100dvh;
+flex:0 0 258px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;
+padding:18px 12px 14px;gap:3px;
+scrollbar-width:thin;scrollbar-color:#d7dff4 transparent;
+font-family:Inter,"Segoe UI",Arial,sans-serif;
+}
+.bf-layout .bf-workspace{min-width:0;flex:1}
+.bf-layout .bf-side-light .bf-brand{min-height:70px;padding:7px 6px 16px;margin-bottom:7px}
+.bf-layout .bf-side-light .bf-brand strong{font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:13px;font-weight:800;letter-spacing:-.3px}
+.bf-layout .bf-side-light .bf-brand small{font-size:10px}
+.bf-layout .bf-side-light .bf-menu-label{margin:12px 10px 7px;font-size:9px;letter-spacing:1.3px}
+.bf-layout .bf-side-light .bf-menu{min-height:42px;margin:1px 0;padding:5px 9px;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:650}
+.bf-layout .bf-side-light .bf-menu-icon{flex-basis:31px;width:31px;height:31px}
+.bf-layout .bf-side-light .bf-menu.selected{background:linear-gradient(105deg,#6436d7,#4353e5 58%,#147ef3)}
+.bf-layout .bf-side-light .bf-side-bottom{position:relative;flex-shrink:0;margin-top:auto;margin-bottom:0;padding:10px 9px}
+}
+@media(min-width:801px) and (max-width:1080px){.bf-layout .bf-side.bf-side-light{flex-basis:230px}}
