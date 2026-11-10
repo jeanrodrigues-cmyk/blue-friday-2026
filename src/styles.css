@@ -837,3 +837,32 @@ body,.bf-layout,.bf-workspace,.bf-body,.bo-executive,.mp-page{font-family:var(--
 @media(max-width:900px){.bf-workspace .bf-top{gap:12px;padding:12px 18px}.bf-workspace .bf-breadcrumb{gap:8px}.bf-workspace .bf-top-actions{gap:9px}.bf-workspace .bf-top .bf-breadcrumb-root{padding:0 11px}.bf-workspace .bf-breadcrumb-current{padding:0 12px;max-width:160px}}
 @media(max-width:680px){.bf-workspace .bf-top{min-height:66px;flex-wrap:nowrap;padding:10px 12px}.bf-workspace .bf-breadcrumb-root,.bf-workspace .bf-breadcrumb-separator{display:none!important}.bf-workspace .bf-breadcrumb-current{max-width:130px;min-height:36px;padding:0 10px}.bf-workspace .bf-top .bf-breadcrumb-home{width:36px;height:36px}.bf-workspace .bf-top-actions .bf-user-role{font-size:0;padding:0 10px;min-height:36px}.bf-workspace .bf-top-actions .bf-user-role svg{width:17px;height:17px}.bf-workspace .bf-top-divider{display:none}.bf-workspace .bf-top .bf-top-signout{min-height:36px;padding:0 11px}}
 @media(max-width:380px){.bf-workspace .bf-breadcrumb-current{max-width:95px}.bf-workspace .bf-top{gap:5px}.bf-workspace .bf-top-actions{gap:5px}}
+
+
+/* Blue Friday 2026 | sidebar clara da campanha, referencia visual aprovada */
+@media(min-width:801px){
+.bf-layout .bf-side.bf-side-light{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:stretch;width:258px;min-width:258px;min-height:100vh;padding:23px 12px 18px;overflow-x:hidden;overflow-y:auto;background:radial-gradient(ellipse 190px 200px at 110% 0%,#e9e2ff 0%,transparent 78%),linear-gradient(180deg,#fff 0%,#fcfcff 62%,#f6f5ff 100%);border-right:1px solid #e1e6f7;box-shadow:3px 0 18px #3045a008}
+.bf-layout .bf-side-light::after{content:"";position:absolute;z-index:-1;bottom:0;left:-10%;right:-10%;height:150px;pointer-events:none;background:radial-gradient(ellipse 180px 100px at 85% 110%,#c9b4ff80,transparent 80%),radial-gradient(ellipse 230px 100px at 0% 110%,#b8dcff9c,transparent 80%)}
+.bf-layout .bf-side-light .bf-brand{display:flex;align-items:center;gap:10px;padding:9px 7px 20px;margin:0 0 14px;border-bottom:1px solid #e4e8f4;min-height:75px}
+.bf-layout .bf-side-light .bf-brand strong{display:block;font-family:Inter,system-ui,sans-serif;font-size:15px;font-weight:900;line-height:1.15;letter-spacing:-.55px;color:#10245b}
+.bf-layout .bf-side-light .bf-brand strong span{color:#3657e4}
+.bf-layout .bf-side-light .bf-brand small{display:block;margin-top:6px;font-size:10px;font-weight:550;line-height:1.3;color:#687b9b}
+.bf-layout .bf-side-light .bf-menu-label{display:block;margin:15px 10px 9px;color:#64728f;font-size:10px;font-weight:850;letter-spacing:1.45px}
+.bf-layout .bf-side-light .bf-menu{display:flex;align-items:center;gap:10px;width:100%;min-height:46px;margin:2px 0;padding:6px 9px;border:1px solid transparent;border-radius:13px;background:transparent;color:#142658;font-family:Inter,system-ui,sans-serif;font-size:12px;font-weight:750;letter-spacing:-.12px;text-align:left;box-shadow:none}
+.bf-layout .bf-side-light .bf-menu:hover:not(.selected){background:#f1f3ff;border-color:#e5e9ff;color:#4039bd}
+.bf-layout .bf-side-light .bf-menu-icon{flex:0 0 33px;width:33px;height:33px;border-radius:10px;background:linear-gradient(135deg,#edf5ff,#f0eaff);color:#3359df}
+.bf-layout .bf-side-light .bf-menu-icon svg{width:19px;height:19px;stroke-width:2.1}
+.bf-layout .bf-side-light .bf-menu-text{flex:1;min-width:0}
+.bf-layout .bf-side-light .bf-menu-chevron{display:inline;color:#7f90b6;font-size:20px;font-weight:500}
+.bf-layout .bf-side-light .bf-menu.selected{border-color:#4b51ec;background:linear-gradient(105deg,#6231d8 0%,#4053e4 48%,#0e86ef 100%);color:#fff;box-shadow:0 5px 13px #4a54dc25}
+.bf-layout .bf-side-light .bf-menu.selected .bf-menu-icon{background:#ffffff29;color:#fff}
+.bf-layout .bf-side-light .bf-menu.selected .bf-menu-chevron{color:#fff}
+.bf-layout .bf-side-light .bf-new{border-radius:99px;background:#e2eeff;color:#1455c4;padding:4px 6px;font-size:9px;font-weight:850}
+.bf-layout .bf-side-light .bf-side-bottom{display:flex;align-items:center;gap:10px;margin-top:auto;padding:12px 10px;border:1px solid #d9dfff;border-radius:16px;background:linear-gradient(115deg,#fff,#f4efff);box-shadow:0 5px 16px #5647aa0a;color:#192c67}
+.bf-layout .bf-side-light .bf-campaign-symbol{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:12px;background:linear-gradient(130deg,#225bdb,#7224e9);color:#fff;box-shadow:0 5px 12px #4a47dd24}
+.bf-layout .bf-side-light .bf-campaign-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.bf-layout .bf-side-light .bf-campaign-copy strong{font-size:9px;letter-spacing:1px;color:#6737cf}
+.bf-layout .bf-side-light .bf-campaign-copy b{font-size:12px;white-space:nowrap}
+.bf-layout .bf-side-light .bf-campaign-copy small{display:flex;align-items:center;gap:7px;font-size:10px;color:#64718c}
+}
+@media(min-width:801px) and (max-width:1080px){.bf-layout .bf-side.bf-side-light{width:230px;min-width:230px}.bf-layout .bf-side-light .bf-brand strong{font-size:13px}.bf-layout .bf-side-light .bf-menu{font-size:11px}}
