@@ -29,7 +29,7 @@ function readBoCsv(text: string, fileName: string): CsvPreview {
   const timestamp=Date.parse(ingest.replace(" ","T"));
   if(!ingest || !Number.isFinite(timestamp) || !/(Z|[+-]\d{2}:?\d{2})$/i.test(ingest))throw new Error("ultima_ingestao precisa conter data, hora e fuso (ex.: 2026-11-07T04:12:01Z).");
   const date=new Date().toLocaleDateString("en-CA",{timeZone:"America/Sao_Paulo"});
-  return {fileName,open:number("bo_em_aberto"),backlog:number("backlog_acima_7_dias"),resolved:number("bos_resolvidos"),ingestedAt:new Date(timestamp).toISOString(),referenceDate:date};
+  return {fileName,open:number("bo_em_aberto"),backlog:number("backlog_acima_7_dias"),resolved:headers.includes("bos_resolvidos")?number("bos_resolvidos"):number("bo_resolvidos"),ingestedAt:new Date(timestamp).toISOString(),referenceDate:date};
 }
 
 function BoIcon({name,size=22}:{name:string;size?:number}) {
