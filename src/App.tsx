@@ -96,7 +96,7 @@ export default function App() {
   const [mpTab,setMpTab] = useState<"overview"|"history"|"weekly"|"admin">("overview");
   const [mpForm,setMpForm] = useState({media:"",comments:"",total:"",within:"",over:"",source:"Cloude",notes:""});
   const [boStart,setBoStart] = useState("2026-11-02");
-  const [boEnd,setBoEnd] = useState("2026-11-09");
+  const [boEnd,setBoEnd] = useState("2026-11-30");
 
   useEffect(() => {
     if (!supabase) { setLoading(false); return; }
@@ -191,7 +191,7 @@ export default function App() {
       });
       if(importError)throw importError;
       setCsvMessage((replaceExisting ? "Atualização auditada concluída. Lote: " : "Importação concluída. Lote: ")+String(data));
-      setCsvPreview(null);setCsvDuplicate(false);setCsvReplaceConfirmed(false);setRefreshCount(v=>v+1);
+      setCsvPreview(null);setCsvDuplicate(false);setCsvReplaceConfirmed(false);setBoStart(start=>start>csvPreview.referenceDate?csvPreview.referenceDate:start);setBoEnd(end=>end<csvPreview.referenceDate?csvPreview.referenceDate:end);setRefreshCount(v=>v+1);
     }catch(e){
       const details = e && typeof e === "object" && "message" in e ? String(e.message) : "Falha inesperada ao importar.";
       if (/Ja existem indicadores nesta data|Já existem indicadores nesta data/i.test(details)) {
