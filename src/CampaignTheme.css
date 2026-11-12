@@ -69,3 +69,31 @@
 .bf-layout .bf-side-light .bf-campaign-copy b{color:#f3f7ff!important;font-size:12px}
 .bf-layout .bf-side-light .bf-campaign-copy small{color:#b8c8e7!important}
 @media(prefers-reduced-motion:reduce){.bf-layout .bf-side-light .bf-menu{transition:none;transform:none!important}}
+
+
+/* Sidebar: keep campaign status visible above the viewport bottom. */
+@media (min-width: 801px) {
+  .bf-layout .bf-side.bf-side-light {
+    box-sizing: border-box;
+    height: calc(100dvh - 35px);
+    max-height: calc(100dvh - 35px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    padding-bottom: 20px;
+  }
+  .bf-layout .bf-side-light .bf-side-bottom {
+    position: relative;
+    flex: 0 0 auto;
+    margin-top: 22px;
+    margin-bottom: 0;
+    min-height: 64px;
+  }
+}
+@media (max-height: 800px) and (min-width: 801px) {
+  .bf-layout .bf-side-light .bf-brand { min-height: 60px; padding-bottom: 12px; margin-bottom: 4px; }
+  .bf-layout .bf-side-light .bf-menu-label { margin-top: 10px; margin-bottom: 5px; }
+  .bf-layout .bf-side-light .bf-menu { min-height: 39px; padding-top: 3px; padding-bottom: 3px; margin-top: 1px; margin-bottom: 1px; }
+  .bf-layout .bf-side-light .bf-menu-icon { flex-basis: 30px; width: 30px; height: 30px; }
+  .bf-layout .bf-side-light .bf-side-bottom { margin-top: 14px; padding: 9px; }
+}
