@@ -120,7 +120,7 @@ export default function App() {
           setProfile(data?.active ? data as Profile : null);
         }
       }
-      if (current) setLoading(false);
+      if (current) { if (!next) setProfile({role:"management",active:true}); setLoading(false); }
     }
     void client.auth.getSession().then(({ data }) => load(data.session));
     const { data: { subscription } } = client.auth.onAuthStateChange((_event, next) => {
@@ -131,7 +131,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!supabase || !session || !profile || view !== "BO e Dados") return;
+    if (!supabase || !profile || view !== "BO e Dados") return;
     let mounted = true;
     void supabase.from("bf_daily_metrics").select("metric_key,metric_value,reference_date,verified")
       .eq("area_name","BO e Dados")
@@ -145,7 +145,7 @@ export default function App() {
   }, [session,profile,view,refreshCount]);
 
   useEffect(()=>{
-    if(!supabase||!session||!profile||view!=="Mídias e Procon"&&view!=="Visão geral")return;
+    if(!supabase||!profile||(view!=="Mídias e Procon"&&view!=="Visão geral"))return;
     let active=true;
     void supabase.from("bf_media_procon_daily").select("reference_date,media_queue_cleared,comments_handled,procon_total,procon_within_24h,procon_over_24h,procon_source,procon_met_24h,notes").gte("reference_date","2026-11-04").lte("reference_date","2026-11-30").order("reference_date",{ascending:false}).then(({data,error})=>{if(active){setMpRecords((data??[]) as MpRecord[]);setMpError(error?"Não foi possível carregar os registros. Execute a migration SQL no Supabase e verifique suas permissões.":"");}});
     return ()=>{active=false;};
@@ -225,7 +225,7 @@ export default function App() {
 
   if (!supabase) return <main className="shell"><section className="auth-card"><h1>Blue Friday 2026</h1><p>Configuração pendente: adicione VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY ao ambiente local.</p></section></main>;
   if (loading) return <main className="shell"><section className="auth-card"><h1>Blue Friday 2026</h1><p>Verificando acesso...</p></section></main>;
-  if (!session || !profile) return <main className="login-page login-light">
+  if (!profile) return <main className="login-page login-light">
     <div className="login-wave login-wave-top" aria-hidden="true" />
     <div className="login-wave login-wave-bottom" aria-hidden="true" />
     <div className="login-dots login-dots-top" aria-hidden="true" />
@@ -325,7 +325,7 @@ export default function App() {
       })}
       <div className="bf-side-bottom"><span className="bf-campaign-symbol"><BoIcon name="target" size={21}/></span><span className="bf-campaign-copy"><strong>CAMPANHA ATIVA</strong><b>Blue Friday 2026</b><small><span className="bf-online-dot"/> Em andamento</small></span></div>
     </aside>
-    <div className="bf-workspace"><header className="bf-top"><nav className="bf-breadcrumb" aria-label="Localização atual"><button className="bf-breadcrumb-home" type="button" aria-label="Ir para Visão geral" onClick={()=>setView("Visão geral")}><BoIcon name="home" size={17}/></button><button className="bf-breadcrumb-root" type="button" onClick={()=>setView("Visão geral")}>Blue Friday 2026</button><span className="bf-breadcrumb-separator" aria-hidden="true">›</span><span className="bf-breadcrumb-current">{view}</span></nav><div className="bf-top-actions"><span className="bf-user-role"><BoIcon name="shield" size={16}/>{profile.role==="admin"?"Administrador":profile.role==="management"?"Gestão":"Colaborador"}</span><span className="bf-top-divider" aria-hidden="true"/><button className="bf-top-signout" type="button" onClick={signOut}><BoIcon name="logout" size={16}/> Sair</button></div></header>
+    <div className="bf-workspace"><header className="bf-top"><nav className="bf-breadcrumb" aria-label="Localização atual"><button className="bf-breadcrumb-home" type="button" aria-label="Ir para Visão geral" onClick={()=>setView("Visão geral")}><BoIcon name="home" size={17}/></button><button className="bf-breadcrumb-root" type="button" onClick={()=>setView("Visão geral")}>Blue Friday 2026</button><span className="bf-breadcrumb-separator" aria-hidden="true">›</span><span className="bf-breadcrumb-current">{view}</span></nav><div className="bf-top-actions"><span className="bf-user-role"><BoIcon name="shield" size={16}/>{profile.role==="admin"?"Administrador":profile.role==="management"?"Gestão":"Colaborador"}</span><span className="bf-top-divider" aria-hidden="true"/>{session&&<button className="bf-top-signout" type="button" onClick={signOut}><BoIcon name="logout" size={16}/> Sair</button>}</div></header>
       {view==="Reembolso"?<div className="bf-body"><RefundPanel/></div>:view==="Marcas"?<div className="bf-body"><BrandsPanel/></div>:view==="Chargeback"?<div className="bf-body"><ChargebackPanel admin={profile.role==="admin"}/></div>:view==="Reclame Aqui"?<div className="bf-body"><ReclameAquiPanel admin={profile.role==="admin"}/></div>:view==="Quero Pago"?<div className="bf-body"><QueroPagoPanel/></div>:view==="Recorrência"?<div className="bf-body"><RecorrenciaPanel/></div>:view==="Resoluções"?<div className="bf-body"><ResolucoesPanel/></div>:view==="BO e Dados"?<div className="bf-body bo-executive bo-v2">
         <section className="bo-hero bo-hero-refined"><div className="bo-hero-main"><span className="bo-hero-kicker"><span className="bo-kicker-dot"/> BLUE FRIDAY 2026 <span className="bo-kicker-separator">/</span> PAINEL DE PERFORMANCE</span><h1>BO e Dados</h1><p>Acompanhamento operacional, indicadores e evolução da missão semanal.</p></div><div className="bo-hero-side"><div className="bo-hero-info"><span className="bo-hero-info-icon"><BoIcon name="calendar" size={20}/></span><small>Semana da campanha<strong>09 a 13 de novembro</strong></small></div><div className="bo-hero-info"><span className="bo-hero-info-icon"><BoIcon name="refresh" size={19}/></span><small>Dados extraídos em<strong>{newestIngest}</strong></small></div></div></section>
         <div className="bo-nav"><div className="bo-tabs"><button className={boTab==="overview"?"active":""} onClick={()=>setBoTab("overview")}><BoIcon name="home" size={18}/> Visão geral</button><button className={boTab==="history"?"active":""} onClick={()=>setBoTab("history")}><BoIcon name="chart" size={18}/> Evolução diária</button><button className={boTab==="weekly"?"active":""} onClick={()=>setBoTab("weekly")}><BoIcon name="trophy" size={18}/> Resultados semanais</button>{profile.role==="admin"&&<button className={boTab==="admin"?"active":""} onClick={()=>setBoTab("admin")}><BoIcon name="settings" size={18}/> Administração</button>}</div><div className="bo-nav-actions"><div className="bo-range-filter" role="group" aria-label="Filtrar período"><BoIcon name="calendar" size={18}/><label>De <input aria-label="Data inicial" type="date" value={boStart} onChange={e=>setBoStart(e.target.value)}/></label><label>Até <input aria-label="Data final" type="date" value={boEnd} onChange={e=>setBoEnd(e.target.value)}/></label><button type="button" onClick={()=>{setBoStart("2026-11-02");setBoEnd("2026-11-09");}}>Restaurar</button></div><button className="bo-refresh" onClick={()=>setRefreshCount(v=>v+1)}><BoIcon name="refresh" size={18}/> Atualizar painel</button></div></div>
