@@ -5,6 +5,7 @@ import ReclameAquiPanel from "./ReclameAquiPanel";
 import QueroPagoPanel from "./QueroPagoPanel";
 import RecorrenciaPanel from "./RecorrenciaPanel";
 import ResolucoesPanel from "./ResolucoesPanel";
+import PublicOperationsPanels from "./PublicOperationsPanels";
 import "./PublicCampaign.css";
 
 const areas=["Visão geral","BO e Dados","Reembolso","Mídias e Procon","Recorrência","Chargeback","Resoluções","Quero Pago","Marcas","Reclame Aqui"];
@@ -30,6 +31,7 @@ export default function PublicCampaign(){
    :area==="Quero Pago"?<QueroPagoPanel/>
    :area==="Recorrência"?<RecorrenciaPanel/>
    :area==="Resoluções"?<ResolucoesPanel/>
+   :(area==="BO e Dados"||area==="Reembolso"||area==="Mídias e Procon")?<PublicOperationsPanels area={area}/>
    :<div className="public-placeholder"><span className="public-eyebrow">BLUE FRIDAY 2026</span><h1>{area}</h1><p>Esta área depende de dados internos e de consultas protegidas. O painel público ainda não tem uma fonte de leitura aprovada. Nenhuma informação foi inventada.</p><button type="button" onClick={()=>navigate("Visão geral")}>Voltar à visão geral</button></div>}
   </main></div>
  </div>;
