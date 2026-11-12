@@ -956,3 +956,41 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bo-v2 .bo-v2-bottom .bf-panel :is(.bo-summary-grid,.bo-summary-stat,.bo-summary-item) :is(strong,b){color:#f5faff}
 .bo-v2 .bo-v2-bottom .bf-panel :is(.bo-summary-grid,.bo-summary-stat,.bo-summary-item) :is(small,span,p){color:#b4c9ec}
 @media(max-width:700px){.bo-v2 .bo-week-picker{width:100%;justify-content:space-between}.bo-v2 .bo-week-picker select{flex:1;max-width:none}.bo-v2 .bo-range-filter{flex-wrap:wrap}}
+
+/* Campaign polish | navigation, moving ribbon, media/procon */
+.bf-running-banner{position:fixed;top:0;left:0;right:0;height:35px;overflow:hidden;background:linear-gradient(90deg,#f90056,#ed1259,#d90071);z-index:90;display:flex;align-items:center;box-shadow:0 3px 14px #050e3266}
+.bf-running-track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:bfRibbonMove 38s linear infinite;will-change:transform}
+.bf-running-track span{flex:none;display:inline-flex;align-items:center;gap:7px;padding:0 26px;color:#fff;font-size:11px;letter-spacing:1.3px;font-weight:800}
+.bf-running-track em{font-style:normal;color:#ffdbed;font-weight:650}
+@keyframes bfRibbonMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.bf-layout{padding-top:35px}
+.bf-side-light{border-right:1px solid #28447e!important;box-shadow:8px 0 28px #010b2d30}
+.bf-side-light .bf-brand{padding:12px 10px 23px;margin-bottom:14px}
+.bf-side-light .bf-brand strong{color:#f3f7ff;font-size:14px}
+.bf-side-light .bf-brand strong span{color:#77c8ff}
+.bf-side-light .bf-brand small{color:#b1c5e8}
+.bf-side-light .bf-menu{transition:background .2s,transform .2s,border-color .2s;border:1px solid transparent;min-height:45px}
+.bf-side-light .bf-menu:hover{background:#1b3266;transform:translateX(3px);border-color:#3b5a99}
+.bf-side-light .bf-menu.selected{background:linear-gradient(105deg,#673ce9,#1766e9);box-shadow:0 7px 20px #2056f33d;color:#fff}
+.bf-side-light .bf-menu-icon{flex-shrink:0}
+.bf-side-light .bf-menu-text{font-weight:700}
+.bf-side-light .bf-new{background:#eaf2ff;color:#2155bd;padding:4px 7px;border-radius:999px;font-size:9px;font-weight:900}
+.bf-side-light .bf-side-bottom{background:linear-gradient(135deg,#f9f8ff,#eaf1ff);border:1px solid #b9c9f0;border-radius:16px;padding:14px;margin-top:auto;box-shadow:0 8px 26px #050d3155;color:#264574}
+.bf-side-light .bf-campaign-copy strong{color:#673ce9}
+.bf-side-light .bf-campaign-copy b{color:#102b5c}
+.mp-page .mp-nav{background:#14284d;border:1px solid #37558b;border-radius:15px;padding:12px;margin-bottom:18px;gap:7px}
+.mp-page .mp-nav-tab{color:#c9dbfa;border-radius:10px;transition:background .2s,color .2s}
+.mp-page .mp-nav-tab:hover{background:#263e6b;color:#fff}
+.mp-page .mp-nav-tab.active{background:linear-gradient(110deg,#236bf3,#5945e9);color:#fff;box-shadow:0 5px 16px #0a2e8866}
+.mp-page .mp-overview-heading{margin:8px 0 18px}
+.mp-page .mp-overview-heading h2{font-size:23px!important;letter-spacing:-.03em;color:#fff}
+.mp-page .mp-overview-heading p{color:#b5c8e8;line-height:1.55}
+.mp-page .mp-reference-cards .mp-kpi-result{border-radius:18px!important;padding:24px!important;min-height:205px!important;box-shadow:0 10px 28px #020b2633;transition:transform .2s,box-shadow .2s}
+.mp-page .mp-reference-cards .mp-kpi-result:hover{transform:translateY(-3px);box-shadow:0 16px 35px #020b2655}
+.mp-page .mp-reference-cards .mp-result-icon{border-radius:15px;width:54px;height:54px}
+.mp-page .mp-reference-cards .mp-card-metric .mp-result-number{font-size:31px!important;font-weight:850}
+.mp-page .mp-reference-cards .mp-result-progress{height:10px!important}
+.mp-page .mp-week-panel{border-radius:18px!important;overflow:hidden}
+.mp-page .bo-range-error{border-radius:12px;line-height:1.5}
+@media(prefers-reduced-motion:reduce){.bf-running-track{animation:none}.bf-side-light .bf-menu,.mp-page .mp-reference-cards .mp-kpi-result{transition:none}}
+@media(max-width:720px){.bf-running-banner{height:30px}.bf-layout{padding-top:30px}.mp-page .mp-nav{gap:4px}.mp-page .mp-nav-tab{padding:9px 10px;font-size:12px}}
