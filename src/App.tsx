@@ -331,7 +331,7 @@ export default function App() {
   const chartArea=chartPoints.length>1?chartPath+" L "+chartPoints[chartPoints.length-1].x+" 210 L "+chartPoints[0].x+" 210 Z":"";
   const currentMetric=(key:string)=>selected?.[key==="bo_open"?"open":key==="bo_resolved"?"resolved":"backlog"];
   const newestIngest="07/11/2026, 01h12"; // Última ingestão conhecida, não é atualização em tempo real.
-  return <main className="bf-layout">
+  return <main className="bf-layout"><div className="bf-running-banner" aria-label="Blue Friday 2026"><div className="bf-running-track" aria-hidden="true">{Array.from({length:24},(_,i)=><span key={i}>🔥 <strong>BLUE FRIDAY</strong> <em>2026</em></span>)}</div></div>
     <aside className="bf-side bf-side-light" aria-label="Navegação principal">
       <div className="bf-brand"><BrandIcon small/><div><strong>BLUE <span>FRIDAY 2026</span></strong><small>Performance da Campanha</small></div></div>
       <p className="bf-menu-label">NAVEGAÇÃO</p>
