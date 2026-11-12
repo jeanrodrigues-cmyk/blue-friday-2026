@@ -42,3 +42,30 @@
 .bf-layout .bf-command-hero,.bf-layout .bf-overview-hero{background:linear-gradient(120deg,#11285d,#102044)!important;border:1px solid #344d7d!important;border-radius:22px!important}
 .bf-layout .bf-command-eyebrow,.bf-layout .bf-command-hero strong{color:#69c3ff!important}
 @media(max-width:700px){.bf-layout .brands-card,.bf-layout .brands-panel{border-radius:15px!important}}
+
+/* Sidebar refresh: improved hierarchy, legibility and spacing. */
+@media (min-width:801px){
+  .bf-layout .bf-side.bf-side-light{width:252px;min-width:252px;padding:18px 12px 16px;background:linear-gradient(180deg,#0a1741 0%,#071135 55%,#07112f 100%)!important;scrollbar-width:thin;scrollbar-color:#344b81 transparent}
+}
+.bf-layout .bf-side-light .bf-brand{gap:12px;padding:10px 8px 20px;margin:0 0 12px;border-bottom:1px solid #2c3c66;min-height:74px}
+.bf-layout .bf-side-light .bf-brand strong{color:#f4f8ff!important;font-size:13px;letter-spacing:-.15px;line-height:1.35}
+.bf-layout .bf-side-light .bf-brand strong span{color:#74b9ff!important}
+.bf-layout .bf-side-light .bf-brand small{color:#9fb5da!important;font-size:10px;line-height:1.5;margin-top:3px}
+.bf-layout .bf-side-light .bf-menu-label{color:#8da6d6!important;font-size:9px;letter-spacing:1.55px;margin:17px 11px 8px}
+.bf-layout .bf-side-light .bf-menu{min-height:45px;margin:3px 0;padding:6px 9px;gap:11px;border-radius:12px;color:#d6e3ff!important;transition:background .18s,border-color .18s,transform .18s}
+.bf-layout .bf-side-light .bf-menu-text{color:#d6e3ff!important;font-size:12px;font-weight:650}
+.bf-layout .bf-side-light .bf-menu-icon{flex:0 0 32px;width:32px;height:32px;border-radius:10px;background:#edf4ff!important;color:#2761d9!important}
+.bf-layout .bf-side-light .bf-menu-icon svg{stroke-width:2.15}
+.bf-layout .bf-side-light .bf-menu-chevron{color:#7991c2!important;font-size:18px;opacity:.8}
+.bf-layout .bf-side-light .bf-menu:hover:not(.selected){background:#152956!important;border-color:#304d84!important;transform:translateX(2px);color:#fff!important}
+.bf-layout .bf-side-light .bf-menu:hover:not(.selected) .bf-menu-text{color:#fff!important}
+.bf-layout .bf-side-light .bf-menu.selected{background:linear-gradient(105deg,#6540e5,#246ff2)!important;border-color:#5b78ff!important;box-shadow:0 6px 18px #174cce35}
+.bf-layout .bf-side-light .bf-menu.selected .bf-menu-text,.bf-layout .bf-side-light .bf-menu.selected .bf-menu-chevron{color:#fff!important}
+.bf-layout .bf-side-light .bf-menu.selected .bf-menu-icon{background:#ffffff28!important;color:#fff!important}
+.bf-layout .bf-side-light .bf-new{font-size:9px;padding:3px 7px;background:#eaf3ff!important;color:#1553ba!important}
+.bf-layout .bf-side-light .bf-side-bottom{margin-top:auto;padding:12px 11px;background:linear-gradient(115deg,#172c60,#19234e)!important;border:1px solid #38558b!important;border-radius:14px;box-shadow:none;color:#e7efff!important}
+.bf-layout .bf-side-light .bf-campaign-symbol{background:linear-gradient(135deg,#236af5,#6942e9)!important}
+.bf-layout .bf-side-light .bf-campaign-copy strong{color:#a99aff!important;font-size:9px}
+.bf-layout .bf-side-light .bf-campaign-copy b{color:#f3f7ff!important;font-size:12px}
+.bf-layout .bf-side-light .bf-campaign-copy small{color:#b8c8e7!important}
+@media(prefers-reduced-motion:reduce){.bf-layout .bf-side-light .bf-menu{transition:none;transform:none!important}}
