@@ -890,3 +890,59 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bf-layout .bf-side-light .bf-side-bottom{position:relative;flex-shrink:0;margin-top:auto;margin-bottom:0;padding:10px 9px}
 }
 @media(min-width:801px) and (max-width:1080px){.bf-layout .bf-side.bf-side-light{flex-basis:230px}}
+
+
+/* BO e Dados | contraste e hierarquia visual no tema Blue Friday */
+.bo-v2{--bo-ink:#f2f7ff;--bo-muted:#a9bfeb;--bo-border:rgba(151,184,255,.22)}
+.bo-v2 .bo-v2-kpi,.bo-v2 .bf-panel,.bo-v2 .bo-special-card{background:linear-gradient(145deg,#172a54,#111d3d);border:1px solid var(--bo-border);box-shadow:0 12px 30px rgba(0,6,30,.14);color:var(--bo-ink)}
+.bo-v2 .bo-v2-kpi{border-left:4px solid #58b8ff;border-radius:18px;min-height:150px}
+.bo-v2 .bo-v2-kpi.red{border-left-color:#fb728c}
+.bo-v2 .bo-v2-kpi.green{border-left-color:#3bd7ac}
+.bo-v2 .bo-kpi-icon,.bo-v2 .bo-special-icon{background:#223f79;color:#83cfff;border-radius:14px}
+.bo-v2 .bo-kpi-body>span,.bo-v2 .bo-kpi-body>small,.bo-v2 .bo-kpi-body>strong{color:var(--bo-ink)}
+.bo-v2 .bo-kpi-body>span{font-size:13px;color:#b7c9ee}
+.bo-v2 .bo-kpi-body>strong{font-size:clamp(28px,3vw,42px);letter-spacing:-1.5px}
+.bo-v2 .bo-kpi-body>small{color:var(--bo-muted)}
+.bo-v2 .bo-kpi-change{background:#22365e;color:#e4efff;border:1px solid rgba(174,199,255,.17);border-radius:12px}
+.bo-v2 .bo-kpi-change.good{background:#123e39;color:#6ff2c0}
+.bo-v2 .bo-kpi-change.bad{background:#4a263d;color:#ffc0c9}
+.bo-v2 .bo-kpi-change small{color:inherit;opacity:.8}
+.bo-v2 .bo-section-head h2,.bo-v2 .bo-section-head h2 svg,.bo-v2 .bo-special-heading h2,.bo-v2 .bo-special-heading h2 svg{color:#f4f8ff}
+.bo-v2 .bo-section-head p,.bo-v2 .bo-section-head small,.bo-v2 .bo-special-heading p{color:var(--bo-muted)}
+.bo-v2 .bo-mission-goal>div strong,.bo-v2 .bo-mission-goal>div small{color:#f2f7ff}
+.bo-v2 .bo-mission-goal>div:last-child strong{color:#54e0aa}
+.bo-v2 .bo-mission-goal>span{color:#8ca9dc}
+.bo-v2 .bo-v2-progress{background:#27395e}
+.bo-v2 .bo-period-improvement{background:#123c36;border:1px solid #226d59;color:#a5f5d6}
+.bo-v2 .bo-period-improvement strong,.bo-v2 .bo-period-improvement span{color:#b7f8df}
+.bo-v2 .bo-v2-mission-foot,.bo-v2 .bo-v2-mission-foot *{color:#c3d2ed}
+.bo-v2 .bo-special-missions{padding:24px;border:1px solid var(--bo-border);border-radius:20px;background:linear-gradient(130deg,#142753,#0e1b3b);margin:22px 0}
+.bo-v2 .bo-special-eyebrow{color:#6fcaff}
+.bo-v2 .bo-special-heading h2{font-size:22px}
+.bo-v2 .bo-special-count{background:#203c70;color:#a9d8ff}
+.bo-v2 .bo-special-card{padding:22px;border-radius:16px;min-height:260px}
+.bo-v2 .bo-special-card h3,.bo-v2 .bo-special-card p,.bo-v2 .bo-special-card p strong{color:#f1f6ff}
+.bo-v2 .bo-special-card p{color:#b5c7e9;line-height:1.65}
+.bo-v2 .bo-special-card-bottom{border-top:1px solid var(--bo-border)}
+.bo-v2 .bo-special-card-bottom strong{color:#70bdff}
+.bo-v2 .bo-special-card-bottom small{color:#b5c7e9}
+.bo-v2 .bo-special-card-bottom>span{background:#223b69;color:#c5ddff}
+.bo-v2 .bo-special-condition{background:#2a3146;border:1px solid #4d4b4b;color:#f5d69a!important;border-radius:10px}
+.bo-v2 .bo-special-condition *{color:#f5d69a!important}
+.bo-v2 .bo-period-summary{background:#152a52;border:1px solid var(--bo-border);border-radius:16px;color:#edf5ff;box-shadow:none}
+.bo-v2 .bo-period-summary>strong,.bo-v2 .bo-period-summary span,.bo-v2 .bo-period-summary b{color:#edf5ff}
+.bo-v2 .bo-period-summary span{color:#a9c0e9}
+.bo-v2 .bo-period-summary b{font-size:22px}
+.bo-v2 .bo-v2-bottom .bf-panel{border-radius:18px}
+.bo-v2 .bo-table th{background:#203962;color:#e8f3ff}
+.bo-v2 .bo-table td{color:#e3eeff;border-color:rgba(172,198,242,.16)}
+.bo-v2 .bo-table td strong{color:#f6faff}
+.bo-v2 .bo-table tbody tr:hover{background:rgba(95,154,255,.08)}
+.bo-v2 .bo-v2-bottom .bo-section-head p{color:#afc2e9}
+.bo-v2 .bo-v2-bottom .bo-link{color:#72b9ff}
+.bo-v2 .bo-quality-strip{background:#182d54;border-color:var(--bo-border);color:#d8e6ff}
+.bo-v2 .bo-quality-label strong,.bo-v2 .bo-quality-latest strong{color:#f4f8ff}
+.bo-v2 .bo-quality-latest{color:#a9bfe4}
+.bo-v2 .bo-range-error{border-radius:12px;line-height:1.5}
+.bo-v2 .bo-v2-bottom .bo-summary-card,.bo-v2 .bo-v2-bottom .bo-summary-card *{color:#e7f2ff}
+@media(max-width:850px){.bo-v2 .bo-special-grid{grid-template-columns:1fr}.bo-v2 .bo-special-missions{padding:16px}.bo-v2 .bo-period-summary{gap:14px}}
