@@ -1,0 +1,47 @@
+/* Reclame Aqui: visual isolado, sem afetar Marcas */
+.ra-dashboard{max-width:1440px;padding-top:30px;background:transparent}
+.ra-dashboard .ra-header{padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #e6ecf5;align-items:flex-end}
+.ra-dashboard .ra-header h1{font-size:31px;letter-spacing:-.045em;margin:9px 0 7px}
+.ra-dashboard .ra-header .brands-sub{font-size:13px;color:#74849a}
+.ra-dashboard .ra-kicker-separator{margin:0 8px;color:#c0cada}
+.ra-dashboard .brands-tools{gap:9px}
+.ra-dashboard .brands-tools label{font-size:12px;font-weight:700;color:#70819a}
+.ra-dashboard .brands-select{min-height:39px;border-color:#dfe6f0;outline:none;transition:border-color .15s,box-shadow .15s}
+.ra-dashboard .brands-select:focus{border-color:#4c7fed;box-shadow:0 0 0 3px rgba(59,110,224,.1)}
+.ra-dashboard .ra-primary{background:#2862df;color:#fff;border-color:#2862df;box-shadow:0 4px 10px rgba(40,98,223,.12)}
+.ra-dashboard .ra-primary:hover{background:#1d52c4}
+.ra-dashboard .ra-refresh{background:#fff}
+.ra-dashboard .ra-section-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;color:#7b8ca3;font-size:10px;font-weight:800;letter-spacing:.12em}
+.ra-dashboard .ra-section-label span:last-child{letter-spacing:0;text-transform:none;font-weight:600;font-size:12px}
+.ra-dashboard .brands-grid{gap:16px;margin-bottom:19px}
+.ra-dashboard .ra-kpi{position:relative;min-height:154px;padding:21px;border-radius:15px;box-shadow:0 3px 14px rgba(28,52,91,.025)}
+.ra-dashboard .ra-kpi .brands-card-label{font-size:12px}
+.ra-dashboard .ra-kpi .brands-value{font-size:30px;margin:17px 0 8px;font-variant-numeric:tabular-nums}
+.ra-dashboard .ra-kpi .brands-caption{font-size:11px}
+.ra-dashboard .ra-progress{height:5px;background:#e9eff9;border-radius:10px;overflow:hidden;margin-top:14px}
+.ra-dashboard .ra-progress span{display:block;height:100%;background:#3e76e8;border-radius:10px}
+.ra-dashboard .ra-main-sections{grid-template-columns:1.08fr .92fr;gap:17px;margin-bottom:17px}
+.ra-dashboard .brands-panel{border-radius:15px;box-shadow:0 3px 16px rgba(28,52,91,.025)}
+.ra-dashboard .ra-panel-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.ra-dashboard .ra-panel-heading h2{margin:5px 0 0;font-size:17px;letter-spacing:-.02em}
+.ra-dashboard .ra-eyebrow{font-size:10px;letter-spacing:.12em;color:#8a98ad;font-weight:800}
+.ra-dashboard .ra-trophy{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:#fff6dc;color:#bb8523;font-size:19px}
+.ra-dashboard .brands-line{min-height:40px;line-height:1.4}
+.ra-dashboard .ra-rank{padding:13px 0}
+.ra-dashboard .ra-rank>span{display:flex;align-items:center;gap:11px;font-weight:600;color:#30435e}
+.ra-dashboard .ra-rank strong{font-size:15px;font-variant-numeric:tabular-nums}
+.ra-dashboard .ra-rank small{font-size:11px;color:#8190a5;font-weight:500}
+.ra-dashboard .ra-position{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#edf3ff;color:#3266d2;font-size:11px}
+.ra-dashboard .ra-rank:first-of-type .ra-position{background:#fff5dc;color:#a16b12}
+.ra-dashboard .ra-data-panel{padding:22px 24px}
+.ra-dashboard .ra-data-panel table{width:100%;border-spacing:0}
+.ra-dashboard .ra-data-panel th{background:#f6f8fc;color:#71819a;font-weight:800;font-size:11px}
+.ra-dashboard .ra-data-panel td{color:#364a65;font-variant-numeric:tabular-nums}
+.ra-dashboard .ra-data-panel tbody tr:hover{background:#f9fbff}
+.ra-dashboard .ra-editor{margin-top:18px}
+.ra-dashboard .ra-editor form{background:#fff}
+.ra-dashboard .ra-editor label{color:#65758c;font-weight:650}
+.ra-dashboard .ra-editor input,.ra-dashboard .ra-editor select,.ra-dashboard .ra-editor textarea{margin-top:5px}
+.ra-dashboard .brands-pill{white-space:nowrap}
+@media(max-width:1050px){.ra-dashboard .ra-main-sections{grid-template-columns:1fr}}
+@media(max-width:650px){.ra-dashboard{padding:16px}.ra-dashboard .ra-header{align-items:stretch}.ra-dashboard .brands-tools{width:100%}.ra-dashboard .brands-tools label{width:100%}.ra-dashboard .brands-tools select{flex:1;min-width:0}.ra-dashboard .ra-primary{width:100%}.ra-dashboard .ra-section-label{flex-wrap:wrap}.ra-dashboard .ra-kpi{min-height:126px}.ra-dashboard .ra-kpi .brands-value{font-size:25px}.ra-dashboard .ra-data-panel{padding:16px}}
