@@ -1,0 +1,44 @@
+/* Blue Friday 2026: visual inspired by campaign reference, without changing data or logic. */
+.bf-layout{--campaign-bg:#06113c;--campaign-panel:#111d3d;--campaign-border:#304266;--campaign-blue:#62c3ff;--campaign-red:#fa1553;--campaign-green:#13976c;background:radial-gradient(ellipse at 45% -12%,#11266a 0%,#071440 38%,#030a29 100%)!important;color:#eef4ff!important;min-height:100vh}
+.bf-layout .bf-workspace{background:transparent!important;min-width:0}
+.bf-layout .bf-body{background:transparent!important;color:#eef4ff!important}
+.bf-layout .bf-top{background:#081640!important;border-bottom:1px solid #2a3d67!important;color:#f6f9ff!important}
+.bf-layout .bf-side{background:#071239!important;border-right:1px solid #283b66!important;color:#f6f9ff!important}
+.bf-layout .bf-side-light{background:#071239!important}
+.bf-layout .bf-brand{color:#fff!important}
+.bf-layout .bf-menu-label,.bf-layout .bf-menu-text,.bf-layout .bf-user-role{color:#b2c5eb!important}
+.bf-layout .bf-menu button:hover,.bf-layout .bf-menu button[aria-current="page"]{background:#172d66!important;color:#fff!important}
+.bf-layout .bf-top button,.bf-layout .bf-top span,.bf-layout .bf-top strong{color:inherit}
+.bf-layout .bf-workspace::before{content:"🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY";display:block;background:#ed0750;color:#fff;font-size:11px;line-height:31px;font-weight:900;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-align:center;height:31px}
+.bf-layout .brands,.bf-layout .bf-command,.bf-layout .bf-overview{color:#f0f5ff!important}
+.bf-layout .brands h1,.bf-layout .brands h2,.bf-layout .brands .brands-value,.bf-layout .brands-line strong,.bf-layout .bf-command h1,.bf-layout .bf-command h2,.bf-layout .bf-overview h1,.bf-layout .bf-overview h2{color:#f7faff!important}
+.bf-layout .brands-sub,.bf-layout .brands-caption,.bf-layout .brands-card-label,.bf-layout .brands-kicker,.bf-layout .brands-note,.bf-layout .brands-line,.bf-layout .brands-line span,.bf-layout .qp-eyebrow,.bf-layout .rc-eyebrow,.bf-layout .rs-eyebrow,.bf-layout .ra-eyebrow{color:#adc1e8!important}
+.bf-layout .brands-card,.bf-layout .brands-panel,.bf-layout .bf-panel,.bf-layout .bf-metric,.bf-layout .bf-overview-stat,.bf-layout .bf-overview-area,.bf-layout .bf-command-area,.bf-layout .bf-command-stats>*,.bf-layout .bf-command-bottom>section{background:#121e3f!important;border:1px solid #344567!important;box-shadow:none!important;border-radius:20px!important;color:#f1f6ff!important}
+.bf-layout .brands-card,.bf-layout .bf-metric{transition:transform .18s,border-color .18s}
+.bf-layout .brands-card:hover,.bf-layout .bf-metric:hover{transform:translateY(-2px);border-color:#5174b7!important}
+.bf-layout .brands-value{color:#67c4ff!important;letter-spacing:-.04em}
+.bf-layout .brands-pill.ok{background:#0b664b!important;color:#c6ffe5!important}
+.bf-layout .brands-pill.bad{background:#6d1939!important;color:#ffceda!important}
+.bf-layout .brands-pill.wait{background:#594421!important;color:#ffe2a5!important}
+.bf-layout .brands-pill:not(.ok):not(.bad):not(.wait){background:#223866!important;color:#c4d8ff!important}
+.bf-layout .brands-line,.bf-layout .rs-person,.bf-layout .qp-person,.bf-layout .rc-person{border-color:#304263!important}
+.bf-layout .qp-person,.bf-layout .rc-person,.bf-layout .rs-rule{background:#172749!important;border-color:#33486e!important}
+.bf-layout .qp-person strong,.bf-layout .rc-person strong,.bf-layout .rs-person-info strong,.bf-layout .rs-rule strong,.bf-layout .rs-table-panel td,.bf-layout .qp-history td,.bf-layout .rc-history td,.bf-layout .ra-data-panel td{color:#f2f6ff!important}
+.bf-layout .qp-person small,.bf-layout .rc-person small,.bf-layout .rs-person-info span,.bf-layout .rs-person-info small,.bf-layout .rs-rule span{color:#b1c4e5!important}
+.bf-layout .qp-banner,.bf-layout .rc-banner{background:linear-gradient(115deg,#13285b,#102044)!important;border-color:#344e85!important;color:#f2f7ff!important}
+.bf-layout .qp-banner strong,.bf-layout .rc-banner strong{color:#6bc5ff!important}
+.bf-layout .qp-banner span,.bf-layout .rc-banner span,.bf-layout .qp-banner small,.bf-layout .rc-banner small,.bf-layout .qp-banner-note,.bf-layout .rc-banner-note{color:#bcd3ff!important}
+.bf-layout .brands-select,.bf-layout .brands-button,.bf-layout .brands-link{background:#18294f!important;color:#f4f8ff!important;border-color:#3b527e!important}
+.bf-layout .brands-button.ra-primary{background:#2469e8!important}
+.bf-layout .brands-select option{background:#142347;color:#fff}
+.bf-layout .brands-track,.bf-layout .ra-progress,.bf-layout .qp-track,.bf-layout .rc-track{background:#2b3a5e!important}
+.bf-layout .brands-fill,.bf-layout .ra-progress span,.bf-layout .qp-track>div,.bf-layout .rc-track>div{background:linear-gradient(90deg,#3365ff,#64c4ff)!important}
+.bf-layout .rs-table-panel th,.bf-layout .qp-history th,.bf-layout .rc-history th,.bf-layout .ra-data-panel th{background:#1b2b51!important;color:#c0d0ee!important}
+.bf-layout .rs-table-panel td,.bf-layout .qp-history td,.bf-layout .rc-history td,.bf-layout .ra-data-panel td{border-color:#2e4064!important}
+.bf-layout .rs-table-panel tbody tr:hover,.bf-layout .ra-data-panel tbody tr:hover{background:#1b2d56!important}
+.bf-layout .brands-panel input,.bf-layout .brands-panel select,.bf-layout .brands-panel textarea{background:#18294e!important;color:#fff!important;border-color:#41557c!important}
+.bf-layout .ra-dashboard .ra-header,.bf-layout .qp-dashboard .qp-header,.bf-layout .rc-dashboard .rc-header,.bf-layout .rs-dashboard .rs-header{border-color:#31446b!important}
+.bf-layout .ra-section-label,.bf-layout .rs-section-label{color:#a8c5f2!important}
+.bf-layout .bf-command-hero,.bf-layout .bf-overview-hero{background:linear-gradient(120deg,#11285d,#102044)!important;border:1px solid #344d7d!important;border-radius:22px!important}
+.bf-layout .bf-command-eyebrow,.bf-layout .bf-command-hero strong{color:#69c3ff!important}
+@media(max-width:700px){.bf-layout .bf-workspace::before{font-size:10px;line-height:27px;height:27px}.bf-layout .brands-card,.bf-layout .brands-panel{border-radius:15px!important}}
