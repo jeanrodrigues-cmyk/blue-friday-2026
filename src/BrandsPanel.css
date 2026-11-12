@@ -43,3 +43,5 @@
 .brands-alert{background:#372e27;border:1px solid #8b642e;color:#ffdfad;padding:14px 17px;border-radius:12px;line-height:1.5}
 @media(max-width:1100px){.brands-head{align-items:flex-start}.brands-tools{width:100%}}
 @media(max-width:620px){.brands{padding:14px 12px 32px}.brands-head{padding:18px}.brands h1{font-size:25px}.brands-card{min-height:145px}.brands-panel{padding:18px}.brands-tools>*{flex:1 1 auto}.brands-people{grid-template-columns:1fr}.brands-days{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.brands-week-confirmed{display:flex;flex-direction:column;gap:5px;margin:0 0 16px;padding:14px 16px;border-radius:12px;background:#124b3c;border:1px solid #238b69;color:#e5fff3;font-size:12px;line-height:1.5}.brands-week-confirmed strong{font-size:14px;color:#a5ffcf}.brands-week-confirmed span{color:#c4e9d8}
