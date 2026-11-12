@@ -102,3 +102,5 @@
 @media(max-width:720px){.bf-layout .ra-dashboard{padding:16px 12px 36px}.bf-layout .ra-dashboard .ra-header{padding:20px 18px}.bf-layout .ra-dashboard .brands-tools{width:100%;flex-wrap:wrap}.bf-layout .ra-dashboard .brands-tools .brands-select{flex:1;min-width:120px}.bf-layout .ra-dashboard .brands-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bf-layout .ra-dashboard .ra-kpi{min-height:145px;padding:16px}.bf-layout .ra-dashboard .brands-panel{padding:17px}.bf-layout .ra-dashboard .ra-section-label{align-items:flex-start}}
 @media(max-width:440px){.bf-layout .ra-dashboard .brands-grid{grid-template-columns:1fr}.bf-layout .ra-dashboard .brands-line{gap:8px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){.bf-layout .ra-dashboard .ra-kpi{transition:none}.bf-layout .ra-dashboard .ra-kpi:hover{transform:none}}
+
+.ra-dashboard .ra-connection-status{font-size:12px;color:#b8c9e5;margin:0 0 14px;padding:4px 0;line-height:1.5}.ra-dashboard .ra-connection-status span{color:#92b9f5}
