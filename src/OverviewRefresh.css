@@ -42,3 +42,15 @@
 @media(max-width:1150px){.bf-overview .bf-command-area-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:780px){.bf-overview{padding:18px!important}.bf-overview .bf-command-hero{flex-direction:column;align-items:stretch;padding:25px}.bf-overview .bf-command-hero-side{min-width:0}.bf-overview .bf-command-area-grid{grid-template-columns:1fr}.bf-overview .bf-command-toolbar{flex-direction:column;align-items:stretch}.bf-overview .bf-command-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.bf-overview .bf-command-stats{grid-template-columns:1fr}.bf-overview .bf-command-hero h1{font-size:30px}}
+
+/* Area directory: clearer hierarchy, no misleading pending labels */
+.bf-overview .bf-command-area-refined{display:flex;flex-direction:column;min-height:222px;padding:25px 25px 20px;background:linear-gradient(145deg,#152751 0%,#101e40 100%);border:1px solid #36517e}
+.bf-overview .bf-command-area-refined:hover{background:linear-gradient(145deg,#1d376d,#142753);border-color:#6bbdff;box-shadow:0 16px 34px rgba(0,0,0,.25)}
+.bf-overview .bf-command-area-refined .bf-command-area-top{display:flex;justify-content:space-between;align-items:center}
+.bf-overview .bf-command-area-refined .bf-command-area-index{color:#7395c8;font-size:11px;letter-spacing:.15em;font-weight:800}
+.bf-overview .bf-command-area-refined h3{margin:22px 0 7px;font-size:21px}
+.bf-overview .bf-command-area-refined p{margin:0 0 20px;font-size:13px;color:#b6c9e7}
+.bf-overview .bf-command-area-refined .bf-command-area-bottom{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px}
+.bf-overview .bf-command-area-refined .bf-command-area-open{display:inline-flex;align-items:center;gap:7px;color:#7fcaff;font-weight:800;white-space:nowrap}
+.bf-overview .bf-command-area-refined .bf-command-area-icon{background:#224682;color:#8bd2ff}
+.bf-overview .bf-command-toolbar{margin-top:4px}
