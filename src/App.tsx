@@ -11,6 +11,19 @@ import RecorrenciaPanel from "./RecorrenciaPanel";
 import ResolucoesPanel from "./ResolucoesPanel";
 
 type Metric = { metric_key: string; metric_value: number; reference_date: string; verified: boolean };
+// Histórico de BO validado anteriormente para a campanha. Exibido apenas
+// quando a consulta pública não retorna registros; não é atualização ao vivo.
+const boValidatedSnapshot: Metric[] = [
+  ["2026-11-02",171,159,6220],["2026-11-03",165,151,6229],
+  ["2026-11-04",164,151,6232],["2026-11-05",156,142,6247],
+  ["2026-11-06",157,144,6247],["2026-11-07",157,144,6247],
+  ["2026-11-08",157,144,6247],["2026-11-09",157,144,6247],
+].flatMap(([date,open,backlog,resolved])=>[
+  {reference_date:String(date),metric_key:"bo_open",metric_value:Number(open),verified:true},
+  {reference_date:String(date),metric_key:"bo_over_7_days",metric_value:Number(backlog),verified:true},
+  {reference_date:String(date),metric_key:"bo_resolved",metric_value:Number(resolved),verified:true},
+]);
+
 type MpRecord = { reference_date:string; media_queue_cleared:boolean|null; comments_handled:boolean|null; procon_total:number|null; procon_within_24h:number|null; procon_over_24h:number|null; procon_source:string|null; procon_met_24h:boolean|null; notes:string|null };
 type Profile = { role: "admin" | "management" | "collaborator"; active: boolean };
 const MP_PROCON_EXEMPT_DATES = new Set(["2026-11-04","2026-11-05","2026-11-06"]);
@@ -86,6 +99,7 @@ export default function App() {
   const [view, setView] = useState("Visão geral");
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [metricError, setMetricError] = useState("");
+  const [boSnapshotActive,setBoSnapshotActive] = useState(false);
   const [csvPreview,setCsvPreview] = useState<CsvPreview|null>(null);
   const [csvMessage,setCsvMessage] = useState("");
   const [csvBusy,setCsvBusy] = useState(false);
@@ -138,8 +152,10 @@ export default function App() {
       .order("reference_date",{ascending:false}).limit(500)
       .then(({data,error}) => {
         if (!mounted) return;
-        setMetrics((data ?? []) as Metric[]);
-        setMetricError(error ? "Falha ao consultar o histórico de indicadores." : "");
+        const live=(data ?? []) as Metric[];
+        setBoSnapshotActive(live.length===0);
+        setMetrics(live.length ? live : boValidatedSnapshot);
+        setMetricError(error ? "Não foi possível consultar o Supabase nesta sessão. Exibindo o último histórico validado disponível, até 09/11/2026." : live.length===0 ? "A consulta pública não retornou indicadores. Exibindo o histórico validado disponível, até 09/11/2026." : "");
       });
     return () => { mounted = false; };
   }, [session,profile,view,refreshCount]);
@@ -328,6 +344,7 @@ export default function App() {
     <div className="bf-workspace"><header className="bf-top"><nav className="bf-breadcrumb" aria-label="Localização atual"><button className="bf-breadcrumb-home" type="button" aria-label="Ir para Visão geral" onClick={()=>setView("Visão geral")}><BoIcon name="home" size={17}/></button><button className="bf-breadcrumb-root" type="button" onClick={()=>setView("Visão geral")}>Blue Friday 2026</button><span className="bf-breadcrumb-separator" aria-hidden="true">›</span><span className="bf-breadcrumb-current">{view}</span></nav><div className="bf-top-actions"><span className="bf-top-campaign-label">BLUE FRIDAY 2026</span></div></header>
       {view==="Reembolso"?<div className="bf-body"><RefundPanel/></div>:view==="Marcas"?<div className="bf-body"><BrandsPanel/></div>:view==="Chargeback"?<div className="bf-body"><ChargebackPanel admin={profile.role==="admin"}/></div>:view==="Reclame Aqui"?<div className="bf-body"><ReclameAquiPanel admin={profile.role==="admin"}/></div>:view==="Quero Pago"?<div className="bf-body"><QueroPagoPanel/></div>:view==="Recorrência"?<div className="bf-body"><RecorrenciaPanel/></div>:view==="Resoluções"?<div className="bf-body"><ResolucoesPanel/></div>:view==="BO e Dados"?<div className="bf-body bo-executive bo-v2">
         <div className="bo-nav"><div className="bo-tabs"><button className={boTab==="overview"?"active":""} onClick={()=>setBoTab("overview")}><BoIcon name="home" size={18}/> Visão geral</button><button className={boTab==="history"?"active":""} onClick={()=>setBoTab("history")}><BoIcon name="chart" size={18}/> Evolução diária</button><button className={boTab==="weekly"?"active":""} onClick={()=>setBoTab("weekly")}><BoIcon name="trophy" size={18}/> Resultados semanais</button>{profile.role==="admin"&&<button className={boTab==="admin"?"active":""} onClick={()=>setBoTab("admin")}><BoIcon name="settings" size={18}/> Administração</button>}</div><div className="bo-nav-actions"><div className="bo-range-filter" role="group" aria-label="Filtrar período"><BoIcon name="calendar" size={18}/><label>De <input aria-label="Data inicial" type="date" value={boStart} onChange={e=>setBoStart(e.target.value)}/></label><label>Até <input aria-label="Data final" type="date" value={boEnd} onChange={e=>setBoEnd(e.target.value)}/></label><button type="button" onClick={()=>{setBoStart("2026-11-02");setBoEnd("2026-11-09");}}>Restaurar</button></div><button className="bo-refresh" onClick={()=>setRefreshCount(v=>v+1)}><BoIcon name="refresh" size={18}/> Atualizar painel</button></div></div>
+        {boSnapshotActive&&<p role="status" className="bo-range-error">Histórico validado de 02 a 09/11/2026. Os números abaixo não são dados ao vivo. A leitura pública do Supabase precisa ser regularizada para novas atualizações.</p>}
         {validRange&&<div className="bo-quality-strip" role="status"><span className="bo-quality-label"><BoIcon name="shield" size={18}/><strong>Qualidade dos dados</strong> {unverifiedDays>0?unverifiedDays+" de "+shownHistory.length+" datas pendentes de validação":"Todas as datas completas e validadas"}</span><span className="bo-quality-latest">Último registro: <strong>{history[0]?.date?datePt(history[0].date):"indisponível"}</strong></span></div>}
         {!validRange&&<p className="bo-range-error" role="alert">A data inicial precisa ser anterior ou igual à data final.</p>}{validRange&&shownHistory.length===0&&<p className="bo-range-error" role="status">Não há registros para esse período. Selecione datas com dados importados.</p>}
         {boTab==="weekly"&&<section className="bf-panel bo-weekly-panel"><div className="bo-section-head"><div><h2><BoIcon name="trophy" size={23}/> Resultados semanais</h2><p>Resumo para gestão, com evidências de fechamento e situação das missões.</p></div><label className="bo-weekly-selector">Semana <select value={selectedWeek} onChange={e=>setSelectedWeek(Number(e.target.value))}>{campaignWeeks.map((w,i)=><option value={i} key={w.start}>{w.label}</option>)}</select></label></div>
