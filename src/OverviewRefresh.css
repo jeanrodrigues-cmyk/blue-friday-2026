@@ -54,3 +54,32 @@
 .bf-overview .bf-command-area-refined .bf-command-area-open{display:inline-flex;align-items:center;gap:7px;color:#7fcaff;font-weight:800;white-space:nowrap}
 .bf-overview .bf-command-area-refined .bf-command-area-icon{background:#224682;color:#8bd2ff}
 .bf-overview .bf-command-toolbar{margin-top:4px}
+
+/* BO e Dados: compact command center, no hero banner. */
+.bf-layout .bo-executive.bo-v2{padding-top:20px!important}
+.bf-layout .bo-executive.bo-v2 .bo-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 20px;margin:0 0 17px;border:1px solid #344b79!important;border-radius:17px;background:linear-gradient(115deg,#142750,#101e42)!important;box-shadow:0 12px 26px rgba(0,0,0,.12)}
+.bf-layout .bo-executive.bo-v2 .bo-tabs{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.bf-layout .bo-executive.bo-v2 .bo-tabs button{border:1px solid transparent;border-radius:11px;padding:11px 14px;background:transparent;color:#b7cbed;font-weight:750;transition:background .15s,border-color .15s,color .15s}
+.bf-layout .bo-executive.bo-v2 .bo-tabs button:hover{background:#203969;color:#fff}
+.bf-layout .bo-executive.bo-v2 .bo-tabs button.active{background:#2b63d6!important;border-color:#538bfa!important;color:white!important;box-shadow:0 4px 13px #07163940}
+.bf-layout .bo-executive.bo-v2 .bo-nav-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bf-layout .bo-executive.bo-v2 .bo-range-filter{border:1px solid #3c5687;border-radius:11px;padding:5px 8px;background:#182d57;color:#c8daf5}
+.bf-layout .bo-executive.bo-v2 .bo-range-filter label{color:#b7c9e7;font-size:12px}
+.bf-layout .bo-executive.bo-v2 .bo-range-filter input{color:#f3f8ff;background:#12244b;border:1px solid #3a5384;border-radius:7px;padding:6px}
+.bf-layout .bo-executive.bo-v2 .bo-refresh{border-radius:11px!important;padding:12px 16px!important;background:#245fd4!important;color:#fff!important;font-weight:800}
+.bf-layout .bo-executive.bo-v2 .bo-quality-strip{border:1px solid #34507d!important;border-radius:13px!important;background:#12274d!important;color:#c9ddfb!important;padding:13px 18px;margin-bottom:18px}
+.bf-layout .bo-executive.bo-v2 .bo-quality-strip strong{color:#f6faff}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpis{gap:16px;margin-bottom:18px}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpi{border:1px solid #36517d!important;border-left:4px solid #64b9ff!important;border-radius:18px!important;background:linear-gradient(150deg,#172b55,#111f40)!important;box-shadow:0 12px 28px rgba(0,0,0,.15)!important;min-height:165px;padding:23px}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpi.red{border-left-color:#fb7e94!important}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpi.green{border-left-color:#3ad4aa!important}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpi strong{color:#fff!important;font-size:clamp(29px,2.8vw,40px);letter-spacing:-.045em}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpi .bo-kpi-body>span{color:#b8cdee!important;font-weight:750}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpi small{color:#9fb7dd!important}
+.bf-layout .bo-executive.bo-v2 .bo-v2-kpi .bo-kpi-icon{background:#203d77!important;border-radius:14px;color:#7fcaff!important}
+.bf-layout .bo-executive.bo-v2 .bo-v2-main{gap:18px}
+.bf-layout .bo-executive.bo-v2 .bo-v2-main>.bf-panel,.bf-layout .bo-executive.bo-v2 .bo-weekly-panel{border:1px solid #344d79!important;border-radius:19px!important;background:#121f43!important;box-shadow:0 12px 28px rgba(0,0,0,.13)!important}
+.bf-layout .bo-executive.bo-v2 .bo-section-head h2{color:#f3f8ff!important;letter-spacing:-.025em}
+.bf-layout .bo-executive.bo-v2 .bo-section-head p{color:#abc2e8!important}
+@media(max-width:1100px){.bf-layout .bo-executive.bo-v2 .bo-nav{flex-direction:column;align-items:stretch}.bf-layout .bo-executive.bo-v2 .bo-nav-actions{justify-content:space-between}}
+@media(max-width:700px){.bf-layout .bo-executive.bo-v2 .bo-nav{padding:12px}.bf-layout .bo-executive.bo-v2 .bo-tabs button{padding:9px 11px;font-size:12px}.bf-layout .bo-executive.bo-v2 .bo-range-filter{flex-wrap:wrap}}
