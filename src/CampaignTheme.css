@@ -9,7 +9,7 @@
 .bf-layout .bf-menu-label,.bf-layout .bf-menu-text,.bf-layout .bf-user-role{color:#b2c5eb!important}
 .bf-layout .bf-menu button:hover,.bf-layout .bf-menu button[aria-current="page"]{background:#172d66!important;color:#fff!important}
 .bf-layout .bf-top button,.bf-layout .bf-top span,.bf-layout .bf-top strong{color:inherit}
-.bf-layout .bf-workspace::before{content:"🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY       🔥  BLUE FRIDAY";display:block;background:#ed0750;color:#fff;font-size:11px;line-height:31px;font-weight:900;letter-spacing:.09em;white-space:nowrap;overflow:hidden;text-align:center;height:31px}
+
 .bf-layout .brands,.bf-layout .bf-command,.bf-layout .bf-overview{color:#f0f5ff!important}
 .bf-layout .brands h1,.bf-layout .brands h2,.bf-layout .brands .brands-value,.bf-layout .brands-line strong,.bf-layout .bf-command h1,.bf-layout .bf-command h2,.bf-layout .bf-overview h1,.bf-layout .bf-overview h2{color:#f7faff!important}
 .bf-layout .brands-sub,.bf-layout .brands-caption,.bf-layout .brands-card-label,.bf-layout .brands-kicker,.bf-layout .brands-note,.bf-layout .brands-line,.bf-layout .brands-line span,.bf-layout .qp-eyebrow,.bf-layout .rc-eyebrow,.bf-layout .rs-eyebrow,.bf-layout .ra-eyebrow{color:#adc1e8!important}
@@ -41,4 +41,4 @@
 .bf-layout .ra-section-label,.bf-layout .rs-section-label{color:#a8c5f2!important}
 .bf-layout .bf-command-hero,.bf-layout .bf-overview-hero{background:linear-gradient(120deg,#11285d,#102044)!important;border:1px solid #344d7d!important;border-radius:22px!important}
 .bf-layout .bf-command-eyebrow,.bf-layout .bf-command-hero strong{color:#69c3ff!important}
-@media(max-width:700px){.bf-layout .bf-workspace::before{font-size:10px;line-height:27px;height:27px}.bf-layout .brands-card,.bf-layout .brands-panel{border-radius:15px!important}}
+@media(max-width:700px){.bf-layout .brands-card,.bf-layout .brands-panel{border-radius:15px!important}}
