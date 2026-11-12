@@ -946,3 +946,13 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bo-v2 .bo-range-error{border-radius:12px;line-height:1.5}
 .bo-v2 .bo-v2-bottom .bo-summary-card,.bo-v2 .bo-v2-bottom .bo-summary-card *{color:#e7f2ff}
 @media(max-width:850px){.bo-v2 .bo-special-grid{grid-template-columns:1fr}.bo-v2 .bo-special-missions{padding:16px}.bo-v2 .bo-period-summary{gap:14px}}
+
+/* BO | filtro semanal e contraste do resumo */
+.bo-v2 .bo-week-picker{display:inline-flex;align-items:center;gap:9px;padding:8px 11px;background:#203762;border:1px solid #44649a;border-radius:12px;color:#c7dcff;font-size:12px;font-weight:750;white-space:nowrap}
+.bo-v2 .bo-week-picker select{max-width:230px;background:#102448;border:1px solid #5778b2;border-radius:8px;color:#fff;padding:8px 10px;font:inherit;cursor:pointer}
+.bo-v2 .bo-week-picker select:focus-visible{outline:2px solid #6bc5ff;outline-offset:2px}
+.bo-v2 .bo-nav-actions{flex-wrap:wrap;gap:10px}
+.bo-v2 .bo-v2-bottom .bf-panel .bo-summary-card strong,.bo-v2 .bo-v2-bottom .bf-panel .bo-summary-card b{color:#fff}
+.bo-v2 .bo-v2-bottom .bf-panel :is(.bo-summary-grid,.bo-summary-stat,.bo-summary-item) :is(strong,b){color:#f5faff}
+.bo-v2 .bo-v2-bottom .bf-panel :is(.bo-summary-grid,.bo-summary-stat,.bo-summary-item) :is(small,span,p){color:#b4c9ec}
+@media(max-width:700px){.bo-v2 .bo-week-picker{width:100%;justify-content:space-between}.bo-v2 .bo-week-picker select{flex:1;max-width:none}.bo-v2 .bo-range-filter{flex-wrap:wrap}}
