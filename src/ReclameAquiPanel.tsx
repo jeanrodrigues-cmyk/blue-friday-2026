@@ -1,6 +1,7 @@
 import {useCallback,useEffect,useMemo,useState,type FormEvent} from "react";
 import {supabase} from "./lib/supabase";
 import "./BrandsPanel.css";
+import "./ReclameAquiPanel.css";
 
 type Tri=boolean|null;
 type Week={week_start:string;week_end:string;assigned:number|null;answered:number|null;evaluated:number|null;good_evaluations:number|null;evaluation_pct:number|null;good_pct:number|null;overdue_15_count:number|null;contact_d1_ok:Tri;first_action_d1_ok:Tri;reputation_stable:Tri;vfn_stable:Tri;solution_stable:Tri;reward_approved:boolean;gift_approved:boolean;source:string;notes:string|null};
