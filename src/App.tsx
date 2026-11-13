@@ -100,6 +100,7 @@ export default function App() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [view, setView] = useState("Visão geral");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [metricError, setMetricError] = useState("");
   const [boSnapshotActive,setBoSnapshotActive] = useState(false);
@@ -335,16 +336,18 @@ export default function App() {
   const currentMetric=(key:string)=>selected?.[key==="bo_open"?"open":key==="bo_resolved"?"resolved":"backlog"];
   const newestIngest="07/11/2026, 01h12"; // Última ingestão conhecida, não é atualização em tempo real.
   return <main className="bf-layout"><div className="bf-running-banner" aria-label="Blue Friday 2026"><div className="bf-running-track" aria-hidden="true">{Array.from({length:24},(_,i)=><span key={i}>🔥 <strong>BLUE FRIDAY</strong> <em>2026</em></span>)}</div></div>
-    <aside className="bf-side bf-side-light" aria-label="Navegação principal">
-      <div className="bf-brand"><BrandIcon small/><div><strong>BLUE <span>FRIDAY 2026</span></strong><small>Performance da Campanha</small></div></div>
-      <p className="bf-menu-label">NAVEGAÇÃO</p>
-      <button type="button" aria-current={view==="Visão geral"?"page":undefined} className={view==="Visão geral"?"bf-menu selected":"bf-menu"} onClick={()=>setView("Visão geral")}><span className="bf-menu-icon"><BoIcon name="home" size={19}/></span><span className="bf-menu-text">Visão geral</span></button>
-      <p className="bf-menu-label">ÁREAS DA CAMPANHA</p>
-      {(profile.role==="collaborator"?["Minha performance"]:areas).map(area=>{
-        const iconName:Record<string,string>={"BO e Dados":"layers","Reembolso":"refresh","Mídias e Procon":"shield","Recorrência":"calendar","Chargeback":"bag","Resoluções":"check","Quero Pago":"chart","Marcas":"target","Reclame Aqui":"document","Minha performance":"trend"};
-        return <button type="button" key={area} aria-current={view===area?"page":undefined} className={view===area?"bf-menu selected":"bf-menu"} onClick={()=>setView(area)}><span className="bf-menu-icon"><BoIcon name={iconName[area]??"chart"} size={19}/></span><span className="bf-menu-text">{area}</span>{area==="BO e Dados"&&<span className="bf-new">NOVO</span>}<span className="bf-menu-chevron" aria-hidden="true">›</span></button>;
-      })}
-      <div className="bf-side-bottom"><span className="bf-campaign-symbol"><BoIcon name="target" size={21}/></span><span className="bf-campaign-copy"><strong>CAMPANHA ATIVA</strong><b>Blue Friday 2026</b><small><span className="bf-online-dot"/> Em andamento</small></span></div>
+    <aside className={`bf-side bf-side-light bf-side-refined${sidebarCollapsed?" bf-side-collapsed":""}`} aria-label="Navegação principal">
+      <div className="bf-brand"><BrandIcon small/><div className="bf-brand-copy"><strong>Blue Friday</strong><small>Campanha 2026</small></div><button type="button" className="bf-side-toggle" onClick={()=>setSidebarCollapsed(v=>!v)} aria-label={sidebarCollapsed?"Expandir menu lateral":"Recolher menu lateral"} aria-expanded={!sidebarCollapsed} title={sidebarCollapsed?"Expandir menu":"Recolher menu"}><span aria-hidden="true">{sidebarCollapsed?"»":"«"}</span></button></div>
+      <div className="bf-side-navigation">
+        <p className="bf-menu-label">PRINCIPAL</p>
+        <button type="button" title="Visão geral" aria-label="Visão geral" aria-current={view==="Visão geral"?"page":undefined} className={view==="Visão geral"?"bf-menu selected":"bf-menu"} onClick={()=>setView("Visão geral")}><span className="bf-menu-icon"><BoIcon name="home" size={21}/></span><span className="bf-menu-text">Visão geral</span></button>
+        <p className="bf-menu-label">ÁREAS DA CAMPANHA</p>
+        {(profile.role==="collaborator"?["Minha performance"]:areas).map(area=>{
+          const iconName:Record<string,string>={"BO e Dados":"layers","Reembolso":"refresh","Mídias e Procon":"shield","Recorrência":"calendar","Chargeback":"bag","Resoluções":"check","Quero Pago":"chart","Marcas":"target","Reclame Aqui":"document","Minha performance":"trend"};
+          return <button type="button" key={area} title={area} aria-label={area} aria-current={view===area?"page":undefined} className={view===area?"bf-menu selected":"bf-menu"} onClick={()=>setView(area)}><span className="bf-menu-icon"><BoIcon name={iconName[area]??"chart"} size={21}/></span><span className="bf-menu-text">{area}</span>{area==="BO e Dados"&&<span className="bf-new">NOVO</span>}<span className="bf-menu-chevron" aria-hidden="true">›</span></button>;
+        })}
+      </div>
+      <div className="bf-side-bottom" title="Campanha em andamento"><span className="bf-online-dot"/><span className="bf-side-status-label">Campanha em andamento</span></div>
     </aside>
     <div className="bf-workspace"><header className="bf-top bf-top-simplified"><div className="bf-top-context"><span className="bf-top-context-dot" aria-hidden="true"/><span className="bf-top-context-label">BLUE FRIDAY 2026</span><span className="bf-top-context-divider" aria-hidden="true">/</span><strong>{view}</strong></div></header>
       {view==="Reembolso"?<div className="bf-body"><RefundPanel/></div>:view==="Marcas"?<div className="bf-body"><BrandsPanel/></div>:view==="Chargeback"?<div className="bf-body"><ChargebackPanel admin={profile.role==="admin"}/></div>:view==="Reclame Aqui"?<div className="bf-body"><ReclameAquiPanel admin={profile.role==="admin"}/></div>:view==="Quero Pago"?<div className="bf-body"><QueroPagoPanel/></div>:view==="Recorrência"?<div className="bf-body"><RecorrenciaPanel/></div>:view==="Resoluções"?<div className="bf-body"><ResolucoesPanel/></div>:view==="BO e Dados"?<div className="bf-body bo-executive bo-v2">
