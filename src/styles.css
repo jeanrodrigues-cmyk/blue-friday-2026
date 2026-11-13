@@ -1101,3 +1101,54 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bo-v2 button:focus-visible,.bo-v2 select:focus-visible,.bo-v2 input:focus-visible{outline:2px solid #7bd5ff;outline-offset:2px}
 @media(max-width:900px){.bf-body.bo-executive.bo-v2{padding:18px 14px 42px}.bo-v2 .bo-nav{align-items:stretch;flex-direction:column}.bo-v2 .bo-tabs,.bo-v2 .bo-nav-actions{width:100%}.bo-v2 .bo-range-filter{flex-wrap:wrap}}
 @media(max-width:560px){.bo-v2 .bo-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.bo-v2 .bo-tabs button{padding:10px 7px;font-size:11px}.bo-v2 .bo-week-picker{width:100%;justify-content:space-between}.bo-v2 .bo-week-picker select{flex:1;min-width:0}.bo-v2 .bo-range-filter{width:100%}.bo-v2 .bo-range-filter label{flex:1 1 110px}.bo-v2 .bo-range-filter input{width:100%;min-width:0}.bo-v2 .bo-refresh{width:100%;justify-content:center}}
+
+
+/* BO & Dados | full layout redesign v3. No data or logic changes. */
+.bf-body.bo-v2{--bo-surface:#152747;--bo-stroke:#35547c;--bo-text:#f5f8ff;--bo-subtle:#adc2e3;gap:22px!important;max-width:1560px;margin-inline:auto}
+.bo-v2 .bo-nav{display:grid!important;grid-template-columns:minmax(0,1fr);gap:14px!important;padding:16px 20px!important;background:linear-gradient(110deg,#1a335b,#112446)!important}
+.bo-v2 .bo-tabs{border-bottom:1px solid #35517a;padding-bottom:12px}
+.bo-v2 .bo-nav-actions{justify-content:flex-start!important;gap:12px}
+.bo-v2 .bo-week-picker{min-width:235px}
+.bo-v2 .bo-range-filter{gap:12px}
+.bo-v2 .bo-refresh{margin-left:auto;background:linear-gradient(120deg,#266bdb,#454fce)!important;border-color:#6389f4!important;padding-inline:18px}
+.bo-v2 .bo-range-error[role="status"]{margin:0!important;border:1px solid #385d8a!important;background:#162b4c!important;color:#b8d2f3!important;padding:10px 15px!important;font-size:12px!important;box-shadow:none!important}
+.bo-v2 .bo-quality-strip{margin:0!important;padding:10px 16px!important;background:#132c49!important;border-color:#2c5779!important}
+.bo-v2 .bo-v2-kpis{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
+.bo-v2 .bo-v2-kpis>*,.bo-v2 .bo-v2-kpis>div{min-width:0;min-height:168px!important;padding:22px!important;border-radius:19px!important;border:1px solid #385c88!important;background:linear-gradient(145deg,#1a345d,#132544)!important;box-shadow:0 12px 28px #03122c30,inset 0 1px #ffffff12!important;position:relative;overflow:hidden}
+.bo-v2 .bo-v2-kpis>*:nth-child(1){border-top:3px solid #56baff!important}
+.bo-v2 .bo-v2-kpis>*:nth-child(2){border-top:3px solid #ff839e!important}
+.bo-v2 .bo-v2-kpis>*:nth-child(3){border-top:3px solid #46d7b0!important}
+.bo-v2 .bo-v2-kpis .bo-kpi-icon{width:55px;height:55px;border-radius:15px!important;background:#204b81!important;border:1px solid #477bb4!important}
+.bo-v2 .bo-v2-kpis .bo-kpi-body{min-width:0}
+.bo-v2 .bo-v2-kpis strong{color:#fff!important;letter-spacing:-.045em}
+.bo-v2 .bo-v2-main{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr)!important;gap:18px!important;align-items:stretch}
+.bo-v2 .bo-v2-main>.bf-panel{min-width:0;padding:23px!important;border-radius:19px!important}
+.bo-v2 .bo-v2-main h2{font-size:20px!important;letter-spacing:-.035em}
+.bo-v2 .bo-v2-mission{background:radial-gradient(circle at 0% 0%,#214c7540,transparent 60%),linear-gradient(140deg,#192f54,#112442)!important}
+.bo-v2 .bo-v2-chart{background:linear-gradient(145deg,#182d52,#112341)!important}
+.bo-v2 .bo-v2-progress{height:11px!important;border-radius:30px!important;overflow:hidden}
+.bo-v2 .bo-period-improvement{border-radius:12px!important;background:#0f463e!important;border:1px solid #257c69!important;color:#d6fff3!important;padding:12px 14px!important}
+.bo-v2 .bo-special-missions{padding:22px!important;background:linear-gradient(145deg,#192f52,#112443)!important}
+.bo-v2 .bo-special-heading{margin-bottom:18px!important}
+.bo-v2 .bo-special-heading h2{font-size:21px!important}
+.bo-v2 .bo-special-grid{gap:15px!important}
+.bo-v2 .bo-special-card{display:flex!important;flex-direction:column;gap:10px;min-height:260px!important;padding:20px!important;border-radius:16px!important;background:linear-gradient(145deg,#1b355b,#15294b)!important;border:1px solid #42648e!important}
+.bo-v2 .bo-special-card h3{font-size:17px!important}
+.bo-v2 .bo-special-card>p{line-height:1.6}
+.bo-v2 .bo-special-card-bottom{margin-top:auto!important;padding-top:13px!important}
+.bo-v2 .bo-special-card-bottom strong{color:#8fd5ff!important;font-size:24px!important}
+.bo-v2 .bo-special-condition{margin-top:6px!important;padding:10px 12px!important;background:#243650!important;border:1px solid #495d77!important;border-radius:10px!important;color:#f4d6a0!important;font-size:12px!important}
+.bo-v2 .bo-special-lock{background:#213453!important;border:1px solid #45617e!important;border-radius:11px!important;padding:12px 14px!important;color:#c6d9f2!important}
+.bo-v2 .bo-productivity{padding:22px!important}
+.bo-v2 .bo-table-scroll{overflow-x:auto;border-radius:13px;border:1px solid #344f77}
+.bo-v2 .bo-table{width:100%;border-collapse:collapse}
+.bo-v2 .bo-table th{background:#223d66!important;color:#dbeaff!important;padding:14px 16px!important;font-size:12px!important;text-align:left}
+.bo-v2 .bo-table td{padding:13px 16px!important;border-bottom:1px solid #304b72!important;color:#d8e6fa!important;font-size:13px!important}
+.bo-v2 .bo-table tbody tr:nth-child(even){background:#1a3053!important}
+.bo-v2 .bo-table tbody tr:hover{background:#24446e!important}
+.bo-v2 .bo-period-summary{border-radius:16px!important;padding:18px 22px!important;background:linear-gradient(115deg,#1d3b68,#152a4c)!important;border:1px solid #426795!important}
+.bo-v2 .bo-v2-bottom .bf-panel{padding:22px!important}
+.bo-v2 .bo-v2-bottom .bo-summary-grid{gap:12px}
+.bo-v2 .bo-v2-bottom .bo-summary-grid>*{border-radius:12px;border:1px solid #3a5b84;background:#1d355a}
+@media(max-width:1080px){.bo-v2 .bo-v2-main{grid-template-columns:1fr!important}.bo-v2 .bo-v2-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}.bo-v2 .bo-refresh{margin-left:0}}
+@media(max-width:640px){.bo-v2 .bo-v2-kpis{grid-template-columns:1fr!important}.bo-v2 .bo-nav-actions>*{width:100%}.bo-v2 .bo-week-picker select{width:100%}.bo-v2 .bo-special-grid{grid-template-columns:1fr!important}.bo-v2 .bo-v2-main>.bf-panel,.bo-v2 .bo-special-missions,.bo-v2 .bo-productivity{padding:16px!important}}
