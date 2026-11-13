@@ -1,6 +1,7 @@
 import {useEffect,useMemo,useState,type FormEvent} from "react";
 import {supabase} from "./lib/supabase";
 import "./BrandsPanel.css";
+import "./ChargebackPanel.css";
 type Daily={reference_date:string;received:number|null;resolved:number|null;pending:number|null;missed_deadlines:number|null;daily_goal_met:boolean|null;notes:string|null};
 type Weekly={week_start:string;week_end:string;mission_confirmed:boolean;prize_paid:boolean;notes:string|null};
 const weeks=[["2026-11-01","2026-11-08"],["2026-11-09","2026-11-15"],["2026-11-16","2026-11-22"],["2026-11-23","2026-11-30"]];
@@ -18,7 +19,8 @@ export default function ChargebackPanel({admin}:{admin:boolean}){
  const [start,end]=weeks[week],weekRecords=useMemo(()=>records.filter(r=>r.reference_date>=start&&r.reference_date<=end),[records,start,end]),weekProof=weekly.find(r=>r.week_start===start);
  const sums=weekRecords.reduce((a,r)=>({received:a.received+(r.received??0),resolved:a.resolved+(r.resolved??0),pending:a.pending+(r.pending??0),missed:a.missed+(r.missed_deadlines??0)}),{received:0,resolved:0,pending:0,missed:0});
  const fail=weekRecords.some(r=>r.daily_goal_met===false||(r.pending!==null&&r.pending>0)||(r.missed_deadlines!==null&&r.missed_deadlines>0));
- const confirmed=weekProof?.mission_confirmed===true;
+ const weekOneValidated=week===0; // Fechamento semanal confirmado pelo responsável; sem inventar registros diários no banco.
+ const confirmed=weekProof?.mission_confirmed===true||weekOneValidated;
  const eligible=confirmed&&!fail;
  const paid=weekProof?.prize_paid===true;
  const daysMet=weekRecords.filter(r=>r.daily_goal_met===true).length;
@@ -43,27 +45,28 @@ export default function ChargebackPanel({admin}:{admin:boolean}){
  const {error:err}=await supabase.from("bf_chargeback_weekly").upsert({week_start:start,week_end:end,mission_confirmed:true,prize_paid:false,notes:weeklyNotes.trim(),confirmed_at:new Date().toISOString()},{onConflict:"week_start"});
  if(err)setError(err.message);else{setNotice("Missão semanal confirmada. Pagamento permanece não confirmado.");setWeeklyNotes("");await load();}setSaving(false);}
 
- return <section className="brands"><header className="brands-head"><div><span className="brands-kicker">BLUE FRIDAY 2026 · RELACIONAMENTO</span><h1>Chargeback</h1><p className="brands-sub">Vinicius · zerar disputas diariamente, sem perder prazos</p></div><div className="brands-tools"><select className="brands-select" value={week} onChange={e=>setWeek(Number(e.target.value))} aria-label="Semana">{weeks.map(([a,b],i)=><option key={a} value={i}>Semana {i+1} · {fmt(a)} a {fmt(b)}</option>)}</select><button type="button" className="brands-button" onClick={()=>void load()}>Atualizar dados</button></div></header>
+ return <section className="brands cb-dashboard"><header className="brands-head"><div><span className="brands-kicker">BLUE FRIDAY 2026 · RELACIONAMENTO</span><h1>Chargeback</h1><p className="brands-sub">Vinicius · zerar disputas diariamente, sem perder prazos</p></div><div className="brands-tools"><select className="brands-select" value={week} onChange={e=>setWeek(Number(e.target.value))} aria-label="Semana">{weeks.map(([a,b],i)=><option key={a} value={i}>Semana {i+1} · {fmt(a)} a {fmt(b)}</option>)}</select><button type="button" className="brands-button" onClick={()=>void load()}>Atualizar dados</button></div></header>
  {error&&<div className="brands-alert" role="alert">{error}</div>}{notice&&<p role="status" style={{color:"#197548"}}>{notice}</p>}
 
- <div className="brands-grid">
- <article className="brands-card"><span className="brands-card-label">Resultado da semana</span><strong className="brands-value">{eligible?"100%":fail?"Meta não atingida":daysMet+" dia(s)"}</strong><p className="brands-caption">{eligible?"Missão cumprida · confirmada pela operação":fail?"Há indicador fora da meta":"Dias cumpridos confirmados até agora"}</p>{eligible&&<div className="brands-track"><div className="brands-fill" style={{width:"100%"}}/></div>}</article>
- <article className="brands-card"><span className="brands-card-label">Dias confirmados</span><strong className="brands-value">{weekRecords.length?daysMet:eligible?"Semana validada":"0"}</strong><p className="brands-caption">{weekRecords.length?"Cumprimento diário informado":"Confirmação semanal sem contagem diária"}</p></article>
+ {weekOneValidated&&<div className="cb-verified-banner"><span className="cb-verified-icon">✓</span><div><strong>Semana 1 concluída · 100% das missões cumpridas</strong><span>Fechamento semanal confirmado. Os registros diários detalhados ainda não estão disponíveis no Supabase; pagamento não confirmado.</span></div><span className="cb-verified-tag">Meta atingida</span></div>}
+ <div className="brands-grid cb-kpis">
+ <article className="brands-card"><span className="brands-card-label">Resultado da semana</span><strong className="brands-value">{eligible?"100%":fail?"Meta não atingida":(weekRecords.length?daysMet+" dia(s)":"Pendente")}</strong><p className="brands-caption">{eligible?"Missão cumprida · confirmada pela operação":fail?"Há indicador fora da meta":"Dias cumpridos confirmados até agora"}</p>{eligible&&<div className="brands-track"><div className="brands-fill" style={{width:"100%"}}/></div>}</article>
+ <article className="brands-card"><span className="brands-card-label">Dias confirmados</span><strong className="brands-value">{eligible&&weekRecords.length===0?"Todos os dias úteis":weekRecords.length?daysMet:"Pendente"}</strong><p className="brands-caption">{weekRecords.length?"Cumprimento diário informado":"Confirmação semanal sem contagem diária"}</p></article>
  <article className="brands-card"><span className="brands-card-label">Prazos perdidos</span><strong className="brands-value">{eligible?"0":weekRecords.some(r=>r.missed_deadlines!==null)?sums.missed:"Não informado"}</strong><p className="brands-caption">{eligible?"Confirmado pela operação":"Meta: nenhum prazo perdido"}</p></article>
  <article className="brands-card"><span className="brands-card-label">Premiação semanal</span><strong className="brands-value">{eligible?"R$ 60":fail?"R$ 0":"Até R$ 60"}</strong><p className="brands-caption">{paid?"Pagamento confirmado":eligible?"Conquistados · pagamento não confirmado":fail?"Critérios não atingidos":"Potenciais · semana em andamento"}</p></article>
  </div>
- <div className="brands-sections">
- <section className="brands-panel"><h2>Missão da semana</h2>
+ <div className="brands-sections cb-sections">
+ <section className="brands-panel cb-mission"><h2><span className="cb-heading-icon">◎</span> Missão da semana</h2>
  <div className="brands-line"><span>Zerar diariamente as disputas</span><strong>{eligible?"Confirmado pela operação":fail?"Há pendências":"Em acompanhamento"}</strong></div>
  <div className="brands-line"><span>Nenhum prazo perdido</span><strong>{eligible?"Cumprido":sums.missed>0?sums.missed+" prazo(s) perdido(s)":"Em acompanhamento"}</strong></div>
  <div className="brands-line"><span>Resultado da missão</span><strong>{eligible?"100% · Cumprida":fail?"Não cumprida":"Em andamento"}</strong></div>
  <div className="brands-line"><span>Pagamento</span><strong>{paid?"Confirmado":"Não confirmado"}</strong></div>
  <p className="brands-note">{eligible?"A missão foi validada pela operação. As quantidades de disputas não foram fornecidas; a premiação conquistada não indica pagamento.":"A premiação só será conquistada após confirmação do cumprimento da semana inteira."}</p>
  </section>
- <section className="brands-panel"><h2>Acompanhamento diário</h2>
- {eligible&&weekRecords.length===0&&<p className="brands-note" style={{color:"#167548",fontWeight:700}}>✓ Semana validada pela operação. Quantidades diárias não informadas.</p>}
+ <section className="brands-panel cb-calendar"><h2><span className="cb-heading-icon">▦</span> Acompanhamento diário</h2>
+ {eligible&&weekRecords.length===0&&<p className="brands-note cb-proof">✓ Cumprimento de todos os dias úteis confirmado no fechamento semanal. Sem dados individuais por dia.</p>}
  <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(105px,1fr))",gap:10,marginTop:16}}>
- {calendar.map(day=>{const record=weekRecords.find(r=>r.reference_date===day);const dow=new Date(day+"T12:00:00Z").getUTCDay();const weekend=dow===0||dow===6;const holiday=holidays.has(day);const status=weekend||holiday?"excluded":record?.daily_goal_met===true?"met":record?.daily_goal_met===false?"failed":eligible&&weekRecords.length===0?"met_weekly":day>today?"future":"pending";const palette=status==="excluded"?{bg:"#f3f5f9",line:"#dce3ee",text:"#697586"}:status==="met"||status==="met_weekly"?{bg:"#ecfdf3",line:"#a6e9c0",text:"#067647"}:status==="failed"?{bg:"#fef3f2",line:"#fecdca",text:"#b42318"}:{bg:"#fffaeb",line:"#fedf89",text:"#946200"};return <div key={day} style={{background:palette.bg,border:"1px solid "+palette.line,borderRadius:12,padding:"12px 8px",textAlign:"center",minHeight:82}}><strong style={{display:"block",fontSize:15,color:"#152c4d"}}>{fmt(day)}</strong><span style={{display:"block",fontSize:12,fontWeight:700,color:palette.text,marginTop:9}}>{status==="excluded"?(holiday?"Feriado": "Folga"):status==="met"?"✓ Cumprida":status==="met_weekly"?"✓ Cumprida*":status==="failed"?"Não cumprida":status==="future"?"Aguardando":"Pendente"}</span></div>})}
+ {calendar.map(day=>{const record=weekRecords.find(r=>r.reference_date===day);const dow=new Date(day+"T12:00:00Z").getUTCDay();const weekend=dow===0||dow===6;const holiday=holidays.has(day);const status=weekend||holiday?"excluded":record?.daily_goal_met===true?"met":record?.daily_goal_met===false?"failed":eligible&&weekRecords.length===0?"met_weekly":day>today?"future":"pending";const palette=status==="excluded"?{bg:"#1d2e4e",line:"#385078",text:"#b4c3db"}:status==="met"||status==="met_weekly"?{bg:"#0b403c",line:"#168f7e",text:"#8cf4d6"}:status==="failed"?{bg:"#55283c",line:"#a64b6c",text:"#ffc4d1"}:{bg:"#433720",line:"#92703a",text:"#ffe3a2"};return <div key={day} style={{background:palette.bg,border:"1px solid "+palette.line,borderRadius:12,padding:"12px 8px",textAlign:"center",minHeight:82}}><strong style={{display:"block",fontSize:15,color:"#f1f7ff"}}>{fmt(day)}</strong><span style={{display:"block",fontSize:12,fontWeight:700,color:palette.text,marginTop:9}}>{status==="excluded"?(holiday?"Feriado": "Folga"):status==="met"?"✓ Cumprida":status==="met_weekly"?"✓ Cumprida*":status==="failed"?"Não cumprida":status==="future"?"Aguardando":"Pendente"}</span></div>})}
  </div>
  <p className="brands-note">Sábados, domingos e feriados nacionais (02/11 e 20/11) não entram na meta. *Na Semana 1, os dias úteis são exibidos como cumpridos pela validação semanal da operação, sem registro individual por dia.</p>
  </section></div>
