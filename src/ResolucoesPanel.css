@@ -63,3 +63,43 @@
 @media(max-width:1250px){.rs-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.rs-kpis{grid-template-columns:1fr}.rs-kpis .brands-card{min-height:150px;padding:22px 20px 20px 83px}}
 @media(prefers-reduced-motion:reduce){.rs-kpis .brands-card{transition:none}.rs-kpis .brands-card:hover{transform:none}}
+
+
+/* Blue Friday Resolucoes: premium visual system */
+.rs-dashboard .rs-header{position:relative;overflow:hidden;border-color:#33598f;background:radial-gradient(ellipse at 38% 0%,rgba(41,104,191,.27),transparent 60%),linear-gradient(110deg,#152c55,#101f42)}
+.rs-dashboard .rs-header:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:linear-gradient(#ff4389,#8a60ff,#26c6ff)}
+.rs-kpis .rs-kpi{min-width:0;min-height:190px;display:flex;flex-direction:row;align-items:flex-start;justify-content:flex-start;gap:18px;padding:24px 18px 20px 22px;border-width:1px;border-style:solid;border-radius:22px;box-shadow:0 10px 28px rgba(0,8,32,.22);background:#12254b}
+.rs-kpis .rs-kpi:before,.rs-kpis .rs-kpi:after{content:none!important;display:none!important}
+.rs-kpi-body{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding-top:10px}
+.rs-kpis .rs-kpi-icon{width:58px;height:58px;flex:0 0 58px;display:grid;place-items:center;border-radius:16px}
+.rs-kpis .rs-kpi-icon svg{width:30px;height:30px}
+.rs-kpis .rs-kpi .brands-card-label{font-size:13px;line-height:1.4;font-weight:750;color:#d1e2ff}
+.rs-kpis .rs-kpi .brands-value{font-size:36px;line-height:1.15;font-weight:850;color:#fff;letter-spacing:-.055em;overflow-wrap:anywhere}
+.rs-kpis .rs-kpi .brands-caption{font-size:12px;line-height:1.5;color:#b8ccea}
+.rs-kpis .rs-kpi-blue{border-color:#267ee5;background:linear-gradient(140deg,#093b77,#102a57 70%,#104d89)}
+.rs-kpis .rs-kpi-blue .rs-kpi-icon{background:#075cbd;border:1px solid #2b9bff;color:#83e5ff}
+.rs-kpis .rs-kpi-teal{border-color:#0baf9c;background:linear-gradient(140deg,#07504e,#0c2d44 70%,#0b5d5b)}
+.rs-kpis .rs-kpi-teal .rs-kpi-icon{background:#087e73;border:1px solid #23d8c0;color:#a6fff2}
+.rs-kpis .rs-kpi-purple{border-color:#8262eb;background:linear-gradient(140deg,#302a72,#192953 75%,#42266f)}
+.rs-kpis .rs-kpi-purple .rs-kpi-icon{background:#5d3ba8;border:1px solid #aa78ff;color:#e5c4ff}
+.rs-kpis .rs-kpi-red{border-color:#d14b8d;background:linear-gradient(140deg,#46234c,#202447 75%,#562341)}
+.rs-kpis .rs-kpi-red .rs-kpi-icon{background:#922d5c;border:1px solid #f05288;color:#ffd2df}
+.rs-kpis .rs-kpi-red .rs-result{font-size:24px;letter-spacing:-.03em;color:#ffe5ec}
+.rs-sections>.brands-panel{border-color:#3a598b;border-radius:21px;background:linear-gradient(155deg,#172d56,#101f41);box-shadow:0 12px 26px rgba(0,0,0,.14)}
+.rs-heading h2{display:flex;align-items:center;gap:10px;font-size:22px}
+.rs-heading-icon{display:inline-flex;color:#c29bff}
+.rs-star{width:42px;height:42px;border-color:#8c6840;background:linear-gradient(145deg,#755321,#302c47);color:#ffdb87}
+.rs-person{gap:12px;border-color:#3d5b8b;background:linear-gradient(120deg,#223e6c,#1b3056);transition:border-color .2s ease,transform .2s ease}
+.rs-person:hover{border-color:#6d9bdb;transform:translateY(-2px)}
+.rs-rank-medal{width:50px;height:52px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;font-size:18px;font-weight:900}
+.rs-rank-gold{background:linear-gradient(145deg,#9b6b19,#49371d);border:1px solid #d8a43c;color:#ffdb85}
+.rs-rank-silver{background:linear-gradient(145deg,#7289a9,#344864);border:1px solid #9eb3d0;color:#fff}
+.rs-person .brands-pill{margin-left:auto}
+.rs-line-title{display:flex;align-items:center;gap:11px;min-width:0}
+.rs-line-title svg{width:21px;height:21px;flex-shrink:0;color:#aa8dff}
+.rs-sections .brands-line{gap:16px;align-items:center;min-height:58px}
+.rs-sections .brands-line .brands-pill{flex-shrink:0}
+.rs-sections .brands-note{padding:12px 14px;border:1px solid #355a91;border-radius:13px;background:#1a365f;color:#c5d9f6}
+@media(max-width:1300px){.rs-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.rs-kpis{grid-template-columns:1fr}.rs-kpis .rs-kpi{min-height:145px;padding:20px;gap:15px}.rs-kpis .rs-kpi-icon{width:49px;height:49px;flex-basis:49px}.rs-kpis .rs-kpi .brands-value{font-size:32px}.rs-person{flex-wrap:wrap}.rs-person .brands-pill{margin-left:auto}.rs-rank-medal{width:42px;height:44px}.rs-sections .brands-line{align-items:flex-start;flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.rs-person{transition:none}.rs-person:hover{transform:none}}
