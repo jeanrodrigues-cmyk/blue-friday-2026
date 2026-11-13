@@ -1012,3 +1012,32 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bf-area-card,.bf-overview-card{transition:border-color .2s,transform .2s,box-shadow .2s}
 .bf-area-card:hover,.bf-overview-card:hover{border-color:#448dd2;transform:translateY(-2px);box-shadow:0 15px 34px #020c2938}
 @media(prefers-reduced-motion:reduce){.bf-area-card,.bf-overview-card{transition:none}}
+
+/* Media and Procon: unified premium dark panels and a persistent weekly filter */
+.mp-page .mp-period-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:20px 24px;margin:4px 0 17px;border-radius:19px;border:1px solid #3d78b1;background:radial-gradient(circle at 0 0,#235e9955,transparent 58%),linear-gradient(120deg,#173462,#102342);box-shadow:inset 0 1px #ffffff15,0 12px 27px #010b282b}
+.mp-page .mp-period-toolbar>div{display:flex;flex-direction:column;gap:5px}
+.mp-page .mp-period-eyebrow{font-size:10px;letter-spacing:.15em;color:#7bd4ff;font-weight:850}
+.mp-page .mp-period-toolbar strong{font-size:19px;color:#fff}
+.mp-page .mp-period-toolbar small{font-size:12px;color:#bcd0ec}
+.mp-page .mp-period-toolbar label{display:flex;align-items:center;gap:10px;color:#d9eaff;font-size:12px;font-weight:800}
+.mp-page .mp-period-toolbar label svg{color:#69c9ff}
+.mp-page .mp-period-toolbar select{min-height:44px;max-width:280px;padding:10px 14px;border-radius:11px;border:1px solid #6098d5;background:#0e264e;color:#fff;font:inherit;font-size:12px;cursor:pointer}
+.mp-page .mp-period-toolbar select:focus-visible{outline:2px solid #74d7ff;outline-offset:3px}
+.mp-page .mp-overview-heading{padding:10px 0 2px}
+.mp-page .mp-overview-heading h2{color:#f8fbff!important}
+.mp-page .mp-overview-heading p{color:#c0d0ec}
+.mp-page .mp-week-panel{background:linear-gradient(145deg,#152e57,#10213f)!important;color:#eaf3ff;border:1px solid #3c6a9d!important;padding:24px!important}
+.mp-page .mp-week-panel :is(h2,h3,strong){color:#f5faff}
+.mp-page .mp-week-panel :is(p,small){color:#b9cde9}
+.mp-page .mp-week-panel select{background:#102b56;color:#f7fbff;border:1px solid #5684ba;border-radius:11px;min-height:42px;padding:8px 12px}
+.mp-page .mp-week-panel .mp-week-head{border-bottom:1px solid #385981;padding-bottom:16px;margin-bottom:17px}
+.mp-page .mp-week-panel :is(.mp-week-summary,.mp-week-status,.mp-week-reward,.mp-week-stat,.mp-week-mini-card){border-radius:14px}
+.mp-page .mp-week-panel :is(.mp-week-summary,.mp-week-status,.mp-week-reward,.mp-week-stat,.mp-week-mini-card){background:#1b365e;color:#f2f7ff;border:1px solid #416a9a}
+.mp-page .mp-week-panel :is(.mp-week-summary,.mp-week-status,.mp-week-reward,.mp-week-stat,.mp-week-mini-card) :is(h2,h3,strong,b){color:#fff}
+.mp-page .mp-week-panel :is(.mp-week-summary,.mp-week-status,.mp-week-reward,.mp-week-stat,.mp-week-mini-card) :is(span,small,p){color:#c2d3ed}
+.mp-page .mp-week-panel :is(.mp-week-chart,.mp-week-details,.mp-week-breakdown){background:#172d51;color:#eaf3ff;border:1px solid #3d6596;border-radius:15px}
+.mp-page .mp-reference-cards .mp-result-badge{border-radius:999px}
+.mp-page .mp-reference-cards .mp-result-progress{background:#304c74!important;overflow:hidden}
+.mp-page .mp-reference-cards .mp-result-progress span{background:linear-gradient(90deg,#378fff,#47d4f9)}
+.mp-page .mp-reference-cards .mp-result-success .mp-result-progress span{background:linear-gradient(90deg,#10ad86,#43e4ad)}
+@media(max-width:760px){.mp-page .mp-period-toolbar{padding:17px}.mp-page .mp-period-toolbar label{width:100%;flex-wrap:wrap}.mp-page .mp-period-toolbar select{flex:1;max-width:none}.mp-page .mp-week-panel{padding:16px!important}}
