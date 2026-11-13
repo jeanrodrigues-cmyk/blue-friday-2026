@@ -402,3 +402,37 @@
 .refund-v3 .refund-upload{background:linear-gradient(110deg,#2969e8,#6647d9)}
 .refund-v3 .refund-footer{color:#a9bedb}
 @media(max-width:720px){.refund-v3 .refund-v3-heading{padding:16px;align-items:flex-start}.refund-v3 .refund-v3-heading-mark{display:none}.refund-v3 .refund-v3-toolbar{padding:12px}.refund-v3 .refund-v3-controls label{flex:1 1 155px}}
+
+
+/* Blue Friday 2026: refund team official goals */
+.refund-team-campaign{margin-top:24px}
+.refund-team-period{font-size:12px;font-weight:700;color:#93c5fd;background:#1d3765;border:1px solid #35578c;border-radius:999px;padding:9px 13px;white-space:nowrap}
+.refund-team-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}
+.refund-team-summary article{display:flex;flex-direction:column;align-items:flex-start;gap:9px;padding:22px;border:1px solid #35517c;border-radius:18px;background:linear-gradient(140deg,#1b345f,#142447);color:#dbeafe}
+.refund-team-summary article:nth-child(2){background:linear-gradient(140deg,#153e56,#132b48);border-color:#246b7b}
+.refund-team-summary article:nth-child(3){background:linear-gradient(140deg,#302b65,#1a244e);border-color:#6156a4}
+.refund-team-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#295394;color:#9ad7ff}
+.refund-team-summary small,.refund-team-award small{font-size:12px;color:#bbd0ef;font-weight:700}
+.refund-team-summary strong{font-size:clamp(23px,2.4vw,34px);line-height:1.2;color:white;letter-spacing:-.04em}
+.refund-team-summary article>span:last-child{font-size:12px;color:#b6c7e6}
+.refund-team-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.refund-team-box{border:1px solid #344c77;background:#132344;border-radius:18px;padding:22px;color:#eaf2ff}
+.refund-team-box h3{display:flex;align-items:center;gap:10px;font-size:19px;margin:0 0 18px;color:white}
+.refund-team-box h3 svg{color:#7dc9ff}
+.refund-team-box p{color:#b7c9e7;font-size:12px;line-height:1.65;margin:14px 0 0}
+.refund-team-condition{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #30466e;padding:14px 0;font-size:13px}
+.refund-team-condition span{max-width:65%}
+.refund-team-condition b,.refund-team-people-grid b{font-size:11px;padding:7px 10px;border-radius:999px;white-space:nowrap}
+.refund-team-status-pending{background:#483b22;color:#ffdf9e}
+.refund-team-status-review{background:#1b4561;color:#a8e6ff}
+.refund-team-award{display:flex;align-items:center;gap:15px;padding:16px;margin-bottom:12px;border-radius:14px;border:1px solid #344f7d;background:#1b335b}
+.refund-team-award>span{display:grid;place-items:center;font-size:24px;width:47px;height:47px;border-radius:14px;background:#2b426d}
+.refund-team-award div{display:flex;flex-direction:column;gap:5px}
+.refund-team-award strong{font-size:16px;color:white}
+.refund-team-award em{font-size:11px;color:#bdd0ed;font-style:normal}
+.refund-team-people-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.refund-team-people-grid>div{display:flex;flex-direction:column;align-items:flex-start;gap:9px;background:#1c3157;border:1px solid #35507a;border-radius:14px;padding:17px}
+.refund-team-avatar{display:grid;place-items:center;width:37px;height:37px;background:#3156a4;color:white;border-radius:11px;font-weight:800}
+.refund-team-people-grid strong{color:white}
+.refund-team-people-grid small{color:#bdcdeb;font-size:12px}
+@media(max-width:900px){.refund-team-summary{grid-template-columns:1fr}.refund-team-columns{grid-template-columns:1fr}.refund-team-people-grid{grid-template-columns:1fr}.refund-team-period{display:none}}
