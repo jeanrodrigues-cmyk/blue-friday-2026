@@ -1041,3 +1041,32 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .mp-page .mp-reference-cards .mp-result-progress span{background:linear-gradient(90deg,#378fff,#47d4f9)}
 .mp-page .mp-reference-cards .mp-result-success .mp-result-progress span{background:linear-gradient(90deg,#10ad86,#43e4ad)}
 @media(max-width:760px){.mp-page .mp-period-toolbar{padding:17px}.mp-page .mp-period-toolbar label{width:100%;flex-wrap:wrap}.mp-page .mp-period-toolbar select{flex:1;max-width:none}.mp-page .mp-week-panel{padding:16px!important}}
+
+/* Media/Procon: fix light-on-light content and keep the campaign's dark visual language */
+.mp-page .mp-week-panel .mp-week-summary>div,
+.mp-page .mp-week-panel .mp-reference-chart,
+.mp-page .mp-week-panel .mp-reference-mini,
+.mp-page .mp-week-panel .mp-reference-prize{
+ background:linear-gradient(145deg,#1c3b67,#172d50)!important;
+ border:1px solid #406994!important;
+ color:#edf6ff!important;
+ box-shadow:0 7px 24px #06142c26;
+}
+.mp-page .mp-week-panel .mp-week-summary>div :is(small,span,em),
+.mp-page .mp-week-panel .mp-reference-chart :is(p,small,span),
+.mp-page .mp-week-panel .mp-reference-mini :is(small,span),
+.mp-page .mp-week-panel .mp-reference-prize :is(small,span){color:#bdd2ee!important}
+.mp-page .mp-week-panel .mp-week-summary>div :is(strong,b),
+.mp-page .mp-week-panel .mp-reference-chart :is(h3,strong,b),
+.mp-page .mp-week-panel .mp-reference-mini :is(h3,strong,b),
+.mp-page .mp-week-panel .mp-reference-prize :is(h3,strong,b){color:#fff!important}
+.mp-page .mp-week-panel .mp-reference-chart-grid{border-color:#41658d}
+.mp-page .mp-week-panel .mp-reference-mini-row>div+div{border-left-color:#45628b}
+.mp-page .mp-week-panel .mp-chart-day strong{color:#e5f2ff!important}
+.mp-page .mp-week-panel .mp-chart-day small{color:#a9c9ec!important}
+.mp-page .mp-week-panel .mp-week-status.is-success{background:linear-gradient(110deg,#105c52,#154d60)!important;border:1px solid #1dbf9d!important}
+.mp-page .mp-week-panel .mp-week-status.is-success :is(strong,p,small,span){color:#e5fff8!important}
+.mp-page .mp-week-panel .mp-week-status.is-success .mp-week-status-pill{background:#d3fff1!important;color:#07664e!important}
+.mp-page .mp-week-panel .mp-reference-chart .mp-chart-bar-0{background:#448cff}
+.mp-page .mp-week-panel .mp-reference-chart .mp-chart-bar-1{background:#ae87f9}
+.mp-page .mp-week-panel .mp-reference-chart .mp-chart-bar-2{background:#23c797}
