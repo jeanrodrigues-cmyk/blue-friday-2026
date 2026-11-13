@@ -45,3 +45,40 @@
 @media(max-width:620px){.brands{padding:14px 12px 32px}.brands-head{padding:18px}.brands h1{font-size:25px}.brands-card{min-height:145px}.brands-panel{padding:18px}.brands-tools>*{flex:1 1 auto}.brands-people{grid-template-columns:1fr}.brands-days{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 .brands-week-confirmed{display:flex;flex-direction:column;gap:5px;margin:0 0 16px;padding:14px 16px;border-radius:12px;background:#124b3c;border:1px solid #238b69;color:#e5fff3;font-size:12px;line-height:1.5}.brands-week-confirmed strong{font-size:14px;color:#a5ffcf}.brands-week-confirmed span{color:#c4e9d8}
+
+/* Unified Blue Friday 2026 dashboard design: no business logic changes */
+.brands:not(.cb-dashboard){--bf-accent:#53c9ff;--bf-accent-soft:#164e86}
+.brands:not(.cb-dashboard) .brands-head{position:relative;overflow:hidden;border:1px solid #32689e;background:radial-gradient(ellipse at 5% 0%,rgba(56,116,210,.28),transparent 56%),linear-gradient(120deg,#173462,#0d2043);box-shadow:inset 0 1px rgba(255,255,255,.09),0 15px 30px rgba(0,8,33,.16)}
+.brands:not(.cb-dashboard) .brands-head:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#30c7ff,#775bff)}
+.brands:not(.cb-dashboard) .brands-head h1{font-size:clamp(27px,3vw,36px);color:#fff;letter-spacing:-.04em}
+.brands:not(.cb-dashboard) .brands-kicker{color:#83d7ff}
+.brands:not(.cb-dashboard) .brands-sub{color:#c2d6f2}
+.brands:not(.cb-dashboard) .brands-tools select,.brands:not(.cb-dashboard) .brands-tools button,.brands:not(.cb-dashboard) .brands-tools a{border-radius:12px;min-height:43px;border-color:#4777ae}
+.brands:not(.cb-dashboard) .brands-tools button{background:linear-gradient(120deg,#185fa7,#1b4b92);color:#fff}
+.brands:not(.cb-dashboard) .brands-card{position:relative;overflow:hidden;min-height:190px;padding:22px;border-radius:18px;border:1px solid #346a9e;background:radial-gradient(circle at 100% 100%,rgba(35,108,188,.13),transparent 55%),linear-gradient(140deg,#142f5b,#0d2040);box-shadow:inset 0 1px rgba(255,255,255,.06),0 11px 24px rgba(0,7,31,.13)}
+.brands:not(.cb-dashboard) .brands-card:nth-child(1){border-color:#279ddf;border-top:3px solid #48c9ff}
+.brands:not(.cb-dashboard) .brands-card:nth-child(2){border-color:#159c8e;border-top:3px solid #24e0b7;background:linear-gradient(145deg,#103d46,#0d263c)}
+.brands:not(.cb-dashboard) .brands-card:nth-child(3){border-color:#7253b7;border-top:3px solid #b38bff;background:linear-gradient(145deg,#302657,#172246)}
+.brands:not(.cb-dashboard) .brands-card:nth-child(4){border-color:#ae843d;border-top:3px solid #ffd175;background:linear-gradient(145deg,#40331f,#21273c)}
+.brands:not(.cb-dashboard) .brands-card .brands-value{font-size:clamp(24px,2.5vw,32px);line-height:1.2;color:#fff;overflow-wrap:anywhere}
+.brands:not(.cb-dashboard) .brands-card .brands-card-label{font-size:13px;color:#e7f0ff;font-weight:800}
+.brands:not(.cb-dashboard) .brands-card .brands-caption{color:#b9cde9;line-height:1.5}
+.bf-kpi-title{display:flex;align-items:center;gap:12px;min-height:46px;margin-bottom:9px}
+.bf-kpi-glyph{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:13px;background:#105f9e;color:#b8ecff;box-shadow:inset 0 1px rgba(255,255,255,.1)}
+.brands-card:nth-child(2) .bf-kpi-glyph{background:#096958;color:#a1ffdf}
+.brands-card:nth-child(3) .bf-kpi-glyph{background:#543a92;color:#dfcfff}
+.brands-card:nth-child(4) .bf-kpi-glyph{background:#77521b;color:#ffe1a2}
+.brands:not(.cb-dashboard) .brands-panel{border-radius:19px;border:1px solid #335d8e;background:radial-gradient(ellipse at 0% 0%,rgba(30,93,172,.17),transparent 60%),linear-gradient(135deg,#152b52,#101f3e);box-shadow:inset 0 1px rgba(255,255,255,.06)}
+.brands:not(.cb-dashboard) .brands-panel h2{color:#f6faff;font-size:20px}
+.brands:not(.cb-dashboard) .brands-line{border-bottom-color:#34527b;color:#c5d6ef}
+.brands:not(.cb-dashboard) .brands-line strong{color:#f5faff}
+.brands:not(.cb-dashboard) .brands-person,.brands:not(.cb-dashboard) .qp-person,.brands:not(.cb-dashboard) .rc-person{background:#1c365e;border:1px solid #3b6193;border-radius:14px}
+.brands:not(.cb-dashboard) .brands-person h3,.brands:not(.cb-dashboard) .qp-person strong,.brands:not(.cb-dashboard) .rc-person strong{color:#f7fbff}
+.brands:not(.cb-dashboard) .brands-person p,.brands:not(.cb-dashboard) .qp-person small,.brands:not(.cb-dashboard) .rc-person small{color:#c0d0eb}
+.brands:not(.cb-dashboard) .brands-person strong{color:#fff}
+.brands:not(.cb-dashboard) .brands-track{height:9px;background:#2b426a}
+.brands:not(.cb-dashboard) .brands-fill{background:linear-gradient(90deg,#3e77ff,#46d0ff)}
+.brands:not(.cb-dashboard) .brands-pill.ok{background:#095b47;color:#b5ffe2}
+.brands:not(.cb-dashboard) .brands-pill.bad{background:#63243e;color:#ffd2dc}
+.brands:not(.cb-dashboard) .brands-pill.wait{background:#6a4a1e;color:#ffe5a9}
+@media(max-width:700px){.brands:not(.cb-dashboard) .brands-card{min-height:158px;padding:18px}.bf-kpi-title{gap:9px}.bf-kpi-glyph{width:40px;height:40px}.brands:not(.cb-dashboard) .brands-head{padding:19px}}
