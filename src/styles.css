@@ -1255,3 +1255,52 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bf-layout .bf-side.bf-side-light.bf-side-refined.bf-side-collapsed .bf-menu-icon{flex:0 0 23px}
 .bf-layout .bf-side.bf-side-light.bf-side-refined.bf-side-collapsed .bf-side-bottom{justify-content:center;padding:14px 0 4px}
 @media(max-width:800px){.bf-layout{display:flex}.bf-layout .bf-side.bf-side-light.bf-side-refined{width:66px;min-width:66px;flex-basis:66px;padding:12px 8px}.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-brand{flex-direction:column;gap:8px}.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-brand-copy,.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu-label,.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu-text,.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu-chevron,.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-new,.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-side-status-label{display:none!important}.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu{width:46px;min-width:46px;justify-content:center;padding:7px 0}.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-side-toggle{display:none}.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-side-bottom{justify-content:center}}
+
+
+/* Blue Friday overview: 2026 refined compact area dashboard */
+.bf-command .bf-command-toolbar{min-height:108px;padding:22px 27px;border-radius:18px;background:radial-gradient(ellipse at 58% -50%,#6631dc88,transparent 54%),linear-gradient(105deg,#122f66,#182e70 58%,#0c1c43);border:1px solid #3763a0;box-shadow:0 16px 30px #010b2640}
+.bf-command .bf-command-toolbar .bf-command-hero-icon{width:60px;height:60px;min-width:60px;border-radius:16px;background:linear-gradient(145deg,#177fff,#0854ce);border:1px solid #4ca9ff;box-shadow:0 8px 24px #075be944}
+.bf-command .bf-command-hero-copy h2{font-size:clamp(20px,2vw,27px);letter-spacing:-.035em}
+.bf-command .bf-command-hero-copy p{font-size:12px;color:#cbdaf6}
+.bf-command .bf-command-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 22px}
+.bf-command .bf-command-summary-card{display:flex;align-items:center;gap:15px;min-width:0;min-height:80px;padding:15px 18px;border:1px solid #2c4d85;border-radius:16px;background:linear-gradient(145deg,#112653,#0c1b3f);box-shadow:0 8px 18px #030d2833}
+.bf-command .bf-command-summary-icon{width:43px;height:43px;min-width:43px;display:grid;place-items:center;border-radius:12px;background:#174d9d;color:#a7d7ff}
+.bf-command .bf-command-summary-card:nth-child(2) .bf-command-summary-icon{background:#24417d;color:#c2d7ff}
+.bf-command .bf-command-summary-card:nth-child(3) .bf-command-summary-icon{background:#0c6577;color:#b4fff0}
+.bf-command .bf-command-summary-card>span:last-child{min-width:0;display:flex;flex-direction:column;gap:4px}
+.bf-command .bf-command-summary-card small{font-size:11px;color:#b9cbe8}
+.bf-command .bf-command-summary-card strong{font-size:21px;color:#fff;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bf-command .bf-command-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+.bf-command .bf-command-head-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bf-command .bf-area-mode-switch{display:flex;gap:3px;padding:3px;border:1px solid #34528b;border-radius:11px;background:#071735}
+.bf-command .bf-area-mode-switch button{display:grid;place-items:center;width:34px;height:31px;border:0;border-radius:8px;background:transparent;color:#9db7e1;cursor:pointer}
+.bf-command .bf-area-mode-switch button.active{background:#1262db;color:#fff;box-shadow:0 3px 10px #075be855}
+.bf-command .bf-area-mode-switch button:focus-visible{outline:2px solid #80d6ff;outline-offset:2px}
+.bf-command .bf-command-verified{display:flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid #16786e;border-radius:30px;background:#063a3b;color:#c7fff3;font-size:10px;white-space:nowrap}
+.bf-command .bf-command-area-grid-modern{gap:14px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined{position:relative;display:flex;flex-direction:column;min-width:0;min-height:150px;height:auto;padding:16px 17px 14px;border:1px solid #36568b;border-left:5px solid var(--bf-area-accent,#1984f7);border-radius:16px;background:linear-gradient(145deg,#102451,#0d1b3f 75%);box-shadow:0 9px 20px #01092133;overflow:hidden;text-align:left;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:hover{transform:translateY(-3px);border-color:var(--bf-area-accent,#1984f7);box-shadow:0 13px 25px #01092180}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(1){--bf-area-accent:#148eff}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(2){--bf-area-accent:#8845ef}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(3){--bf-area-accent:#ef348c}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(4){--bf-area-accent:#08b980}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(5){--bf-area-accent:#e58b1b}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(6){--bf-area-accent:#00b5c7}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(7){--bf-area-accent:#8c45e7}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(8){--bf-area-accent:#0a84f6}
+.bf-command .bf-command-area-grid-modern .bf-command-area-refined:nth-child(9){--bf-area-accent:#697cf2}
+.bf-command .bf-command-area-grid-modern .bf-command-area-main{display:flex;align-items:center;gap:12px;min-width:0;flex:1;padding-bottom:15px}
+.bf-command .bf-command-area-grid-modern .bf-command-area-icon{display:grid;place-items:center;flex:0 0 46px;width:46px;height:46px;margin:0;border-radius:12px;background:var(--bf-area-accent,#1984f7);color:#fff;box-shadow:0 5px 14px #050f3044}
+.bf-command .bf-command-area-grid-modern .bf-command-area-copy{flex:1;min-width:0}
+.bf-command .bf-command-area-grid-modern .bf-command-area-copy h3{margin:0 0 5px;font-size:16px;line-height:1.2;color:#fff;letter-spacing:-.02em}
+.bf-command .bf-command-area-grid-modern .bf-command-area-copy p{margin:0;color:#bed0ed;font-size:11px;line-height:1.45}
+.bf-command .bf-command-area-grid-modern .bf-command-area-index{align-self:flex-start;flex-shrink:0;margin-left:auto;padding:5px 9px;border-radius:20px;background:#28497d;color:#d3e4ff;font-size:10px;line-height:1;letter-spacing:.08em}
+.bf-command .bf-command-area-grid-modern .bf-command-area-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:auto;padding-top:12px;border-top:1px solid #34527f}
+.bf-command .bf-command-area-grid-modern .bf-command-owner{display:flex;align-items:center;gap:7px;min-width:0;color:#e0eaff;font-size:11px;font-weight:650}
+.bf-command .bf-command-area-grid-modern .bf-command-owner svg{flex-shrink:0;color:#9bb8e6}
+.bf-command .bf-command-area-grid-modern .bf-command-area-open{display:flex;align-items:center;gap:5px;flex-shrink:0;margin:0;padding:9px 12px;border-radius:9px;background:var(--bf-area-accent,#1984f7);color:#fff;font-size:11px;font-weight:750}
+.bf-command .bf-command-area-grid-modern.bf-command-area-list{grid-template-columns:1fr}
+.bf-command .bf-command-area-grid-modern.bf-command-area-list .bf-command-area-refined{min-height:105px}
+.bf-command .bf-command-area-grid-modern.bf-command-area-list .bf-command-area-main{padding-bottom:10px}
+@media(max-width:1150px){.bf-command .bf-command-area-grid-modern{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:740px){.bf-command .bf-command-summary{grid-template-columns:1fr;gap:9px}.bf-command .bf-command-summary-card{min-height:66px}.bf-command .bf-command-head{align-items:flex-start;flex-direction:column}.bf-command .bf-command-toolbar{padding:17px;flex-wrap:wrap}.bf-command .bf-command-area-grid-modern{grid-template-columns:1fr}.bf-command .bf-command-area-grid-modern .bf-command-area-refined{min-height:135px}.bf-command .bf-command-area-grid-modern .bf-command-area-main{gap:9px}.bf-command .bf-command-area-grid-modern .bf-command-area-copy h3{font-size:14px}}
