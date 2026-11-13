@@ -42,3 +42,24 @@
 .rs-dashboard .brands-note{color:#b9cbe6;line-height:1.65}
 @media(max-width:1000px){.rs-sections{grid-template-columns:1fr}}
 @media(max-width:650px){.rs-dashboard{padding:14px 10px 30px}.rs-dashboard .rs-header{padding:19px}.rs-dashboard .rs-header h1{font-size:28px}.rs-rules{grid-template-columns:1fr}.rs-section-label{flex-direction:column}.rs-person{flex-wrap:wrap}.rs-person .brands-pill{margin-left:55px}.rs-sections>.brands-panel,.rs-table-panel{padding:17px}}
+
+
+/* Resolucoes KPI refinement: intentional iconography and visual rhythm */
+.rs-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.rs-kpis .brands-card{min-height:188px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:8px;padding:22px 22px 21px 86px;border:1px solid #38557f;border-radius:19px;background:linear-gradient(145deg,#1e3765 0%,#15264b 75%);box-shadow:0 12px 24px rgba(0,0,0,.13);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.rs-kpis .brands-card:hover{transform:translateY(-3px);border-color:#638bd0;box-shadow:0 18px 30px rgba(0,0,0,.18)}
+.rs-kpis .brands-card:before{content:"";position:absolute;top:24px;left:21px;width:49px;height:49px;border-radius:14px;background:#294f88;box-shadow:inset 0 0 0 1px #4873ad}
+.rs-kpis .brands-card:after{content:"◷";position:absolute;top:32px;left:34px;color:#8fd0ff;font-size:27px;line-height:1}
+.rs-kpis .brands-card:nth-child(2):before{background:#164d56;box-shadow:inset 0 0 0 1px #278b89}
+.rs-kpis .brands-card:nth-child(2):after{content:"↗";color:#72e3cd}
+.rs-kpis .brands-card:nth-child(3):before{background:#3b3975;box-shadow:inset 0 0 0 1px #706cc1}
+.rs-kpis .brands-card:nth-child(3):after{content:"★";font-size:23px;top:35px;left:34px;color:#c6b9ff}
+.rs-kpis .brands-card:nth-child(4):before{background:#643342;box-shadow:inset 0 0 0 1px #a34f68}
+.rs-kpis .brands-card:nth-child(4):after{content:"!";font-size:26px;font-weight:800;top:35px;left:42px;color:#ffabb5}
+.rs-kpis .brands-card-label{font-size:12px;font-weight:750;color:#b8cce8;line-height:1.35}
+.rs-kpis .brands-value{font-size:36px;line-height:1.08;margin:0;letter-spacing:-.045em;color:#fff}
+.rs-kpis .brands-card:nth-child(4) .brands-value{font-size:23px;line-height:1.18;color:#ffc1ca}
+.rs-kpis .brands-caption{margin:0;color:#b0c5e3;font-size:12px;line-height:1.5}
+@media(max-width:1250px){.rs-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.rs-kpis{grid-template-columns:1fr}.rs-kpis .brands-card{min-height:150px;padding:22px 20px 20px 83px}}
+@media(prefers-reduced-motion:reduce){.rs-kpis .brands-card{transition:none}.rs-kpis .brands-card:hover{transform:none}}
