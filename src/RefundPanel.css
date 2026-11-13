@@ -436,3 +436,38 @@
 .refund-team-people-grid strong{color:white}
 .refund-team-people-grid small{color:#bdcdeb;font-size:12px}
 @media(max-width:900px){.refund-team-summary{grid-template-columns:1fr}.refund-team-columns{grid-template-columns:1fr}.refund-team-people-grid{grid-template-columns:1fr}.refund-team-period{display:none}}
+
+
+/* Compact Blue Friday refund view */
+.refund-simple{max-width:1280px;margin:0 auto;padding:30px 28px 60px;color:#f4f7ff}
+.refund-simple-header{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(115deg,#1b3764,#17274b);border:1px solid #355581;border-radius:20px;padding:28px 32px;margin-bottom:20px}
+.refund-simple-header h1{font-size:32px;letter-spacing:-.7px;margin:7px 0}
+.refund-simple-header p{color:#b8cae9;margin:0}
+.refund-simple-header label{font-size:12px;color:#c5d6f4;display:flex;flex-direction:column;gap:8px}
+.refund-simple-header select{background:#112347;color:white;border:1px solid #456393;border-radius:10px;padding:11px 14px;min-width:185px}
+.refund-simple-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.refund-simple-card,.refund-simple-panel{background:#142243;border:1px solid #304b75;border-radius:18px}
+.refund-simple-card{padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:175px}
+.refund-simple-card small{font-size:12px;color:#c2d1ec;font-weight:600}
+.refund-simple-card strong{font-size:clamp(21px,2vw,29px);letter-spacing:-.5px;line-height:1.15;color:#fff}
+.refund-simple-card>span:last-child{font-size:12px;color:#b4c9e8}
+.refund-simple-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
+.refund-simple-icon.blue{background:#214a86;color:#8bd1ff}.refund-simple-icon.teal{background:#105454;color:#5ee7cb}.refund-simple-icon.coral{background:#603047;color:#ffb0b8}.refund-simple-icon.purple{background:#39346e;color:#c3b4ff}
+.refund-simple-panel{padding:22px 25px;margin-bottom:16px}
+.refund-simple-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.refund-simple-panel-head h2{display:flex;align-items:center;gap:10px;font-size:18px;color:#fff;margin:0}
+.refund-simple-panel-head>span{font-size:12px;color:#9fb9df}
+.refund-simple-rule{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px solid #2c4269;color:#d8e4f8;font-size:14px}
+.refund-simple-rule b{white-space:nowrap;font-size:12px}
+.refund-simple-winners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.refund-simple-winners article{display:flex;align-items:center;gap:14px;padding:18px;border:1px solid #355078;border-radius:14px;background:#1b3156}
+.refund-simple-winners article>div{display:flex;flex-direction:column;gap:5px}
+.refund-simple-winners small{font-size:12px;color:#a8c3e7}
+.refund-simple-winners strong{font-size:20px;color:#fff}
+.refund-simple-winners article>div>span{font-size:12px;color:#d0def3}
+.refund-simple-ranking>div{display:grid;grid-template-columns:45px 1fr auto;gap:12px;align-items:center;border-top:1px solid #30486e;padding:13px 0;font-size:14px}
+.refund-simple-ranking strong{color:#fff}.refund-simple-ranking>div>span:last-child{color:#bcd0ee}
+.refund-simple-rank{background:#25457a;border-radius:9px;text-align:center;padding:8px;color:#c8e3ff;font-weight:800}
+.refund-simple-empty{color:#b4c6e3}.refund-simple-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;color:#9fb4d7;font-size:12px;margin:20px 0}
+@media(max-width:1050px){.refund-simple-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.refund-simple{padding:18px 12px}.refund-simple-header{align-items:stretch;flex-direction:column;padding:22px}.refund-simple-grid,.refund-simple-winners{grid-template-columns:1fr}.refund-simple-rule{align-items:flex-start;flex-direction:column}.refund-simple-actions{flex-direction:column;align-items:stretch}}
