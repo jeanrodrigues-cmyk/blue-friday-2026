@@ -1,1 +1,44 @@
 .rs-dashboard{max-width:1440px;padding-top:30px}.rs-header{border-bottom:1px solid #e7edf6;padding-bottom:20px;margin-bottom:20px}.rs-header h1{font-size:31px;letter-spacing:-.04em}.rs-section-label{display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:750;color:#7789a3;letter-spacing:.07em;margin-bottom:12px}.rs-kpis{margin-bottom:18px}.rs-kpis .brands-card{min-height:147px}.rs-kpis .brands-value{font-size:29px}.rs-kpis .rs-result{font-size:22px}.rs-sections{grid-template-columns:1fr 1fr;gap:17px}.rs-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.rs-heading h2{margin:5px 0 0;font-size:17px}.rs-eyebrow{font-size:10px;font-weight:800;letter-spacing:.13em;color:#7c90b1}.rs-star{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#fff4d9;color:#ad7a17}.rs-person{display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid #e8edf5}.rs-avatar{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:#edf3ff;color:#366bd7;font-weight:800}.rs-person-info{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}.rs-person-info strong{color:#253b5d;font-size:14px}.rs-person-info span{color:#657992;font-size:12px}.rs-person-info small{color:#8392a6;font-size:11px}.rs-table-panel{margin-top:17px}.rs-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.rs-rule{display:flex;flex-direction:column;gap:7px;border:1px solid #e7edf6;background:#fafcff;border-radius:12px;padding:14px}.rs-rule span{color:#75869e;font-size:12px}.rs-rule strong{font-size:13px;color:#253a5a}.rs-table-wrap{overflow-x:auto}.rs-table-panel table{border-collapse:collapse;width:100%;font-size:12px}.rs-table-panel th,.rs-table-panel td{text-align:left;padding:13px;white-space:nowrap;border-bottom:1px solid #e8edf5}.rs-table-panel th{background:#f7f9fc;color:#71839e;font-size:11px}.rs-table-panel td{color:#334967}.rs-table-panel tbody tr:hover{background:#fafcff}@media(max-width:1000px){.rs-sections{grid-template-columns:1fr}}@media(max-width:650px){.rs-dashboard{padding:16px}.rs-rules{grid-template-columns:1fr}.rs-section-label{flex-direction:column}.rs-person{flex-wrap:wrap}.rs-person .brands-pill{margin-left:48px}}
+
+/* Resolucoes: cohesive high-contrast campaign dashboard */
+.rs-dashboard{max-width:1440px;padding-top:24px}
+.rs-dashboard .rs-header{padding:25px 28px;margin-bottom:22px;border:1px solid #3b5684;border-radius:20px;background:linear-gradient(115deg,#1b335e 0%,#15264b 75%,#1d3461 100%);box-shadow:0 14px 32px rgba(0,0,0,.12)}
+.rs-dashboard .rs-header h1{font-size:34px;color:#f8fbff;letter-spacing:-.035em}
+.rs-dashboard .rs-header .brands-sub{color:#c2d3ec}
+.rs-dashboard .rs-header .brands-kicker{color:#83c7ff}
+.rs-dashboard .rs-header .brands-tools label{color:#d4e4fb;font-weight:700}
+.rs-section-label{color:#a9c8f5;letter-spacing:.06em;padding:0 2px;margin-bottom:14px}
+.rs-kpis{gap:14px;margin-bottom:20px}
+.rs-kpis .brands-card{position:relative;overflow:hidden;min-height:158px;border:1px solid #385580;border-top:3px solid #5abaff;background:linear-gradient(155deg,#1b3159,#152447);padding:21px}
+.rs-kpis .brands-card:nth-child(2){border-top-color:#48d1bc}
+.rs-kpis .brands-card:nth-child(3){border-top-color:#8d83ff}
+.rs-kpis .brands-card:nth-child(4){border-top-color:#fb8a7c}
+.rs-kpis .brands-card-label{color:#bbd0ec}
+.rs-kpis .brands-value{font-size:33px;letter-spacing:-.04em;color:#fff}
+.rs-kpis .rs-result{font-size:24px}
+.rs-kpis .brands-caption{color:#a9bddb}
+.rs-sections{gap:18px;align-items:stretch}
+.rs-sections>.brands-panel,.rs-table-panel{border:1px solid #38527c;border-radius:18px;background:#152447;padding:23px}
+.rs-heading{padding-bottom:15px;margin-bottom:14px;border-bottom:1px solid #34496d}
+.rs-heading h2{font-size:20px;color:#f5f8ff;letter-spacing:-.02em}
+.rs-eyebrow{color:#89c5ff}
+.rs-star{background:#3b3254;color:#ffdb8b;border:1px solid #6a5570}
+.rs-person{padding:17px 13px;margin:8px 0;border:1px solid #344e78;border-radius:13px;background:#1c3156}
+.rs-person:last-of-type{margin-bottom:14px}
+.rs-avatar{width:43px;height:43px;flex-shrink:0;background:#315b9c;color:#fff;border-radius:12px}
+.rs-person-info strong{color:#fff;font-size:15px}
+.rs-person-info span{color:#d0ddf2;font-size:12px}
+.rs-person-info small{color:#a8c1e4}
+.rs-rule{background:#1c3156;border:1px solid #38537c;border-radius:13px;padding:16px;min-height:81px}
+.rs-rule span{color:#acc5e8;font-size:12px}
+.rs-rule strong{color:#f6faff;font-size:13px;line-height:1.5}
+.rs-table-wrap{border:1px solid #38527c;border-radius:12px;overflow-x:auto}
+.rs-table-panel table{min-width:720px}
+.rs-table-panel th{background:#233d69;color:#d9e9ff;font-weight:800;padding:15px}
+.rs-table-panel td{color:#e5efff;padding:15px}
+.rs-table-panel th,.rs-table-panel td{border-bottom:1px solid #354d72}
+.rs-table-panel tbody tr:hover{background:#20385f}
+.rs-table-panel tbody tr:last-child td{border-bottom:0}
+.rs-dashboard .brands-note{color:#b9cbe6;line-height:1.65}
+@media(max-width:1000px){.rs-sections{grid-template-columns:1fr}}
+@media(max-width:650px){.rs-dashboard{padding:14px 10px 30px}.rs-dashboard .rs-header{padding:19px}.rs-dashboard .rs-header h1{font-size:28px}.rs-rules{grid-template-columns:1fr}.rs-section-label{flex-direction:column}.rs-person{flex-wrap:wrap}.rs-person .brands-pill{margin-left:55px}.rs-sections>.brands-panel,.rs-table-panel{padding:17px}}
