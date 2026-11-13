@@ -994,3 +994,21 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .mp-page .bo-range-error{border-radius:12px;line-height:1.5}
 @media(prefers-reduced-motion:reduce){.bf-running-track{animation:none}.bf-side-light .bf-menu,.mp-page .mp-reference-cards .mp-kpi-result{transition:none}}
 @media(max-width:720px){.bf-running-banner{height:30px}.bf-layout{padding-top:30px}.mp-page .mp-nav{gap:4px}.mp-page .mp-nav-tab{padding:9px 10px;font-size:12px}}
+
+/* Campaign-wide final pass: BO, Mídias/Procon, Visão Geral and Reembolso */
+.bo-v2 .bo-v2-kpi{position:relative;overflow:hidden;border-top:3px solid #55c6ff;background:radial-gradient(circle at 100% 0%,rgba(50,139,224,.13),transparent 48%),linear-gradient(145deg,#18345e,#102242);box-shadow:inset 0 1px rgba(255,255,255,.06),0 11px 25px #020c292b}
+.bo-v2 .bo-v2-kpi.green{border-top-color:#25d9ac;background:linear-gradient(145deg,#103c44,#10283d)}
+.bo-v2 .bo-v2-kpi.red{border-top-color:#ff8297;background:linear-gradient(145deg,#432a4c,#202441)}
+.bo-v2 .bo-kpi-icon,.bo-v2 .bo-special-icon{background:linear-gradient(145deg,#176bb6,#10477c);color:#b4e8ff;border:1px solid #398bd0}
+.bo-v2 .bo-special-card{background:radial-gradient(circle at 100% 0%,#20467655,transparent 58%),linear-gradient(140deg,#172e56,#0d2040);border:1px solid #3c6498;box-shadow:inset 0 1px #ffffff10}
+.bo-v2 .bo-v2-bottom .bf-panel,.bo-v2 .bo-special-missions{border-color:#375f91;box-shadow:inset 0 1px #ffffff0b,0 10px 25px #000a2626}
+.mp-page .mp-reference-cards .mp-kpi-result{position:relative;overflow:hidden;border-top:3px solid #46c5ff!important;background:linear-gradient(140deg,#173360,#102344)!important;border-color:#3a6b9f!important;color:#f4f9ff!important}
+.mp-page .mp-reference-cards .mp-kpi-result:nth-child(2){border-top-color:#a18bff!important;background:linear-gradient(140deg,#30255c,#172445)!important}
+.mp-page .mp-reference-cards .mp-kpi-result:nth-child(3){border-top-color:#25d7a9!important;background:linear-gradient(140deg,#103e43,#112b3f)!important}
+.mp-page .mp-reference-cards .mp-kpi-result :is(h2,h3,strong,b){color:#fff!important}
+.mp-page .mp-reference-cards .mp-kpi-result :is(p,small,span){color:#c3d7f0}
+.mp-page .mp-reference-cards .mp-result-icon{border:1px solid #4c90d4;background:linear-gradient(145deg,#145da4,#0e4179);color:#b5eaff}
+.mp-page .mp-week-panel{border:1px solid #3a6394!important;box-shadow:0 12px 26px #000b2c25}
+.bf-area-card,.bf-overview-card{transition:border-color .2s,transform .2s,box-shadow .2s}
+.bf-area-card:hover,.bf-overview-card:hover{border-color:#448dd2;transform:translateY(-2px);box-shadow:0 15px 34px #020c2938}
+@media(prefers-reduced-motion:reduce){.bf-area-card,.bf-overview-card{transition:none}}
