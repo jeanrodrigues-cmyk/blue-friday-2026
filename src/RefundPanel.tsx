@@ -8,6 +8,14 @@ const VERIFIED_SNAPSHOT:Row[]=[{"date":"2026-11-03","team":"Consolidado operacio
 
 type BacklogDaily={date:string;openOver7:number;resolvedOver7:number};
 type ConversionDaily={date:string;analyst:string;vouchers:number;cancelled:number;amount:number};
+type WeeklyConversionRank={analyst:string;conversions:number;vouchers:number;cancelled:number;amount:number};
+const VERIFIED_WEEK_ONE_CONVERSIONS:WeeklyConversionRank[]=[
+ {analyst:"Naiara",conversions:12,vouchers:9,cancelled:3,amount:2238.41},
+ {analyst:"Carla",conversions:10,vouchers:2,cancelled:8,amount:1112.38},
+ {analyst:"Alice",conversions:8,vouchers:4,cancelled:4,amount:1418.91}
+];
+// Fonte: ranking de conversoes fornecido pela operacao, periodo 02 a 08/11/2026.
+// Nao representa taxa de conversao nem comprova elegibilidade ao premio.
 const HUB_CONVERSIONS_LAST_WEEK:ConversionDaily[]=[
 {date:"2026-11-04",analyst:"Alice Faria",vouchers:2,cancelled:1,amount:758.41},
 {date:"2026-11-04",analyst:"Carla Diléo",vouchers:1,cancelled:0,amount:39.92},
@@ -91,12 +99,12 @@ export default function RefundPanel(){
         <p>As três condições devem ser verificadas no fechamento da semana. Dados parciais não confirmam o prêmio.</p>
       </div>
       <div className="refund-team-box"><h3><RefundIcon name="target"/> Premiação semanal</h3>
-        <div className="refund-team-award"><span>🏆</span><div><small>Dinheiro · R$ 60 por semana</small><strong>Top 1 em conversão</strong><em>Ranking pendente de resultados individuais</em></div></div>
+        <div className="refund-team-award"><span>🏆</span><div><small>Dinheiro · R$ 60 por semana</small><strong>Top 1 em conversão</strong><em>Semana 1: Naiara lidera com 12 conversões · prêmio sujeito às travas</em></div></div>
         <div className="refund-team-award"><span>🎁</span><div><small>Brinde</small><strong>Top 1 em processamento</strong><em>Ranking pendente de resultados individuais</em></div></div>
         <p>Premiações sujeitas às travas da campanha e à homologação. Nenhum vencedor foi presumido.</p>
       </div>
     </div>
-    <div className="refund-team-box refund-team-people"><h3><RefundIcon name="chart"/> Acompanhamento por analista</h3><div className="refund-team-people-grid">{["Alice","Carla","Naiara"].map(name=><div key={name}><span className="refund-team-avatar">{name.charAt(0)}</span><strong>{name}</strong><small>Conversão: aguardando dados</small><small>Processamentos: aguardando dados</small><b className="refund-team-status-pending">Não apurado</b></div>)}</div><p>O consolidado financeiro disponível não identifica os resultados individuais necessários para calcular o ranking.</p></div>
+    <div className="refund-team-box refund-team-people"><h3><RefundIcon name="chart"/> Acompanhamento por analista</h3><div className="refund-team-people-grid">{["Naiara","Carla","Alice"].map((name,index)=>{const result=VERIFIED_WEEK_ONE_CONVERSIONS.find(r=>r.analyst===name);return <div key={name}><span className="refund-team-avatar">{name.charAt(0)}</span><strong>{name}</strong>{week===0&&result?<><small>{index+1}º lugar · {result.conversions} conversões</small><small>{result.vouchers} vouchers · {result.cancelled} cancelamentos</small><small>Valor convertido: {money(result.amount)}</small><b className="refund-team-status-review">{index===0?"Líder da semana":"Ranking confirmado"}</b></>:<><small>Conversões: aguardando dados</small><small>Processamentos: aguardando dados</small><b className="refund-team-status-pending">Não apurado</b></>}</div>})}</div><p>Semana 1 (02 a 08/11): 30 conversões, 15 vouchers, 15 cancelamentos e R$ 4.769,70 convertidos. O ranking é por quantidade de conversões; taxa, processamento e premiação ainda exigem apuração.</p></div>
   </section>
   <section className="refund-v3-live" aria-label="Resumo do backlog"><div className="refund-v3-live-card"><span className="refund-v3-live-icon"><RefundIcon name="calendar"/></span><div><small>Casos em aberto há mais de 7 dias</small><strong>{backlogLatest?number(backlogLatest.openOver7):"—"}</strong><span>{backlogLatest?"Medição: "+backlogLatest.date.split("-").reverse().join("/"):"Aguardando integração operacional"}</span></div></div><div className="refund-v3-live-card refund-v3-live-goal"><span className="refund-v3-live-icon"><RefundIcon name="target"/></span><div><small>Meta da campanha</small><strong>0</strong><span>Casos acima de 7 dias</span></div></div><div className="refund-v3-live-card"><span className="refund-v3-live-icon"><RefundIcon name="shield"/></span><div><small>Resolvidos na semana</small><strong>{backlogLatest?number(backlogResolved):"—"}</strong><span>{backlogLatest?"Conforme medições disponíveis":"Aguardando integração operacional"}</span></div></div></section>
 
