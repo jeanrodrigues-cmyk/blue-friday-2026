@@ -1070,3 +1070,34 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .mp-page .mp-week-panel .mp-reference-chart .mp-chart-bar-0{background:#448cff}
 .mp-page .mp-week-panel .mp-reference-chart .mp-chart-bar-1{background:#ae87f9}
 .mp-page .mp-week-panel .mp-reference-chart .mp-chart-bar-2{background:#23c797}
+
+
+/* BO & Dados | Blue Friday visual refresh, scoped to preserve all data and interactions */
+.bf-body.bo-executive.bo-v2{--bo-panel:#152747;--bo-line:#35547d;--bo-muted:#b9cdeb;--bo-accent:#72c9ff;display:flex;flex-direction:column;gap:18px;padding:26px 28px 56px}
+.bo-v2 .bo-nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:17px 20px;border:1px solid #3a5d8c;border-radius:19px;background:linear-gradient(125deg,#1b3763,#132648);box-shadow:0 12px 28px #081a3530,inset 0 1px #ffffff14}
+.bo-v2 .bo-tabs{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+.bo-v2 .bo-tabs button{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 14px;min-height:42px;border-radius:11px;border:1px solid transparent;background:transparent;color:#bed1ee;font-weight:700;font-size:12px;transition:background .15s,border-color .15s}
+.bo-v2 .bo-tabs button:hover{background:#2b4973;color:#fff}
+.bo-v2 .bo-tabs button.active{background:linear-gradient(120deg,#2969d8,#4b49bf);color:#fff;border-color:#6688e5;box-shadow:0 5px 15px #07173755}
+.bo-v2 .bo-tabs button svg{width:17px;height:17px}
+.bo-v2 .bo-nav-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bo-v2 .bo-week-picker,.bo-v2 .bo-range-filter{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:11px;border:1px solid #42628c;background:#102445;color:#c6d9f3;font-size:12px}
+.bo-v2 .bo-week-picker select,.bo-v2 .bo-range-filter input{min-height:34px;border:1px solid #476994;border-radius:8px;padding:6px 9px;background:#1d365e;color:#f4f8ff;font-size:12px}
+.bo-v2 .bo-range-filter label{display:flex;align-items:center;gap:6px}
+.bo-v2 .bo-range-filter button,.bo-v2 .bo-refresh{min-height:38px;border-radius:9px;border:1px solid #5277a7;padding:8px 12px;background:#254a7b;color:#f0f6ff;font-weight:700;font-size:12px}
+.bo-v2 .bo-refresh{display:flex;align-items:center;gap:8px}
+.bo-v2 .bo-refresh:hover,.bo-v2 .bo-range-filter button:hover{background:#3166a8}
+.bo-v2 .bo-quality-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1px solid #365f8b;border-radius:13px;background:#152d51;padding:12px 17px;color:#c5d9f5}
+.bo-v2 .bo-quality-label{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bo-v2 .bo-quality-label svg{color:#60d4c0}
+.bo-v2 .bo-range-error{padding:12px 16px;border-radius:12px;background:#41391e;color:#ffe2a6;border:1px solid #8d7041;font-size:12px}
+.bo-v2 :is(.bf-panel,.bo-special-card,.bo-special-missions){border-radius:19px;border:1px solid #365780;background:linear-gradient(145deg,#172d52,#122342);box-shadow:0 9px 23px #06152c29,inset 0 1px #ffffff0b}
+.bo-v2 :is(.bf-panel,.bo-special-card,.bo-special-missions) :is(h2,h3){color:#f6faff}
+.bo-v2 :is(.bf-panel,.bo-special-card,.bo-special-missions) :is(p,small){color:#bbcfed}
+.bo-v2 .bo-kpi-icon,.bo-v2 .bo-special-icon{display:grid;place-items:center;border-radius:13px;background:#214b83;color:#94d8ff;border:1px solid #3e78b4}
+.bo-v2 .bo-v2-bottom .bf-panel{padding:22px;border-color:#395c89}
+.bo-v2 .bo-v2-bottom .bf-panel h2{letter-spacing:-.02em}
+.bo-v2 .bo-weekly-selector select,.bo-v2 .bo-v2-bottom select{border-radius:10px;background:#1c365d;color:#f4f9ff;border:1px solid #4a6c9b;padding:9px 12px}
+.bo-v2 button:focus-visible,.bo-v2 select:focus-visible,.bo-v2 input:focus-visible{outline:2px solid #7bd5ff;outline-offset:2px}
+@media(max-width:900px){.bf-body.bo-executive.bo-v2{padding:18px 14px 42px}.bo-v2 .bo-nav{align-items:stretch;flex-direction:column}.bo-v2 .bo-tabs,.bo-v2 .bo-nav-actions{width:100%}.bo-v2 .bo-range-filter{flex-wrap:wrap}}
+@media(max-width:560px){.bo-v2 .bo-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.bo-v2 .bo-tabs button{padding:10px 7px;font-size:11px}.bo-v2 .bo-week-picker{width:100%;justify-content:space-between}.bo-v2 .bo-week-picker select{flex:1;min-width:0}.bo-v2 .bo-range-filter{width:100%}.bo-v2 .bo-range-filter label{flex:1 1 110px}.bo-v2 .bo-range-filter input{width:100%;min-width:0}.bo-v2 .bo-refresh{width:100%;justify-content:center}}
