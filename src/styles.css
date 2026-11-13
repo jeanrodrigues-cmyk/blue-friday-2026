@@ -1188,3 +1188,10 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bf-command .bf-command-area-refined:focus-visible{outline:3px solid #9fe6ff!important;outline-offset:3px}
 @media(max-width:1100px){.bf-command .bf-command-area-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:650px){.bf-command .bf-command-area-grid{grid-template-columns:1fr!important}.bf-command .bf-command-toolbar{padding:19px!important}.bf-command .bf-command-area-refined{min-height:185px!important}.bf-command .bf-command-head{align-items:flex-start!important;flex-direction:column!important;gap:12px!important}}
+
+/* Explicit campaign hero icon */
+.bf-command .bf-command-toolbar{display:flex!important;align-items:center!important;gap:18px!important}
+.bf-command .bf-command-hero-icon{display:grid!important;place-items:center!important;flex:0 0 66px!important;width:66px!important;height:66px!important;border-radius:18px!important;background:linear-gradient(135deg,#2783ef,#1646b3)!important;border:1px solid #63b5ff!important;color:#fff!important;box-shadow:0 8px 24px #0d65d560!important}
+.bf-command .bf-command-hero-copy{min-width:0;flex:1}
+.bf-command .bf-command-toolbar>label{margin-left:auto!important;flex-shrink:0}
+@media(max-width:680px){.bf-command .bf-command-toolbar{flex-wrap:wrap!important}.bf-command .bf-command-hero-icon{width:52px!important;height:52px!important;flex-basis:52px!important}.bf-command .bf-command-toolbar>label{margin-left:0!important;width:100%}}
