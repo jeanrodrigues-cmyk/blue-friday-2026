@@ -348,3 +348,57 @@
 .refund-v3 .refund-v3-rank>span:last-child{text-align:right;color:#35557d}
 @media(max-width:1150px){.refund-v3 .refund-v3-insights,.refund-v3 .refund-v3-bottom{grid-template-columns:1fr}}
 @media(max-width:760px){.refund-v3 .refund-v3-financial-kpis{grid-template-columns:1fr}.refund-v3 .refund-v3-financial-kpis>div{border-right:0;border-bottom:1px solid #e4ebf5}.refund-v3 .refund-v3-rank{grid-template-columns:34px minmax(0,1fr);gap:8px}.refund-v3 .refund-v3-rank>strong,.refund-v3 .refund-v3-rank>span:last-child{grid-column:2;text-align:left}.refund-v3 .refund-v3-insights-chart,.refund-v3 .refund-v3-insights-side,.refund-v3 .refund-v3-financial,.refund-v3 .refund-v3-targets,.refund-v3 .refund-v3-conversions{padding:16px}}
+
+/* Blue Friday visual system: Refund dashboard aligned with other campaign areas */
+.refund-page.refund-v3{--rf-ink:#edf5ff;--rf-border:#34537c;--rf-blue:#4b87ff;--rf-purple:#8969f5;color:#edf5ff;gap:20px}
+.refund-v3 .refund-v3-heading{padding:17px 22px;margin:0;border-radius:19px;background:linear-gradient(125deg,#19355d,#17264a);border:1px solid #36557f}
+.refund-v3 .refund-v3-heading h1{color:#fff!important}
+.refund-v3 .refund-v3-heading p{color:#b9cdea!important}
+.refund-v3 .refund-v3-heading-mark{color:#80c5ff}
+.refund-v3 .refund-v3-heading-mark svg{background:#254d86;border-radius:13px;padding:6px;width:44px;height:44px;color:#9ed5ff}
+.refund-v3 .refund-v3-hero{background:linear-gradient(115deg,#0b3d89,#2057c8 65%,#4736ad)!important;border:1px solid #407df4;border-radius:19px;box-shadow:0 12px 25px #05122c33}
+.refund-v3 .refund-v3-hero-icon{background:#ffffff22;border:1px solid #ffffff44;border-radius:14px}
+.refund-v3 .refund-v3-toolbar{background:#172b4d!important;border:1px solid #365781!important;border-radius:17px}
+.refund-v3 .refund-v3-toolbar :is(label,span,strong,small){color:#d6e8ff}
+.refund-v3 .refund-v3-toolbar select{background:#203b65;color:#f1f7ff;border:1px solid #5477aa;border-radius:10px}
+.refund-v3 .refund-v3-toolbar .refund-btn-quiet{background:#29456d;color:#e4efff}
+.refund-v3 .refund-v3-toolbar .refund-btn-light{background:linear-gradient(110deg,#2765f4,#6542e4);color:#fff}
+.refund-v3 .refund-v3-toolbar-meta{color:#bcd3f1}
+.refund-v3 .refund-v3-toolbar-meta .refund-status-dot.loaded{background:#23c995}
+.refund-v3 .refund-v3-kpis,
+.refund-v3 .refund-kpis{gap:15px}
+.refund-v3 .refund-v3-kpis>*,.refund-v3 .refund-kpi{background:linear-gradient(145deg,#1b355b,#152543)!important;border:1px solid #3b5a83!important;border-radius:18px!important;box-shadow:0 8px 22px #05132d2a!important}
+.refund-v3 .refund-kpi-primary{background:linear-gradient(135deg,#174e9b,#2941a4)!important;border-color:#4b83e6!important}
+.refund-v3 .refund-kpi:before{width:100%;height:3px;bottom:auto;right:0;background:linear-gradient(90deg,#4b9dff,#8562f8)}
+.refund-v3 .refund-kpi:nth-child(3):before{background:linear-gradient(90deg,#16c7a2,#58ddc4)}
+.refund-v3 .refund-kpi :is(strong,span){color:#f3f8ff!important}
+.refund-v3 .refund-kpi small{color:#bdd1ed!important}
+.refund-v3 .refund-kpi-icon{opacity:.9;color:#86c6ff;right:17px;top:16px}
+.refund-v3 .refund-panel,.refund-v3 .refund-month,.refund-v3 .refund-import{background:linear-gradient(145deg,#182e50,#132341)!important;border:1px solid #34547d!important;color:#e8f2ff!important;box-shadow:0 8px 25px #06152d20!important;border-radius:18px}
+.refund-v3 .refund-section-heading h2,.refund-v3 .refund-panel h2,.refund-v3 .refund-panel h3{color:#fff!important}
+.refund-v3 .refund-section-heading p,.refund-v3 .refund-panel p,.refund-v3 .refund-footnote{color:#bdd0ec}
+.refund-v3 .refund-overline{color:#80c5ff}
+.refund-v3 .refund-month-line strong,.refund-v3 .refund-chart-summary strong{color:#fff}
+.refund-v3 .refund-month-line span,.refund-v3 .refund-month-scale,.refund-v3 .refund-chart-summary small{color:#bbd0ed}
+.refund-v3 .refund-week{background:#20395f;border-color:#41628d;color:#f2f8ff}
+.refund-v3 .refund-week:hover{border-color:#7cbcff}
+.refund-v3 .refund-week.selected{background:linear-gradient(135deg,#2863da,#6241d7);border-color:#8aa8ff}
+.refund-v3 .refund-week-top,.refund-v3 .refund-week strong{color:#f1f8ff}
+.refund-v3 .refund-week small,.refund-v3 .refund-week-bottom{color:#bdd1ed}
+.refund-v3 .refund-chart{background:repeating-linear-gradient(to top,transparent 0,transparent 53px,#335173 54px);border-color:#48648a}
+.refund-v3 .refund-chart-column>span,.refund-v3 .refund-chart-column small{color:#c6d9f2}
+.refund-v3 .refund-empty{background:#1b3357;border-color:#46668e;color:#c3d6ef}
+.refund-v3 .refund-rule{border-color:#385377}
+.refund-v3 .refund-rule strong{color:#f4f9ff}
+.refund-v3 .refund-rule small,.refund-v3 .refund-rule>span{color:#bdd1eb}
+.refund-v3 .refund-rule>span.refund-rule-good{color:#6be4bd}
+.refund-v3 .refund-rule>span.refund-rule-bad{color:#ff9aac}
+.refund-v3 .refund-days>div{background:#20395f;border-color:#45658d}
+.refund-v3 .refund-days span{color:#b7cdef}
+.refund-v3 .refund-days strong{color:#fff}
+.refund-v3 .refund-chart-filter,.refund-v3 .refund-quality{background:#1c365b;border-color:#45638a;color:#cbdcf2}
+.refund-v3 .refund-chart-filter label,.refund-v3 .refund-quality strong{color:#f3f8ff}
+.refund-v3 .refund-import code,.refund-v3 .refund-import small{color:#b9d2f2}
+.refund-v3 .refund-upload{background:linear-gradient(110deg,#2969e8,#6647d9)}
+.refund-v3 .refund-footer{color:#a9bedb}
+@media(max-width:720px){.refund-v3 .refund-v3-heading{padding:16px;align-items:flex-start}.refund-v3 .refund-v3-heading-mark{display:none}.refund-v3 .refund-v3-toolbar{padding:12px}.refund-v3 .refund-v3-controls label{flex:1 1 155px}}
