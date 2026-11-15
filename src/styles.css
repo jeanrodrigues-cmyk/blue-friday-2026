@@ -1365,3 +1365,18 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bf-layout aside.bf-side.bf-side-light.bf-side-refined.bf-side-collapsed .bf-menu-icon{margin:0!important}
 .bf-layout aside.bf-side.bf-side-light.bf-side-refined.bf-side-collapsed .bf-side-bottom{justify-content:center!important;margin:8px 0 0!important;padding:13px 0 4px!important}
 @media(max-width:800px){.bf-layout aside.bf-side.bf-side-light.bf-side-refined .bf-menu{width:46px!important;justify-content:center!important;padding:7px 0!important;gap:0!important}.bf-layout aside.bf-side.bf-side-light.bf-side-refined .bf-brand{flex-direction:column!important;gap:8px!important}.bf-layout aside.bf-side.bf-side-light.bf-side-refined .bf-side-bottom{justify-content:center!important}}
+
+
+/* Provisional BO week 2, separate from homologated daily metrics */
+.bo-week2-provisional{margin:16px 0 20px;padding:20px 22px;border:1px solid #41689b;border-radius:17px;background:linear-gradient(120deg,#163664,#12274f 65%,#13234a);color:#f2f7ff}
+.bo-week2-provisional-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.bo-week2-kicker{font-size:10px;font-weight:800;letter-spacing:1.2px;color:#9ed4ff}
+.bo-week2-provisional h3{font-size:19px;line-height:1.25;margin:7px 0 6px;color:#fff}
+.bo-week2-provisional-head p,.bo-week2-note{font-size:12px;color:#bcd0eb;line-height:1.5;margin:0}
+.bo-week2-pending{display:inline-flex;align-items:center;white-space:nowrap;padding:8px 12px;border:1px solid #ad8741;border-radius:30px;background:#594322;color:#ffe5ad;font-size:11px;font-weight:800}
+.bo-week2-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 14px}
+.bo-week2-values>div{display:flex;flex-direction:column;gap:7px;padding:15px 17px;border:1px solid #395987;border-radius:12px;background:#0c2046}
+.bo-week2-values small{font-size:11px;color:#bed1ed}
+.bo-week2-values strong{font-size:28px;line-height:1;color:#fff}
+.bo-week2-note{padding-top:12px;border-top:1px solid #36527b}
+@media(max-width:650px){.bo-week2-values{grid-template-columns:1fr}.bo-week2-provisional{padding:16px}}
