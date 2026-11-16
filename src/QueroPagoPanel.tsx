@@ -1,5 +1,7 @@
 import DashboardGlyph from "./DashboardGlyph";
 import {useState} from "react";
+import { CAMPAIGN_WEEKS, currentWeekIndex } from "./campaign";
+
 import "./BrandsPanel.css";
 import "./QueroPagoPanel.css";
 
@@ -11,7 +13,7 @@ const weeks=[
 ];
 const brl=(n:number)=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
 export default function QueroPagoPanel(){
- const [selected,setSelected]=useState(0);
+ const [selected,setSelected]=useState(currentWeekIndex);
  const w=weeks[selected],known=w.revenue!==null;
  const achieved=known?100*w.revenue!/w.goal:null;
  return <div className="brands qp-dashboard">
@@ -30,3 +32,4 @@ export default function QueroPagoPanel(){
  <p className="brands-note">Fonte: metas oficiais da Blue Friday e resumo de resultados da Semana 1 fornecido pela equipe. Semanas 2 a 4 aguardam dados; nenhuma atualização automática está configurada.</p>
  </div>;
 }
+export { weeks as QP_WEEKS };

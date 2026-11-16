@@ -2,6 +2,8 @@ import DashboardGlyph from "./DashboardGlyph";
 import {useEffect,useMemo,useState} from "react";
 import {supabase} from "./lib/supabase";
 import "./BrandsPanel.css";
+import { CAMPAIGN_WEEKS, currentWeekIndex } from "./campaign";
+
 type Daily={reference_date:string;quero_pago_unialphaville:number;quero_pago_uniasp:number;pef_unialphaville:number;pef_uniasp:number};
 type Cash={reference_date:string;required:boolean;closed_at_18h:boolean|null;confirmed_at:string|null;notes:string|null};
 type Invoice={document_key:string;reference_date:string;amount:number;classification:string};
@@ -15,7 +17,7 @@ function daysBetween(start:string,end:string){const days:string[]=[];let date=ne
 function status(label:string,kind:"ok"|"bad"|"wait"="wait"){return <span className={"brands-pill "+kind}>{label}</span>;}
 export default function BrandsPanel(){
  const [daily,setDaily]=useState<Daily[]>([]),[cash,setCash]=useState<Cash[]>([]),[invoices,setInvoices]=useState<Invoice[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState("");
- const [week,setWeek]=useState(1);
+ const [week,setWeek]=useState(currentWeekIndex);
  async function load(){if(!supabase){setError("Supabase não configurado.");setLoading(false);return;}setLoading(true);const [d,c,i]=await Promise.all([supabase.from("bf_brands_daily").select("*").order("reference_date"),supabase.from("bf_brands_cash").select("*").order("reference_date"),supabase.from("bf_brands_invoices").select("*").order("reference_date")]);setError(d.error?.message||c.error?.message||i.error?.message||"");setDaily((d.data||[]) as Daily[]);setCash((c.data||[]) as Cash[]);setInvoices((i.data||[]) as Invoice[]);setLoading(false);}
  useEffect(()=>{void load();},[]);
  const amounts=useMemo(()=>weeks.map(w=>{const base=daily.filter(r=>r.reference_date>=w.start&&r.reference_date<=w.end).reduce((s,r)=>s+Number(r.quero_pago_unialphaville)+Number(r.quero_pago_uniasp)+Number(r.pef_unialphaville)+Number(r.pef_uniasp),0);const nf=invoices.filter(r=>r.reference_date>=w.start&&r.reference_date<=w.end&&r.classification.trim().toLowerCase()==="mensalidades").reduce((s,r)=>s+Number(r.amount),0);return base+nf;}),[daily,invoices]);
@@ -35,7 +37,7 @@ export default function BrandsPanel(){
  const ufbraTotal=ufbraDocs.reduce((sum,i)=>sum+Number(i.amount),0);
  const progress=(value:number,goal:number)=>Math.max(0,Math.min(100,value/goal*100));
  return <section className="brands">
-  <header className="brands-head"><div><span className="brands-kicker">BLUE FRIDAY 2026 · MARCAS</span><h1>Visão de desempenho</h1><p className="brands-sub">UniAlphaville + UniASP · Felipe e Isabella · atualização manual</p></div><div className="brands-tools"><select className="brands-select" aria-label="Selecionar semana" value={week} onChange={e=>setWeek(Number(e.target.value))}>{weeks.map((w,i)=><option key={w.start} value={i}>Semana {i+1} · {dateBR(w.start)} a {dateBR(w.end)}</option>)}</select><button className="brands-button" type="button" onClick={()=>void load()} disabled={loading}>{loading?"Carregando...":"Atualizar dados"}</button><a className="brands-link" href={source} target="_blank" rel="noreferrer">Planilha original ↗</a></div></header>
+  <header className="brands-head"><div><span className="brands-kicker">BLUE FRIDAY 2026 / RELACIONAMENTO</span><h1>Marcas</h1><p className="brands-sub">UniAlphaville + UniASP · Felipe e Isabella · atualização manual</p></div><div className="brands-tools"><select className="brands-select" aria-label="Selecionar semana" value={week} onChange={e=>setWeek(Number(e.target.value))}>{weeks.map((w,i)=><option key={w.start} value={i}>{CAMPAIGN_WEEKS[i].label}</option>)}</select><button className="brands-button" type="button" onClick={()=>void load()} disabled={loading}>{loading?"Carregando...":"Atualizar dados"}</button><a className="brands-link" href={source} target="_blank" rel="noreferrer">Planilha original ↗</a></div></header>
  {error&&<div className="brands-alert" role="alert">{error}</div>}
  <div className="brands-grid">
   <article className="brands-card"><span className="bf-kpi-title"><span className="bf-kpi-glyph"><DashboardGlyph name="revenue" size={25}/></span><span className="brands-card-label">Receita da semana</span></span><strong className="brands-value">{money(displayedAmounts[week])}</strong><p className="brands-caption">Meta {money(selected.goal)} · {progress(displayedAmounts[week],selected.goal).toFixed(1).replace(".",",")}%</p><div className="brands-track"><div className="brands-fill" style={{width:progress(displayedAmounts[week],selected.goal)+"%"}}/></div></article>
@@ -54,3 +56,5 @@ export default function BrandsPanel(){
  {!daily.length&&!loading&&!snapshotFallback&&<div className="brands-alert">Nenhuma receita importada para Marcas.</div>}
  </section>;
 }
+
+export { weeks as BRANDS_WEEKS, verifiedWeekOne as BRANDS_WEEK_ONE };

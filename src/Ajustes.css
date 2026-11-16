@@ -1,0 +1,142 @@
+/* Ajustes visuais do dash Blue Friday 2026.
+   Carregado por último em main.tsx para sobrepor estilos antigos sem mexer neles. */
+
+:root{
+  --aj-panel:#132447;
+  --aj-panel-2:#172b52;
+  --aj-line:#33507e;
+  --aj-ink:#eef4ff;
+  --aj-muted:#a9bbd8;
+  --aj-good:#3ddc97;
+  --aj-good-bg:rgba(61,220,151,.12);
+  --aj-bad:#ff7d8f;
+  --aj-bad-bg:rgba(255,125,143,.12);
+  --aj-wait:#ffc766;
+  --aj-wait-bg:rgba(255,199,102,.12);
+  --aj-none:#9fb2d3;
+  --aj-none-bg:rgba(159,178,211,.10);
+}
+
+/* #8 Faixa do topo: fina, azul, estática e informativa */
+.bf-campaign-strip{position:fixed;top:0;left:0;right:0;z-index:90;height:28px;display:flex;align-items:center;justify-content:center;gap:12px;
+  background:linear-gradient(90deg,#0b2a6b,#1c4fd6 50%,#0b2a6b);color:#dbe8ff;font-size:12px;letter-spacing:.02em;border-bottom:1px solid #2b5bd8}
+.bf-campaign-strip strong{color:#fff;font-weight:750}
+.bf-campaign-strip span{opacity:.9}
+.bf-layout{padding-top:28px!important}
+@media(max-width:720px){.bf-campaign-strip{height:26px;font-size:11px}.bf-layout{padding-top:26px!important}}
+
+/* #5 Menu lateral sempre na altura da tela */
+.bf-layout aside.bf-side.bf-side-light.bf-side-refined{position:sticky;top:28px;height:calc(100vh - 28px);align-self:flex-start}
+
+/* #7 Elementos claros que quebravam o tema escuro */
+.bo-data-badge.validated,.bo-v2 .bo-data-badge.validated{background:var(--aj-good-bg)!important;color:var(--aj-good)!important;border:1px solid rgba(61,220,151,.35)!important}
+.bo-data-badge.reconstructed{background:var(--aj-wait-bg)!important;color:var(--aj-wait)!important;border:1px solid rgba(255,199,102,.35)!important}
+.bo-special-pending,.bo-v2 .bo-v2-mission .bf-status,.bf-status{background:var(--aj-wait-bg)!important;color:var(--aj-wait)!important;border:1px solid rgba(255,199,102,.35)}
+.bo-chart-insight{background:rgba(91,155,255,.10)!important;color:#cfe0ff!important;border:1px solid rgba(91,155,255,.3)!important}
+.rf-import-btn,.refund-btn.refund-btn-quiet.rf-import-btn{background:transparent!important;color:#cfe0ff!important;border:1px solid #4d6fa3!important;box-shadow:none!important}
+.rf-import-btn:hover{background:rgba(91,155,255,.12)!important}
+.bo-range-filter{background:var(--aj-panel)!important;border-color:var(--aj-line)!important;color:#cfe0ff!important;box-shadow:none!important}
+.bo-range-filter select{background:#0f2147;color:var(--aj-ink);border:1px solid var(--aj-line);border-radius:8px;padding:7px 8px;font:inherit}
+
+/* #9 Semicírculos decorativos dos KPIs do BO */
+.bo-v2 .bo-v2-kpi:after{display:none!important}
+
+/* #6 Cabeçalho padrão também fora de .brands (Reembolso, BO, Mídias e Procon) */
+.bf-body .brands-head{position:relative;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:22px 24px;margin:0 0 20px;
+  border:1px solid #32689e;border-radius:20px;background:radial-gradient(ellipse at 5% 0%,rgba(56,116,210,.28),transparent 56%),linear-gradient(120deg,#173462,#0d2043)}
+.bf-body .brands-head h1{margin:6px 0 4px;font-size:30px;line-height:1.15;color:#fff}
+.bf-body .brands-head .brands-sub{margin:0;color:#c4d3ed;font-size:14px}
+.bf-body .brands-head .brands-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;color:#9ac9ff}
+.bf-body .brands-head .brands-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bf-body .brands-head .brands-tools label{color:#c6d7f4;font-size:13px;font-weight:650}
+.bf-body .brands-head .brands-select{background:#10244a;color:#fff;border:1px solid #5274a8;padding:11px 14px;border-radius:10px;min-width:220px;font:inherit}
+.bo-v2 .bo-head{margin-bottom:14px}
+.mp-week-chip{display:inline-flex;align-items:center;padding:7px 12px;border-radius:999px;background:rgba(91,155,255,.12);color:#cfe0ff;font-size:12px;font-weight:700;border:1px solid rgba(91,155,255,.3)}
+
+/* #4 Visão geral: placar e status por área */
+.bf-command .bf-command-scoreboard .bf-command-summary-card strong em{font-style:normal;font-size:14px;font-weight:600;color:var(--aj-muted);margin-left:4px}
+.bf-command-scoreboard .tone-good .bf-command-summary-icon{background:var(--aj-good-bg)!important;color:var(--aj-good)!important}
+.bf-command-scoreboard .tone-bad .bf-command-summary-icon{background:var(--aj-bad-bg)!important;color:var(--aj-bad)!important}
+.bf-command-scoreboard .tone-wait .bf-command-summary-icon{background:var(--aj-wait-bg)!important;color:var(--aj-wait)!important}
+.bf-area-status-pill{flex:none;align-self:flex-start;white-space:nowrap;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:750;border:1px solid transparent}
+.bf-area-status-pill.tone-good{background:var(--aj-good-bg);color:var(--aj-good);border-color:rgba(61,220,151,.35)}
+.bf-area-status-pill.tone-bad{background:var(--aj-bad-bg);color:var(--aj-bad);border-color:rgba(255,125,143,.35)}
+.bf-area-status-pill.tone-wait{background:var(--aj-wait-bg);color:var(--aj-wait);border-color:rgba(255,199,102,.35)}
+.bf-area-status-pill.tone-none{background:var(--aj-none-bg);color:var(--aj-none);border-color:rgba(159,178,211,.25)}
+.bf-area-status-value{margin:10px 0 2px;padding-left:2px;font-size:15px;font-weight:700;color:var(--aj-ink);text-align:left}
+.bf-command-area.tone-none .bf-area-status-value{color:var(--aj-muted);font-weight:500;font-size:13px}
+
+/* #13 Reembolsos por dia em barras */
+.rf-days{border:1px solid #344f79;border-radius:13px;overflow:hidden}
+.rf-days-row{display:grid;grid-template-columns:92px minmax(80px,1fr) 96px 140px;align-items:center;gap:14px;padding:11px 16px;border-top:1px solid #2c4672;background:#13284d;color:#e9f2ff;font-size:13px}
+.rf-days-row:nth-child(odd){background:#152b51}
+.rf-days-row>span:nth-child(3),.rf-days-row>span:nth-child(4){text-align:right;font-variant-numeric:tabular-nums}
+.rf-days-row>span:first-child{display:flex;flex-direction:column;line-height:1.25}
+.rf-days-row small{color:var(--aj-muted);font-size:11px}
+.rf-days-head{border-top:0;background:#203a65!important;color:#d5e7ff;font-weight:750;font-size:12px}
+.rf-days-track{height:10px;border-radius:6px;background:#22395f;overflow:hidden}
+.rf-days-track span{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#3a86ff,#6cc8ff)}
+.rf-days-row.is-empty{color:var(--aj-muted)}
+.rf-days-total{background:#1d3865!important;font-weight:800;border-top:1px solid #5778a8}
+.rf-reconcile{margin-top:14px;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,199,102,.35);background:var(--aj-wait-bg);color:#ffe3ad}
+.rf-reconcile strong{display:block;color:#ffd58a;margin-bottom:4px}
+.rf-reconcile p{margin:0;font-size:13px;line-height:1.5}
+@media(max-width:620px){.rf-days-row{grid-template-columns:62px 1fr 104px;gap:10px}.rf-days-row>span:nth-child(3){display:none}}
+
+/* #14 Barra de uso do teto */
+.rf-cap-bar{display:block;width:100%;height:8px;border-radius:6px;background:#22395f;overflow:hidden}
+.rf-cap-bar span{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#2ec4a5,#59dfc6)}
+.rf-cap-bar.is-over span{background:linear-gradient(90deg,#ff5d73,#ff9da9)}
+
+/* #15 Ranking: barra até o número e taxa do time */
+.bf-refund-ranking-person{flex:1;min-width:0}
+.bf-refund-ranking-track{max-width:none!important;height:8px!important}
+.rf-rate-chip{flex:none;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;background:var(--aj-none-bg);color:var(--aj-none);border:1px solid rgba(159,178,211,.25)}
+.rf-rate-chip.is-good{background:var(--aj-good-bg);color:var(--aj-good);border-color:rgba(61,220,151,.35)}
+
+/* #19 Telas largas: metas e destaques lado a lado */
+@media(min-width:1280px){
+  .bf-refund-insights{grid-template-columns:1fr 1fr}
+  .bf-refund-insights>.bf-refund-insight-panel:first-child{grid-column:1 / -1}
+}
+
+/* #20 Celular: menu vira barra inferior e o conteúdo usa a largura toda */
+@media(max-width:760px){
+  .bf-layout{display:block!important;padding-bottom:68px}
+  .bf-layout aside.bf-side.bf-side-light.bf-side-refined{position:fixed!important;top:auto!important;bottom:0;left:0;right:0;z-index:80;width:100%!important;min-width:0!important;height:64px!important;
+    flex-direction:row!important;align-items:center;padding:6px 8px!important;border-right:0!important;border-top:1px solid #20385d;overflow-x:auto;overflow-y:hidden}
+  .bf-layout aside.bf-side-refined .bf-brand,.bf-layout aside.bf-side-refined .bf-side-bottom,.bf-layout aside.bf-side-refined .bf-menu-label,.bf-layout aside.bf-side-refined .bf-side-toggle{display:none!important}
+  .bf-layout aside.bf-side-refined .bf-side-navigation{display:flex!important;flex-direction:row!important;gap:4px;width:max-content}
+  .bf-layout aside.bf-side-refined .bf-menu{flex:none;width:52px!important;height:50px!important;min-height:0!important;padding:0!important;justify-content:center!important;margin:0!important}
+  .bf-layout aside.bf-side-refined .bf-menu-text,.bf-layout aside.bf-side-refined .bf-menu-chevron,.bf-layout aside.bf-side-refined .bf-new{display:none!important}
+  .bf-command div.bf-command-summary.bf-command-scoreboard{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  .bf-command-scoreboard .bf-command-summary-card{flex-direction:column;align-items:flex-start;padding:10px!important;min-height:0!important;gap:6px!important}
+  .bf-command-scoreboard .bf-command-summary-icon{width:30px!important;height:30px!important}
+  .bf-command-scoreboard .bf-command-summary-card small{font-size:11px}
+  .bf-command-scoreboard .bf-command-summary-card strong{font-size:20px!important}
+  .bf-command-scoreboard .bf-command-summary-card strong em{display:block;margin:0;font-size:11px}
+  .bf-body .brands-head h1{font-size:24px}
+  .bf-body .brands-head .brands-select{min-width:0;width:100%}
+}
+
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* Reforços de especificidade */
+.bf-command div.bf-command-summary.bf-command-scoreboard .tone-good .bf-command-summary-icon{background:var(--aj-good-bg)!important;color:var(--aj-good)!important}
+.bf-command div.bf-command-summary.bf-command-scoreboard .tone-bad .bf-command-summary-icon{background:var(--aj-bad-bg)!important;color:var(--aj-bad)!important}
+.bf-command div.bf-command-summary.bf-command-scoreboard .tone-wait .bf-command-summary-icon{background:var(--aj-wait-bg)!important;color:var(--aj-wait)!important}
+@media(min-width:1280px){.bf-refund-insights .bf-refund-highlights{grid-template-columns:1fr!important}}
+@media(max-width:760px){
+  .bf-layout aside.bf-side.bf-side-light.bf-side-refined .bf-side-bottom,
+  .bf-layout aside.bf-side.bf-side-light.bf-side-refined .bf-brand{display:none!important}
+  .bf-command div.bf-command-summary.bf-command-scoreboard .bf-command-summary-card{display:flex!important;flex-direction:column!important;align-items:flex-start!important;padding:10px 12px!important}
+  .bf-command div.bf-command-summary.bf-command-scoreboard .bf-command-summary-icon{display:none!important}
+}
+
+/* #7 Mídias e Procon: pílulas, botão e grade do gráfico no tema escuro */
+.mp-page .mp-overview-admin-link{background:transparent!important;color:#cfe0ff!important;border:1px solid #4d6fa3!important;box-shadow:none!important}
+.mp-page .mp-result-badge,.mp-page .mp-result-badge.pending,.mp-page .mp-week-status-pill{background:var(--aj-none-bg)!important;color:var(--aj-none)!important;border:1px solid rgba(159,178,211,.25)!important;box-shadow:none!important}
+.mp-page .mp-result-badge.success,.mp-page .mp-week-status.is-success .mp-week-status-pill{background:var(--aj-good-bg)!important;color:var(--aj-good)!important;border-color:rgba(61,220,151,.35)!important}
+.mp-page .mp-result-badge.fail,.mp-page .mp-week-status.is-failed .mp-week-status-pill{background:var(--aj-bad-bg)!important;color:var(--aj-bad)!important;border-color:rgba(255,125,143,.35)!important}
+.mp-page .mp-week-status-icon{background:rgba(91,155,255,.14)!important;color:#9cc4ff!important}
+.mp-page .mp-reference-chart-grid,.mp-page .mp-week-panel .mp-reference-chart-grid{border-bottom-color:#41658d!important;background:repeating-linear-gradient(to top,transparent 0,transparent 48px,rgba(160,190,240,.12) 49px,rgba(160,190,240,.12) 50px)!important}

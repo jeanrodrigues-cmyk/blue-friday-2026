@@ -1,5 +1,7 @@
 import DashboardGlyph from "./DashboardGlyph";
 import {useState} from "react";
+import { CAMPAIGN_WEEKS, currentWeekIndex } from "./campaign";
+
 import "./BrandsPanel.css";
 import "./RecorrenciaPanel.css";
 
@@ -11,7 +13,7 @@ const weeks=[
 ];
 const brl=(n:number)=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
 export default function RecorrenciaPanel(){
- const [selected,setSelected]=useState(0);
+ const [selected,setSelected]=useState(currentWeekIndex);
  const w=weeks[selected],known=w.recovered!==null;
  const achieved=known?100*w.recovered!/w.goal:null;
  return <div className="brands rc-dashboard">
@@ -30,3 +32,4 @@ export default function RecorrenciaPanel(){
  <p className="brands-note">Fonte: slide oficial de metas e resumo de resultados da Semana 1 enviados pela equipe. Semanas seguintes aguardam dados. Este painel ainda não possui sincronização automática.</p>
  </div>;
 }
+export { weeks as RC_WEEKS };

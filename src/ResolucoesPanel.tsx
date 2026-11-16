@@ -1,4 +1,6 @@
 import {useState} from "react";
+import { CAMPAIGN_WEEKS, currentWeekIndex } from "./campaign";
+
 import "./BrandsPanel.css";
 import "./ResolucoesPanel.css";
 
@@ -7,7 +9,7 @@ const team=["Daniel","Ellen","Laion","Livia","Renan"];
 const checkpoints=[["TMA da equipe","Até 4 horas"],["TPR da equipe","Até 8 minutos"],["Caixa zerada todos os dias","Até as 18h"],["Trava para prêmio em dinheiro","Pelo menos 3 dias com caixa zerada até 18h, especialmente segunda e sexta"],["Mínimo de efetivas CLT","200 na semana (40/dia)"],["Mínimo de efetivas JA","80 na semana (20/dia)"]];
 function RsIcon({kind}:{kind:"clock"|"zap"|"star"|"target"|"trophy"|"gift"|"calendar"|"info"}){const common={fill:"none",stroke:"currentColor",strokeWidth:1.9,strokeLinecap:"round" as const,strokeLinejoin:"round" as const};return <svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true" {...common}>{kind==="clock"?<><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></>:kind==="zap"?<path d="m13 2-9 12h7l-1 8 10-12h-7z"/>:kind==="star"?<path d="m12 2 3.1 6.4 7.1 1-5.1 5 .9 7-6-3.3-6 3.3.9-7-5.1-5 7.1-1z"/>:kind==="target"?<><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></>:kind==="trophy"?<><path d="M7 3h10v7a5 5 0 0 1-10 0zM9 21h6M12 15v6M7 5H4v3a4 4 0 0 0 4 4M17 5h3v3a4 4 0 0 1-4 4"/></>:kind==="gift"?<><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9C7 9 6 6 8 4s4 1 4 5M12 9c5 0 6-3 4-5s-4 1-4 5"/></>:kind==="calendar"?<><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></>:<><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></>}</svg>}
 export default function ResolucoesPanel(){
- const [selected,setSelected]=useState(0);
+ const [selected,setSelected]=useState(currentWeekIndex);
  const first=selected===0;
  return <div className="brands rs-dashboard">
   <header className="brands-head rs-header"><div><span className="brands-kicker">BLUE FRIDAY 2026 / RELACIONAMENTO</span><h1>Resoluções</h1><p className="brands-sub">Qualidade, agilidade e produtividade · acompanhamento semanal</p></div><div className="brands-tools"><label htmlFor="rs-week">Período</label><select id="rs-week" className="brands-select" value={selected} onChange={e=>setSelected(Number(e.target.value))}>{weeks.map((label,i)=><option key={i} value={i}>{label}</option>)}</select></div></header>

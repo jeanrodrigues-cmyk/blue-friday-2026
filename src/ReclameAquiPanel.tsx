@@ -3,11 +3,13 @@ import {useCallback,useEffect,useMemo,useState,type FormEvent} from "react";
 import {supabase} from "./lib/supabase";
 import "./BrandsPanel.css";
 import "./ReclameAquiPanel.css";
+import { CAMPAIGN_WEEKS, currentWeekIndex } from "./campaign";
+
 
 type Tri=boolean|null;
 type Week={week_start:string;week_end:string;assigned:number|null;answered:number|null;evaluated:number|null;good_evaluations:number|null;evaluation_pct:number|null;good_pct:number|null;overdue_15_count:number|null;contact_d1_ok:Tri;first_action_d1_ok:Tri;reputation_stable:Tri;vfn_stable:Tri;solution_stable:Tri;reward_approved:boolean;gift_approved:boolean;source:string;notes:string|null};
 type Member={week_start:string;member_key:"julio"|"larissa";assigned:number|null;answered:number|null;replies:number|null;evaluated:number|null;good_evaluations:number|null;resolved:number|null;vfn_positive:number|null;evaluation_pct:number|null;good_pct:number|null;solution_pct:number|null;reputation:number|null};
-const weeks=[{start:"2026-11-01",end:"2026-11-08",label:"Semana 1 · 01–08/11"},{start:"2026-11-09",end:"2026-11-15",label:"Semana 2 · 09–15/11"},{start:"2026-11-16",end:"2026-11-22",label:"Semana 3 · 16–22/11"},{start:"2026-11-23",end:"2026-11-30",label:"Semana 4 · 23–30/11"}];
+const weeks=[{start:"2026-11-01",end:"2026-11-08",label:"Semana 1 · 01 a 08/11"},{start:"2026-11-09",end:"2026-11-15",label:"Semana 2 · 09 a 15/11"},{start:"2026-11-16",end:"2026-11-22",label:"Semana 3 · 16 a 22/11"},{start:"2026-11-23",end:"2026-11-30",label:"Semana 4 · 23 a 30/11"}];
 const names:{[key:string]:string}={julio:"Julio Assis",larissa:"Larissa"};
 const firstWeekSnapshot:Week={week_start:"2026-11-01",week_end:"2026-11-08",assigned:68,answered:68,evaluated:35,good_evaluations:13,evaluation_pct:51.47,good_pct:37.14,overdue_15_count:0,contact_d1_ok:true,first_action_d1_ok:true,reputation_stable:true,vfn_stable:true,solution_stable:true,reward_approved:false,gift_approved:false,source:"HugMe · relatório 02–08/11/2026",notes:"Metas e travas confirmadas pelo responsável em 12/11/2026. Meta de avaliações boas (50%) não atingida. Os totais gerais e individuais divergem em algumas métricas."};
 const firstWeekPeople:Member[]=[
@@ -30,7 +32,7 @@ function triLabel(v:Tri){return v==null?"Pendente":v?"Cumprida":"Não cumprida";
 function gate(w:Week|undefined){if(!w)return "Pendente";const all=[w.overdue_15_count==null?null:w.overdue_15_count===0,w.contact_d1_ok,w.first_action_d1_ok,w.reputation_stable,w.vfn_stable,w.solution_stable];return all.some(x=>x===false)?"Não cumprida":all.some(x=>x===null)?"Pendente":"Cumprida";}
 function eligible(w:Week|undefined){return !!w&&w.evaluation_pct!=null&&w.good_pct!=null&&w.evaluation_pct>=40&&w.good_pct>=50&&gate(w)==="Cumprida";}
 export default function ReclameAquiPanel({admin=false}:{admin?:boolean}){
- const [selected,setSelected]=useState(weeks[0].start),[weeksData,setWeeksData]=useState<Week[]>([]),[members,setMembers]=useState<Member[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState(""),[saving,setSaving]=useState(false);
+ const [selected,setSelected]=useState(()=>weeks[currentWeekIndex()].start),[weeksData,setWeeksData]=useState<Week[]>([]),[members,setMembers]=useState<Member[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState(""),[saving,setSaving]=useState(false);
  const [form,setForm]=useState<Record<string,string>>({}),[memberForm,setMemberForm]=useState<Record<string,string>>({}),[editorOpen,setEditorOpen]=useState(false);
  const week=weeks.find(w=>w.start===selected)!;
  const storedWeek=weeksData.find(w=>w.week_start===selected);
@@ -85,3 +87,5 @@ export default function ReclameAquiPanel({admin=false}:{admin?:boolean}){
   <form className="brands-panel" onSubmit={e=>void saveMember(e)}><h2>Atualizar colaborador</h2><label style={{fontSize:12}}>Colaborador<select className="brands-select" style={{display:"block",width:"100%"}} value={memberForm.member_key??""} onChange={e=>{setMemberForm({member_key:e.target.value});}} required><option value="">Selecione</option><option value="julio">Julio Assis</option><option value="larissa">Larissa</option></select></label><div className="brands-people" style={{marginTop:14}}>{memberFields.map(([key,label])=><label key={key} style={{fontSize:12}}>{label}<input className="brands-select" style={{display:"block",width:"100%"}} type="number" min="0" step={key.includes("pct")||key==="reputation"?"0.01":"1"} value={memberForm[key]??""} placeholder={fmt(people.find(p=>p.member_key===memberForm.member_key)?.[key] as number|null)} onChange={e=>change(key,e.target.value,true)}/></label>)}</div><button className="brands-button" style={{marginTop:14}} disabled={saving} type="submit">{saving?"Salvando...":"Salvar colaborador"}</button></form></div>}
  </div>;
 }
+
+export { firstWeekSnapshot as RA_WEEK_ONE };
