@@ -580,3 +580,11 @@
 .bf-refund-conversion-stats span{font-size:12px;color:#b9cbea}
 .bf-refund-conversion-stats strong{font-size:25px;font-variant-numeric:tabular-nums}
 @media(max-width:760px){.bf-refund-week2-conversions{padding:16px}.bf-refund-conversion-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.bf-refund-conversion-stats strong{font-size:21px}}
+
+
+.bf-refund-week2-goal-summary{display:flex;justify-content:space-between;align-items:center;gap:18px;background:linear-gradient(115deg,#48283b,#2c263c);border:1px solid #b56b77;border-radius:16px;padding:20px 24px;margin-bottom:16px;color:#fff}
+.bf-refund-week2-goal-summary span{font-size:11px;letter-spacing:1.3px;color:#ffc5c5;font-weight:750}
+.bf-refund-week2-goal-summary h2{font-size:21px;margin:7px 0}
+.bf-refund-week2-goal-summary p{font-size:12px;line-height:1.6;color:#f2d8dc;margin:0}
+.bf-refund-week2-goal-summary>strong{font-size:29px;white-space:nowrap}
+@media(max-width:720px){.bf-refund-week2-goal-summary{flex-direction:column;align-items:flex-start;padding:17px}.bf-refund-week2-goal-summary h2{font-size:19px}}
