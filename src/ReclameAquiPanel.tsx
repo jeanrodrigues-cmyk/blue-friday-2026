@@ -15,6 +15,13 @@ const firstWeekPeople:Member[]=[
 {week_start:"2026-11-01",member_key:"larissa",assigned:34,answered:31,replies:13,evaluated:8,good_evaluations:3,resolved:6,vfn_positive:4,evaluation_pct:25.81,good_pct:37.5,solution_pct:75,reputation:null}
 ];
 
+// HugMe, capturas de 16/11/2026 com filtro 09-16/11; linha semanal 09/11.
+// Indicadores nao presentes nos prints permanecem nulos, sem aprovar premio.
+const secondWeekSnapshot:Week={week_start:"2026-11-09",week_end:"2026-11-15",assigned:61,answered:60,evaluated:36,good_evaluations:16,evaluation_pct:60,good_pct:44.44,overdue_15_count:null,contact_d1_ok:null,first_action_d1_ok:null,reputation_stable:null,vfn_stable:null,solution_stable:null,reward_approved:false,gift_approved:false,source:"HugMe · relatório 09–16/11/2026",notes:"Captura semanal de 16/11. Meta de 50% de avaliações boas não atingida. Totais individuais não fecham com consolidado; travas pendentes de conferência."};
+const secondWeekPeople:Member[]=[
+ {week_start:"2026-11-09",member_key:"julio",assigned:32,answered:29,replies:4,evaluated:9,good_evaluations:4,resolved:6,vfn_positive:3,evaluation_pct:31.03,good_pct:44.44,solution_pct:66.67,reputation:5.89},
+ {week_start:"2026-11-09",member_key:"larissa",assigned:29,answered:31,replies:6,evaluated:15,good_evaluations:7,resolved:13,vfn_positive:4,evaluation_pct:48.39,good_pct:46.67,solution_pct:86.67,reputation:6.81}
+];
 const fmt=(n:number|null|undefined,suffix="")=>n==null?"Pendente":n.toLocaleString("pt-BR",{maximumFractionDigits:2})+suffix;
 const checks:[keyof Week,string][]=[["overdue_15_count","Zero reclamações acima de 15 dias"],["contact_d1_ok","Contato com estudante no D1"],["first_action_d1_ok","Primeira tratativa no D1"],["reputation_stable","Reputação sem queda"],["vfn_stable","VFN sem queda"],["solution_stable","Índice de solução sem queda"]];
 const numericFields:[keyof Week,string][]=[["assigned","Reclamações atribuídas"],["answered","Respondidas"],["evaluated","Avaliadas"],["good_evaluations","Avaliações boas"],["evaluation_pct","% avaliadas"],["good_pct","% boas"],["overdue_15_count","Acima de 15 dias"]];
@@ -27,8 +34,8 @@ export default function ReclameAquiPanel({admin=false}:{admin?:boolean}){
  const [form,setForm]=useState<Record<string,string>>({}),[memberForm,setMemberForm]=useState<Record<string,string>>({}),[editorOpen,setEditorOpen]=useState(false);
  const week=weeks.find(w=>w.start===selected)!;
  const storedWeek=weeksData.find(w=>w.week_start===selected);
- const current=selected==="2026-11-01"?{...firstWeekSnapshot,...storedWeek,overdue_15_count:0,contact_d1_ok:true,first_action_d1_ok:true,reputation_stable:true,vfn_stable:true,solution_stable:true}:storedWeek;
- const people=members.filter(p=>p.week_start===selected).length?members.filter(p=>p.week_start===selected):selected==="2026-11-01"?firstWeekPeople:[];
+ const current=selected==="2026-11-01"?{...firstWeekSnapshot,...storedWeek,overdue_15_count:0,contact_d1_ok:true,first_action_d1_ok:true,reputation_stable:true,vfn_stable:true,solution_stable:true}:selected==="2026-11-09"?{...secondWeekSnapshot,...storedWeek}:storedWeek;
+ const people=members.filter(p=>p.week_start===selected).length?members.filter(p=>p.week_start===selected):selected==="2026-11-01"?firstWeekPeople:selected==="2026-11-09"?secondWeekPeople:[];
  const load=useCallback(async()=>{
   if(!supabase){setError("Supabase não configurado.");setLoading(false);return;}
   setLoading(true);const [w,p]=await Promise.all([supabase.from("bf_ra_weekly").select("*").order("week_start"),supabase.from("bf_ra_weekly_people").select("*").order("week_start")]);
