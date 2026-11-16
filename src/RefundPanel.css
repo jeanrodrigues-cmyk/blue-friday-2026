@@ -603,3 +603,21 @@
 .bf-refund-opened-track>div{width:70%;background:linear-gradient(180deg,#7f7aff,#4c8fdc);border-radius:6px 6px 0 0}
 .bf-refund-opened-day small{font-size:11px;color:#b9cbea;padding-bottom:5px}
 @media(max-width:800px){.bf-refund-opened-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.bf-refund-week2-opened{padding:16px}.bf-refund-opened-bars{gap:5px}}
+
+
+/* Unificacao visual das semanas: os mesmos paineis, hierarquia e espacamento */
+.bf-refund-insight-panel.bf-refund-week2-opened,
+.bf-refund-insight-panel.bf-refund-week2-conversions,
+.bf-refund-insight-panel.bf-refund-processing-week2{background:#142443;border:1px solid #36547d;border-radius:18px;padding:22px 24px;margin:0 0 18px;color:#f4f7ff;box-shadow:none}
+.bf-refund-week2-opened .bf-refund-processing-head,
+.bf-refund-week2-conversions .bf-refund-processing-head,
+.bf-refund-processing-week2 .bf-refund-processing-head{padding-bottom:14px;border-bottom:1px solid #365073;margin-bottom:17px}
+.bf-refund-week2-opened .bf-refund-processing-head h2,
+.bf-refund-week2-conversions .bf-refund-processing-head h2,
+.bf-refund-processing-week2 .bf-refund-processing-head h2{font-size:18px;font-weight:800;line-height:1.25}
+.bf-refund-week2-opened .bf-refund-processing-head p,
+.bf-refund-week2-conversions .bf-refund-processing-head p,
+.bf-refund-processing-week2 .bf-refund-processing-head p{margin-top:6px}
+.bf-refund-week2-opened .bf-refund-opened-kpis article,
+.bf-refund-week2-conversions .bf-refund-conversion-stats>div{background:#20375b;border:1px solid #3a5780}
+@media(max-width:720px){.bf-refund-insight-panel.bf-refund-week2-opened,.bf-refund-insight-panel.bf-refund-week2-conversions,.bf-refund-insight-panel.bf-refund-processing-week2{padding:16px}}
