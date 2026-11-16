@@ -294,10 +294,9 @@ export default function App() {
     {reference_date:row.date,metric_key:"bo_over_7_days",metric_value:row.backlog,verified:false},
     {reference_date:row.date,metric_key:"bo_resolved",metric_value:row.resolved,verified:false}
   ]);
-  const displayMetrics = [
-    ...metrics.filter(m=>!boWeek2Snapshots.some(row=>row.date===m.reference_date)),
-    ...boWeek2Provisional
-  ];
+  const displayMetrics = selectedWeek===1
+    ? [...metrics.filter(m=>!boWeek2Snapshots.some(row=>row.date===m.reference_date)),...boWeek2Provisional]
+    : metrics;
   const history = Array.from(new Set(displayMetrics.map(m=>m.reference_date))).sort().reverse().map(date=>{
     const entries=displayMetrics.filter(m=>m.reference_date===date);
     const get=(key:string)=>entries.find(m=>m.metric_key===key)?.metric_value;
