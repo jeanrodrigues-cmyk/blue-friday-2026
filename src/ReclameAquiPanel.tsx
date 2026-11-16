@@ -17,9 +17,9 @@ const firstWeekPeople:Member[]=[
 
 // HugMe, capturas de 16/11/2026 com filtro 09-16/11; linha semanal 09/11.
 // Indicadores nao presentes nos prints permanecem nulos, sem aprovar premio.
-const secondWeekSnapshot:Week={week_start:"2026-11-09",week_end:"2026-11-15",assigned:61,answered:60,evaluated:36,good_evaluations:16,evaluation_pct:60,good_pct:44.44,overdue_15_count:null,contact_d1_ok:null,first_action_d1_ok:null,reputation_stable:null,vfn_stable:null,solution_stable:null,reward_approved:false,gift_approved:false,source:"HugMe · relatório 09–16/11/2026",notes:"Captura semanal de 16/11. Meta de 50% de avaliações boas não atingida. Totais individuais não fecham com consolidado; travas pendentes de conferência."};
+const secondWeekSnapshot:Week={week_start:"2026-11-09",week_end:"2026-11-15",assigned:61,answered:60,evaluated:36,good_evaluations:16,evaluation_pct:60,good_pct:44.44,overdue_15_count:null,contact_d1_ok:null,first_action_d1_ok:null,reputation_stable:null,vfn_stable:null,solution_stable:null,reward_approved:false,gift_approved:false,source:"HugMe · relatório 09–16/11/2026",notes:"Captura semanal de 16/11. Meta de 50% de avaliações boas não atingida. Julio: QB 29 respostas e 4 avaliações boas; ME acrescentou 16 respostas e 3 avaliações boas. Consolidado geral do print é apenas QB. Percentuais combinados do Julio pendentes por falta do total de avaliações ME; travas pendentes de conferência."};
 const secondWeekPeople:Member[]=[
- {week_start:"2026-11-09",member_key:"julio",assigned:32,answered:29,replies:4,evaluated:9,good_evaluations:4,resolved:6,vfn_positive:3,evaluation_pct:31.03,good_pct:44.44,solution_pct:66.67,reputation:5.89},
+ {week_start:"2026-11-09",member_key:"julio",assigned:32,answered:45,replies:4,evaluated:9,good_evaluations:7,resolved:6,vfn_positive:3,evaluation_pct:null,good_pct:null,solution_pct:66.67,reputation:5.89},
  {week_start:"2026-11-09",member_key:"larissa",assigned:29,answered:31,replies:6,evaluated:15,good_evaluations:7,resolved:13,vfn_positive:4,evaluation_pct:48.39,good_pct:46.67,solution_pct:86.67,reputation:6.81}
 ];
 const fmt=(n:number|null|undefined,suffix="")=>n==null?"Pendente":n.toLocaleString("pt-BR",{maximumFractionDigits:2})+suffix;
