@@ -588,3 +588,18 @@
 .bf-refund-week2-goal-summary p{font-size:12px;line-height:1.6;color:#f2d8dc;margin:0}
 .bf-refund-week2-goal-summary>strong{font-size:29px;white-space:nowrap}
 @media(max-width:720px){.bf-refund-week2-goal-summary{flex-direction:column;align-items:flex-start;padding:17px}.bf-refund-week2-goal-summary h2{font-size:19px}}
+
+
+.bf-refund-week2-opened{background:#142443;border:1px solid #36547d;border-radius:18px;padding:22px 24px;margin-bottom:20px;color:#f4f7ff}
+.bf-refund-opened-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 22px}
+.bf-refund-opened-kpis article{display:flex;flex-direction:column;gap:8px;padding:17px;border-radius:12px;background:#1c3558;border:1px solid #355275}
+.bf-refund-opened-kpis span{font-size:12px;color:#c5d7ef}
+.bf-refund-opened-kpis strong{font-size:30px;line-height:1.15;font-variant-numeric:tabular-nums}
+.bf-refund-opened-kpis small{font-size:11px;color:#adc4e5}
+.bf-refund-opened-bars{height:170px;display:flex;align-items:stretch;gap:12px;border-bottom:1px solid #446080;margin-bottom:18px}
+.bf-refund-opened-day{flex:1;min-width:0;display:flex;align-items:center;flex-direction:column;gap:6px}
+.bf-refund-opened-day>strong{font-size:12px}
+.bf-refund-opened-track{flex:1;width:min(100%,64px);display:flex;align-items:flex-end;justify-content:center;background:#ffffff08;border-radius:7px 7px 0 0}
+.bf-refund-opened-track>div{width:70%;background:linear-gradient(180deg,#7f7aff,#4c8fdc);border-radius:6px 6px 0 0}
+.bf-refund-opened-day small{font-size:11px;color:#b9cbea;padding-bottom:5px}
+@media(max-width:800px){.bf-refund-opened-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.bf-refund-week2-opened{padding:16px}.bf-refund-opened-bars{gap:5px}}
