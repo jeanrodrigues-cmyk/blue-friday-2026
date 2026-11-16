@@ -31,6 +31,18 @@ const daily=[["Segunda",8513],["Terça",8593],["Quarta",8990],["Quinta",10397],[
 // Fechamento financeiro PEF informado pela operação para a semana 1.
 const VERIFIED_WEEK_ONE_FINANCIAL={revenue:0,refunds:0,refunded:45719.59,cap:53168,missingProduct:"Receita e quantidade de casos não informadas no fechamento"};
 const VERIFIED_WEEK_ONE_BACKLOG={date:"2026-11-08",openOver7:43};
+const VERIFIED_WEEK_TWO_BACKLOG:BacklogDaily[]=[
+{date:"2026-11-09",openOver7:83,resolvedOver7:2},
+{date:"2026-11-10",openOver7:73,resolvedOver7:12},
+{date:"2026-11-11",openOver7:71,resolvedOver7:3},
+{date:"2026-11-12",openOver7:70,resolvedOver7:3},
+{date:"2026-11-13",openOver7:66,resolvedOver7:4},
+{date:"2026-11-14",openOver7:67,resolvedOver7:0},
+{date:"2026-11-15",openOver7:68,resolvedOver7:0}
+];
+// Databricks, extracao 16/11: backlog historico inclui 58 casos anteriores a outubro em 15/11.
+// 15 casos recentes em "solicitacao de estorno aberta" precisam de interpretacao operacional.
+
 const VERIFIED_WEEK_ONE_PROCESSING=[{analyst:"Alice",completed:143}];
 // Semana 2: Power BI QB (09-13/11) e contagens ME fornecidas pela operacao.
 const WEEK_TWO_PROCESSING=[
@@ -69,7 +81,7 @@ export default function RefundPanel(){
  const displayRows=useMemo(()=>[...rows.filter(r=>r.date<"2026-11-04"||r.date>"2026-11-08"),...WEEK_ONE_DAILY],[rows]);
  const totals=useMemo(()=>{const amount=displayRows.reduce((s,r)=>s+r.amount,0);const quantity=displayRows.reduce((s,r)=>s+r.quantity,0);const byWeek=weeks.map(w=>displayRows.filter(r=>Number(r.date.slice(8))>=w.start&&Number(r.date.slice(8))<=w.end).reduce((s,r)=>s+r.amount,0));const days=[...new Set(displayRows.map(r=>r.date))].sort();const teams=[...new Set(displayRows.map(r=>r.team))].map(team=>({team,amount:displayRows.filter(r=>r.team===team).reduce((s,r)=>s+r.amount,0)})).sort((a,b)=>b.amount-a.amount);return {amount,quantity,byWeek,days,teams};},[displayRows]);
  const current=weeks[week],used=totals.byWeek[week],monthCap=OFFICIAL_CAMPAIGN_CAP,monthRatio=totals.amount/monthCap*100,weekRatio=used/current.cap*100;
- const backlogWeek=backlogRows.filter(r=>Number(r.date.slice(8))>=current.start&&Number(r.date.slice(8))<=current.end);
+ const backlogWeek=(week===1?VERIFIED_WEEK_TWO_BACKLOG:backlogRows).filter(r=>Number(r.date.slice(8))>=current.start&&Number(r.date.slice(8))<=current.end);
  const backlogLatest=backlogWeek.length?backlogWeek[backlogWeek.length-1]:week===0?{date:VERIFIED_WEEK_ONE_BACKLOG.date,openOver7:VERIFIED_WEEK_ONE_BACKLOG.openOver7,resolvedOver7:0}:null;
  const backlogResolved=backlogWeek.reduce((sum,r)=>sum+r.resolvedOver7,0);
  const weekRows=displayRows.filter(r=>Number(r.date.slice(8))>=current.start&&Number(r.date.slice(8))<=current.end);
@@ -96,6 +108,7 @@ export default function RefundPanel(){
  const ui={root:{maxWidth:1280,margin:"0 auto",padding:"28px 24px 64px",color:"#f4f7ff",fontFamily:"inherit"},header:{display:"flex",alignItems:"center",justifyContent:"space-between",gap:24,flexWrap:"wrap",padding:"28px 32px",border:"1px solid #385987",borderRadius:20,background:"linear-gradient(110deg,#1b3765,#15284d)",marginBottom:20},grid:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:16,marginBottom:20},card:{display:"flex",flexDirection:"column",alignItems:"flex-start",gap:12,padding:23,minHeight:200,borderRadius:18,background:"#172747",border:"1px solid #37537d"},panel:{background:"#142443",border:"1px solid #344f79",borderRadius:18,padding:"24px 26px",marginBottom:18},sectionHead:{display:"flex",alignItems:"center",justifyContent:"space-between",gap:16,marginBottom:18},rule:{display:"flex",alignItems:"center",justifyContent:"space-between",gap:18,flexWrap:"wrap",padding:"15px 0",borderTop:"1px solid #334a70",fontSize:14},winners:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))",gap:14},winner:{display:"flex",alignItems:"center",gap:16,padding:20,background:"#20375b",border:"1px solid #3a5780",borderRadius:14},rank:{display:"grid",gridTemplateColumns:"50px 1fr auto",alignItems:"center",gap:14,padding:"15px 0",borderTop:"1px solid #334a70"},muted:{fontSize:12,color:"#b9cbea"},title:{fontSize:19,color:"#fff",fontWeight:800,margin:0},badge:{padding:"7px 11px",borderRadius:99,fontSize:12,fontWeight:800}} as const;
  return <div style={ui.root}>
  <header style={ui.header}><div><div style={{fontSize:11,fontWeight:800,letterSpacing:2,color:"#9ac9ff"}}>BLUE FRIDAY 2026 · RELACIONAMENTO</div><h1 style={{fontSize:34,color:"#fff",margin:"10px 0",lineHeight:1.15}}>Reembolso</h1><p style={{color:"#c4d3ed",fontSize:14,margin:0}}>Fechamento financeiro, metas e destaques do time.</p></div><label style={{display:"flex",flexDirection:"column",gap:8,fontSize:12,color:"#c6d7f4"}}>Período<select style={{background:"#10244a",color:"#fff",border:"1px solid #5274a8",padding:"12px 14px",borderRadius:10,minWidth:210}} aria-label="Selecionar semana" value={week} onChange={e=>setWeek(Number(e.target.value))}>{weeks.map((w,i)=><option key={w.name} value={i}>{w.name} · {w.range}</option>)}</select></label></header>
+ {week===1&&<div className="bf-refund-week2-note" role="note"><strong>Conferência Databricks · 09 a 15/11</strong><p>206 reembolsos PEF, R$ 48.819,41; backlog final de 68 casos acima de 7 dias (58 anteriores a outubro). Um pagamento de R$ 292,90 aguarda confirmação de estorno bancário. Outros 15 casos com status de solicitação de estorno aberta dependem de esclarecimento operacional. Não confundir reembolsos pagos com os 464 processamentos QB/ME.</p></div>}
  {week===1&&<section className="bf-refund-processing-week2" aria-label="Processamentos da Semana 2">
    <div className="bf-refund-processing-head"><div><h2>Reembolsos processados · Semana 2</h2><p>09 a 13/11/2026 · QB: Power BI · ME: contagens informadas pela operação</p></div><span className="bf-refund-processing-tag">Dados informados</span></div>
    <div className="bf-refund-processing-total"><span>Total processado (QB + ME)</span><strong>{number(WEEK_TWO_PROCESSING_TOTAL)}</strong><small>QB: 394 · ME: 70 · Alice e Carla</small></div>
