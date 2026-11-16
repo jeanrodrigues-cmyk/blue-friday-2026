@@ -206,3 +206,32 @@
 .bf-layout .ra-dashboard .ra-pct.bad{background:var(--aj-bad-bg)!important;color:var(--aj-bad)!important}
 .bf-layout .ra-dashboard .ra-pct.none{background:var(--aj-none-bg)!important;color:var(--aj-none)!important}
 .ra-dash{color:var(--aj-muted)}
+
+/* ===== Ajustes gerais das áreas ===== */
+/* Progresso do mês (Quero Pago e Recorrência) */
+.month-progress{flex:1;min-width:220px;max-width:420px;display:flex;flex-direction:column;gap:6px;color:#dbe8ff;font-size:13px}
+.month-progress b{color:#fff}
+.month-progress small{color:var(--aj-muted);font-size:11.5px}
+.month-track{height:8px;border-radius:6px;background:#22395f;overflow:hidden}
+.month-track div{height:100%;border-radius:6px;background:linear-gradient(90deg,#3a86ff,#6cc8ff)}
+.qp-banner,.rc-banner{gap:22px;flex-wrap:wrap}
+/* Barra de atingimento colorida pela situação */
+.qp-track.is-good div,.rc-track.is-good div{background:linear-gradient(90deg,#1fb37a,#3ddc97)!important}
+.qp-track.is-wait div,.rc-track.is-wait div{background:linear-gradient(90deg,#e0a33a,#ffc766)!important}
+.qp-track.is-bad div,.rc-track.is-bad div{background:linear-gradient(90deg,#e04d63,#ff7d8f)!important}
+/* Linha da semana selecionada nos comparativos */
+.brands table tr.is-selected td{background:rgba(91,155,255,.08)}
+.qp-person.is-muted{opacity:.7}
+.brands .brands-pill.none{background:var(--aj-none-bg)!important;color:var(--aj-none)!important;border:1px solid rgba(159,178,211,.25)!important}
+/* Resoluções */
+.rs-kpi .brands-pill{margin-top:8px;display:inline-block}
+.rs-kpi-note{margin:-6px 0 18px!important}
+/* Mídias: só a ação, sem título repetido */
+.mp-overview-actions{justify-content:flex-end!important;margin-bottom:12px!important}
+/* Chargeback: seletor de data no tema */
+.cb-dashboard select{font:inherit}
+.qp-banner .month-progress>span,.rc-banner .month-progress>span{text-transform:none!important;letter-spacing:0!important;font-size:13px!important;font-weight:500!important;color:#dbe8ff!important}
+.qp-banner .month-progress small,.rc-banner .month-progress small{font-size:11.5px!important;color:var(--aj-muted)!important}
+.bf-layout .brands .brands-head .brands-button,.bf-layout .brands .brands-head .brands-link{background:transparent!important;color:#cfe0ff!important;border:1px solid #4d6fa3!important;box-shadow:none!important}
+.bf-layout .brands .brands-days{grid-template-columns:repeat(auto-fit,minmax(78px,1fr))!important}
+.bf-layout .brands .brands-head label{color:#c6d7f4;font-size:13px;font-weight:650}

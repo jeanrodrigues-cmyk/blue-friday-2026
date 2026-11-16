@@ -27,3 +27,14 @@ export const CAMPAIGN_DAYS: string[] = Array.from({ length: 30 }, (_, i) => "202
 export const dayLabel = (iso: string) => iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4);
 
 export type AreaStatus = { tone: "good" | "bad" | "wait" | "none"; label: string; value?: string };
+
+export type WeekPhase = "ended" | "current" | "future";
+export function weekPhase(i: number, today: string = todayBR()): WeekPhase {
+  const w = CAMPAIGN_WEEKS[i];
+  return today > w.end ? "ended" : today >= w.start ? "current" : "future";
+}
+/** Texto para semana sem dado: substitui o "Pendente" genérico. */
+export function noDataLabel(i: number, today: string = todayBR()): string {
+  const p = weekPhase(i, today);
+  return p === "ended" ? "Aguardando dados" : p === "current" ? "Em andamento" : "—";
+}
