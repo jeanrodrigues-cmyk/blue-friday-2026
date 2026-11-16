@@ -14,7 +14,7 @@ import { refundWeekStatus } from "./RefundPanel";
 import { QP_WEEKS } from "./QueroPagoPanel";
 import { RC_WEEKS } from "./RecorrenciaPanel";
 import { BRANDS_WEEKS, BRANDS_WEEK_ONE } from "./BrandsPanel";
-import { RA_WEEK_ONE } from "./ReclameAquiPanel";
+import { raWeekStatus } from "./ReclameAquiPanel";
 
 type Metric = { metric_key: string; metric_value: number; reference_date: string; verified: boolean };
 // Histórico de BO validado anteriormente para a campanha. Exibido apenas
@@ -396,7 +396,7 @@ export default function App() {
     case "Quero Pago":return goalStatus(QP_WEEKS[wi].goal,QP_WEEKS[wi].revenue,wi);
     case "Recorrência":return goalStatus(RC_WEEKS[wi].goal,RC_WEEKS[wi].recovered,wi);
     case "Marcas":return goalStatus(BRANDS_WEEKS[wi].goal,wi===0?BRANDS_WEEK_ONE.weekly:null,wi);
-    case "Reclame Aqui":return wi===0?{tone:"bad",label:"Meta não cumprida",value:"Avaliações boas: "+RA_WEEK_ONE.good_pct?.toLocaleString("pt-BR",{maximumFractionDigits:1})+"% (meta 50%)"}:{tone:"none",label:"Ver no painel",value:"Resultado detalhado na área"};
+    case "Reclame Aqui":return raWeekStatus(wi,today);
     default:return {tone:"none",label:"Ver no painel",value:"Resultado detalhado na área"};
   }};
   return <main className="bf-layout"><div className="bf-campaign-strip" role="note"><strong>Blue Friday 2026</strong><span>{CAMPAIGN_WEEKS[currentWeekIndex()].label} em andamento</span></div>

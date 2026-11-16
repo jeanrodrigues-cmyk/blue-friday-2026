@@ -140,3 +140,69 @@
 .mp-page .mp-result-badge.fail,.mp-page .mp-week-status.is-failed .mp-week-status-pill{background:var(--aj-bad-bg)!important;color:var(--aj-bad)!important;border-color:rgba(255,125,143,.35)!important}
 .mp-page .mp-week-status-icon{background:rgba(91,155,255,.14)!important;color:#9cc4ff!important}
 .mp-page .mp-reference-chart-grid,.mp-page .mp-week-panel .mp-reference-chart-grid{border-bottom-color:#41658d!important;background:repeating-linear-gradient(to top,transparent 0,transparent 48px,rgba(160,190,240,.12) 49px,rgba(160,190,240,.12) 50px)!important}
+
+/* ===== Reclame Aqui ===== */
+/* Cabeçalho igual aos outros painéis, ações discretas */
+.bf-layout .ra-dashboard .ra-header:before{display:none!important}
+.bf-layout .ra-dashboard .ra-header{flex-direction:row!important;align-items:center!important;justify-content:space-between}
+.bf-layout .ra-dashboard .brands-tools .ra-quiet{background:transparent!important;color:#cfe0ff!important;border:1px solid #4d6fa3!important;box-shadow:none!important}
+.bf-layout .ra-dashboard .brands-tools .ra-quiet:hover{background:rgba(91,155,255,.12)!important}
+.bf-layout .ra-dashboard .brands-tools label{color:#c6d7f4;font-size:13px;font-weight:650}
+
+/* Barra de meta com marcador e cor por situação */
+.ra-goalbar{margin-top:14px}
+.ra-goalbar-track{position:relative;height:8px;border-radius:6px;background:#2a3d63}
+.ra-goalbar-track span{display:block;height:100%;border-radius:6px}
+.ra-goalbar-track i{position:absolute;top:-4px;width:2px;height:16px;margin-left:-1px;border-radius:2px;background:#fff;opacity:.85}
+.ra-goalbar small{display:block;margin-top:7px;font-size:11px;font-weight:650}
+.ra-goalbar.tone-good span{background:linear-gradient(90deg,#1fb37a,#3ddc97)}.ra-goalbar.tone-good small{color:var(--aj-good)}
+.ra-goalbar.tone-wait span{background:linear-gradient(90deg,#e0a33a,#ffc766)}.ra-goalbar.tone-wait small{color:var(--aj-wait)}
+.ra-goalbar.tone-bad span{background:linear-gradient(90deg,#e04d63,#ff7d8f)}.ra-goalbar.tone-bad small{color:var(--aj-bad)}
+.ra-diff{display:block;margin-top:4px;font-weight:700}
+.ra-diff.up{color:var(--aj-good)}.ra-diff.down{color:var(--aj-bad)}
+
+/* Selos de metas e travas */
+.ra-status-pair{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.bf-layout .ra-dashboard .brands-pill.none{background:var(--aj-none-bg)!important;color:var(--aj-none)!important;border:1px solid rgba(159,178,211,.25)!important}
+.ra-subhead{margin:14px 0 2px;font-size:12px;font-weight:750;color:#9ac9ff;letter-spacing:.02em}
+.ra-rule{margin:2px 0 6px!important;font-size:11.5px!important}
+
+/* Ranking: percentual, empate */
+.ra-rank-values{display:flex;align-items:center;gap:10px}
+.ra-pct{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11.5px;font-weight:750;font-variant-numeric:tabular-nums}
+.ra-pct.ok{background:var(--aj-good-bg);color:var(--aj-good)}
+.ra-pct.bad{background:var(--aj-bad-bg);color:var(--aj-bad)}
+.ra-pct.none{background:var(--aj-none-bg);color:var(--aj-none);font-weight:600}
+.ra-tie{margin-left:8px;padding:2px 7px;border-radius:999px;font-style:normal;font-size:10.5px;font-weight:700;background:rgba(91,155,255,.14);color:#9cc4ff}
+.bf-layout .ra-dashboard .ra-rank:first-of-type .ra-position{background:#24457e!important;color:#b8d8ff!important}
+.bf-layout .ra-dashboard .ra-position.is-first{background:#5b482a!important;color:#ffe1a2!important}
+
+/* Tabelas */
+.ra-table-wrap{overflow-x:auto}
+.ra-table{width:100%;border-collapse:collapse;font-size:13px}
+.ra-table th{text-align:left;padding:10px;white-space:nowrap;color:#cfe0ff;font-size:12px;border-bottom:1px solid #33507e}
+.ra-table td{padding:10px;border-bottom:1px solid #263f66;color:#e6eefc;white-space:nowrap}
+.ra-table tr.is-selected td{background:rgba(91,155,255,.08)}
+.ra-table th small{display:block;font-weight:500;color:var(--aj-muted);font-size:10.5px}
+.ra-people th.is-goal{color:#fff;background:rgba(91,155,255,.12)}
+.ra-people td.is-goal{background:rgba(91,155,255,.05);font-weight:650}
+.ra-people .is-secondary{color:#a9bbd8;font-size:12px}
+.ra-people sup{color:var(--aj-wait);margin-left:2px}
+.ra-mismatch{margin-top:14px;line-height:1.5}
+
+/* Semana sem dados: um aviso no lugar de cards vazios */
+.ra-empty-week{margin:0 0 18px;padding:20px 22px;border-radius:16px;border:1px dashed #4d6fa3;background:rgba(91,155,255,.06);color:#dbe8ff}
+.ra-empty-week strong{display:block;font-size:16px;color:#fff;margin-bottom:4px}
+.ra-empty-week p{margin:0;font-size:13px;color:#a9bbd8}
+
+@media(max-width:720px){
+  .bf-layout .ra-dashboard .ra-header{flex-direction:column!important;align-items:stretch!important}
+  .bf-layout .ra-dashboard .brands-tools{display:grid!important;grid-template-columns:1fr 1fr;gap:8px}
+  .bf-layout .ra-dashboard .brands-tools label{grid-column:1 / -1}
+  .bf-layout .ra-dashboard .brands-tools select{grid-column:1 / -1;width:100%!important;min-width:0!important}
+  .ra-status-pair{justify-content:flex-start}
+}
+.bf-layout .ra-dashboard .ra-pct.ok{background:var(--aj-good-bg)!important;color:var(--aj-good)!important}
+.bf-layout .ra-dashboard .ra-pct.bad{background:var(--aj-bad-bg)!important;color:var(--aj-bad)!important}
+.bf-layout .ra-dashboard .ra-pct.none{background:var(--aj-none-bg)!important;color:var(--aj-none)!important}
+.ra-dash{color:var(--aj-muted)}
