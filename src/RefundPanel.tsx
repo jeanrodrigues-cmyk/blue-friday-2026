@@ -154,9 +154,9 @@ export default function RefundPanel(){
   </div>
   <div style={{overflowX:"auto",border:"1px solid #344f79",borderRadius:13}}>
    <table style={{width:"100%",borderCollapse:"collapse",minWidth:480,textAlign:"left",fontSize:13}}>
-    <thead><tr style={{background:"#203a65",color:"#d5e7ff"}}><th scope="col" style={{padding:"13px 15px"}}>Data</th><th scope="col" style={{padding:"13px 15px",textAlign:"right"}}>Reembolsos realizados</th><th scope="col" style={{padding:"13px 15px",textAlign:"right"}}>Valor reembolsado</th></tr></thead>
-    <tbody>{dailyAudit.map((day,i)=><tr key={day.date} style={{borderTop:"1px solid #304b76",background:i%2===0?"#13284d":"#172d52"}}><td style={{padding:"12px 15px",color:"#e9f2ff",fontWeight:650}}>{day.date.slice(8,10)}/11/2026</td><td style={{padding:"12px 15px",textAlign:"right",color:day.hasData?"#fff":"#a9bad5"}}>{day.hasData?number(day.count):"Sem dados"}</td><td style={{padding:"12px 15px",textAlign:"right",color:day.hasData?"#fff":"#a9bad5"}}>{day.hasData?money(day.value):"Sem dados"}</td></tr>)}</tbody>
-    <tfoot><tr style={{borderTop:"1px solid #5778a8",background:"#1d3865",fontWeight:800,color:"#fff"}}><td style={{padding:"13px 15px"}}>Total registrado</td><td style={{padding:"13px 15px",textAlign:"right"}}>{number(dailyAudit.reduce((sum,d)=>sum+d.count,0))}</td><td style={{padding:"13px 15px",textAlign:"right"}}>{money(dailyAuditTotal)}</td></tr></tfoot>
+    <thead><tr style={{background:"#203a65",color:"#d5e7ff"}}><th scope="col" style={{padding:"13px 15px"}}>Data</th><th scope="col" style={{padding:"13px 15px",textAlign:"right"}}>Valor reembolsado</th></tr></thead>
+    <tbody>{dailyAudit.map((day,i)=><tr key={day.date} style={{borderTop:"1px solid #304b76",background:i%2===0?"#13284d":"#172d52"}}><td style={{padding:"12px 15px",color:"#e9f2ff",fontWeight:650}}>{day.date.slice(8,10)}/11/2026</td><td style={{padding:"12px 15px",textAlign:"right",color:day.hasData?"#fff":"#a9bad5"}}>{day.hasData?money(day.value):"Sem dados"}</td></tr>)}</tbody>
+    <tfoot><tr style={{borderTop:"1px solid #5778a8",background:"#1d3865",fontWeight:800,color:"#fff"}}><td style={{padding:"13px 15px"}}>Total registrado</td><td style={{padding:"13px 15px",textAlign:"right"}}>{money(dailyAuditTotal)}</td></tr></tfoot>
    </table>
   </div>
   <p style={{...ui.muted,margin:"12px 0 0"}}>Fonte: registros diários PEF disponíveis no painel. Dias sem registros não são considerados zero. O total diário pode diferir do fechamento financeiro homologado.</p>
