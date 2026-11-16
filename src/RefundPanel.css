@@ -552,3 +552,23 @@
 .bf-refund-empty{color:#b8c9e4;font-size:13px;margin:0}
 @media(max-width:850px){.bf-refund-goal-grid{grid-template-columns:1fr}.bf-refund-goal{min-height:0}.bf-refund-highlights{grid-template-columns:1fr}}
 @media(max-width:550px){.bf-refund-insight-panel{padding:16px}.bf-refund-insight-title h2{font-size:16px}.bf-refund-highlight{padding:14px;gap:12px}.bf-refund-highlight-symbol{width:43px;height:43px;flex-basis:43px}.bf-refund-ranking-row{gap:10px;padding:10px}.bf-refund-ranking-number{min-width:60px}}
+
+
+/* Semana 2: processamentos QB + ME, separados da apuracao financeira */
+.bf-refund-processing-week2{background:#142443;border:1px solid #36547d;border-radius:18px;padding:22px 24px;margin-bottom:20px;color:#f4f7ff}
+.bf-refund-processing-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.bf-refund-processing-head h2{font-size:19px;margin:0 0 5px}
+.bf-refund-processing-head p{color:#b9cbea;font-size:12px;margin:0}
+.bf-refund-processing-tag{font-size:11px;background:#244e6c;color:#b7f1f4;padding:7px 10px;border-radius:99px;white-space:nowrap}
+.bf-refund-processing-total{display:flex;align-items:baseline;gap:15px;flex-wrap:wrap;background:#1c3558;border-radius:13px;padding:16px 20px;margin-bottom:16px}
+.bf-refund-processing-total span{font-size:13px;color:#c5d7ef}
+.bf-refund-processing-total strong{font-size:35px;font-variant-numeric:tabular-nums}
+.bf-refund-processing-total small{color:#b9cbea}
+.bf-refund-processing-table-wrap{overflow-x:auto}
+.bf-refund-processing-table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap;font-size:12px}
+.bf-refund-processing-table th,.bf-refund-processing-table td{padding:11px 12px;border-bottom:1px solid #365073}
+.bf-refund-processing-table thead th{color:#bed2ed;font-weight:600}
+.bf-refund-processing-table tbody th{font-weight:600}
+.bf-refund-processing-sum{background:#20385c}
+.bf-refund-processing-note{color:#b9cbea;font-size:12px;line-height:1.6;margin:14px 0 0}
+@media(max-width:720px){.bf-refund-processing-week2{padding:16px}.bf-refund-processing-head{flex-direction:column}.bf-refund-processing-total strong{font-size:30px}}
