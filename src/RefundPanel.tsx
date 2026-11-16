@@ -24,6 +24,17 @@ const HUB_CONVERSIONS_LAST_WEEK:ConversionDaily[]=[
 {date:"2026-11-06",analyst:"Alice Faria",vouchers:0,cancelled:1,amount:151.90},
 {date:"2026-11-06",analyst:"Carla Diléo",vouchers:1,cancelled:4,amount:409.50}
 ];
+// Espelho reconciliado da tabela bf_refund_pef_daily no Supabase, 09-15/11.
+// Fallback de leitura quando a sessao/RLS nao retorna as linhas. Nao duplica os dados ao conectar.
+const WEEK_TWO_PEF_VERIFIED:Row[]=[
+ {date:"2026-11-09",team:"Consolidado operacional",quantity:34,amount:7572.65},
+ {date:"2026-11-10",team:"Consolidado operacional",quantity:63,amount:19174.15},
+ {date:"2026-11-11",team:"Consolidado operacional",quantity:35,amount:8926.22},
+ {date:"2026-11-12",team:"Consolidado operacional",quantity:39,amount:6465.40},
+ {date:"2026-11-13",team:"Consolidado operacional",quantity:34,amount:6619.99},
+ {date:"2026-11-14",team:"Consolidado operacional",quantity:0,amount:0},
+ {date:"2026-11-15",team:"Consolidado operacional",quantity:1,amount:61}
+];
 const WEEK_ONE_DAILY:Row[]=[{date:"2026-11-04",team:"Graduação + LLL PEF",quantity:27,amount:5187.66},{date:"2026-11-05",team:"Graduação + LLL PEF",quantity:29,amount:5739.32},{date:"2026-11-06",team:"Graduação + LLL PEF",quantity:38,amount:9530.79},{date:"2026-11-07",team:"Graduação + LLL PEF",quantity:0,amount:0},{date:"2026-11-08",team:"Graduação + LLL PEF",quantity:0,amount:0}];
 const weeks=[{name:"Semana 1",range:"04 a 08/11",start:4,end:8,cap:31689},{name:"Semana 2",range:"09 a 15/11",start:9,end:15,cap:48796},{name:"Semana 3",range:"16 a 22/11",start:16,end:22,cap:43633},{name:"Semana 4",range:"23 a 27/11",start:23,end:27,cap:45257}];
 const daily=[["Segunda",8513],["Terça",8593],["Quarta",8990],["Quinta",10397],["Sexta",8763],["Sábado",2119],["Domingo",1420],["Feriado",3600]] as const;
@@ -89,7 +100,12 @@ export default function RefundPanel(){
  useEffect(()=>{if(!supabase){setBacklogState("unavailable");return;}let live=true;void supabase.from("bf_refund_backlog_daily").select("reference_date,open_over_7_days,resolved_over_7_days").gte("reference_date","2026-11-01").lte("reference_date","2026-11-30").order("reference_date").then(({data,error})=>{if(!live)return;if(error||!data?.length){setBacklogState("unavailable");return;}setBacklogRows(data.map((r:any)=>({date:String(r.reference_date),openOver7:Number(r.open_over_7_days),resolvedOver7:Number(r.resolved_over_7_days||0)})));setBacklogState("ready");});return()=>{live=false;};},[]);
  const conversionTotals=useMemo(()=>conversionRows.reduce((a,r)=>({total:a.total+r.vouchers+r.cancelled,vouchers:a.vouchers+r.vouchers,cancelled:a.cancelled+r.cancelled,amount:a.amount+r.amount}),{total:0,vouchers:0,cancelled:0,amount:0}),[conversionRows]);
  const weekTwoConversionsTotal=WEEK_TWO_CONVERSIONS_CONFIRMED.reduce((acc,r)=>({total:acc.total+r.conversions,vouchers:acc.vouchers+r.vouchers,cancelled:acc.cancelled+r.cancelled,amount:acc.amount+r.amount}),{total:0,vouchers:0,cancelled:0,amount:0});
- const displayRows=useMemo(()=>[...rows.filter(r=>r.date<"2026-11-04"||r.date>"2026-11-08"),...WEEK_ONE_DAILY],[rows]);
+ const displayRows=useMemo(()=>{
+  const base=[...rows.filter(r=>r.date<"2026-11-04"||r.date>"2026-11-08"),...WEEK_ONE_DAILY];
+  // Dados reais da base tem prioridade. Usar o espelho somente em dias ausentes.
+  const covered=new Set(base.map(r=>r.date));
+  return [...base,...WEEK_TWO_PEF_VERIFIED.filter(r=>!covered.has(r.date))];
+ },[rows]);
  const totals=useMemo(()=>{const amount=displayRows.reduce((s,r)=>s+r.amount,0);const quantity=displayRows.reduce((s,r)=>s+r.quantity,0);const byWeek=weeks.map(w=>displayRows.filter(r=>Number(r.date.slice(8))>=w.start&&Number(r.date.slice(8))<=w.end).reduce((s,r)=>s+r.amount,0));const days=[...new Set(displayRows.map(r=>r.date))].sort();const teams=[...new Set(displayRows.map(r=>r.team))].map(team=>({team,amount:displayRows.filter(r=>r.team===team).reduce((s,r)=>s+r.amount,0)})).sort((a,b)=>b.amount-a.amount);return {amount,quantity,byWeek,days,teams};},[displayRows]);
  const current=weeks[week],used=totals.byWeek[week],monthCap=OFFICIAL_CAMPAIGN_CAP,monthRatio=totals.amount/monthCap*100,weekRatio=used/current.cap*100;
  const backlogWeek=(week===1?VERIFIED_WEEK_TWO_BACKLOG:backlogRows).filter(r=>Number(r.date.slice(8))>=current.start&&Number(r.date.slice(8))<=current.end);
