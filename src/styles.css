@@ -1418,3 +1418,22 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bo-period-summary-compact>strong{font-size:15px}
 .bo-period-summary-compact b{font-size:20px}
 @media(max-width:760px){.bo-v3-intro{align-items:flex-start;flex-direction:column}.bo-productivity-visual{padding:17px 13px}.bo-productivity-bars{gap:5px;height:175px}.bo-productivity-track{width:100%}.bo-v2 .bo-v3-kpi .bo-kpi-body>strong{font-size:30px}}
+
+/* Blue Friday: refinamento executivo da pagina inicial */
+.bf-command{--bf-home-gap:12px}
+.bf-command .bf-command-toolbar{padding:20px 24px!important;min-height:100px!important;gap:16px!important}
+.bf-command .bf-command-hero-copy h2{font-size:clamp(23px,2vw,30px)!important;line-height:1.15!important}
+.bf-command .bf-command-hero-copy p{font-size:12px!important;line-height:1.5!important}
+.bf-command div.bf-command-summary{gap:12px!important;margin:14px 0 20px!important}
+.bf-command div.bf-command-summary>div.bf-command-summary-card{min-height:74px!important;padding:13px 16px!important;border-radius:14px!important}
+.bf-command div.bf-command-summary .bf-command-summary-icon{width:40px!important;height:40px!important;flex-basis:40px!important}
+.bf-command div.bf-command-summary .bf-command-summary-card strong{font-size:20px!important}
+.bf-command .bf-command-head{margin-bottom:14px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern{gap:12px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{min-height:144px!important;padding:14px 15px 12px!important;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined:focus-visible{outline:3px solid #8ccaff!important;outline-offset:3px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-main{min-height:65px!important;padding-bottom:10px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-copy h3{font-size:16px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-bottom{padding-top:10px!important}
+@media(max-width:740px){.bf-command .bf-command-toolbar{padding:16px!important}.bf-command div.bf-command-summary{grid-template-columns:1fr!important}.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{min-height:132px!important}}
+@media(prefers-reduced-motion:reduce){.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{transition:none!important}}
