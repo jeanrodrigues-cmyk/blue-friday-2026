@@ -1394,3 +1394,27 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bo-week2-exec-grid span{font-size:12px;color:#9cd2ff}
 .bo-week2-executive .bo-week2-note{margin-top:8px;padding-top:14px;border-top:1px solid #395984}
 @media(max-width:740px){.bo-week2-exec-grid{grid-template-columns:1fr}.bo-week2-executive{padding:16px}}
+
+
+/* BO v3: leitura executiva compacta e produtividade visual */
+.bo-v3-intro{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:18px 0 12px}
+.bo-v3-intro>div{display:flex;flex-direction:column;gap:4px}
+.bo-v3-intro strong{font-size:18px;color:#f1f6ff}
+.bo-v3-intro span{font-size:12px;color:#a9bddf}
+.bo-v2 .bo-v3-kpi{min-height:125px;padding:17px 18px;gap:12px}
+.bo-v2 .bo-v3-kpi .bo-kpi-icon{width:54px;height:54px;flex-basis:54px}
+.bo-v2 .bo-v3-kpi .bo-kpi-icon svg{width:27px;height:27px}
+.bo-v2 .bo-v3-kpi .bo-kpi-body>strong{font-size:34px}
+.bo-v2 .bo-v3-kpi .bo-kpi-change{padding:7px 10px;font-size:13px}
+.bo-productivity-visual{margin:18px 0;padding:23px 25px;border-radius:17px}
+.bo-productivity-bars{height:205px;display:flex;align-items:stretch;gap:14px;padding:12px 4px 0;border-bottom:1px solid #426087}
+.bo-productivity-bar{flex:1;min-width:0;display:flex;align-items:center;flex-direction:column;gap:7px}
+.bo-productivity-bar>strong{font-size:13px;color:#d9ebff;font-variant-numeric:tabular-nums}
+.bo-productivity-track{flex:1;width:min(100%,72px);display:flex;align-items:flex-end;justify-content:center;border-radius:8px 8px 0 0;background:#ffffff08}
+.bo-productivity-track>div{width:72%;border-radius:7px 7px 0 0;background:linear-gradient(180deg,#38d4bf,#218cba);min-height:3px}
+.bo-productivity-track>div.pending{background:linear-gradient(180deg,#f5c977,#b97b36)}
+.bo-productivity-bar small{font-size:11px;color:#a9bddf;padding-bottom:6px}
+.bo-period-summary-compact{padding:15px 20px;gap:12px}
+.bo-period-summary-compact>strong{font-size:15px}
+.bo-period-summary-compact b{font-size:20px}
+@media(max-width:760px){.bo-v3-intro{align-items:flex-start;flex-direction:column}.bo-productivity-visual{padding:17px 13px}.bo-productivity-bars{gap:5px;height:175px}.bo-productivity-track{width:100%}.bo-v2 .bo-v3-kpi .bo-kpi-body>strong{font-size:30px}}
