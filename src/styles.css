@@ -1458,3 +1458,28 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-bottom{padding-top:15px!important}
 .bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-open{padding:11px 15px!important;border-radius:11px!important;background:linear-gradient(140deg,var(--area-accent),var(--area-icon))!important}
 @media(max-width:740px){.bf-command .bf-command-toolbar{padding:22px!important;min-height:auto!important}.bf-command div.bf-command-summary{grid-template-columns:1fr!important}.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{min-height:165px!important}}
+
+/* Sidebar Blue Friday v5: azul-marinho, azul eletrico, branco e verde de status. */
+.bf-layout .bf-side.bf-side-light.bf-side-refined{background:linear-gradient(170deg,#0a1c40 0%,#071638 62%,#07122d 100%)!important;border-right:1px solid #284c80!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-brand{min-height:76px!important;padding:8px 7px 17px!important;margin-bottom:16px!important;gap:12px!important;border-bottom:1px solid #294b7d!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .brand-icon-small{width:43px!important;height:43px!important;flex:0 0 43px!important;border-radius:13px!important;box-shadow:0 0 0 1px #68c2ff55,0 6px 18px #006bff55!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-brand-copy strong{font-size:15px!important;letter-spacing:-.03em!important;color:#f5f8ff!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-brand-copy strong span{color:#73c6ff!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-brand-copy small{font-size:10px!important;color:#a9c4e8!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu-label{margin:17px 10px 9px!important;font-size:10px!important;letter-spacing:1.4px!important;color:#8eb8ec!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu{min-height:44px!important;height:44px!important;margin:3px 0!important;padding:7px 10px!important;border-radius:11px!important;gap:11px!important;color:#d9e8ff!important;font-size:12px!important;transition:background .18s ease,border-color .18s ease,box-shadow .18s ease!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu-icon{width:29px!important;height:29px!important;min-width:29px!important;min-height:29px!important;flex:0 0 29px!important;border-radius:9px!important;background:#14335d!important;color:#9ccfff!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu-icon svg{width:19px!important;height:19px!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu:hover:not(.selected){background:#183965!important;border-color:#2f5e9c!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu.selected{background:linear-gradient(100deg,#144a98,#1366c6)!important;border-color:#4398ef!important;box-shadow:inset 3px 0 #76dbff,0 5px 16px #006cff33!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu.selected .bf-menu-icon{background:#ffffff20!important;color:#fff!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu-chevron{color:#8bb7e9!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-new{background:#193b70!important;color:#9ed5ff!important;border:1px solid #366bb2!important;box-shadow:none!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-side-bottom{margin-top:auto!important;padding:16px 9px 7px!important;border-top:1px solid #294b7d!important;color:#c5e1ff!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-online-dot{background:#28d99b!important;box-shadow:0 0 0 4px #28d99b22!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu:focus-visible{outline:2px solid #75caff!important;outline-offset:2px!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined.bf-side-collapsed .bf-brand{min-height:0!important;padding:5px 0 12px!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined.bf-side-collapsed .bf-menu{width:46px!important;min-height:44px!important;justify-content:center!important;padding:7px 0!important}
+.bf-layout .bf-side.bf-side-light.bf-side-refined.bf-side-collapsed .bf-menu-icon{width:29px!important;min-width:29px!important;flex-basis:29px!important}
+@media(max-width:800px){.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-brand{min-height:0!important;padding:5px 0 12px!important}.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu{width:46px!important;justify-content:center!important;padding:7px 0!important}}
+@media(prefers-reduced-motion:reduce){.bf-layout .bf-side.bf-side-light.bf-side-refined .bf-menu{transition:none!important}}
