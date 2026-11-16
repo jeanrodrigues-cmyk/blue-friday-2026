@@ -1437,3 +1437,24 @@ font-family:Inter,"Segoe UI",Arial,sans-serif;
 .bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-bottom{padding-top:10px!important}
 @media(max-width:740px){.bf-command .bf-command-toolbar{padding:16px!important}.bf-command div.bf-command-summary{grid-template-columns:1fr!important}.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{min-height:132px!important}}
 @media(prefers-reduced-motion:reduce){.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{transition:none!important}}
+
+/* Preview v4: visual executivo, isolado na branch de revisao */
+.bf-command .bf-command-toolbar{min-height:152px!important;padding:29px 32px!important;border-radius:24px!important;border-color:#468ee2!important;background:radial-gradient(ellipse at 72% -10%,#923cff8c,transparent 47%),radial-gradient(ellipse at 12% 90%,#0078ed65,transparent 50%),linear-gradient(115deg,#123d81,#172c69 63%,#0c1c46)!important;box-shadow:0 20px 42px #010b2e77,inset 0 1px #ffffff22!important}
+.bf-command .bf-command-toolbar .bf-command-hero-icon{width:76px!important;height:76px!important;min-width:76px!important;border-radius:22px!important;background:linear-gradient(140deg,#279bff,#1745d8)!important;box-shadow:0 12px 30px #096ef977!important}
+.bf-command .bf-command-hero-copy h2{font-size:clamp(26px,2.8vw,38px)!important;letter-spacing:-.05em!important;line-height:1.1!important}
+.bf-command .bf-command-hero-copy p{font-size:14px!important;margin-top:8px!important}
+.bf-command .bf-command-toolbar>label{padding:13px 16px!important;border-radius:15px!important;background:#071b43cc!important}
+.bf-command div.bf-command-summary{gap:15px!important;margin:22px 0 26px!important}
+.bf-command div.bf-command-summary>div.bf-command-summary-card{min-height:98px!important;padding:20px 23px!important;border:1px solid #4182d5!important;border-radius:19px!important;background:linear-gradient(145deg,#15396e,#0c1c43)!important;box-shadow:0 10px 28px #020c2d66!important}
+.bf-command div.bf-command-summary .bf-command-summary-icon{width:51px!important;height:51px!important;flex-basis:51px!important;border-radius:14px!important}
+.bf-command div.bf-command-summary .bf-command-summary-card strong{font-size:23px!important}
+.bf-command .bf-command-head{margin-bottom:18px!important;padding-bottom:14px!important;border-bottom:1px solid #315c99!important}
+.bf-command .bf-command-head h2{font-size:24px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern{gap:17px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{min-height:192px!important;padding:22px!important;border-radius:20px!important;border-left-width:6px!important;background:radial-gradient(ellipse at 12% 0%,var(--area-glow),transparent 72%),linear-gradient(140deg,#1b3866,#0d1f45)!important;box-shadow:0 13px 29px #000b2966,inset 0 1px #ffffff17!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined:hover{transform:translateY(-5px)!important;box-shadow:0 18px 40px var(--area-glow)!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-icon{width:57px!important;height:57px!important;border-radius:17px!important;background:linear-gradient(140deg,var(--area-accent),var(--area-icon))!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-copy h3{font-size:19px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-bottom{padding-top:15px!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-open{padding:11px 15px!important;border-radius:11px!important;background:linear-gradient(140deg,var(--area-accent),var(--area-icon))!important}
+@media(max-width:740px){.bf-command .bf-command-toolbar{padding:22px!important;min-height:auto!important}.bf-command div.bf-command-summary{grid-template-columns:1fr!important}.bf-command div.bf-command-area-grid.bf-command-area-grid-modern>button.bf-command-area-refined{min-height:165px!important}}
