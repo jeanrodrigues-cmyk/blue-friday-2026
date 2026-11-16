@@ -572,3 +572,11 @@
 .bf-refund-processing-sum{background:#20385c}
 .bf-refund-processing-note{color:#b9cbea;font-size:12px;line-height:1.6;margin:14px 0 0}
 @media(max-width:720px){.bf-refund-processing-week2{padding:16px}.bf-refund-processing-head{flex-direction:column}.bf-refund-processing-total strong{font-size:30px}}
+
+
+.bf-refund-week2-conversions{background:#142443;border:1px solid #36547d;border-radius:18px;padding:22px 24px;margin-bottom:20px;color:#f4f7ff}
+.bf-refund-conversion-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.bf-refund-conversion-stats>div{display:flex;flex-direction:column;gap:9px;background:#1d3659;border:1px solid #37547a;border-radius:12px;padding:15px}
+.bf-refund-conversion-stats span{font-size:12px;color:#b9cbea}
+.bf-refund-conversion-stats strong{font-size:25px;font-variant-numeric:tabular-nums}
+@media(max-width:760px){.bf-refund-week2-conversions{padding:16px}.bf-refund-conversion-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.bf-refund-conversion-stats strong{font-size:21px}}
