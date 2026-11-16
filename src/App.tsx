@@ -294,8 +294,18 @@ export default function App() {
     {reference_date:row.date,metric_key:"bo_over_7_days",metric_value:row.backlog,verified:false},
     {reference_date:row.date,metric_key:"bo_resolved",metric_value:row.resolved,verified:false}
   ]);
+  // Registros oficiais verificados sempre prevalecem sobre as fotografias provisórias.
+  // Completar apenas métricas ausentes, sem substituir a Semana 1 nem dados homologados.
   const displayMetrics = selectedWeek===1
-    ? [...metrics.filter(m=>!boWeek2Snapshots.some(row=>row.date===m.reference_date)),...boWeek2Provisional]
+    ? [
+        ...metrics,
+        ...boWeek2Provisional.filter(provisional =>
+          !metrics.some(saved =>
+            saved.reference_date===provisional.reference_date &&
+            saved.metric_key===provisional.metric_key
+          )
+        )
+      ]
     : metrics;
   const history = Array.from(new Set(displayMetrics.map(m=>m.reference_date))).sort().reverse().map(date=>{
     const entries=displayMetrics.filter(m=>m.reference_date===date);
