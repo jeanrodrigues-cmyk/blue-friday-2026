@@ -13,7 +13,7 @@ import { CAMPAIGN_WEEKS, CAMPAIGN_DAYS, currentWeekIndex, dayLabel, todayBR, typ
 import { refundWeekStatus } from "./RefundPanel";
 import { QP_WEEKS } from "./QueroPagoPanel";
 import { RC_WEEKS } from "./RecorrenciaPanel";
-import { BRANDS_WEEKS, BRANDS_WEEK_ONE } from "./BrandsPanel";
+import { BRANDS_WEEKS, BRANDS_WEEK_ONE, BRANDS_WEEK_TWO } from "./BrandsPanel";
 import { raWeekStatus } from "./ReclameAquiPanel";
 import { cbWeekStatus } from "./ChargebackPanel";
 import { rsWeekStatus } from "./ResolucoesPanel";
@@ -397,7 +397,7 @@ export default function App() {
     case "Reembolso":return refundWeekStatus(wi,today);
     case "Quero Pago":return goalStatus(QP_WEEKS[wi].goal,QP_WEEKS[wi].revenue,wi);
     case "Recorrência":return goalStatus(RC_WEEKS[wi].goal,RC_WEEKS[wi].recovered,wi);
-    case "Marcas":return goalStatus(BRANDS_WEEKS[wi].goal,wi===0?BRANDS_WEEK_ONE.weekly:null,wi);
+    case "Marcas":return goalStatus(BRANDS_WEEKS[wi].goal,wi===0?BRANDS_WEEK_ONE.weekly:wi===1?BRANDS_WEEK_TWO.weekly:null,wi);
     case "Reclame Aqui":return raWeekStatus(wi,today);
     case "Chargeback":return cbWeekStatus(wi,today);
     case "Resoluções":return rsWeekStatus(wi,today);
@@ -412,7 +412,7 @@ export default function App() {
         <p className="bf-menu-label">ÁREAS DA CAMPANHA</p>
         {(profile.role==="collaborator"?["Minha performance"]:areas).map(area=>{
           const iconName:Record<string,string>={"BO e Dados":"layers","Reembolso":"refresh","Mídias e Procon":"shield","Recorrência":"calendar","Chargeback":"bag","Resoluções":"check","Quero Pago":"chart","Marcas":"target","Reclame Aqui":"document","Minha performance":"trend"};
-          return <button type="button" key={area} title={area} aria-label={area} aria-current={view===area?"page":undefined} className={view===area?"bf-menu selected":"bf-menu"} onClick={()=>setView(area)}><span className="bf-menu-icon"><BoIcon name={iconName[area]??"chart"} size={21}/></span><span className="bf-menu-text">{area}</span>{area==="BO e Dados"&&<span className="bf-new">NOVO</span>}<span className="bf-menu-chevron" aria-hidden="true">›</span></button>;
+          return <button type="button" key={area} title={area} aria-label={area} aria-current={view===area?"page":undefined} className={view===area?"bf-menu selected":"bf-menu"} onClick={()=>setView(area)}><span className="bf-menu-icon"><BoIcon name={iconName[area]??"chart"} size={21}/></span><span className="bf-menu-text">{area}</span><span className="bf-menu-chevron" aria-hidden="true">›</span></button>;
         })}
       </div>
       <div className="bf-side-bottom" title="Campanha em andamento"><span className="bf-online-dot"/><span className="bf-side-status-label">Campanha em andamento</span></div>

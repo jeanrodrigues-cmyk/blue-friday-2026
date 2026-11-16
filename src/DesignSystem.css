@@ -1,0 +1,188 @@
+/* =========================================================================
+   Sistema visual do dash Blue Friday 2026
+   Carregado por último: padroniza fonte, escala de texto, cores, ícones,
+   cantos e espaçamento em todas as áreas. Os estilos antigos continuam
+   embaixo; este arquivo só define o resultado final.
+   ========================================================================= */
+
+:root{
+  /* Cores (a única paleta usada daqui para frente) */
+  --ds-bg:#071433;
+  --ds-panel:#10204a;
+  --ds-panel-2:#152a57;
+  --ds-border:#2a426f;
+  --ds-border-strong:#3c5a8f;
+  --ds-text:#eef3ff;
+  --ds-text-2:#b9c8e4;
+  --ds-text-3:#93a8cc;
+  --ds-accent:#5b9bff;
+  --ds-good:#3ddc97;   --ds-good-bg:rgba(61,220,151,.12);   --ds-good-line:rgba(61,220,151,.35);
+  --ds-bad:#ff7d8f;    --ds-bad-bg:rgba(255,125,143,.12);    --ds-bad-line:rgba(255,125,143,.35);
+  --ds-wait:#ffc766;   --ds-wait-bg:rgba(255,199,102,.12);   --ds-wait-line:rgba(255,199,102,.35);
+  --ds-none:#9fb2d3;   --ds-none-bg:rgba(159,178,211,.10);   --ds-none-line:rgba(159,178,211,.25);
+
+  /* Fonte e escala de texto: 12 / 14 / 16 / 20 / 28 / 36 */
+  --ds-font:"Inter","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  --ds-t-xs:12px; --ds-t-sm:14px; --ds-t-md:16px; --ds-t-lg:20px; --ds-t-xl:28px; --ds-t-2xl:36px;
+
+  /* Espaçamento: 4 / 8 / 12 / 16 / 24 / 32 */
+  --ds-s1:4px; --ds-s2:8px; --ds-s3:12px; --ds-s4:16px; --ds-s5:24px; --ds-s6:32px;
+
+  /* Cantos: um para blocos, um para selos */
+  --ds-radius:12px; --ds-radius-sm:8px; --ds-pill:999px;
+}
+
+/* ---------- Fonte única, números com largura fixa ---------- */
+.bf-layout,.bf-layout *:not(code):not(pre){font-family:var(--ds-font)!important}
+.bf-layout{color:var(--ds-text);-webkit-font-smoothing:antialiased}
+.bf-layout strong,.bf-layout b,.bf-layout td,.bf-layout .brands-value,.bf-layout [class*="value"],.bf-layout [class*="number"]{font-variant-numeric:tabular-nums}
+/* A fonte só tem 400, 600 e 700: pesos 750–900 do CSS antigo passam a renderizar como 700. */
+
+/* ---------- Sem a barra "BLUE FRIDAY 2026 / Área": o cabeçalho do painel já diz onde você está ---------- */
+.bf-layout .bf-top{display:none!important}
+.bf-layout .bf-body{padding-top:var(--ds-s5)!important}
+
+/* ---------- Escala de texto ---------- */
+.bf-layout h1,.bf-body .brands-head h1,.bf-layout .ra-dashboard .ra-header h1{font-size:var(--ds-t-xl)!important;font-weight:700!important;letter-spacing:-.02em!important;line-height:1.2!important}
+.bf-layout h2{font-size:var(--ds-t-lg)!important;font-weight:700!important;letter-spacing:-.01em!important;line-height:1.3!important}
+.bf-layout h3{font-size:var(--ds-t-sm)!important;font-weight:600!important}
+.bf-layout p,.bf-layout li{font-size:var(--ds-t-sm);line-height:1.5}
+/* Mínimo de 12px para legendas e observações, com contraste suficiente */
+.bf-layout small,.bf-layout .brands-caption,.bf-layout .brands-note,.bf-layout .brands-sub,
+.bf-layout [class*="caption"],.bf-layout [class*="fineprint"],.bf-layout [class*="-note"],.bf-layout [class*="disclaimer"]{font-size:var(--ds-t-xs)!important;color:var(--ds-text-3)!important;line-height:1.5!important}
+.bf-layout .brands-sub{font-size:var(--ds-t-sm)!important;color:var(--ds-text-2)!important}
+/* Rótulos dos cards */
+.bf-layout .brands-card-label,.bf-layout [class*="kpi"] > span,.bf-layout .bf-command-summary-card small{font-size:var(--ds-t-xs)!important;font-weight:600!important;color:var(--ds-text-2)!important}
+/* Números principais dos cards */
+.bf-layout .brands-value,.bf-layout .bo-kpi-body>strong,.bf-layout .mp-result-number,.bf-layout .bf-command-summary-card strong{font-size:var(--ds-t-xl)!important;font-weight:700!important;line-height:1.15!important;letter-spacing:-.01em!important}
+.bf-layout .rs-result,.bf-layout .qp-status,.bf-layout .rc-status{font-size:var(--ds-t-lg)!important}
+/* Cards do Reembolso (estilos inline) */
+.bf-layout .bf-body article strong[style*="font-size: 29px"],.bf-layout .bf-body strong[style*="font-size: 26px"],.bf-layout .bf-body strong[style*="font-size: 24px"]{font-size:var(--ds-t-xl)!important;font-weight:700!important}
+
+/* ---------- Rótulos em CAIXA ALTA repetidos acima dos títulos: removidos ---------- */
+.bf-layout .brands-kicker,
+.bf-layout .ra-eyebrow,.bf-layout .rs-eyebrow,.bf-layout .qp-eyebrow,.bf-layout .rc-eyebrow,
+.bf-layout .mp-overview-eyebrow,.bf-layout .bo-special-eyebrow,.bf-layout .mp-period-eyebrow,
+.bf-layout .rs-section-label>span:first-child,.bf-layout .ra-section-label>span:first-child{display:none!important}
+.bf-layout .rs-section-label,.bf-layout .ra-section-label{justify-content:flex-end!important;font-size:var(--ds-t-xs)!important;text-transform:none!important;letter-spacing:0!important;color:var(--ds-text-3)!important}
+.bf-layout .bf-refund-highlight-eyebrow,.bf-layout .mp-week-status-copy>small{text-transform:none!important;letter-spacing:0!important;font-size:var(--ds-t-xs)!important;color:var(--ds-text-3)!important;font-weight:600!important}
+/* Cabeçalho do Reembolso tinha o rótulo em estilo inline */
+.bf-layout .bf-body header>div>div[style*="letter-spacing: 2"]{display:none!important}
+
+/* ---------- Superfícies: mesma cor, borda e canto em todo bloco ---------- */
+.bf-layout .bf-panel,.bf-layout .brands-panel,.bf-layout .brands-card,.bf-layout .brands-head,
+.bf-layout .bf-refund-insight-panel,.bf-layout .bo-special-missions,.bf-layout .bo-nav,
+.bf-layout .bf-command-toolbar,.bf-layout .bf-command-summary-card,.bf-layout .bf-command-area,
+.bf-layout .mp-kpi,.bf-layout .mp-week-status,.bf-layout .mp-week-summary>div,.bf-layout .mp-reference-chart,.bf-layout .mp-reference-mini,.bf-layout .mp-reference-prize,
+.bf-layout .ra-kpi,.bf-layout .bo-v2-kpi,.bf-layout .qp-banner,.bf-layout .rc-banner,
+.bf-layout .bf-body section[style*="border-radius: 18px"],.bf-layout .bf-body article[style*="border-radius: 18px"],.bf-layout .bf-body div[style*="border-radius: 13px"]{
+  border-radius:var(--ds-radius)!important;border:1px solid var(--ds-border)!important;box-shadow:none!important}
+.bf-layout .bf-panel,.bf-layout .brands-panel,.bf-layout .bf-refund-insight-panel,.bf-layout .bo-special-missions,.bf-layout .bo-nav,
+.bf-layout .bf-body section[style*="border-radius: 18px"]{background:var(--ds-panel)!important}
+.bf-layout .brands-card,.bf-layout .ra-kpi,.bf-layout .bo-v2-kpi,.bf-layout .mp-kpi,.bf-layout .bf-command-summary-card,.bf-layout .bf-command-area,
+.bf-layout .bf-body article[style*="border-radius: 18px"]{background:var(--ds-panel-2)!important}
+.bf-layout .brands-head,.bf-layout .bf-command-toolbar,.bf-layout .qp-banner,.bf-layout .rc-banner{background:linear-gradient(120deg,#16305f,#0f2149)!important;border-color:var(--ds-border-strong)!important}
+.bf-layout .brands-head:before,.bf-layout .rc-header:before,.bf-layout .qp-header:before,.bf-layout .rs-header:before,.bf-layout .cb-dashboard .brands-head:before{display:none!important}
+/* Sem sombras, brilhos e "hover que pula" em cards que não são clicáveis */
+.bf-layout .ra-kpi:hover,.bf-layout .brands-card:hover{transform:none!important}
+
+/* ---------- Cor só com significado ---------- */
+/* Faixas coloridas no topo dos cards (não diziam nada) */
+.bf-layout .ra-kpi:before,.bf-layout .brands-card:before,.bf-layout .mp-kpi:before{display:none!important}
+.bf-layout .bf-body article[style*="border-top: 3px"]{border-top:1px solid var(--ds-border)!important}
+.bf-layout .mp-kpi{background:var(--ds-panel-2)!important}
+/* Visão geral: cartões e botões neutros; a cor fica para o status */
+.bf-command div.bf-command-area-grid .bf-command-area,.bf-command div.bf-command-area-grid .bf-command-area-refined{border-left:1px solid var(--ds-border)!important;background:var(--ds-panel-2)!important}
+.bf-command div.bf-command-area-grid .bf-command-area:before,.bf-command div.bf-command-area-grid .bf-command-area:after{display:none!important}
+.bf-command div.bf-command-area-grid.bf-command-area-grid-modern .bf-command-area-bottom .bf-command-area-open,
+.bf-command .bf-command-area-refined .bf-command-area-open{background:transparent!important;border:1px solid var(--ds-border-strong)!important;color:var(--ds-text)!important;font-weight:600!important;font-size:var(--ds-t-xs)!important}
+.bf-command .bf-command-area:hover .bf-command-area-open{background:rgba(91,155,255,.12)!important}
+.bf-command .bf-command-area.tone-good{box-shadow:inset 3px 0 0 var(--ds-good)!important}
+.bf-command .bf-command-area.tone-bad{box-shadow:inset 3px 0 0 var(--ds-bad)!important}
+.bf-command .bf-command-area.tone-wait{box-shadow:inset 3px 0 0 var(--ds-wait)!important}
+.bf-command .bf-command-area:focus-visible{outline:2px solid var(--ds-accent);outline-offset:2px}
+
+/* ---------- Ícones: um tamanho, um traço, sem quadrado colorido ---------- */
+.bf-layout svg{stroke-width:1.8}
+.bf-layout .bo-chart-container svg,.bf-layout .brand-icon svg{stroke-width:1}
+.bf-layout .bf-kpi-glyph,.bf-layout .rs-kpi-icon,.bf-layout .cb-kpi-icon,.bf-layout .bo-kpi-icon,.bf-layout .mp-result-icon,
+.bf-layout .bf-command-summary-icon,.bf-layout .bf-command-area-icon,.bf-layout .bf-refund-goal-icon,.bf-layout .bf-refund-insight-heading-icon,
+.bf-layout .bo-special-icon,.bf-layout .bo-summary-icon,.bf-layout .bf-command-hero-icon,.bf-layout .cb-brand-icon,.bf-layout .bf-refund-highlight-symbol,
+.bf-layout .bf-body article>span[style*="width: 44px"]{
+  width:36px!important;height:36px!important;min-width:36px!important;flex:0 0 36px!important;border-radius:var(--ds-radius-sm)!important;
+  background:rgba(91,155,255,.12)!important;color:#9cc4ff!important;border:0!important;box-shadow:none!important;display:inline-grid!important;place-items:center!important}
+.bf-layout .bf-kpi-glyph svg,.bf-layout .rs-kpi-icon svg,.bf-layout .cb-kpi-icon svg,.bf-layout .bo-kpi-icon svg,.bf-layout .mp-result-icon svg,
+.bf-layout .bf-command-summary-icon svg,.bf-layout .bf-command-area-icon svg,.bf-layout .bf-refund-goal-icon svg,.bf-layout .bf-refund-insight-heading-icon svg,
+.bf-layout .bo-special-icon svg,.bf-layout .bo-summary-icon svg,.bf-layout .bf-command-hero-icon svg,.bf-layout .cb-brand-icon svg,.bf-layout .bf-refund-highlight-symbol svg,
+.bf-layout .bf-body article>span[style*="width: 44px"] svg{width:20px!important;height:20px!important}
+/* Ícones dos títulos de seção */
+.bf-layout h2>svg,.bf-layout h3>svg{width:20px!important;height:20px!important;color:var(--ds-text-3)}
+/* Placar da visão geral mantém a cor do status no ícone */
+.bf-command div.bf-command-summary.bf-command-scoreboard .tone-good .bf-command-summary-icon{background:var(--ds-good-bg)!important;color:var(--ds-good)!important}
+.bf-command div.bf-command-summary.bf-command-scoreboard .tone-bad .bf-command-summary-icon{background:var(--ds-bad-bg)!important;color:var(--ds-bad)!important}
+.bf-command div.bf-command-summary.bf-command-scoreboard .tone-wait .bf-command-summary-icon{background:var(--ds-wait-bg)!important;color:var(--ds-wait)!important}
+.bf-layout .ra-trophy{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:var(--ds-radius-sm);background:var(--ds-wait-bg)!important;color:var(--ds-wait)!important;border:0!important}
+
+/* ---------- Selos: um tamanho só ---------- */
+.bf-layout .brands-pill,.bf-layout .bf-area-status-pill,.bf-layout .ra-pct,.bf-layout .bo-data-badge,.bf-layout .mp-result-badge,.bf-layout .mp-week-status-pill,
+.bf-layout .bf-refund-goal-status,.bf-layout .bf-status,.bf-layout .bo-special-pending,.bf-layout .rf-rate-chip,.bf-layout .mp-week-chip,.bf-layout .ra-tie,
+.bf-layout .bo-weekly-tag,.bf-layout .bf-command-verified,.bf-layout .bo-special-count,.bf-layout .bf-refund-processing-tag,.bf-layout .bo-kpi-change{
+  font-size:var(--ds-t-xs)!important;font-weight:600!important;line-height:1.3!important;padding:4px 10px!important;border-radius:var(--ds-pill)!important;letter-spacing:0!important;text-transform:none!important;white-space:nowrap}
+.bf-layout .bo-kpi-change{border-radius:var(--ds-radius-sm)!important;white-space:normal}
+.bf-layout .brands-pill.ok,.bf-layout .bf-refund-status-success{background:var(--ds-good-bg)!important;color:var(--ds-good)!important;border:1px solid var(--ds-good-line)!important}
+.bf-layout .brands-pill.bad,.bf-layout .bf-refund-status-danger{background:var(--ds-bad-bg)!important;color:var(--ds-bad)!important;border:1px solid var(--ds-bad-line)!important}
+.bf-layout .brands-pill.wait,.bf-layout .bf-refund-status-pending{background:var(--ds-wait-bg)!important;color:var(--ds-wait)!important;border:1px solid var(--ds-wait-line)!important}
+
+/* ---------- Botões e campos ---------- */
+.bf-layout .brands-select,.bf-layout select,.bf-layout input:not([type="checkbox"]):not([type="file"]),.bf-layout textarea{
+  background:#0c1b3f!important;color:var(--ds-text)!important;border:1px solid var(--ds-border-strong)!important;border-radius:var(--ds-radius-sm)!important;font-size:var(--ds-t-sm)!important}
+.bf-layout select:focus-visible,.bf-layout input:focus-visible,.bf-layout button:focus-visible,.bf-layout a:focus-visible{outline:2px solid var(--ds-accent)!important;outline-offset:2px}
+.bf-layout .bo-refresh,.bf-layout .bo-primary,.bf-layout .login-submit{background:#2f6fe8!important;border:0!important;border-radius:var(--ds-radius-sm)!important;font-weight:600!important;box-shadow:none!important}
+.bf-layout .bo-tabs button{border-radius:var(--ds-radius-sm)!important;font-weight:600!important;font-size:var(--ds-t-sm)!important}
+
+/* ---------- Espaçamento ---------- */
+.bf-layout .brands-grid,.bf-layout .bo-v2-kpis,.bf-layout .mp-kpi-row,.bf-layout .bf-command-area-grid,.bf-layout .brands-sections,.bf-layout .bf-refund-insights{gap:var(--ds-s4)!important}
+.bf-layout .brands-head{padding:var(--ds-s5)!important;margin-bottom:var(--ds-s5)!important}
+.bf-layout .brands-panel,.bf-layout .bf-panel,.bf-layout .bf-refund-insight-panel{padding:var(--ds-s5)!important}
+.bf-layout .brands-card,.bf-layout .ra-kpi,.bf-layout .bo-v2-kpi,.bf-layout .mp-kpi{padding:var(--ds-s4) var(--ds-s5)!important;min-height:0!important}
+.bf-layout .brands-line{padding:var(--ds-s3) 0!important;border-color:var(--ds-border)!important}
+.bf-layout table th{font-size:var(--ds-t-xs)!important;font-weight:600!important;color:var(--ds-text-2)!important;text-transform:none!important;letter-spacing:0!important}
+.bf-layout table td{font-size:13px;border-color:#22385f!important}
+
+/* ---------- Faixa do topo e menu lateral no mesmo tom ---------- */
+.bf-campaign-strip{background:#0d2257!important;border-bottom:1px solid var(--ds-border)!important;font-size:var(--ds-t-xs)!important}
+.bf-layout aside.bf-side.bf-side-light.bf-side-refined{background:#081634!important;border-right:1px solid var(--ds-border)!important}
+.bf-layout .bf-menu{font-size:var(--ds-t-sm)!important;font-weight:600!important;border-radius:var(--ds-radius-sm)!important}
+.bf-layout .bf-menu.selected{background:rgba(91,155,255,.16)!important;color:#fff!important;box-shadow:inset 3px 0 0 var(--ds-accent)!important;border:0!important}
+.bf-layout .bf-menu-label{font-size:11px!important;letter-spacing:.06em!important;color:var(--ds-text-3)!important}
+
+@media(max-width:760px){
+  .bf-layout h1,.bf-body .brands-head h1{font-size:24px!important}
+  .bf-layout .brands-head,.bf-layout .brands-panel,.bf-layout .bf-panel,.bf-layout .bf-refund-insight-panel{padding:var(--ds-s4)!important}
+  .bf-layout .brands-value,.bf-layout .bo-kpi-body>strong,.bf-layout .bf-command-summary-card strong{font-size:24px!important}
+}
+@media(prefers-reduced-motion:reduce){.bf-layout *{transition:none!important;animation:none!important}}
+
+/* ---------- Reforço de especificidade (o CSS antigo usa seletores longos com !important) ---------- */
+html body .bf-layout .bf-command div.bf-command-area-grid.bf-command-area-grid-modern button.bf-command-area.bf-command-area-refined{
+  border:1px solid var(--ds-border)!important;border-left:1px solid var(--ds-border)!important;background:var(--ds-panel-2)!important;background-image:none!important;box-shadow:none!important;border-radius:var(--ds-radius)!important}
+html body .bf-layout .bf-command div.bf-command-area-grid.bf-command-area-grid-modern button.bf-command-area.bf-command-area-refined.tone-good{box-shadow:inset 3px 0 0 var(--ds-good)!important}
+html body .bf-layout .bf-command div.bf-command-area-grid.bf-command-area-grid-modern button.bf-command-area.bf-command-area-refined.tone-bad{box-shadow:inset 3px 0 0 var(--ds-bad)!important}
+html body .bf-layout .bf-command div.bf-command-area-grid.bf-command-area-grid-modern button.bf-command-area.bf-command-area-refined.tone-wait{box-shadow:inset 3px 0 0 var(--ds-wait)!important}
+html body .bf-layout .bf-command div.bf-command-area-grid.bf-command-area-grid-modern button.bf-command-area.bf-command-area-refined:hover{border-color:var(--ds-border-strong)!important;transform:none!important}
+html body .bf-layout .bf-command div.bf-command-area-grid.bf-command-area-grid-modern button.bf-command-area.bf-command-area-refined .bf-command-area-icon,
+html body .bf-layout .bf-command .bf-command-hero-icon,html body .bf-layout .bf-command .bf-command-summary-icon{
+  width:36px!important;height:36px!important;min-width:36px!important;flex:0 0 36px!important;border-radius:var(--ds-radius-sm)!important;background:rgba(91,155,255,.12)!important;background-image:none!important;color:#9cc4ff!important;border:0!important;box-shadow:none!important}
+html body .bf-layout .bf-command div.bf-command-area-grid.bf-command-area-grid-modern button.bf-command-area.bf-command-area-refined .bf-command-area-icon svg,
+html body .bf-layout .bf-command .bf-command-hero-icon svg{width:20px!important;height:20px!important}
+html body .bf-layout aside.bf-side.bf-side-light.bf-side-refined .bf-side-navigation button.bf-menu.selected{
+  background:rgba(91,155,255,.16)!important;background-image:none!important;box-shadow:inset 3px 0 0 var(--ds-accent)!important;border:0!important;color:#fff!important}
+html body .bf-layout aside.bf-side.bf-side-light.bf-side-refined .bf-side-navigation button.bf-menu{border-radius:var(--ds-radius-sm)!important}
+/* Ritmo vertical: 16px entre blocos de uma página */
+html body .bf-layout .bo-v2>*,html body .bf-layout .mp-page>*,html body .bf-layout .brands>*,html body .bf-layout .mp-section-stack>*{margin-top:0!important;margin-bottom:var(--ds-s4)!important}
+html body .bf-layout .bo-v2>.brands-head,html body .bf-layout .mp-page>.brands-head,html body .bf-layout .brands>.brands-head{margin-bottom:var(--ds-s4)!important}
+html body .bf-layout .bo-v2{padding-top:var(--ds-s5)!important}
+html body .bf-layout .mp-page article.mp-kpi,html body .bf-layout .mp-page .mp-kpi.mp-kpi-result{background:var(--ds-panel-2)!important;background-image:none!important;border:1px solid var(--ds-border)!important;box-shadow:none!important}
+html body .bf-layout .mp-page .mp-kpi.mp-result-success{box-shadow:inset 0 3px 0 var(--ds-good)!important}
+html body .bf-layout .mp-page .mp-kpi.mp-result-fail{box-shadow:inset 0 3px 0 var(--ds-bad)!important}
+html body .bf-layout .mp-page .mp-week-status.is-success{background:var(--ds-good-bg)!important;border-color:var(--ds-good-line)!important}

@@ -61,4 +61,4 @@ export default function BrandsPanel(){
  </section>;
 }
 
-export { weeks as BRANDS_WEEKS, verifiedWeekOne as BRANDS_WEEK_ONE };
+export { weeks as BRANDS_WEEKS, verifiedWeekOne as BRANDS_WEEK_ONE, verifiedWeekTwo as BRANDS_WEEK_TWO };
