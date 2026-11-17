@@ -186,3 +186,45 @@ html body .bf-layout .mp-page article.mp-kpi,html body .bf-layout .mp-page .mp-k
 html body .bf-layout .mp-page .mp-kpi.mp-result-success{box-shadow:inset 0 3px 0 var(--ds-good)!important}
 html body .bf-layout .mp-page .mp-kpi.mp-result-fail{box-shadow:inset 0 3px 0 var(--ds-bad)!important}
 html body .bf-layout .mp-page .mp-week-status.is-success{background:var(--ds-good-bg)!important;border-color:var(--ds-good-line)!important}
+
+/* =================== Ajustes da revisão de 17/11 =================== */
+/* Visão geral: selo de status nunca vaza do card */
+html body .bf-layout .bf-command .bf-command-area .bf-area-status-pill{white-space:normal!important;max-width:48%;text-align:center;line-height:1.25!important}
+html body .bf-layout .bf-command .bf-command-area .bf-command-area-copy{min-width:0;flex:1}
+
+/* Calendários (Marcas e Chargeback): semana inteira em uma linha no computador */
+html body .bf-layout .brands .brands-days{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(64px,1fr))!important;gap:8px!important}
+html body .bf-layout .brands .brands-day{min-width:0!important;padding:10px 6px!important;text-align:center}
+html body .bf-layout .brands .brands-day .brands-pill{white-space:normal!important;font-size:11px!important;padding:3px 6px!important;max-width:100%;display:inline-block}
+.cb-week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:8px;margin-top:16px}
+html body .bf-layout .cb-week-grid .cb-day{min-width:0;padding:10px 6px!important}
+@media(min-width:1100px){.cb-week-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* Medalhas: um estilo só em todas as áreas */
+html body .bf-layout .qp-medal,html body .bf-layout .rc-medal,html body .bf-layout .rs-rank-medal,html body .bf-layout .ra-position{
+  width:32px!important;height:32px!important;min-width:32px!important;display:inline-grid!important;place-items:center!important;border-radius:var(--ds-radius-sm)!important;
+  background:var(--ds-wait-bg)!important;color:var(--ds-wait)!important;border:1px solid var(--ds-wait-line)!important;font-size:12px!important;font-weight:700!important;box-shadow:none!important;margin-right:10px}
+html body .bf-layout .qp-person.is-muted .qp-medal{background:var(--ds-none-bg)!important;color:var(--ds-none)!important;border-color:var(--ds-none-line)!important}
+html body .bf-layout .rs-person{gap:12px!important;align-items:center!important;background:var(--ds-panel-2)!important;border:1px solid var(--ds-border)!important;border-radius:var(--ds-radius)!important;box-shadow:none!important}
+
+/* Chargeback: faixa de semana concluída no padrão dos outros status */
+html body .bf-layout .cb-verified-banner{background:var(--ds-panel-2)!important;background-image:none!important;border:1px solid var(--ds-good-line)!important;box-shadow:inset 3px 0 0 var(--ds-good)!important;border-radius:var(--ds-radius)!important}
+html body .bf-layout .cb-verified-banner strong{color:var(--ds-text)!important}
+html body .bf-layout .cb-verified-banner span{color:var(--ds-text-2)!important}
+html body .bf-layout .cb-verified-icon{background:var(--ds-good-bg)!important;color:var(--ds-good)!important;border-radius:var(--ds-radius-sm)!important;box-shadow:none!important}
+html body .bf-layout .cb-verified-tag{background:var(--ds-good-bg)!important;color:var(--ds-good)!important;border:1px solid var(--ds-good-line)!important;font-size:12px!important;font-weight:600!important;padding:4px 10px!important;border-radius:999px!important;box-shadow:none!important}
+
+/* Rodapé de fonte igual em todas as áreas */
+html body .bf-layout .brands>p.brands-note:last-child,html body .bf-layout .bf-body p.bf-source-note{margin-top:8px!important;padding-top:12px!important;border-top:1px solid var(--ds-border)!important;color:var(--ds-text-3)!important;font-size:12px!important}
+
+/* Celular: cards de número em 2 colunas */
+@media(max-width:760px){
+  html body .bf-layout .brands-grid,html body .bf-layout .bo-v2-kpis,html body .bf-layout .rs-kpis,html body .bf-layout .cb-kpis,
+  html body .bf-layout .bf-body div[style*="minmax(220px"],html body .bf-layout .mp-kpi-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  html body .bf-layout .brands-card,html body .bf-layout .ra-kpi,html body .bf-layout .bo-v2-kpi,html body .bf-layout .bf-body article[style*="border-radius"]{padding:12px!important}
+  html body .bf-layout .brands-value,html body .bf-layout .bo-kpi-body>strong,html body .bf-layout .bf-body article strong[style*="font-size: 29px"]{font-size:20px!important;word-break:break-word}
+  html body .bf-layout .brands-card .brands-caption{font-size:11.5px!important}
+  html body .bf-layout .mp-kpi-row{grid-template-columns:1fr!important}
+}
+html body .bf-layout .rs-person .rs-rank-medal{background:var(--ds-wait-bg)!important;background-image:none!important;color:var(--ds-wait)!important}
+html body .bf-layout .rs-person .rs-rank-medal:before,html body .bf-layout .rs-person .rs-rank-medal:after{display:none!important}
