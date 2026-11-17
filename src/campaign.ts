@@ -38,3 +38,10 @@ export function noDataLabel(i: number, today: string = todayBR()): string {
   const p = weekPhase(i, today);
   return p === "ended" ? "Aguardando dados" : p === "current" ? "Em andamento" : "—";
 }
+
+/** Semana que o dash mostra ao abrir: a última semana já encerrada (com resultado fechado).
+ *  Durante a Semana 1 abre nela mesma; depois do fim da campanha abre na Semana 4. */
+export function defaultWeekIndex(today: string = todayBR()): number {
+  const ended = CAMPAIGN_WEEKS.filter(w => today > w.end);
+  return ended.length ? ended[ended.length - 1].index : 0;
+}

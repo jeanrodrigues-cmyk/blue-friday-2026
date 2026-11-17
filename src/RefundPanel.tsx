@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type ChangeEvent, type ReactNode } from "
 import "./RefundPanel.css";
 import { supabase } from "./lib/supabase";
 import "./BrandsPanel.css";
-import { CAMPAIGN_WEEKS, currentWeekIndex, todayBR, type AreaStatus } from "./campaign";
+import { CAMPAIGN_WEEKS, currentWeekIndex, defaultWeekIndex, todayBR, type AreaStatus } from "./campaign";
 
 type Row = { date:string; team:string; quantity:number; amount:number };
 const KEY="bf2026_refund_pef_daily_v2";
@@ -100,7 +100,7 @@ export default function RefundPanel(){
  const [conversionSource,setConversionSource]=useState<"snapshot"|"shared">("snapshot");
  const [fileName,setFileName]=useState("");
  const [error,setError]=useState("");
- const [week,setWeek]=useState(currentWeekIndex);
+ const [week,setWeek]=useState(defaultWeekIndex);
  const [managementTeam,setManagementTeam]=useState("Todas as equipes");
  const [teamFilter,setTeamFilter]=useState("Todas as equipes");
  const [holidayDates,setHolidayDates]=useState<string[]>(["2026-11-20"]);

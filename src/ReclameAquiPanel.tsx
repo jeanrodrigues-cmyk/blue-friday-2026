@@ -3,7 +3,7 @@ import {useCallback,useEffect,useMemo,useState,type FormEvent} from "react";
 import {supabase} from "./lib/supabase";
 import "./BrandsPanel.css";
 import "./ReclameAquiPanel.css";
-import { currentWeekIndex, todayBR, type AreaStatus } from "./campaign";
+import { currentWeekIndex, defaultWeekIndex, todayBR, type AreaStatus } from "./campaign";
 
 
 type Tri=boolean|null;
@@ -63,7 +63,7 @@ export function raWeekStatus(wi:number,today:string):AreaStatus{
  return {tone:"wait",label:"Em apuração",value};
 }
 export default function ReclameAquiPanel({admin=false}:{admin?:boolean}){
- const [selected,setSelected]=useState(()=>weeks[currentWeekIndex()].start),[weeksData,setWeeksData]=useState<Week[]>([]),[members,setMembers]=useState<Member[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState(""),[saving,setSaving]=useState(false);
+ const [selected,setSelected]=useState(()=>weeks[defaultWeekIndex()].start),[weeksData,setWeeksData]=useState<Week[]>([]),[members,setMembers]=useState<Member[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState(""),[saving,setSaving]=useState(false);
  const [form,setForm]=useState<Record<string,string>>({}),[memberForm,setMemberForm]=useState<Record<string,string>>({}),[editorOpen,setEditorOpen]=useState(false);
  const week=weeks.find(w=>w.start===selected)!;
  const storedWeek=weeksData.find(w=>w.week_start===selected);

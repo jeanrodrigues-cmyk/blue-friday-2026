@@ -2,7 +2,7 @@ import DashboardGlyph from "./DashboardGlyph";
 import {useEffect,useMemo,useState} from "react";
 import {supabase} from "./lib/supabase";
 import "./BrandsPanel.css";
-import { CAMPAIGN_WEEKS, currentWeekIndex, todayBR, weekPhase } from "./campaign";
+import { CAMPAIGN_WEEKS, currentWeekIndex, defaultWeekIndex, todayBR, weekPhase } from "./campaign";
 
 type Daily={reference_date:string;quero_pago_unialphaville:number;quero_pago_uniasp:number;pef_unialphaville:number;pef_uniasp:number};
 type Cash={reference_date:string;required:boolean;closed_at_18h:boolean|null;confirmed_at:string|null;notes:string|null};
@@ -19,7 +19,7 @@ function daysBetween(start:string,end:string){const days:string[]=[];let date=ne
 function status(label:string,kind:"ok"|"bad"|"wait"|"none"="wait"){return <span className={"brands-pill "+kind}>{label}</span>;}
 export default function BrandsPanel(){
  const [daily,setDaily]=useState<Daily[]>([]),[cash,setCash]=useState<Cash[]>([]),[invoices,setInvoices]=useState<Invoice[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState("");
- const [week,setWeek]=useState(currentWeekIndex);
+ const [week,setWeek]=useState(defaultWeekIndex);
  async function load(){if(!supabase){setError("Supabase não configurado.");setLoading(false);return;}setLoading(true);const [d,c,i]=await Promise.all([supabase.from("bf_brands_daily").select("*").order("reference_date"),supabase.from("bf_brands_cash").select("*").order("reference_date"),supabase.from("bf_brands_invoices").select("*").order("reference_date")]);setError(d.error?.message||c.error?.message||i.error?.message||"");setDaily((d.data||[]) as Daily[]);setCash((c.data||[]) as Cash[]);setInvoices((i.data||[]) as Invoice[]);setLoading(false);}
  useEffect(()=>{void load();},[]);
  const amounts=useMemo(()=>weeks.map(w=>{const base=daily.filter(r=>r.reference_date>=w.start&&r.reference_date<=w.end).reduce((s,r)=>s+Number(r.quero_pago_unialphaville)+Number(r.quero_pago_uniasp)+Number(r.pef_unialphaville)+Number(r.pef_uniasp),0);const nf=invoices.filter(r=>r.reference_date>=w.start&&r.reference_date<=w.end&&r.classification.trim().toLowerCase()==="mensalidades").reduce((s,r)=>s+Number(r.amount),0);return base+nf;}),[daily,invoices]);

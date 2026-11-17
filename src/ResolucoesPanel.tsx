@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { currentWeekIndex, noDataLabel, type AreaStatus } from "./campaign";
+import { currentWeekIndex, defaultWeekIndex, noDataLabel, type AreaStatus } from "./campaign";
 
 import "./BrandsPanel.css";
 import "./ResolucoesPanel.css";
@@ -17,7 +17,7 @@ const RESULTS:Record<number,{tma:{who:string;value:string};tpr:{who:string;value
 /** Situação da semana para o card de Resoluções na visão geral. */
 export function rsWeekStatus(wi:number,today:string):AreaStatus{const r=RESULTS[wi];if(!r){const l=noDataLabel(wi,today);return {tone:l==="Aguardando dados"?"wait":"none",label:l==="—"?"Ainda não começou":l,value:"Resultados após o relatório da Intercom"};}if(wi===1)return {tone:"bad",label:"Trava não cumprida",value:"Segunda-feira não zerada · Renan: TPR 42s, TMA 2h57 · Daniel: 458 efetivas"};return r.cash.ok?{tone:"good",label:"Trava cumprida",value:"Melhor TMA "+r.tma.value+" · TPR "+r.tpr.value}:{tone:"bad",label:"Trava não cumprida",value:"Caixa zerada até 18h em menos de 3 dias"};}
 export default function ResolucoesPanel(){
- const [selected,setSelected]=useState(currentWeekIndex);
+ const [selected,setSelected]=useState(defaultWeekIndex);
  const first=selected===0;
  const r=RESULTS[selected];const nd=noDataLabel(selected);
  const missing=team.filter(n=>!r?.people.some(p=>p.name===n));

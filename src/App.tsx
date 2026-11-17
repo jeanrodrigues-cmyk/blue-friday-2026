@@ -9,7 +9,7 @@ import ReclameAquiPanel from "./ReclameAquiPanel";
 import QueroPagoPanel from "./QueroPagoPanel";
 import RecorrenciaPanel from "./RecorrenciaPanel";
 import ResolucoesPanel from "./ResolucoesPanel";
-import { CAMPAIGN_WEEKS, CAMPAIGN_DAYS, currentWeekIndex, dayLabel, todayBR, type AreaStatus } from "./campaign";
+import { CAMPAIGN_WEEKS, CAMPAIGN_DAYS, currentWeekIndex, defaultWeekIndex, dayLabel, todayBR, type AreaStatus } from "./campaign";
 import { refundWeekStatus } from "./RefundPanel";
 import { QP_WEEKS } from "./QueroPagoPanel";
 import { RC_WEEKS } from "./RecorrenciaPanel";
@@ -114,6 +114,7 @@ export default function App() {
   const [error, setError] = useState("");
   const [view, setView] = useState("Visão geral");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  useEffect(()=>{document.title=view==="Visão geral"?"Blue Friday 2026 · Visão geral":view+" · Blue Friday 2026";},[view]);
   const [areaDisplayMode, setAreaDisplayMode] = useState<"grid"|"list">("grid");
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [metricError, setMetricError] = useState("");
@@ -125,16 +126,16 @@ export default function App() {
   const [csvReplaceConfirmed,setCsvReplaceConfirmed] = useState(false);
   const [refreshCount,setRefreshCount] = useState(0);
   const [boTab,setBoTab] = useState<"overview"|"history"|"weekly"|"admin">("overview");
-  const [selectedWeek,setSelectedWeek] = useState(currentWeekIndex);
+  const [selectedWeek,setSelectedWeek] = useState(defaultWeekIndex);
   const [mpRecords,setMpRecords] = useState<MpRecord[]>([]);
   const [mpError,setMpError] = useState("");
   const [mpSaving,setMpSaving] = useState(false);
   const [mpDate,setMpDate] = useState("2026-11-09");
-  const [mpWeek,setMpWeek] = useState(currentWeekIndex);
+  const [mpWeek,setMpWeek] = useState(defaultWeekIndex);
   const [mpTab,setMpTab] = useState<"overview"|"history"|"weekly"|"admin">("overview");
   const [mpForm,setMpForm] = useState({media:"",comments:"",total:"",within:"",over:"",source:"Confirmação manual da gestão",procon:"",notes:""});
-  const [boStart,setBoStart] = useState(()=>CAMPAIGN_WEEKS[currentWeekIndex()].start);
-  const [boEnd,setBoEnd] = useState(()=>CAMPAIGN_WEEKS[currentWeekIndex()].end);
+  const [boStart,setBoStart] = useState(()=>CAMPAIGN_WEEKS[defaultWeekIndex()].start);
+  const [boEnd,setBoEnd] = useState(()=>CAMPAIGN_WEEKS[defaultWeekIndex()].end);
   const chooseBoWeek=(index:number)=>{const w=CAMPAIGN_WEEKS[index]??CAMPAIGN_WEEKS[0];setSelectedWeek(index);setBoStart(w.start);setBoEnd(w.end);};
 
   useEffect(() => {
@@ -403,7 +404,7 @@ export default function App() {
     case "Resoluções":return rsWeekStatus(wi,today);
     default:return {tone:"none",label:"Ver no painel",value:"Resultado detalhado na área"};
   }};
-  return <main className="bf-layout"><div className="bf-campaign-strip" role="note"><strong>Blue Friday 2026</strong><span>{CAMPAIGN_WEEKS[currentWeekIndex()].label} em andamento</span></div>
+  return <main className="bf-layout"><div className="bf-campaign-strip" role="note"><strong>Blue Friday 2026</strong><span>{CAMPAIGN_WEEKS[currentWeekIndex()].label} em andamento{defaultWeekIndex()<currentWeekIndex()?" · resultados fechados até a Semana "+(defaultWeekIndex()+1):""}</span></div>
     <aside className={`bf-side bf-side-light bf-side-refined${sidebarCollapsed?" bf-side-collapsed":""}`} aria-label="Navegação principal">
       <div className="bf-brand"><BrandIcon small/><div className="bf-brand-copy"><strong>Blue Friday</strong><small>Campanha 2026</small></div><button type="button" className="bf-side-toggle" onClick={()=>setSidebarCollapsed(v=>!v)} aria-label={sidebarCollapsed?"Expandir menu lateral":"Recolher menu lateral"} aria-expanded={!sidebarCollapsed} title={sidebarCollapsed?"Expandir menu":"Recolher menu"}><span aria-hidden="true">{sidebarCollapsed?"»":"«"}</span></button></div>
       <div className="bf-side-navigation">

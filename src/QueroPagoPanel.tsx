@@ -1,6 +1,6 @@
 import DashboardGlyph from "./DashboardGlyph";
 import {useState} from "react";
-import { currentWeekIndex, noDataLabel, weekPhase } from "./campaign";
+import { currentWeekIndex, defaultWeekIndex, noDataLabel, weekPhase } from "./campaign";
 
 import "./BrandsPanel.css";
 import "./QueroPagoPanel.css";
@@ -13,7 +13,7 @@ const weeks=[
 ];
 const brl=(n:number)=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
 export default function QueroPagoPanel(){
- const [selected,setSelected]=useState(currentWeekIndex);
+ const [selected,setSelected]=useState(defaultWeekIndex);
  const w=weeks[selected],known=w.revenue!==null,phase=weekPhase(selected),nd=noDataLabel(selected);
  const informed=weeks.filter(x=>x.revenue!==null);const monthDone=informed.reduce((a,x)=>a+(x.revenue??0),0);const monthPct=monthDone/46000*100;
  const tone=(pct:number|null)=>pct===null?"":pct>=100?" is-good":phase==="ended"?" is-bad":" is-wait";
