@@ -228,3 +228,15 @@ html body .bf-layout .brands>p.brands-note:last-child,html body .bf-layout .bf-b
 }
 html body .bf-layout .rs-person .rs-rank-medal{background:var(--ds-wait-bg)!important;background-image:none!important;color:var(--ds-wait)!important}
 html body .bf-layout .rs-person .rs-rank-medal:before,html body .bf-layout .rs-person .rs-rank-medal:after{display:none!important}
+/* Reembolso · meta de taxa da campanha */
+.rf-campaign-rate{margin-bottom:16px}
+.rf-rate-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;margin:4px 0 16px}
+.rf-rate-main,.rf-rate-side>div{background:var(--ds-panel-2);border:1px solid var(--ds-border);border-radius:var(--ds-radius);padding:16px 20px}
+.rf-rate-side{display:grid;gap:12px}
+.rf-rate-label{display:block;font-size:12px;font-weight:600;color:var(--ds-text-2)}
+.rf-rate-value{display:block;font-size:44px!important;font-weight:700;line-height:1.1;margin:4px 0 6px;letter-spacing:-.02em;color:var(--ds-text)}
+.rf-rate-side strong{display:block;font-size:22px;font-weight:700;margin:4px 0 2px;color:var(--ds-text)}
+.rf-rate-side small{color:var(--ds-text-3);font-size:12px}
+.rf-rate-row{grid-template-columns:minmax(120px,1.4fr) 1fr 1fr 1fr!important}
+.rf-rate-row>span:nth-child(2),.rf-rate-row>span:nth-child(3),.rf-rate-row>span:nth-child(4){text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:760px){.rf-rate-grid{grid-template-columns:1fr}.rf-rate-value{font-size:36px!important}.rf-rate-row{grid-template-columns:1.2fr 1fr 0.8fr!important}.rf-rate-row>span:nth-child(2){display:none}}
