@@ -24,6 +24,14 @@ const secondWeekPeople:Member[]=[
  {week_start:"2026-11-09",member_key:"julio",assigned:32,answered:45,replies:4,evaluated:9,good_evaluations:7,resolved:6,vfn_positive:3,evaluation_pct:null,good_pct:null,solution_pct:66.67,reputation:5.89},
  {week_start:"2026-11-09",member_key:"larissa",assigned:29,answered:31,replies:6,evaluated:15,good_evaluations:7,resolved:13,vfn_positive:4,evaluation_pct:48.39,good_pct:46.67,solution_pct:86.67,reputation:6.81}
 ];
+// Semana 3 (16-22/11): consolidado do Power BI "Reclame Aqui HugMe - Quero Bolsa" e painel HugMe por colaborador (QB),
+// capturas de 23/11/2026. A planilha de ME e Quero Pago (respostas de 16 a 18/11) soma 6 respostas a cada colaborador;
+// avaliações boas nela: Larissa 1 ("10 - VFN") e Julio 1 ("10 - VNF"). VFN positivo derivado de "Voltaria a fazer negócio" × avaliadas.
+const thirdWeekSnapshot:Week={week_start:"2026-11-16",week_end:"2026-11-22",assigned:53,answered:37,evaluated:38,good_evaluations:18,evaluation_pct:102.7,good_pct:47.37,overdue_15_count:null,contact_d1_ok:null,first_action_d1_ok:null,reputation_stable:null,vfn_stable:null,solution_stable:null,reward_approved:false,gift_approved:false,source:"HugMe · Power BI Quero Bolsa 16–22/11/2026",notes:"Captura de 23/11. Meta de 50% de avaliações boas não atingida (47,37%). Consolidado geral é apenas QB. Por colaborador: respostas somam QB + planilha de ME e Quero Pago (Julio 15 + 6; Larissa 22 + 6). Avaliações boas individuais de QB não constam no print; ME e Quero Pago tiveram 1 avaliação boa de cada colaborador. Percentuais combinados pendentes; travas pendentes de conferência."};
+const thirdWeekPeople:Member[]=[
+ {week_start:"2026-11-16",member_key:"julio",assigned:28,answered:21,replies:0,evaluated:11,good_evaluations:null,resolved:10,vfn_positive:6,evaluation_pct:null,good_pct:null,solution_pct:90.9,reputation:8.1},
+ {week_start:"2026-11-16",member_key:"larissa",assigned:25,answered:28,replies:4,evaluated:18,good_evaluations:null,resolved:14,vfn_positive:7,evaluation_pct:null,good_pct:null,solution_pct:77.8,reputation:6.9}
+];
 const fmt=(n:number|null|undefined,suffix="")=>n==null?"Pendente":n.toLocaleString("pt-BR",{maximumFractionDigits:2})+suffix;
 const checks:[keyof Week,string][]=[["overdue_15_count","Zero reclamações acima de 15 dias"],["contact_d1_ok","Contato com estudante no D1"],["first_action_d1_ok","Primeira tratativa no D1"],["reputation_stable","Reputação sem queda"],["vfn_stable","VFN sem queda"],["solution_stable","Índice de solução sem queda"]];
 const numericFields:[keyof Week,string][]=[["assigned","Reclamações atribuídas"],["answered","Respondidas"],["evaluated","Avaliadas"],["good_evaluations","Avaliações boas"],["evaluation_pct","% avaliadas"],["good_pct","% boas"],["overdue_15_count","Acima de 15 dias"]];
@@ -39,6 +47,7 @@ function weekState(w:{start:string;end:string},today=todayBR()):WeekState{return
 function resolveWeek(start:string,db?:Week):Week|undefined{
  if(start==="2026-11-01")return {...firstWeekSnapshot,...db,overdue_15_count:0,contact_d1_ok:true,first_action_d1_ok:true,reputation_stable:true,vfn_stable:true,solution_stable:true};
  if(start==="2026-11-09")return {...secondWeekSnapshot,...db};
+ if(start==="2026-11-16")return {...thirdWeekSnapshot,...db};
  return db;
 }
 function hasData(w:Week|undefined){return !!w&&[w.assigned,w.answered,w.evaluation_pct,w.good_pct].some(v=>v!=null);}
@@ -72,7 +81,7 @@ export default function ReclameAquiPanel({admin=false}:{admin?:boolean}){
  const weekIndex=weeks.findIndex(w=>w.start===selected);
  const previous=weekIndex>0?resolveWeek(weeks[weekIndex-1].start,weeksData.find(x=>x.week_start===weeks[weekIndex-1].start)):undefined;
  const showWeek=hasData(current);
- const people=members.filter(p=>p.week_start===selected).length?members.filter(p=>p.week_start===selected):selected==="2026-11-01"?firstWeekPeople:selected==="2026-11-09"?secondWeekPeople:[];
+ const people=members.filter(p=>p.week_start===selected).length?members.filter(p=>p.week_start===selected):selected==="2026-11-01"?firstWeekPeople:selected==="2026-11-09"?secondWeekPeople:selected==="2026-11-16"?thirdWeekPeople:[];
  const load=useCallback(async()=>{
   if(!supabase){setError("Supabase não configurado.");setLoading(false);return;}
   setLoading(true);const [w,p]=await Promise.all([supabase.from("bf_ra_weekly").select("*").order("week_start"),supabase.from("bf_ra_weekly_people").select("*").order("week_start")]);
@@ -85,8 +94,8 @@ export default function ReclameAquiPanel({admin=false}:{admin?:boolean}){
  const ranking=useMemo(()=>people.map(p=>({...p,publicResponses:p.answered==null||p.replies==null?null:p.answered+p.replies})),[people]);
  const goodRank=positions([...ranking].filter(p=>p.good_evaluations!=null).sort((a,b)=>(b.good_evaluations??0)-(a.good_evaluations??0)),p=>p.good_evaluations??0);
  const replyRank=positions([...ranking].filter(p=>p.publicResponses!=null).sort((a,b)=>(b.publicResponses??0)-(a.publicResponses??0)),p=>p.publicResponses??0);
- const sum=(key:keyof Member)=>people.reduce((a,p)=>a+(typeof p[key]==="number"?Number(p[key]):0),0);
- const mismatches=(current?[["Avaliadas",current.evaluated,sum("evaluated")],["Avaliações boas",current.good_evaluations,sum("good_evaluations")]]:[]).filter(([,total,individual])=>total!=null&&people.length===2&&total!==individual) as [string,number,number][];
+ const sum=(key:keyof Member)=>people.every(p=>typeof p[key]==="number")?people.reduce((a,p)=>a+Number(p[key]),0):null;
+ const mismatches=(current?[["Avaliadas",current.evaluated,sum("evaluated")],["Avaliações boas",current.good_evaluations,sum("good_evaluations")]]:[]).filter(([,total,individual])=>total!=null&&individual!=null&&people.length===2&&total!==individual) as [string,number,number][];
  const overAnswered=people.filter(p=>p.answered!=null&&p.assigned!=null&&p.answered>p.assigned).map(p=>p.member_key);
  const change=(key:string,value:string,person=false)=>person?setMemberForm(p=>({...p,[key]:value})):setForm(p=>({...p,[key]:value}));
  const toNum=(raw:string,key:string)=>{const n=Number(raw.replace(",","."));if(!Number.isFinite(n)||n<0||((key==="evaluation_pct"||key==="good_pct"||key==="solution_pct")&&n>100)||(!key.includes("pct")&&key!=="reputation"&&!Number.isInteger(n)))throw new Error("Valor inválido para "+key);return n;};
