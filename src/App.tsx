@@ -31,6 +31,23 @@ const boValidatedSnapshot: Metric[] = [
   {reference_date:String(date),metric_key:"bo_over_7_days",metric_value:Number(backlog),verified:true},
   {reference_date:String(date),metric_key:"bo_resolved",metric_value:Number(resolved),verified:true},
 ]);
+// Semana 3 (16-19/11): fotografias reconstruídas do Databricks (bo_operations) em 23/11/2026.
+// A última carga da tabela foi em 20/11 às 01:13 (Brasília); 20 a 22/11 ficam sem dado.
+// NÃO homologadas pela operação: marcadas como não validadas e usadas só onde o banco não tem registro.
+const boWeek3Snapshots = [
+  {date:"2026-11-16",open:119,backlog:99,resolved:6310},
+  {date:"2026-11-17",open:112,backlog:92,resolved:6321},
+  {date:"2026-11-18",open:89,backlog:69,resolved:6351},
+  {date:"2026-11-19",open:68,backlog:40,resolved:6382},
+];
+function withBoWeek3Provisional(saved: Metric[]): Metric[] {
+  const extra=boWeek3Snapshots.filter(row=>!saved.some(m=>m.reference_date===row.date)).flatMap(row=>[
+    {reference_date:row.date,metric_key:"bo_open",metric_value:row.open,verified:false},
+    {reference_date:row.date,metric_key:"bo_over_7_days",metric_value:row.backlog,verified:false},
+    {reference_date:row.date,metric_key:"bo_resolved",metric_value:row.resolved,verified:false},
+  ]);
+  return [...saved,...extra];
+}
 
 type MpRecord = { reference_date:string; media_queue_cleared:boolean|null; comments_handled:boolean|null; procon_total:number|null; procon_within_24h:number|null; procon_over_24h:number|null; procon_source:string|null; procon_met_24h:boolean|null; notes:string|null };
 type Profile = { role: "admin" | "management" | "collaborator"; active: boolean };
@@ -318,7 +335,9 @@ export default function App() {
         ...metrics.filter(saved => !boWeek2Snapshots.some(row => row.date===saved.reference_date)),
         ...boWeek2Provisional
       ]
-    : metrics;
+    : selectedWeek===2
+      ? withBoWeek3Provisional(metrics)
+      : metrics;
   const history = Array.from(new Set(displayMetrics.map(m=>m.reference_date))).sort().reverse().map(date=>{
     const entries=displayMetrics.filter(m=>m.reference_date===date);
     const get=(key:string)=>entries.find(m=>m.metric_key===key)?.metric_value;
@@ -393,7 +412,7 @@ export default function App() {
   const weekEnded=(wi:number)=>today>CAMPAIGN_WEEKS[wi].end;
   const mpSpans=[["2026-11-04","2026-11-06"],["2026-11-09","2026-11-13"],["2026-11-16","2026-11-20"],["2026-11-23","2026-11-27"]];
   const mpStatusFor=(wi:number):AreaStatus=>{const [a,b]=mpSpans[wi];const days:string[]=[];for(let d=new Date(a+"T12:00:00Z");d<=new Date(b+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+1))days.push(d.toISOString().slice(0,10));const recs=days.map(day=>mpRecords.find(r=>r.reference_date===day)??(MP_CONFIRMED_DATES.has(day)?{reference_date:day,media_queue_cleared:true,comments_handled:true,procon_met_24h:true} as MpRecord:undefined));const ok=recs.filter(r=>r&&r.media_queue_cleared===true&&r.comments_handled===true&&r.procon_met_24h===true).length;const failed=recs.some(r=>r&&(r.media_queue_cleared===false||r.comments_handled===false||r.procon_met_24h===false));if(failed)return {tone:"bad",label:"Meta não cumprida",value:ok+" de "+days.length+" dias com as três metas"};if(ok===days.length)return {tone:"good",label:"Meta cumprida",value:"Três metas em "+ok+" de "+days.length+" dias"};if(ok===0)return {tone:weekEnded(wi)?"wait":"none",label:weekEnded(wi)?"Aguardando registros":"Ainda sem registros",value:"Nenhum dia apurado"};return {tone:"wait",label:"Em andamento",value:ok+" de "+days.length+" dias cumpridos"};};
-  const boStatusFor=(wi:number):AreaStatus=>{const w=CAMPAIGN_WEEKS[wi];const source=wi===1?[...metrics.filter(m=>!boWeek2Snapshots.some(r=>r.date===m.reference_date)),...boWeek2Provisional]:metrics;const rows=source.filter(m=>m.metric_key==="bo_over_7_days"&&m.reference_date>=w.start&&m.reference_date<=w.end).sort((x,y)=>y.reference_date.localeCompare(x.reference_date));if(!rows.length)return {tone:"none",label:"Ainda sem registros",value:"Nenhum dado nesta semana"};const last=Number(rows[0].metric_value);if(last===0)return {tone:"good",label:"Meta cumprida",value:"Backlog acima de 7 dias zerado"};return {tone:weekEnded(wi)?"bad":"wait",label:weekEnded(wi)?"Meta não cumprida":"Em andamento",value:fmt(last)+" BOs acima de 7 dias"};};
+  const boStatusFor=(wi:number):AreaStatus=>{const w=CAMPAIGN_WEEKS[wi];const source=wi===1?[...metrics.filter(m=>!boWeek2Snapshots.some(r=>r.date===m.reference_date)),...boWeek2Provisional]:wi===2?withBoWeek3Provisional(metrics):metrics;const rows=source.filter(m=>m.metric_key==="bo_over_7_days"&&m.reference_date>=w.start&&m.reference_date<=w.end).sort((x,y)=>y.reference_date.localeCompare(x.reference_date));if(!rows.length)return {tone:"none",label:"Ainda sem registros",value:"Nenhum dado nesta semana"};const last=Number(rows[0].metric_value);if(last===0)return {tone:"good",label:"Meta cumprida",value:"Backlog acima de 7 dias zerado"};return {tone:weekEnded(wi)?"bad":"wait",label:weekEnded(wi)?"Meta não cumprida":"Em andamento",value:fmt(last)+" BOs acima de 7 dias"};};
   const goalStatus=(goal:number,actual:number|null,wi:number):AreaStatus=>actual===null?{tone:weekEnded(wi)?"wait":"none",label:weekEnded(wi)?"Aguardando fechamento":"Em andamento",value:"Meta de "+moneyShort(goal)}:actual>=goal?{tone:"good",label:"Meta cumprida",value:moneyShort(actual)+" de "+moneyShort(goal)}:{tone:weekEnded(wi)?"bad":"wait",label:weekEnded(wi)?"Meta não cumprida":"Em andamento",value:Math.round(actual/goal*100)+"% de "+moneyShort(goal)};
   const areaStatus=(area:string,wi:number):AreaStatus=>{switch(area){
     case "BO e Dados":return boStatusFor(wi);
