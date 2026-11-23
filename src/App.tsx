@@ -13,7 +13,7 @@ import { CAMPAIGN_WEEKS, CAMPAIGN_DAYS, currentWeekIndex, defaultWeekIndex, dayL
 import { refundWeekStatus } from "./RefundPanel";
 import { QP_WEEKS } from "./QueroPagoPanel";
 import { RC_WEEKS } from "./RecorrenciaPanel";
-import { BRANDS_WEEKS, BRANDS_WEEK_ONE, BRANDS_WEEK_TWO } from "./BrandsPanel";
+import { BRANDS_WEEKS, BRANDS_WEEK_ONE, BRANDS_WEEK_TWO, BRANDS_WEEK_THREE } from "./BrandsPanel";
 import { raWeekStatus } from "./ReclameAquiPanel";
 import { cbWeekStatus } from "./ChargebackPanel";
 import { rsWeekStatus } from "./ResolucoesPanel";
@@ -420,7 +420,7 @@ export default function App() {
     case "Reembolso":return refundWeekStatus(wi,today);
     case "Quero Pago":return goalStatus(QP_WEEKS[wi].goal,QP_WEEKS[wi].revenue,wi);
     case "Recorrência":return goalStatus(RC_WEEKS[wi].goal,RC_WEEKS[wi].recovered,wi);
-    case "Marcas":return goalStatus(BRANDS_WEEKS[wi].goal,wi===0?BRANDS_WEEK_ONE.weekly:wi===1?BRANDS_WEEK_TWO.weekly:null,wi);
+    case "Marcas":return goalStatus(BRANDS_WEEKS[wi].goal,wi===0?BRANDS_WEEK_ONE.weekly:wi===1?BRANDS_WEEK_TWO.weekly:wi===2?BRANDS_WEEK_THREE.weekly:null,wi);
     case "Reclame Aqui":return raWeekStatus(wi,today);
     case "Chargeback":return cbWeekStatus(wi,today);
     case "Resoluções":return rsWeekStatus(wi,today);
