@@ -41,7 +41,10 @@ const MP_WEEK1_CONFIRMED = new Set(["2026-11-04","2026-11-05","2026-11-06"]);
 // Semana 2 (09-13/11): as tres metas diarias foram confirmadas pela operacao em 16/11.
 // Fallback visual para dias ainda nao sincronizados na tabela diaria; nao inventar volumes Procon.
 const MP_WEEK2_CONFIRMED = new Set(["2026-11-09","2026-11-10","2026-11-11","2026-11-12","2026-11-13"]);
-const MP_CONFIRMED_DATES = new Set([...MP_WEEK1_CONFIRMED,...MP_WEEK2_CONFIRMED]);
+// Semana 3 (16-20/11): as tres metas diarias foram confirmadas pela operacao em 23/11.
+// Fallback visual para dias ainda nao sincronizados na tabela diaria; nao inventar volumes Procon.
+const MP_WEEK3_CONFIRMED = new Set(["2026-11-16","2026-11-17","2026-11-18","2026-11-19","2026-11-20"]);
+const MP_CONFIRMED_DATES = new Set([...MP_WEEK1_CONFIRMED,...MP_WEEK2_CONFIRMED,...MP_WEEK3_CONFIRMED]);
 const areas = ["BO e Dados","Reembolso","Mídias e Procon","Recorrência","Chargeback","Resoluções","Quero Pago","Marcas","Reclame Aqui"];
 
 type CsvPreview = { fileName: string; open: number; backlog: number; resolved: number; ingestedAt: string; referenceDate: string };
