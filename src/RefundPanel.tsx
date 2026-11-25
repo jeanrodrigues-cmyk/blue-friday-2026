@@ -39,11 +39,15 @@ const WEEK_TWO_PEF_VERIFIED:Row[]=[
 ];
 // Meta de reembolso do Relacionamento na campanha: taxa máxima de 8,2% sobre a receita PEF (teto de R$ 169.374).
 // Receita realizada e reembolso por time, semestre 2027.1, informados pela equipe (sem Assinatura e Anuidade).
-const CAMPAIGN_RATE={meta:8.2,teto:169374,fonte:"Tabela de metas por time · semestre 2027.1",times:[
- {time:"Graduação PEF",receita:657992,reembolso:65171},
- {time:"LLL PEF",receita:66946,reembolso:7886},
- {time:"Branded",receita:33145,reembolso:1862},
- {time:"Melhor Escola PEF",receita:252400,reembolso:5797}]};
+// Atualizado com os valores da semana 3 (safra 2027.1, quatro produtos): taxa 8,8%, acima do limite.
+// Valores da semana 2 (taxa 8,0%): Graduação 657.992/65.171, LLL 66.946/7.886, Branded 33.145/1.862, ME 252.400/5.797.
+const CAMPAIGN_RATE={meta:8.2,teto:169374,fonte:"Tabela de metas por time · safra 2027.1, valores atualizados na semana 3",times:[
+ {time:"Graduação PEF",receita:941791,reembolso:105505},
+ {time:"LLL PEF",receita:93489,reembolso:10861},
+ {time:"Branded",receita:88827,reembolso:3503},
+ {time:"Melhor Escola PEF",receita:369402,reembolso:11650}]};
+// Semana 3: taxa da campanha 8,8% (acima de 8,2%) e 5 casos de backlog acima de 7 dias no fechamento.
+const WEEK_THREE_CLOSING={ratePct:"8,8%",backlog:{date:"2026-11-22",openOver7:5,resolvedOver7:0}};
 // Semana 2: decisões da liderança. O reembolso é avaliado pela taxa da campanha (8,0%, dentro do limite de 8,2%)
 // e os 2 casos de backlog acima de 7 dias no fechamento não contam para a meta.
 const WEEK_TWO_DECISION={rateOk:true,backlogWaived:true};
@@ -94,6 +98,7 @@ export function refundWeekStatus(wi:number,today:string):AreaStatus{
  const pctBR=(n:number)=>n.toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1})+"%";
  if(wi===0)return VERIFIED_WEEK_ONE_BACKLOG.openOver7>0?{tone:"bad",label:"Meta não cumprida",value:"Backlog de "+VERIFIED_WEEK_ONE_BACKLOG.openOver7+" casos no fechamento"}:{tone:"good",label:"Meta cumprida",value:"Backlog zerado"};
  if(wi===1)return {tone:"good",label:"Meta cumprida",value:"Conversão "+pctBR(WEEK_TWO_CONVERSION_RATE)+" · taxa 8,0% · backlog desconsiderado"};
+ if(wi===2)return {tone:"bad",label:"Meta não cumprida",value:"Taxa "+WEEK_THREE_CLOSING.ratePct+" (limite 8,2%) · backlog de "+WEEK_THREE_CLOSING.backlog.openOver7+" casos"};
  const ended=today>CAMPAIGN_WEEKS[wi].end;
  return {tone:ended?"wait":"none",label:ended?"Aguardando fechamento":"Em andamento",value:"Teto da semana: "+money(weeks[wi].cap)};
 }
@@ -130,7 +135,7 @@ export default function RefundPanel(){
  },[rows]);
  const totals=useMemo(()=>{const amount=displayRows.reduce((s,r)=>s+r.amount,0);const quantity=displayRows.reduce((s,r)=>s+r.quantity,0);const byWeek=weeks.map(w=>displayRows.filter(r=>Number(r.date.slice(8))>=w.start&&Number(r.date.slice(8))<=w.end).reduce((s,r)=>s+r.amount,0));const days=[...new Set(displayRows.map(r=>r.date))].sort();const teams=[...new Set(displayRows.map(r=>r.team))].map(team=>({team,amount:displayRows.filter(r=>r.team===team).reduce((s,r)=>s+r.amount,0)})).sort((a,b)=>b.amount-a.amount);return {amount,quantity,byWeek,days,teams};},[displayRows]);
  const current=weeks[week],used=totals.byWeek[week],monthCap=OFFICIAL_CAMPAIGN_CAP,monthRatio=totals.amount/monthCap*100,weekRatio=used/current.cap*100;
- const backlogWeek=(week===1?VERIFIED_WEEK_TWO_BACKLOG:backlogRows).filter(r=>Number(r.date.slice(8))>=current.start&&Number(r.date.slice(8))<=current.end);
+ const backlogWeek=(week===1?VERIFIED_WEEK_TWO_BACKLOG:week===2?[WEEK_THREE_CLOSING.backlog]:backlogRows).filter(r=>Number(r.date.slice(8))>=current.start&&Number(r.date.slice(8))<=current.end);
  const backlogLatest=backlogWeek.length?backlogWeek[backlogWeek.length-1]:week===0?{date:VERIFIED_WEEK_ONE_BACKLOG.date,openOver7:VERIFIED_WEEK_ONE_BACKLOG.openOver7,resolvedOver7:0}:null;
  const backlogResolved=backlogWeek.reduce((sum,r)=>sum+r.resolvedOver7,0);
  const weekRows=displayRows.filter(r=>Number(r.date.slice(8))>=current.start&&Number(r.date.slice(8))<=current.end);
@@ -147,8 +152,8 @@ export default function RefundPanel(){
  const isCompleteWeek=weekCoverage===current.end-current.start+1;
  const financialReadiness=isCompleteWeek&&syncStatus==="shared"?"Aguardando homologação financeira":"Dados incompletos";
  const weekTwoFinancial=week===1&&isCompleteWeek&&syncStatus==="shared";
- const weekTwoOverCap=week===1&&WEEK_TWO_DECISION.rateOk?false:weekTwoFinancial&&used>current.cap;
- const weekTwoBacklogFailed=week===1&&!WEEK_TWO_DECISION.backlogWaived&&backlogLatest!==null&&backlogLatest.openOver7>0;
+ const weekTwoOverCap=week===1&&WEEK_TWO_DECISION.rateOk?false:week===2?true:weekTwoFinancial&&used>current.cap;
+ const weekTwoBacklogFailed=(week===1&&!WEEK_TWO_DECISION.backlogWaived||week===2)&&backlogLatest!==null&&backlogLatest.openOver7>0;
  const weekTwoPrizeBlocked=weekTwoOverCap||weekTwoBacklogFailed;
  function exportExecutive(){const lines=[["Indicador","Valor"],["Campanha","Blue Friday 2026"],["Semana",current.name+" ("+current.range+")"],["Equipe",managementTeam],["Fonte",syncStatus==="shared"?"Supabase":"Base local ou inicial"],["Reembolsos registrados",String(managementCount)],["Valor PEF registrado",managementAmount.toFixed(2)],["Teto semanal geral",String(current.cap)],["Cobertura da semana",weekCoverage+"/"+(current.end-current.start+1)],["Conversões",week===1?"32 confirmadas (Alice, Carla e Naiara)":String(conversionTotals.total)],["Solicitações abertas",week===1?String(WEEK_TWO_OPENED_TOTAL):"Não apurado"],["Taxa de conversão",week===1?"7,80%; meta 4%; confirmada pela operação":"Não apurada"],["Backlog acima de 7 dias","Sem integração"],["Elegibilidade",weekTwoPrizeBlocked?"Premiação em dinheiro não liberada por travas": "Não homologada"]];const csv="\uFEFF"+lines.map(line=>line.map(v=>'"'+v.replace(/"/g,'""')+'"').join(";")).join("\r\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="blue-friday-reembolso-"+current.name.toLowerCase().replace(" ","-")+".csv";a.click();URL.revokeObjectURL(url);}
  const chartMax=Math.max(...chart.map(x=>x.amount),1);
@@ -202,7 +207,7 @@ export default function RefundPanel(){
  <div className="bf-refund-insights">
   <section className="bf-refund-insight-panel">
    <header className="bf-refund-insight-heading"><div className="bf-refund-insight-title"><span className="bf-refund-insight-heading-icon bf-refund-icon-blue"><RefundIcon name="target" size={21}/></span><div><h2>Resultado das metas</h2><p>Acompanhamento dos critérios de premiação</p></div></div></header>
-   <div className="bf-refund-goal-grid">{([{name:"Reembolso dentro do teto",description:week===1?"Taxa da campanha: 8,0% (limite 8,2%)":"Controle financeiro da semana",status:week===0?"Cumprida":week===1&&WEEK_TWO_DECISION.rateOk?"Cumprida":weekTwoFinancial?(weekTwoOverCap?"Não atingida":"Cumprida"):"A apurar",tone:week===0||(week===1&&WEEK_TWO_DECISION.rateOk)?"success":weekTwoFinancial?(weekTwoOverCap?"danger":"success"):"pending",icon:"wallet"},{name:"Backlog zerado no fechamento",description:week===1&&WEEK_TWO_DECISION.backlogWaived?"2 casos desconsiderados pela liderança":"Casos acima de sete dias",status:week===0?"Não cumprida":week===1&&WEEK_TWO_DECISION.backlogWaived?"Cumprida":weekTwoBacklogFailed?"Não atingida":"A apurar",tone:week===1&&WEEK_TWO_DECISION.backlogWaived?"success":week===0||weekTwoBacklogFailed?"danger":"pending",icon:"calendar"},{name:"Conversão mínima de 4%",description:week===1?"32 conversões / 410 solicitações abertas":"Taxa ainda não homologada",status:week===1?"Atingida · 7,80%":"Sem taxa apurada",tone:week===1?"success":"pending",icon:"chart"}] as const).map(item=><div className="bf-refund-goal" key={item.name}><span className="bf-refund-goal-icon"><RefundIcon name={item.icon}/></span><div className="bf-refund-goal-content"><strong>{item.name}</strong><small>{item.description}</small></div><span className={`bf-refund-goal-status bf-refund-status-${item.tone}`}>{item.status}</span></div>)}</div>
+   <div className="bf-refund-goal-grid">{([{name:"Reembolso dentro do teto",description:week===1?"Taxa da campanha: 8,0% (limite 8,2%)":week===2?"Taxa da campanha: "+WEEK_THREE_CLOSING.ratePct+" (limite 8,2%)":"Controle financeiro da semana",status:week===0?"Cumprida":week===1&&WEEK_TWO_DECISION.rateOk?"Cumprida":week===2?"Não atingida":weekTwoFinancial?(weekTwoOverCap?"Não atingida":"Cumprida"):"A apurar",tone:week===0||(week===1&&WEEK_TWO_DECISION.rateOk)?"success":week===2?"danger":weekTwoFinancial?(weekTwoOverCap?"danger":"success"):"pending",icon:"wallet"},{name:"Backlog zerado no fechamento",description:week===1&&WEEK_TWO_DECISION.backlogWaived?"2 casos desconsiderados pela liderança":"Casos acima de sete dias",status:week===0?"Não cumprida":week===1&&WEEK_TWO_DECISION.backlogWaived?"Cumprida":weekTwoBacklogFailed?"Não atingida":"A apurar",tone:week===1&&WEEK_TWO_DECISION.backlogWaived?"success":week===0||weekTwoBacklogFailed?"danger":"pending",icon:"calendar"},{name:"Conversão mínima de 4%",description:week===1?"32 conversões / 410 solicitações abertas":"Taxa ainda não homologada",status:week===1?"Atingida · 7,80%":"Sem taxa apurada",tone:week===1?"success":"pending",icon:"chart"}] as const).map(item=><div className="bf-refund-goal" key={item.name}><span className="bf-refund-goal-icon"><RefundIcon name={item.icon}/></span><div className="bf-refund-goal-content"><strong>{item.name}</strong><small>{item.description}</small></div><span className={`bf-refund-goal-status bf-refund-status-${item.tone}`}>{item.status}</span></div>)}</div>
   </section>
   <section className="bf-refund-insight-panel">
    <header className="bf-refund-insight-heading"><div className="bf-refund-insight-title"><span className="bf-refund-insight-heading-icon bf-refund-icon-purple"><RefundIcon name="shield" size={21}/></span><div><h2>Destaques do time</h2><p>Reconhecimentos e resultados individuais</p></div></div></header>
