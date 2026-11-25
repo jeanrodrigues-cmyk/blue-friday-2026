@@ -8,7 +8,8 @@ import "./QueroPagoPanel.css";
 const weeks=[
 {label:"Semana 1 · 01 a 08/11",goal:13800,revenue:10360},
 {label:"Semana 2 · 09 a 15/11",goal:14720,revenue:11408.79},
-{label:"Semana 3 · 16 a 22/11",goal:9200,revenue:null},
+// Semana 3: relógio do Quero Pago (realizado acumulado 26.221 em 22/11 − 21.767 em 15/11). Caixa e efetivas não informadas.
+{label:"Semana 3 · 16 a 22/11",goal:9200,revenue:4454},
 {label:"Semana 4 · 23 a 30/11",goal:8280,revenue:null}
 ];
 const brl=(n:number)=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
