@@ -32,6 +32,7 @@
 .bo-data-badge.validated,.bo-v2 .bo-data-badge.validated{background:var(--aj-good-bg)!important;color:var(--aj-good)!important;border:1px solid rgba(61,220,151,.35)!important}
 .bo-data-badge.reconstructed{background:var(--aj-wait-bg)!important;color:var(--aj-wait)!important;border:1px solid rgba(255,199,102,.35)!important}
 .bo-special-pending,.bo-v2 .bo-v2-mission .bf-status,.bf-status{background:var(--aj-wait-bg)!important;color:var(--aj-wait)!important;border:1px solid rgba(255,199,102,.35)}
+.bo-special-pending.bo-special-done{background:var(--aj-good-bg)!important;color:var(--aj-good)!important;border-color:rgba(61,220,151,.35)}
 .bo-chart-insight{background:rgba(91,155,255,.10)!important;color:#cfe0ff!important;border:1px solid rgba(91,155,255,.3)!important}
 .rf-import-btn,.refund-btn.refund-btn-quiet.rf-import-btn{background:transparent!important;color:#cfe0ff!important;border:1px solid #4d6fa3!important;box-shadow:none!important}
 .rf-import-btn:hover{background:rgba(91,155,255,.12)!important}
