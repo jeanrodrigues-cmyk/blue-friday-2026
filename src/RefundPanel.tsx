@@ -78,6 +78,12 @@ const WEEK_TWO_PROCESSING=[
  {analyst:"Alice Faria",qb:179,me:25,tmr:3.61,general:94.41,tenDays:94.97,eightDays:93.30}
 ] as const;
 const WEEK_TWO_PROCESSING_TOTAL=WEEK_TWO_PROCESSING.reduce((sum,row)=>sum+row.qb+row.me,0);
+// Semana 3: Power BI "Reembolsos Processados QB", filtro 16-22/11/2026, última atualização 24/11. ME não informado.
+const WEEK_THREE_PROCESSING=[
+ {analyst:"Carla Diléo",qb:121,amount:35840,tmr:4.11,general:93.39,tenDays:95.87,eightDays:87.60},
+ {analyst:"Alice Faria",qb:116,amount:30250,tmr:4.10,general:96.55,tenDays:97.41,eightDays:90.52}
+] as const;
+const WEEK_THREE_PROCESSING_TOTAL=WEEK_THREE_PROCESSING.reduce((sum,row)=>sum+row.qb,0);
 // Conversoes da Semana 2 (09 a 15/11): Naiara confirmada pela operacao em 16/11.
 const WEEK_TWO_CONVERSIONS_CONFIRMED:WeeklyConversionRank[]=[
  {analyst:"Alice",conversions:10,vouchers:7,cancelled:3,amount:2120.83},
@@ -235,6 +241,12 @@ export default function RefundPanel(){
    <div className="bf-refund-processing-total"><span>Total processado (QB + ME)</span><strong>{number(WEEK_TWO_PROCESSING_TOTAL)}</strong><small>QB: 394 · ME: 70 · Alice e Carla</small></div>
    <div className="bf-refund-processing-table-wrap"><table className="bf-refund-processing-table"><thead><tr><th>Analista</th><th>Quero Bolsa</th><th>Melhor Escola</th><th>Total processado</th><th>TMR média (QB)</th><th>TMR geral (QB)</th><th>TMR 10 dias (QB)</th><th>TMR 8 dias (QB)</th></tr></thead><tbody>{WEEK_TWO_PROCESSING.map(row=><tr key={row.analyst}><th scope="row">{row.analyst}</th><td>{number(row.qb)}</td><td>{number(row.me)}</td><td><strong>{number(row.qb+row.me)}</strong></td><td>{row.tmr.toFixed(2).replace(".",",")}</td><td>{pct(row.general)}</td><td>{pct(row.tenDays)}</td><td>{pct(row.eightDays)}</td></tr>)}<tr className="bf-refund-processing-sum"><th scope="row">Total</th><td>394</td><td>70</td><td><strong>464</strong></td><td colSpan={4}>TMR individual, não somável</td></tr></tbody></table></div>
    <p className="bf-refund-processing-note">Processados não equivalem a pagamentos ou aprovações. TMR disponível apenas para QB. Naiara não incluída por falta de dados. Estes valores não foram lançados na base financeira PEF.</p>
+  </section>}
+ {week===2&&<section className="bf-refund-insight-panel bf-refund-processing-week2" aria-label="Processamentos da Semana 3">
+   <div className="bf-refund-processing-head"><div><h2>Reembolsos processados · Semana 3</h2><p>16 a 22/11/2026 · QB: Power BI (atualizado em 24/11)</p></div><span className="bf-refund-processing-tag">Dados informados</span></div>
+   <div className="bf-refund-processing-total"><span>Total processado (QB)</span><strong>{number(WEEK_THREE_PROCESSING_TOTAL)}</strong><small>Valor processado: {money(WEEK_THREE_PROCESSING.reduce((sum,row)=>sum+row.amount,0))} · Alice e Carla</small></div>
+   <div className="bf-refund-processing-table-wrap"><table className="bf-refund-processing-table"><thead><tr><th>Analista</th><th>Quero Bolsa</th><th>Valor processado</th><th>TMR média</th><th>TMR geral</th><th>TMR 10 dias</th><th>TMR 8 dias</th></tr></thead><tbody>{WEEK_THREE_PROCESSING.map(row=><tr key={row.analyst}><th scope="row">{row.analyst}</th><td><strong>{number(row.qb)}</strong></td><td>{money(row.amount)}</td><td>{row.tmr.toFixed(2).replace(".",",")}</td><td>{pct(row.general)}</td><td>{pct(row.tenDays)}</td><td>{pct(row.eightDays)}</td></tr>)}<tr className="bf-refund-processing-sum"><th scope="row">Total</th><td><strong>{number(WEEK_THREE_PROCESSING_TOTAL)}</strong></td><td>{money(WEEK_THREE_PROCESSING.reduce((sum,row)=>sum+row.amount,0))}</td><td colSpan={4}>TMR individual, não somável</td></tr></tbody></table></div>
+   <p className="bf-refund-processing-note">Processados não equivalem a pagamentos ou aprovações. Valores processados arredondados pelo Power BI (R$ mil). Contagens de ME e da Naiara não informadas nesta semana. Estes valores não foram lançados na base financeira PEF.</p>
   </section>}
  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:16,flexWrap:"wrap",margin:"20px 0"}}><span style={ui.muted}>Fechamento da semana selecionada. Confira a cobertura e a origem dos registros diários.</span><button type="button" className="refund-btn refund-btn-quiet rf-import-btn" onClick={()=>setShowImport(v=>!v)}>{showImport?"Fechar importação":"Importar dados CSV"}</button></div>
  {showImport&&<section className="refund-import refund-panel"><div><h2>Atualizar reembolsos PEF</h2><p>Importe o CSV validado com as colunas <code>date, team, quantidade, valor_reembolsado</code>.</p><p>Confirme período e valores reconciliados antes de importar. Sem a tabela compartilhada, os dados ficam locais.</p></div><label className="refund-upload">Selecionar CSV<input type="file" accept=".csv,text/csv" onChange={onFile}/></label></section>}
